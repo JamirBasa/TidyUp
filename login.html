@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">  
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              fontFamily: {
+                poppins: ['Poppins', 'sans-serif'],
+              },
+              colors: {
+            customOlive: '#3F4A25', // Add the custom color here
+          },
+            }
+          }
+        }
+      </script>
+      
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="relative flex w-full h-screen bg-white  overflow-hidden">
+        <a href="#" class="absolute text-sm text-gray-500 mb-4 block p-2 left-1">
+            <img src="SVG/Arrow/Arrow_Left_SM.svg" alt=""> Back
+        </a>
+        
+        <div class="hidden md:block md:w-1/2">
+            <img src="images/Rectangle 118.jpg" alt="Salon Image" class="h-full w-full object-cover">
+        </div>
+
+
+        <div class="w-full md:w-1/2 px-32 py-8">
+            <div class="flex justify-center mb-8">
+                <img src="SVG/logofinal 4.svg" alt="Logo" class="h-36">
+            </div>
+            <h2 class="flex justify-center text-5xl font-bold text-gray-800 mb-4 font-clash ">Welcome back!</h2>
+            <p class="flex justify-center text-gray-900 mb-6 text-1xl font-poppins pb-4">We're glad to have you here.</p>
+
+            <form action="#" class="space-y-4">
+                <div>
+                    <label for="email" class="block text-lg font-medium text-gray-700 pl-2 font-poppins placeholder:font-poppins">Email Address</label>
+                    <input type="email" id="email" class="w-full px-4 py-4 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-950 mb-1"
+                        placeholder="johnharold@gmail.com">
+                </div>
+                <div>
+                    <label for="password" class="block text-lg font-medium text-gray-800 pl-2 font-poppins ">Password</label>
+                    <input type="password" id="password" class="w-full px-4 py-4 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-950 mb-2"
+                        placeholder="********">
+                </div>
+                <button type="submit" class="w-full bg-customOlive text-white py-4 rounded-md hover:bg-green-950 transition duration-200 font-poppins">
+                    Login
+                </button>
+            </form>
+
+            <div class="flex items-center justify-center my-8">
+                <span class="border-b border-gray-300 w-1/2"></span>
+                <span class="px-2 text-sm text-gray-400 font-poppins">OR</span>
+                <span class="border-b border-gray-300 w-1/2"></span>
+            </div>
+
+            <div class="space-y-4 mb-4">
+                <a href="#" class="flex items-center justify-center w-full px-4 py-4 border border-gray-300 rounded-md hover:bg-gray-100 transition duration-200 font-poppins">
+                    <img src="path/to/google-icon.svg" alt="Google Icon" class="w-5 h-5 mr-3">
+                    <span>Continue with Google</span>
+                </a>
+                <a href="#" class="flex items-center justify-center w-full px-4 py-4 border border-gray-300 rounded-md hover:bg-gray-100 transition duration-200 font-poppins">
+                    <img src="path/to/facebook-icon.svg" alt="Facebook Icon" class="w-5 h-5 mr-3">
+                    <span>Continue with Facebook</span>
+                </a>
+            </div>
+
+            <p class="mt-6 text-center text-sm text-gray-600 font-poppins">
+                Didn't have an account yet? <a href="#" class="text-blue-500 hover:underline font-poppins">Sign up now.</a>

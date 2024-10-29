@@ -1,4 +1,4 @@
-<header class="max-w-screen-2xl mx-auto fixed top-0 right-0 left-0 bg-transparent">
+<header class="max-w-screen-2xl mx-auto fixed top-0 right-0 left-0 z-10 bg-transparent">
     <nav class="flex items-center justify-between  gap-40">
         {{-- Logo --}}
         <a class="flex items-center gap-2 -ml-2" href="{{ route('index') }}">

@@ -11,11 +11,12 @@
     {{-- Header --}}
     <x-user-header/>
 
-    <main class="bg-milk min-h-screen">
+    <main class="bg-milk min-h-screen relative">
         {{-- SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR --}}
         <x-user-sidebar/>
         {{ $slot }}
     </main>
+    <script src="{{ asset('assets/js/index.blade.js') }}"></script>
     <script src="{{ asset('assets/js/user-sidebar.js') }}"></script>
     @stack('scripts')
 </body>

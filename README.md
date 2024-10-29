@@ -51,7 +51,11 @@ php artisan migrate
 php artisan serve
 ```
 - 11th, then make a new terminal by pressing the plus button in the top right of your terminal
-- 12th, run "npm run dev" in the terminal (also dont close this terminal for it to keep the proccesses running in the background).
+- 12th, run the command "npm install" to install the node_modules.
+```
+npm install
+```
+- 13th, run the command "npm run dev" in the terminal (also dont close this terminal for it to keep the proccesses running in the background).
 ```
 npm run dev
 ```

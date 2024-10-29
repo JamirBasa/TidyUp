@@ -10,7 +10,7 @@
 <body>
     <main class="pb-20">
         {{-- Background Image --}}
-        <img class="min-h-screen fixed top-0 right-0 left-0 bottom-0 -z-10 " src="{{ asset('assets/images/signUpBG.png') }}" alt="webimage">
+        <img class="min-h-screen fixed top-0 right-0 left-0 bottom-0 -z-10 lazyload" src="{{ asset('assets/images/signUpBG.png') }}" alt="webimage">
 
         {{-- Form Container --}}
         <div class="max-w-screen-xl mx-auto bg-white py-20 px-28 rounded-lg mt-28 ">

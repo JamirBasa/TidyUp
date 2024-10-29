@@ -46,7 +46,7 @@ php artisan storage:link
 php artisan migrate
 ```
 - 10th, run the command "php artisan serve" (dont close the terminal for it to keep the processses running in the background)
-  now copy the link, example "http://http://127.0.0.1:8000/", then paste it in your chosen broswer .
+  now copy the link, example "http://127.0.0.1:8000/", then paste it in your chosen broswer .
 ```
 php artisan serve
 ```

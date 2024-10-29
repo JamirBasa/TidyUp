@@ -4,8 +4,8 @@
 - 2nd, Open the Project On VS Code, and Press Ctrl + ` to Open the terminal (Make sure the directory is in the folder of TidyUp).
 
 # WARNING!!
-THIS IS ASSUMING YOU ALREADY INSTALLED COMPOSER AND LARAVEL IN YOUR SYSTEM
-PLEASE REFER TO INSTALLATION GUIDES IF NOT YET INSTALLED IN YOUR SYSTEMS
+THIS IS ASSUMING YOU ALREADY INSTALLED COMPOSER AND LARAVEL IN YOUR SYSTEM </br>
+PLEASE REFER TO INSTALLATION GUIDES IF NOT YET INSTALLED IN YOUR SYSTEMS </br>
 To see if your system has composer installed run the command
 "composer -v" in your cmd.
 ```

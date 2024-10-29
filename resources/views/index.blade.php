@@ -1,6 +1,6 @@
 <x-user-layout>
     
-    <x-loading-sreen/>
+    <x-loading-screen/>
         
     <div class="pt-28 pl-[17rem] max-w-screen-2xl mx-auto"> 
         <div class="grid grid-cols-3 ">

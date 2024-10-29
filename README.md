@@ -1,9 +1,9 @@
-## CLONING AND SETTING UP LARAVEL PROJECT
+# CLONING AND SETTING UP LARAVEL PROJECT
 
 - 1st, Make sure that your branch is the same as the main branch.
 - 2nd, Open the Project On VS Code, and Press Ctrl + ` to Open the terminal (Make sure the directory is in the folder of TidyUp).
 
-# WARNING!!
+## WARNING!!
 THIS IS ASSUMING YOU ALREADY INSTALLED COMPOSER IN YOUR SYSTEM </br>
 PLEASE REFER TO INSTALLATION GUIDES IF NOT YET INSTALLED IN YOUR SYSTEMS </br>
 To see if your system has composer installed run the command

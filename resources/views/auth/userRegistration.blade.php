@@ -23,11 +23,11 @@
                 @csrf
                 {{-- Name --}}
                 <div class="mb-4">
-                    <label class=" text-gray-700" for="name">Name</label>
-                    @error('name')
+                    <label class=" text-gray-700" for="username">username</label>
+                    @error('username')
                     <span class="text-red-500 text-sm text-right">{{ $message }}</span>
                     @enderror
-                    <input class="w-full px-3 py-2 border rounded-lg" type="text" id="name" name="name" placeholder="Name" value="{{ old('name') }}">
+                    <input class="w-full px-3 py-2 border rounded-lg" type="text" id="username" name="username" placeholder="username" value="{{ old('username') }}">
                 </div>
             
                 {{-- Email --}}

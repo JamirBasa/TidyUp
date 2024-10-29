@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('/css/fonts.css');
+
+@layer base {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Hide the default clear button (x) in search inputs */
+    input[type="search"]::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    select {
+        /* for Firefox */
+        -moz-appearance: none;
+        /* for Safari, Chrome, Opera */
+        -webkit-appearance: none;
+    }
+    select::-ms-expand {
+        display: none;
+    }
+    #user-sidebar::-webkit-scrollbar {
+        /* Customize the scrollbar width */
+        width: 2px;
+    }
+
+    #user-sidebar::-webkit-scrollbar-track {
+        /* Customize the scrollbar track */
+        border-radius: 2px;
+    }
+    
+    #user-sidebar::-webkit-scrollbar-thumb {
+        /* Customize the scrollbar thumb */
+        
+    }
+    #user-sidebar {
+        cursor: grab; /* Change cursor to indicate draggable element */
+    }
+    #user-sidebar {
+        cursor: grab; /* Change cursor to indicate draggable element */
+        user-select: none; /* Disable text selection */
+        -webkit-user-select: none; /* Disable text selection for WebKit browsers */
+        -moz-user-select: none; /* Disable text selection for Firefox */
+        -ms-user-select: none; /* Disable text selection for Internet Explorer/Edge */
+    }
+}
+
+@layer components {
+    .button-black {
+        @apply bg-black text-white border-black
+    }
+}
+

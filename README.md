@@ -50,7 +50,7 @@ php artisan migrate
 ```
 php artisan serve
 ```
-- 11th, then make a new terminal by pressing the plus button in the top right of your terminal
+- 11th, then make a new terminal by pressing the plus button in the top right of your terminal </br>
 ![image](https://github.com/user-attachments/assets/97b94aa5-3432-4921-a7bb-26514b07ac5f)
 - 12th, run the command "npm install" to install the node_modules.
 ```

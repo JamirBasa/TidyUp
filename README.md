@@ -41,11 +41,11 @@ DB_PASSWORD=
 php artisan storage:link
 ```
 - 8th, make database in phpmyadmin. name it same with the DB_DATABASE in the .env file 
-- 9th, run the command "php artisan migrate" in the terminal.
+- 9th, make sure you xampp's Apache and MySql is running then, run the command "php artisan migrate" in the terminal.
 ```
 php artisan migrate
 ```
-- 10th, make sure you xampp's Apache and MySql is running then "php artisan serve" (dont close the terminal for it to keep the processses running in the background)
+- 10th, run the command "php artisan serve" (dont close the terminal for it to keep the processses running in the background)
   now copy the link, example "http://http://127.0.0.1:8000/", then paste it in your chosen broswer .
 ```
 php artisan serve

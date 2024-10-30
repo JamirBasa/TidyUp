@@ -16,7 +16,6 @@
                 <img class="h-12" src="{{ asset('assets/images/tidyUpLogo.svg') }}" alt="logo">
             </a>
             <h1 class="text-2xl font-semibold text-center mb-4">Register for TidyUp</h1>
-            <p>TEMPORARY PAGE</p>
             
             {{-- registration form --}}
             <form action="{{ route('user.registration') }}" method="POST">

@@ -1,5 +1,7 @@
 <x-user-layout>
-    {{-- ml-[31rem] --}}
+    
+    <x-loading-screen/>
+        
     <div class="pt-28 pl-[17rem] max-w-screen-2xl mx-auto"> 
         <div class="grid grid-cols-3 ">
             <div class="col-span-2 pt-20">
@@ -21,4 +23,6 @@
             </div>
         </div>
     </div>
+    
+    
 </x-user-layout>

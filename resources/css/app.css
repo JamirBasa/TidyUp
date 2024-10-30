@@ -51,6 +51,14 @@
         -moz-user-select: none; /* Disable text selection for Firefox */
         -ms-user-select: none; /* Disable text selection for Internet Explorer/Edge */
     }
+
+    #loading-screen {
+        opacity: 1;
+        visibility: visible;
+    }
+    .caret-down {
+        transition: transform 0.3s ease;
+    }
 }
 
 @layer components {

@@ -109,8 +109,18 @@ class AuthController extends Controller
     public function shopRegister(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'shop_name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'email' => 'required|email|unique:shops,email',
+            'phone_num' => [
+                'required',
+                'regex:/^\+?[0-9]{7,15}$/', // Validates phone numbers with optional + and 7 to 15 digits
+            ],
+            'region' => 'required|string|max:255',
+            'province' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'barangay' => 'required|string|max:255',
+            'detailed_address' => 'required|string|max:255',
             'password' => [
                 'required',
                 'string',

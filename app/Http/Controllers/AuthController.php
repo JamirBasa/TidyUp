@@ -57,21 +57,57 @@ class AuthController extends Controller
     // Handle user registration
     public function userRegister(Request $request)
     {
-        $request->validate([
-            'username' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed|min:8',
-        ]);
+        //dd($request);
 
+        $request->validate([
+            'first_name' => 'required|string|max:255|regex:/^[\p{L}]+$/u',
+            'last_name' => 'required|string|max:255|regex:/^[\p{L}]+$/u',
+            'username' => 'required|string|max:255|unique:users,username',
+            'email' => 'required|email|unique:users,email',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[a-z]/',     // At least one lowercase letter
+                'regex:/[A-Z]/',     // At least one uppercase letter
+                'regex:/[0-9]/',     // At least one digit
+                'regex:/[@$!%*?&#]/', // At least one special character
+                'confirmed', // This requires a password confirmation field (password_confirmation)
+            ],
+            'gender' => 'required|in:Male,Female,Other',
+            'phone_num' => [
+                'required',
+                'regex:/^\+?[0-9]{7,15}$/', // Validates phone numbers with optional + and 7 to 15 digits
+            ],
+            'region' => 'required|max:255',
+            'province' => 'required|max:255',
+            'city' => 'required|max:255',
+            'barangay' => 'required|max:255',
+            'detailed_address' => 'required|max:255',
+        ]);
+        
         $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'username' => $request->username,
             'email' => $request->email,
+            'gender' => $request->gender,
+            'phone_num' => $request->phone_num,
             'password' => Hash::make($request->password),
+            
+        ]);
+        
+        $user->addresses()->create([
+            'region' => $request->region,
+            'province' => $request->province,
+            'city' => $request->city,
+            'barangay' => $request->barangay,
+            'detailed_address' => $request->detailed_address,
         ]);
 
-        Auth::login($user);
+        //Auth::login($user);
 
-        return redirect()->route('index');
+        return redirect()->route('user.login');
     }
 
     // Show shop login form

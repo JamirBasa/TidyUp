@@ -18,10 +18,16 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'first_name',
+        'last_name',
         'username',
         'email',
         'password',
+        'phone_num',
+        'gender', 
     ];
+    
+    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,4 +51,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class); // A user can have multiple addresses
+    }
+
+    public function user()
+    {
+    return $this->belongsTo(User::class); // Each address belongs to a user
+    }
+
+
 }

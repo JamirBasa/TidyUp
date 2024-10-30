@@ -8,7 +8,7 @@
     @vite(['resoruces/js/app.js', 'resources/css/app.css', 'resources/css/fonts.css'])
 </head>
 <body>
-    <main class="pb-20">
+    <main class="pb-20 scroll-smooth">
         {{-- Background Image --}}
         <img class="min-h-screen fixed top-0 right-0 left-0 bottom-0 -z-10 lazyload" src="{{ asset('assets/images/signUpBG.png') }}" alt="webimage">
 
@@ -91,30 +91,50 @@
                         {{-- Region --}}
                         <div class="flex flex-col gap-3">
                             <label for="region">Region</label>
-                            <select class="border border-neutral-400 py-3 px-4 rounded-lg" id="regionSelect" name="region">
-                                <option value="">Select Region</option>
-                            </select>
+                            <div class="relative flex items-center">
+                                <select class="border flex-1 border-neutral-400 py-3 px-4 rounded-lg truncate" id="regionSelect" name="region">
+                                    <option value="">Select Region</option>
+                                </select>
+                                <svg id="caret-down1" class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
                         {{-- Province --}}
                         <div class="flex flex-col gap-3">
-                            <label for="provice">Province</label>
-                            <select class="border border-neutral-400 py-3 px-4 rounded-lg" id="proviceSelect" name="provice">
-                                <option value="">Select Province</option>
-                            </select>
+                            <label for="province">Province</label>
+                            <div class="relative inline-flex items-center">
+                                <select class="border w-full border-neutral-400 py-3 pl-4 pr-9 rounded-lg" id="provinceSelect" name="province">
+                                    <option value="">Select Province</option>
+                                </select>
+                                <svg id="caret-down2" class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
                         {{-- City --}}
                         <div class="flex flex-col gap-3">
                             <label for="city">City</label>
-                            <select class="border border-neutral-400 py-3 px-4 rounded-lg" id="citySelect" name="city">
-                                <option value="">Select City</option>
-                            </select>
+                            <div class="relative inline-flex items-center">
+                                <select class="border w-full border-neutral-400 py-3 pl-4 pr-9 rounded-lg" id="citySelect" name="city">
+                                    <option value="">Select City</option>
+                                </select>
+                                <svg id="caret-down3" class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
                         {{-- Barangay --}}
                         <div class="flex flex-col gap-3">
                             <label for="barangay">Barangay</label>
-                            <select class="border border-neutral-400 py-3 px-4 rounded-lg" id="barangaySelect" name="barangay">
-                                <option value="">Select Barangay</option>
-                            </select>
+                            <div class="relative flex items-center">
+                                <select class="border flex-1 border-neutral-400 py-3 px-4 rounded-lg " id="barangaySelect" name="barangay">
+                                    <option value="">Select Barangay</option>
+                                </select>
+                                <svg id="caret-down4" class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                     <div class="flex flex-col gap-3 mb-8 flex-1">
@@ -123,25 +143,27 @@
                     </div>
                 </div>
                 {{-- Password --}}
-                <div class="flex flex-col gap-3 mb-8 flex-1">
-                    <label class="font-semibold"  for="password">Password</label>
+                <div class="flex flex-col gap-3 mb-4 flex-1">
+                    <div class="flex items-center justify-between">
+                        <label class="font-semibold"  for="password">Password</label>
+                        <p id="strengthDisplay" class=""></p>
+                    </div>
                     <input class="border border-neutral-400 py-3 px-4 rounded-lg" type="password" name="password" id="password" placeholder="Enter your password">
                 </div>
                 {{-- Password Condition --}}
-                <div class="flex justify-center items-center gap-20 mb-8">
-                    <ul class="flex flex-col gap-3">
-                        <li class="text-neutral-500 inline">&bull; Use 8 or more Characters</li>
-                        <li class="text-neutral-500 inline">&bull; Use a number (e.g. 1234)</li>
-                    </ul>   
-                    <ul class="flex flex-col gap-3">
-                        <li class="text-neutral-500 inline">&bull; Use upper and lower case letter (e.g. Aa)</li>
-                        <li class="text-neutral-500 inline">&bull; Use a symbol(e.g. !@#$)</li>
-                    </ul>
-                </div>
+                <ul class="grid grid-cols-9 w-full divide-x divide-neutral-400 mb-6 items-center">
+                    <li class="text-neutral-500 inline text-center text-sm col-span-2">&bull; Use 8 or more Characters</li>
+                    <li class="text-neutral-500 inline text-center text-sm col-span-2">&bull; Use a number (e.g. 1234)</li>
+                    <li class="text-neutral-500 inline text-center text-sm col-span-3">&bull; Use upper and lower case letter (e.g. Aa)</li>
+                    <li class="text-neutral-500 inline text-center text-sm col-span-2">&bull; Use a symbol(e.g. !@#$)</li>
+                </ul>
                 {{-- Confirm Password --}}
                 <div class="flex flex-col gap-3 mb-12 flex-1">
-                    <label class="font-semibold"  for="password_confirmation">Confirmation Password</label>
-                    <input class="border border-neutral-400 py-3 px-4 rounded-lg" type="password" name="password_confirmation" id="password_confirmation" placeholder="Comfirm your password">
+                    <div class="flex items-center justify-between">
+                        <label class="font-semibold"  for="password_confirmation">Confirmation Password</label>
+                        <p id="matchPasswordDisplay" class="text-red-400"></p>
+                    </div>
+                    <input class="border border-neutral-400 py-3 px-4 rounded-lg" type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm your password">
                 </div>
                 {{-- BUttons Container --}}
                 <div class="grid grid-cols-2 gap-4">
@@ -154,6 +176,10 @@
 
         </div>
     </main>
+    <script src="{{ asset('assets/js/regionObj.js') }}"></script>
+    <script src="{{ asset('assets/js/provinceObj.js') }}"></script>
+    <script src="{{ asset('assets/js/cityObj.js') }}"></script>
+    <script src="{{ asset('assets/js/barangayObj.js') }}"></script>
     <script src="{{ asset('assets/js/shopRegistration.js') }}"></script>
     <script src="{{ asset('assets/js/address.js') }}"></script>
     @stack('scripts')

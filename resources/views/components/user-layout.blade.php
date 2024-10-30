@@ -11,7 +11,7 @@
     {{-- Header --}}
     <x-user-header/>
 
-    <main class="bg-milk min-h-screen relative">
+    <main class="bg-milk min-h-screen relative scroll-smooth">
         {{-- SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR --}}
         <x-user-sidebar/>
         {{ $slot }}

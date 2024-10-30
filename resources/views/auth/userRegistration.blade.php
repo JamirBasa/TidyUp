@@ -5,85 +5,142 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ env('APP_NAME') }}</title>
-    @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/css/fonts.css'])
+    @vite(['resoruces/js/app.js', 'resources/css/app.css', 'resources/css/fonts.css'])
 </head>
 <body>
-    <main class="">
-        <section class="flex justify-center items-center h-screen bg-gray-100">
-            <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
-            {{-- Logo --}}
-            <a href="{{ route('index') }}" class="flex justify-center mb-6">
-                <img class="h-12" src="{{ asset('assets/images/tidyUpLogo.svg') }}" alt="logo">
-            </a>
-            <h1 class="text-2xl font-semibold text-center mb-4">Register for TidyUp</h1>
+    <main class="pb-20">
+        {{-- Background Image --}}
+        <img class="min-h-screen fixed top-0 right-0 left-0 bottom-0 -z-10 lazyload" src="{{ asset('assets/images/signUpBG.png') }}" alt="webimage">
+
+        {{-- Form Container --}}
+        <div class="max-w-screen-xl mx-auto bg-white py-20 px-28 rounded-lg mt-28 ">
             
-            {{-- registration form --}}
-            <form action="{{ route('user.registration') }}" method="POST">
+            <div class="mb-10">
+                <h1 class="font-clash flex font-medium text-2xl mb-2">Create an Account</h1>
+                <h1 class="text-sm">Fill in the details and you're good to go!</h1>
+            </div>
+
+            {{-- Form --}}
+            <form action="">
                 @csrf
-                {{-- Name --}}
-                <div class="mb-4">
-                    <label class=" text-gray-700" for="username">username</label>
-                    @error('username')
-                    <span class="text-red-500 text-sm text-right">{{ $message }}</span>
-                    @enderror
-                    <input class="w-full px-3 py-2 border rounded-lg" type="text" id="username" name="username" placeholder="username" value="{{ old('username') }}">
+         
+                <div class="grid grid-cols-2 gap-3 mb-8 flex-1">
+                    {{-- User's First Name --}}
+                    <div class="flex flex-col gap-3">
+                        <label class="font-semibold"  for="first_name">First Name</label>
+                        <input class="border border-neutral-400 py-3 px-4 rounded-lg w-full" type="text" name="first_name" id="first_name" placeholder="Enter your first name">
+                    </div>
+                    {{-- User's Last Name --}}
+                    <div class="flex flex-col gap-3">
+                        <label class="font-semibold"  for="last_name">Last Name</label>
+                        <input class="border border-neutral-400 py-3 px-4 rounded-lg w-full" type="text" name="last_name" id="last_name" placeholder="Enter your last name">
+                    </div>
                 </div>
-            
-                {{-- Email --}}
-                <div class="mb-4">
-                    <label class=" text-gray-700" for="email">Email Address</label>
-                    @error('email')
-                        <span class="text-red-500 text-sm text-right">{{ $message }}</span>
-                    @enderror
-                    <input class="w-full px-3 py-2 border rounded-lg" type="email" id="email" name="email" placeholder="Email Address" value="{{ old('email') }}">
-                    
+        
+                <div class="grid grid-cols-2 gap-3 mb-8 flex-1">
+                    {{-- Username--}}
+                    <div class="flex flex-col gap-3">
+                        <label class="font-semibold"  for="username">Username</label>
+                        <input class="border border-neutral-400 py-3 px-4 rounded-lg w-full" type="text" name="username" id="username" placeholder="Enter your username">
+                    </div>
+
+                    {{-- Gender--}}
+                    <div class="flex flex-col gap-3">
+                        <label class="font-semibold"  for="gender">Gender</label>
+                        <select class="border border-neutral-400 py-3 px-4 rounded-lg w-full" name="gender" id="gender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
                 </div>
-            
+                
+                <div class="grid grid-cols-3 gap-3 mb-8">
+                    {{-- Email --}}
+                    <div class="flex flex-col gap-3 col-span-2">
+                        <label class="font-semibold" for="email">Email</label>
+                        <input class="border border-neutral-400 py-3 px-4 rounded-lg w-full" type="text" name="email" id="email" placeholder="Enter your email">
+                    </div>
+                    {{-- Phone Number --}}
+                    <div class="flex flex-col gap-3 col-span-1">
+                        <label class="font-semibold" for="phone_num">Phone Number</label>
+                        <input class="border border-neutral-400 py-3 px-4 rounded-lg w-full" type="text" name="phone_num" id="phone_num" placeholder="XXXX-XXX-XXXX">
+                    </div>
+                </div>
+                
+                {{-- Address --}}
+                <div class="flex flex-col">
+                    <label class="font-semibold mb-3"  for="address">Address</label>
+                    <div class="grid grid-cols-4 gap-3 mb-8 flex-1">
+                        {{-- Region --}}
+                        <div class="flex flex-col gap-3">
+                            <label for="region">Region</label>
+                            <select class="border border-neutral-400 py-3 px-4 rounded-lg" id="regionSelect" name="region">
+                                <option value="">Select Region</option>
+                            </select>
+                        </div>
+                        {{-- Province --}}
+                        <div class="flex flex-col gap-3">
+                            <label for="provice">Province</label>
+                            <select class="border border-neutral-400 py-3 px-4 rounded-lg" id="proviceSelect" name="provice">
+                                <option value="">Select Province</option>
+                            </select>
+                        </div>
+                        {{-- City --}}
+                        <div class="flex flex-col gap-3">
+                            <label for="city">City</label>
+                            <select class="border border-neutral-400 py-3 px-4 rounded-lg" id="citySelect" name="city">
+                                <option value="">Select City</option>
+                            </select>
+                        </div>
+                        {{-- Barangay --}}
+                        <div class="flex flex-col gap-3">
+                            <label for="barangay">Barangay</label>
+                            <select class="border border-neutral-400 py-3 px-4 rounded-lg" id="barangaySelect" name="barangay">
+                                <option value="">Select Barangay</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-3 mb-8 flex-1">
+                       <label  for="detailed_address">Detailed Address</label>
+                       <input class="border border-neutral-400 py-3 px-4 rounded-lg" type="text" name="detailed_address" id="detailed_address" placeholder="Enter your detailed address">
+                    </div>
+                </div>
                 {{-- Password --}}
-                <div class="mb-4">
-                    <label class=" text-gray-700 inline" for="password">Password</label>
-                    @error('password')
-                    <span class="text-red-500 text-sm text-right">{{ $message }}</span>
-                    @enderror
-                    <input class="w-full px-3 py-2 border rounded-lg" type="password" id="password" name="password" placeholder="Password">
+                <div class="flex flex-col gap-3 mb-8 flex-1">
+                    <label class="font-semibold"  for="password">Password</label>
+                    <input class="border border-neutral-400 py-3 px-4 rounded-lg" type="password" name="password" id="password" placeholder="Enter your password">
                 </div>
-            
+                {{-- Password Condition --}}
+                <div class="flex justify-center items-center gap-20 mb-8">
+                    <ul class="flex flex-col gap-3">
+                        <li class="text-neutral-500 inline">&bull; Use 8 or more Characters</li>
+                        <li class="text-neutral-500 inline">&bull; Use a number (e.g. 1234)</li>
+                    </ul>   
+                    <ul class="flex flex-col gap-3">
+                        <li class="text-neutral-500 inline">&bull; Use upper and lower case letter (e.g. Aa)</li>
+                        <li class="text-neutral-500 inline">&bull; Use a symbol(e.g. !@#$)</li>
+                    </ul>
+                </div>
                 {{-- Confirm Password --}}
-                <div class="mb-6">
-                    <label class=" text-gray-700" for="password_confirmation">Confirm Password</label>
-                    <input class="w-full px-3 py-2 border rounded-lg" type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password">
+                <div class="flex flex-col gap-3 mb-12 flex-1">
+                    <label class="font-semibold"  for="password_confirmation">Confirmation Password</label>
+                    <input class="border border-neutral-400 py-3 px-4 rounded-lg" type="password" name="password_confirmation" id="password_confirmation" placeholder="Comfirm your password">
                 </div>
-            
-                <button class="w-full bg-blue-500 text-white py-2 rounded-lg" type="submit">Register</button>
+                {{-- BUttons Container --}}
+                <div class="grid grid-cols-2 gap-4">
+                    <a href="{{ route('shop.login') }}" class="bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-200 rounded-lg p-3 font-semibold w-full transition-colors duration-150 ease-in-out text-center">
+                        Back
+                    </a>
+                    <button class="bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-lg p-3 font-semibold">Next</button>
+                </div>
             </form>
-            
 
-            {{-- separator --}}
-            <div class="flex items-center my-6">
-                <div class="flex-grow border-t border-gray-300"></div>
-                <span class="mx-4 text-gray-500">OR</span>
-                <div class="flex-grow border-t border-gray-300"></div>
-            </div>
-
-            {{-- Social Media Login for Google --}}
-            <button class="w-full border border-gray-300 rounded-lg py-2 flex items-center justify-center mb-4 hover:border-blue-500">
-                <img class="h-6 mr-2" src="{{ asset('assets/images/googlelogo.svg') }}" alt="Google logo">
-                <span>Continue with Google</span>
-            </button>
-
-            {{-- Social Media Login for Facebook --}}
-            <button class="w-full border border-gray-300 rounded-lg py-2 flex items-center justify-center hover:border-blue-500">
-                <img class="h-6 mr-2" src="{{ asset('assets/images/facebooklogo.svg') }}" alt="Facebook logo">
-                <span>Continue with Facebook</span>
-            </button>
-
-            <div class="text-center mt-6">
-                <p>Already Have an Account? <a href="{{ route('user.login') }}" class="text-blue-500 hover:underline">Log in now</a>.</p>
-            </div>
-            </div>
-        </section>
+        </div>
     </main>
-    <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="{{ asset('assets/js/shopRegistration.js') }}"></script>
+    <script src="{{ asset('assets/js/address.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

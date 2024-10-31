@@ -1,4 +1,4 @@
-<x-user-layout>
+<x-user-layout :user="$user">
     
     <x-loading-screen/>
         

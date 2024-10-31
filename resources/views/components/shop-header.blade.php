@@ -1,3 +1,4 @@
+@props(['user'])
 <header class="transition-all duration-1000 ease-in-out fixed top-0 left-0 right-0 z-20">
     <nav class=" flex items-center  justify-between px-6">
         <!-- logo -->
@@ -29,8 +30,10 @@
                     <img class="absolute top-[0.60rem] right-[0.55rem]" src="{{ asset('assets/Icons/Communication/Bell_Notification.svg') }}" alt="">
                 </button>
                 <!-- profile picture -->
-                <button class="shadow-sm rounded-full">
+                <button id="user-profile-button" class="shadow-sm rounded-full relative">
                     <img class="size-12 object-cover object-top rounded-full " src="{{ asset('assets/images/sampleDp.png') }}" alt="Profile Picture">
+                    <x-profile-dropdown :user="$user"/>
+                    
                 </button>
             </div>
             

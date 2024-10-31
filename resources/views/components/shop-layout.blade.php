@@ -1,3 +1,4 @@
+@props(['user'])
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 </head>
 <body class="">
     {{-- Header --}}
-    <x-shop-header/>
+    <x-shop-header :user="$user"/>
     {{-- SideBar --}}
     <x-shop-sidebar/>
     <!-- main content -->

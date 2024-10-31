@@ -32,7 +32,7 @@
                 <!-- profile picture -->
                 <button id="user-profile-button" class="shadow-sm rounded-full relative">
                     <img class="size-12 object-cover object-top rounded-full " src="{{ asset('assets/images/sampleDp.png') }}" alt="Profile Picture">
-                    <x-profile-dropdown :user="$user"/>
+                    {{-- <x-profile-dropdown :user="$user"/> --}}
                     
                 </button>
             </div>

@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    {{-- <!-- Menu Items -->
+    <!-- Menu Items -->
     <div class="">
         <div class="border-b">
             <button class="w-full px-6 py-3 text-sm text-left hover:bg-neutral-100 inline-flex items-center gap-3">
@@ -81,5 +81,5 @@
                 <span>Send Feedback</span>
             </button>
         </div>
-    </div> --}}
+    </div>
 </div>

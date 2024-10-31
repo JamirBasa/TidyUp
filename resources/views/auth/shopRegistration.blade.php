@@ -21,7 +21,7 @@
             </div>
 
             {{-- Form --}}
-            <form action="">
+            <form action="" method="POST">
                 @csrf
                 {{-- Shop Name --}}
                 <div class="flex flex-col gap-3 mb-8">

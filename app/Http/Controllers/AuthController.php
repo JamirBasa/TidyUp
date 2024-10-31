@@ -60,7 +60,7 @@ class AuthController extends Controller
         //dd($request);
 
         $request->validate([
-            'first_name' => 'required|string|max:255|regex:/^[\p{L}]+$/u',
+            'first_name' => 'required|string|max:255|regex:/^[\p{L}]+(?: [\p{L}]+)?$/u',
             'last_name' => 'required|string|max:255|regex:/^[\p{L}]+$/u',
             'username' => 'required|string|max:255|unique:users,username',
             'email' => 'required|email|unique:users,email',
@@ -146,33 +146,24 @@ class AuthController extends Controller
     {
         $request->validate([
             'shop_name' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'email' => 'required|email|unique:shops,email',
-            'phone_num' => [
-                'required',
-                'regex:/^\+?[0-9]{7,15}$/', // Validates phone numbers with optional + and 7 to 15 digits
+            'address' => 'required|string|max:255',
+            'contact_number' => [
+            'nullable',
+            'regex:/^\+?[0-9]{7,15}$/', // Validates phone numbers with optional + and 7 to 15 digits
             ],
-            'region' => 'required|string|max:255',
-            'province' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'barangay' => 'required|string|max:255',
-            'detailed_address' => 'required|string|max:255',
-            'password' => [
-                'required',
-                'string',
-                'min:8',           
-                'regex:/[a-z]/',     
-                'regex:/[A-Z]/',   
-                'regex:/[0-9]/',    
-                'regex:/[@$!%*?&#]/',
-                'confirmed',
-            ],
+            'email' => 'nullable|email|unique:shops,email',
+            'description' => 'nullable|string',
+            'status' => 'required|in:active,inactive',
         ]);
 
         $shop = Shop::create([
-            'name' => $request->name,
+            'user_id' => Auth::id(), // Link the shop to the currently authenticated user
+            'shop_name' => $request->shop_name,
+            'address' => $request->address,
+            'contact_number' => $request->contact_number,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'description' => $request->description,
+            'status' => $request->status,
         ]);
 
         Auth::guard('shop')->login($shop);

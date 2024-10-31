@@ -3,13 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\HomeController;
 
 use App\Http\Middleware\IsServiceProvider;
 use App\Http\Middleware\IsNotServiceProvider;
 use Illuminate\Support\Facades\Auth;
 
 // Static pages
-Route::view('/', 'index')->name('index');
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 // User Authentication
 

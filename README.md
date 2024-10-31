@@ -70,7 +70,3 @@ npm run dev
 - if there is no error congrats you are done.
 
 
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

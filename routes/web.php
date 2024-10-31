@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ShopController;
 
 // Static pages
 Route::view('/', 'index')->name('index');
@@ -23,4 +24,4 @@ Route::get('/shop/registration', [AuthController::class, 'showShopRegistrationFo
 Route::post('/shop/registration', [AuthController::class, 'shopRegister']);
 
 //Shop Pages
-Route::view('/shop', 'shop.index')->name('shop.index');
+Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');

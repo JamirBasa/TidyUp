@@ -153,7 +153,7 @@ class AuthController extends Controller
         $shop = Shop::create([
             'user_id' => Auth::id(),
             'shop_name' => $request->shop_name,
-            'contact_number' => $request->phone_num,
+            'contact_number' => $request->contact_number,
             'email' => $request->email,
             'description' => $request->description ?? null,
         ]);

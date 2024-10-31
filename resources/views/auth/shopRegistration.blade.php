@@ -94,6 +94,7 @@
                         @error('contact_number')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
+                        {{-- demo --}}
                     </div>
                 </div>
                 {{-- Address --}}

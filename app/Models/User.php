@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'phone_num',
         'gender', 
+        'is_service_provider',
     ];
     
     

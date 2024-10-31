@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('user-sidebar');
     let isDragging = false;
     let startY;
@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         startY = e.pageY - sidebar.offsetTop;
         scrollTop = sidebar.scrollTop;
         sidebar.style.cursor = 'grabbing';
+        // Disable pointer events on buttons
+        sidebar.querySelectorAll('button').forEach(button => button.style.pointerEvents = 'none');
     });
 
     document.addEventListener('mousemove', (e) => {
@@ -27,10 +29,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.addEventListener('mouseup', () => {
         isDragging = false;
         sidebar.style.cursor = 'grab';
+        // Re-enable pointer events on buttons
+        sidebar.querySelectorAll('button').forEach(button => button.style.pointerEvents = 'auto');
     });
 
     sidebar.addEventListener('mouseleave', () => {
         isDragging = false;
         sidebar.style.cursor = 'grab';
+        // Re-enable pointer events on buttons
+        sidebar.querySelectorAll('button').forEach(button => button.style.pointerEvents = 'auto');
     });
 });

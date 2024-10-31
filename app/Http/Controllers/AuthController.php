@@ -57,21 +57,57 @@ class AuthController extends Controller
     // Handle user registration
     public function userRegister(Request $request)
     {
+        //dd($request);
+
         $request->validate([
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255|regex:/^[\p{L}]+(?: [\p{L}]+)?$/u',
+            'last_name' => 'required|string|max:255|regex:/^[\p{L}]+$/u',
+            'username' => 'required|string|max:255|unique:users,username',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed|min:8',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[a-z]/',     // At least one lowercase letter
+                'regex:/[A-Z]/',     // At least one uppercase letter
+                'regex:/[0-9]/',     // At least one digit
+                'regex:/[@$!%*?&#]/', // At least one special character
+                'confirmed', // This requires a password confirmation field (password_confirmation)
+            ],
+            'gender' => 'required|in:Male,Female,Other',
+            'phone_num' => [
+                'required',
+                'regex:/^\+?[0-9]{7,15}$/', // Validates phone numbers with optional + and 7 to 15 digits
+            ],
+            'region' => 'required|max:255',
+            'province' => 'required|max:255',
+            'city' => 'required|max:255',
+            'barangay' => 'required|max:255',
+            'detailed_address' => 'required|max:255',
         ]);
-
+        
         $user = User::create([
-            'name' => $request->name,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'username' => $request->username,
             'email' => $request->email,
+            'gender' => $request->gender,
+            'phone_num' => $request->phone_num,
             'password' => Hash::make($request->password),
+            
+        ]);
+        
+        $user->addresses()->create([
+            'region' => $request->region,
+            'province' => $request->province,
+            'city' => $request->city,
+            'barangay' => $request->barangay,
+            'detailed_address' => $request->detailed_address,
         ]);
 
-        Auth::login($user);
+        //Auth::login($user);
 
-        return redirect()->route('index');
+        return redirect()->route('user.login');
     }
 
     // Show shop login form
@@ -109,15 +145,25 @@ class AuthController extends Controller
     public function shopRegister(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:shops,email',
-            'password' => 'required|confirmed|min:8',
+            'shop_name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'contact_number' => [
+            'nullable',
+            'regex:/^\+?[0-9]{7,15}$/', // Validates phone numbers with optional + and 7 to 15 digits
+            ],
+            'email' => 'nullable|email|unique:shops,email',
+            'description' => 'nullable|string',
+            'status' => 'required|in:active,inactive',
         ]);
 
         $shop = Shop::create([
-            'name' => $request->name,
+            'user_id' => Auth::id(), // Link the shop to the currently authenticated user
+            'shop_name' => $request->shop_name,
+            'address' => $request->address,
+            'contact_number' => $request->contact_number,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'description' => $request->description,
+            'status' => $request->status,
         ]);
 
         Auth::guard('shop')->login($shop);

@@ -15,8 +15,12 @@ Route::post('/user/registration', [AuthController::class, 'userRegister']);
 Route::post('/user/logout', [AuthController::class, 'userLogout'])->name('user.logout');
 
 // Shop Authentication
-Route::get('/shop/login', [AuthController::class, 'showShopLoginForm'])->name('shop.login');
-Route::post('/shop/login', [AuthController::class, 'shopLogin']);
+// Route::get('/shop/login', [AuthController::class, 'showShopLoginForm'])->name('shop.login');
+// Route::post('/shop/login', [AuthController::class, 'shopLogin']);
+// Route::post('/shop/logout', [AuthController::class, 'shopLogout'])->name('shop.logout');
+
 Route::get('/shop/registration', [AuthController::class, 'showShopRegistrationForm'])->name('shop.registration');
 Route::post('/shop/registration', [AuthController::class, 'shopRegister']);
-Route::post('/shop/logout', [AuthController::class, 'shopLogout'])->name('shop.logout');
+
+//Shop Pages
+Route::view('/shop', 'shop.index')->name('shop.index');

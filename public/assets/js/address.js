@@ -3,13 +3,11 @@ function populateSelectRegion(regionData) {
     let loc = document.getElementById("regionSelect");
     loc.innerHTML = '<option value="">Select Region</option>';
 
-    regionData.RECORDS.sort((a, b) =>
-        a.regCode.localeCompare(b.regCode)
-    ).forEach((record) => {
+    regionData.RECORDS.sort((a, b) => a.order - b.order).forEach((record) => {
         let option = document.createElement("option");
         option.value = record.regDesc;
         option.setAttribute("data-reg-code", record.regCode);
-        option.textContent = record.regDesc;
+        option.textContent = record.regDesc2 || record.regDesc;
         loc.append(option);
     });
 }
@@ -28,9 +26,10 @@ function populateSelectProvince(provinceData) {
         .sort((a, b) => a.provDesc.localeCompare(b.provDesc))
         .forEach((record) => {
             let option = document.createElement("option");
-            option.value = record.provDesc;
+            option.value = capitalizeFirstLetter(record.provDesc);
+            
             option.setAttribute("data-prov-code", record.provCode);
-            option.textContent = record.provDesc;
+            option.textContent =  capitalizeFirstLetter(record.provDesc);
             loc.append(option);
         });
 }
@@ -51,9 +50,9 @@ function populateSelectCity(cityData) {
         .sort((a, b) => a.citymunDesc.localeCompare(b.citymunDesc))
         .forEach((record) => {
             let option = document.createElement("option");
-            option.value = record.citymunDesc;
+            option.value = capitalizeFirstLetter(record.citymunDesc);
             option.setAttribute("data-citymun-code", record.citymunCode);
-            option.textContent = record.citymunDesc;
+            option.textContent =  capitalizeFirstLetter(record.citymunDesc);
             loc.append(option);
         });
 }
@@ -99,3 +98,8 @@ document.getElementById("citySelect").addEventListener("change", function() {
 
 // Initial population
 populateSelectRegion(regionData);
+
+function capitalizeFirstLetter(val) {
+    let newVal = val.toLowerCase();
+    return String(newVal).charAt(0).toUpperCase() + String(newVal).slice(1);
+}

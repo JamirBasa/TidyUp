@@ -1,4 +1,4 @@
-#WELCOME TO TIDYUP
+# WELCOME TO TIDYUP
 This is a project of Pristeam. </br>
 This is an app where you can browse, book and appointment to any of your chosen shop. </br>
 This app also let's you set up your own shop to be browsed by the customers. </br>

@@ -1,3 +1,9 @@
+#WELCOME TO TIDYUP
+This is a project of Pristeam. </br>
+This is an app where you can browse, book and appointment to any of your chosen shop. </br>
+This app also let's you set up your own shop to be browsed by the customers. </br>
+giving business owners an opportunity to showcase their shops and gain more client through our platform.
+
 # CLONING AND SETTING UP LARAVEL PROJECT
 
 - 1st, Make sure that your branch is the same as the main branch.

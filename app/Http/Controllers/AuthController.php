@@ -178,9 +178,7 @@ class AuthController extends Controller
         if ($user instanceof Model) {
             $user->save();
         }
-        
-
-        return redirect()->route('index');
+        return redirect()->route('shop.index');
     }
 
     public function userLogout(Request $request)
@@ -188,7 +186,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
         return redirect()->route('index');
     }
 

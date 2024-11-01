@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Shop;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -19,28 +20,18 @@ class AuthController extends Controller
     // Handle user login
     public function userLogin(Request $request)
     {
-        // For Debugging
-        // dd([
-        //     'request_method' => $request->method(),
-        //     'all_data' => $request->all(),
-        //     'email' => $request->email,
-        //     'password' => $request->password,
-        //     'route_name' => $request->route()->getName()
-        // ]);
+        
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
-
         $credentials = $request->only('email', 'password');
-
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate(); // Add security against session fixation
             
             return redirect()->intended()
                 ->with('success', 'Successfully logged in!');
         }
-
         return back()
             ->withInput($request->only('email')) // Keep the email field filled
             ->withErrors([
@@ -57,21 +48,57 @@ class AuthController extends Controller
     // Handle user registration
     public function userRegister(Request $request)
     {
-        $request->validate([
-            'username' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed|min:8',
-        ]);
+        // dd($request); 
 
+        $request->validate([
+            'first_name' => 'required|string|max:255|regex:/^[\p{L}]+(?: [\p{L}]+)?$/u',
+            'last_name' => 'required|string|max:255|regex:/^[\p{L}]+$/u',
+            'username' => 'required|string|max:255|unique:users,username',
+            'email' => 'required|email|unique:users,email',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[a-z]/',     // At least one lowercase letter
+                'regex:/[A-Z]/',     // At least one uppercase letter
+                'regex:/[0-9]/',     // At least one digit
+                'regex:/[@$!%*?&#]/', // At least one special character
+                'confirmed', // This requires a password confirmation field (password_confirmation)
+            ],
+            'gender' => 'required|in:Male,Female,Other',
+            'phone_num' => [
+                'required',
+                'regex:/^\+?[0-9]{7,15}$/', // Validates phone numbers with optional + and 7 to 15 digits
+            ],
+            'region' => 'required|max:255',
+            'province' => 'required|max:255',
+            'city' => 'required|max:255',
+            'barangay' => 'required|max:255',
+            'detailed_address' => 'required|max:255',
+        ]);
+        
         $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'username' => $request->username,
             'email' => $request->email,
+            'gender' => $request->gender,
+            'phone_num' => $request->phone_num,
             'password' => Hash::make($request->password),
+            
+        ]);
+        
+        $user->addresses()->create([
+            'region' => $request->region,
+            'province' => $request->province,
+            'city' => $request->city,
+            'barangay' => $request->barangay,
+            'detailed_address' => $request->detailed_address,
         ]);
 
-        Auth::login($user);
+        //Auth::login($user);
 
-        return redirect()->route('index');
+        return redirect()->route('user.login');
     }
 
     // Show shop login form
@@ -109,29 +136,49 @@ class AuthController extends Controller
     public function shopRegister(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'shop_name' => 'required|string|max:255',
+            'category' => 'required|array', // Accepts an array of category IDs
             'email' => 'required|email|unique:shops,email',
-            'password' => [
+            'contact_number' => [
                 'required',
-                'string',
-                'min:8',           
-                'regex:/[a-z]/',     
-                'regex:/[A-Z]/',   
-                'regex:/[0-9]/',    
-                'regex:/[@$!%*?&#]/',
-                'confirmed',
+                'regex:/^\+?[0-9]{7,15}$/',
             ],
+            'region' => 'required|max:255',
+            'province' => 'required|max:255',
+            'city' => 'required|max:255',
+            'barangay' => 'required|max:255',
+            'detailed_address' => 'required|max:255',
         ]);
 
         $shop = Shop::create([
-            'name' => $request->name,
+            'user_id' => Auth::id(),
+            'shop_name' => $request->shop_name,
+            'contact_number' => $request->contact_number,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'description' => $request->description ?? null,
         ]);
 
-        Auth::guard('shop')->login($shop);
+        // Attach categories
+        $shop->categories()->attach($request->category); // Assuming 'category' is an array of IDs
 
-        return redirect()->route('index');
+        // Save address details
+        $shop->addresses()->create([
+            'shop_id' => $shop->id,
+            'region' => $request->region,
+            'province' => $request->province,
+            'city' => $request->city,
+            'barangay' => $request->barangay,
+            'detailed_address' => $request->detailed_address,
+        ]);
+
+        $shop->user()->associate(Auth::user());
+
+        $user = Auth::user();
+        $user->is_service_provider = true;
+        if ($user instanceof Model) {
+            $user->save();
+        }
+        return redirect()->route('shop.index');
     }
 
     public function userLogout(Request $request)
@@ -139,7 +186,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
         return redirect()->route('index');
     }
 

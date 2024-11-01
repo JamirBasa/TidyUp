@@ -1,0 +1,140 @@
+const regionData = {
+    "RECORDS": [
+        {
+            "id": 1,
+            "psgcCode": "010000000",
+            "regDesc": "REGION I",
+            "regDesc2": "REGION I (1)",
+            "order": 3,
+            "regCode": "01",
+        },
+        {
+            "id": 2,
+            "psgcCode": "020000000",
+            "regDesc": "REGION II",
+            "regDesc2": "REGION II (2)",
+            "order": 4,
+            "regCode": "02"
+        },
+        {
+            "id": 3,
+            "psgcCode": "030000000",
+            "regDesc": "REGION III",
+            "regDesc2": "REGION III (3)",
+            "order": 5,
+            "regCode": "03"
+        },
+        {
+            "id": 4,
+            "psgcCode": "040000000",
+            "regDesc": "REGION IV-A",
+            "regDesc2": "REGION IV-A (4A)",
+            "regCode": "04",
+            "order": 6,
+
+        },
+        {
+            "id": 5,
+            "psgcCode": "170000000",
+            "regDesc": "REGION IV-B",
+            "regDesc2": "REGION IV-B (4B)",
+            "regCode": "17",
+            "order": 7,
+        },
+        {
+            "id": 6,
+            "psgcCode": "050000000",
+            "regDesc": "REGION V",
+            "regDesc2": "REGION V (5)",
+            "regCode": "05",
+            "order": 8,
+        },
+        {
+            "id": 7,
+            "psgcCode": "060000000",
+            "regDesc": "REGION VI",
+            "regDesc2": "REGION VI (6)",
+            "regCode": "06",
+            "order": 9,
+        },
+        {
+            "id": 8,
+            "psgcCode": "070000000",
+            "regDesc": "REGION VII",
+            "regDesc2": "REGION VII (7)",
+            "regCode": "07",
+            "order": 10,
+        },
+        {
+            "id": 9,
+            "psgcCode": "080000000",
+            "regDesc": "REGION VIII",
+            "regDesc2": "REGION VIII (8)",
+            "regCode": "08",
+            "order": 11,
+        },
+        {
+            "id": 10,
+            "psgcCode": "090000000",
+            "regDesc": "REGION IX",
+            "regDesc2": "REGION IX (9)",
+            "regCode": "09",
+            "order": 12,
+        },
+        {
+            "id": 11,
+            "psgcCode": "100000000",
+            "regDesc": "REGION X",
+            "regDesc2": "REGION X (10)",
+            "regCode": "10",
+            "order": 13,
+        },
+        {
+            "id": 12,
+            "psgcCode": "110000000",
+            "regDesc": "REGION XI",
+            "regDesc2": "REGION XI (11)",
+            "regCode": "11",
+            "order": 14,
+        },
+        {
+            "id": 13,
+            "psgcCode": "120000000",
+            "regDesc": "REGION XII",
+            "regDesc2": "REGION XII (12)",
+            "regCode": "12",
+            "order": 15,
+        },
+        {
+            "id": 14,
+            "psgcCode": "130000000",
+            "regDesc": "NCR",
+            "regCode": "13",
+            "order": 1,
+        },
+        {
+            "id": 15,
+            "psgcCode": "140000000",
+            "regDesc": "CAR",
+            "regCode": "14",
+            "order": 2,
+        },
+        {
+            "id": 16,
+            "psgcCode": "150000000",
+            "regDesc": "ARMM",
+            "regCode": "15",
+            "order": 17,
+        },
+        {
+            "id": 17,
+            "psgcCode": "160000000",
+            "regDesc": "REGION XIII",
+            "regDesc2": "REGION XIII (13)",
+            "regCode": "16",
+            "order": 16,
+        }
+    ]
+};
+
+// console.log(regionData.RECORDS[0].regDesc); // REGION I

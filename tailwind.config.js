@@ -28,7 +28,6 @@ export default {
                 19: "4.75rem",
             },
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 clash: ['ClashDisplay-Variable', 'sans-serif'],
                 poppins: ['Poppins', 'sans-serif'],
             },

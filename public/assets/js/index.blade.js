@@ -1,21 +1,28 @@
 document.addEventListener("DOMContentLoaded", function() {
     const loadingScreen = document.getElementById('loading-screen');
     
-    // Return early if element not found or already shown this session
     if (!loadingScreen || sessionStorage.getItem('loadingScreenShown')) {
-        loadingScreen?.classList.add('hidden');
+        if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.visibility = 'hidden';
+        }
         return;
     }
 
-    // Show loading screen
-    loadingScreen.classList.remove('hidden');
-    
-    // Fade out and hide
-    setTimeout(() => {
-        loadingScreen.classList.add('opacity-0');
-        setTimeout(() => {
-            loadingScreen.classList.add('hidden');
+    // Function to hide the loading screen
+    const hideLoadingScreen = () => {
+        loadingScreen.style.opacity = '0';
+        loadingScreen.addEventListener('transitionend', () => {
+            loadingScreen.style.visibility = 'hidden';
             sessionStorage.setItem('loadingScreenShown', 'true');
-        }, 1000); // Wait for fade animation to complete
-    }, 1000); // Initial delay before starting fade
+        }, { once: true });
+    };
+
+    // Show loading screen
+    loadingScreen.style.opacity = '1';
+    loadingScreen.style.visibility = 'visible';
+    
+    // Trigger fade out after initial delay
+    setTimeout(hideLoadingScreen, 1000);
 });
+

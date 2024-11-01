@@ -2,17 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ShopController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Middleware\IsServiceProvider;
 use App\Http\Middleware\IsNotServiceProvider;
 use Illuminate\Auth\Notifications\ResetPassword;
 
-// Static pages
-Route::get('/', [HomeController::class, 'index'])->name('index');
-
 // User Authentication
+
 
 
 
@@ -27,7 +24,8 @@ Route::middleware('guest')->group(function () {
     // User Reset Password
     //Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');
     Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('auth.forgot-password');
-    Route::post('/forgot-password', [ResetPasswordController::class, 'passwordEmail'])->name('password.email'); // Ensure this is defined
+    Route::view('/forgot-password', 'auth.forgot-password')->middleware('guest')->name('password.request');
+    Route::post('/forgot-password',[ResetPasswordController::class, 'passwordEmail']);
     Route::get('/reset-password/{token}', [ResetPasswordController::class, 'passwordReset'])->name('password.reset');
     Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'])->name('password.update');
 });
@@ -50,3 +48,4 @@ Route::middleware(IsServiceProvider::class)->group(function () {
         return redirect()->route('shop.index');
     });
 });
+

@@ -13,10 +13,10 @@
         <img class="min-h-screen fixed top-0 right-0 left-0 bottom-0 -z-10 lazyload" src="{{ asset('assets/images/signUpBG.png') }}" alt="webimage">
 
         {{-- Form Container --}}
-        <div class="max-w-screen-xl mx-auto bg-white py-20 px-28 rounded-lg mt-28 ">
+        <div class="max-w-screen-sm mx-auto bg-white p-16 rounded-lg mt-28 ">
             
             <div class="mb-10">
-                <h1 class="font-clash flex font-medium text-2xl mb-2">Create an Account</h1>
+                <h1 class="font-clash flex font-medium text-2xl mb-2">Reset Password</h1>
                 <h1 class="text-sm">Fill in the details and you're good to go!</h1>
             </div>
 
@@ -36,7 +36,7 @@
                            <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                  
+                </div>  
             {{-- Password --}}
             <div class="flex flex-col gap-3 mb-4 flex-1">
                 <div class="flex items-center justify-between">
@@ -51,11 +51,15 @@
                 @enderror
             </div>
             {{-- Password Condition --}}
-                <ul class="grid grid-cols-9 w-full divide-x divide-neutral-400 mb-6 items-center">
-                    <li class="text-neutral-500 inline text-center text-sm col-span-2">&bull; Use 8 or more Characters</li>
-                    <li class="text-neutral-500 inline text-center text-sm col-span-2">&bull; Use a number (e.g. 1234)</li>
-                    <li class="text-neutral-500 inline text-center text-sm col-span-3">&bull; Use upper and lower case letter (e.g. Aa)</li>
-                    <li class="text-neutral-500 inline text-center text-sm col-span-2">&bull; Use a symbol(e.g. !@#$)</li>
+                <ul class="flex gap-4 w-full mb-6 items-center justify-center">
+                    <div>
+                        <li class="text-neutral-500 text-left text-sm col-span-2">&bull; Use 8 or more Characters</li>
+                        <li class="text-neutral-500 text-left text-sm col-span-2">&bull; Use a number (e.g. 1234)</li>
+                    </div>
+                    <div>
+                        <li class="text-neutral-500 text-left text-sm col-span-3 text-nowrap">&bull; Use upper and lower case letter (e.g. Aa)</li>
+                        <li class="text-neutral-500 text-left text-sm col-span-2">&bull; Use a symbol(e.g. !@#$)</li>
+                    </div>
                 </ul>
             {{-- Confirm Password --}}
             <div class="flex flex-col gap-3 mb-12 flex-1">
@@ -66,8 +70,12 @@
                 <input class="border border-neutral-400 py-3 px-4 rounded-lg" type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm your password">
             </div>
                 {{-- BUttons Container --}}
-                <div class="grid grid-cols-2 gap-4">
-                    <button type="submit" class="bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-lg p-3 font-semibold">Reset Password</button>
+                <div class="flex gap-4">
+                    
+                    <button type="submit" class="flex-1 bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-lg p-3 font-semibold">
+                        Reset Password
+                    </button>
+                    
                 </div>
             </form>
             <a class="flex items-center absolute top-8 left-8" href="{{ route('user.login') }}">
@@ -78,12 +86,64 @@
             </a>
         </div>
     </main>
-    <script src="{{ asset('assets/js/regionObj.js') }}"></script>
-    <script src="{{ asset('assets/js/provinceObj.js') }}"></script>
-    <script src="{{ asset('assets/js/cityObj.js') }}"></script>
-    <script src="{{ asset('assets/js/barangayObj.js') }}"></script>
-    <script src="{{ asset('assets/js/shopRegistration.js') }}"></script>
-    <script src="{{ asset('assets/js/address.js') }}"></script>
+    <script>
+        function checkPasswordStrength(password) {
+            const minLength = 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            const lengthCheck = password.length >= minLength;
+            let strengthScore = 0;
+            if (hasUpperCase) strengthScore++;
+            if (hasLowerCase) strengthScore++;
+            if (hasNumber) strengthScore++;
+            if (hasSymbol) strengthScore++;
+            if (!lengthCheck) {
+                return 'Weak Password';
+            } else if (strengthScore === 4) {
+                return 'Strong Password';
+            } else if (strengthScore >= 2) {
+                return 'Good Password';
+            } else {
+                return 'Weak Password';
+            }
+        }
+
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('password_confirmation');
+        const strengthDisplay = document.getElementById('strengthDisplay');
+        const matchPasswordDisplay = document.getElementById('matchPasswordDisplay');
+
+        passwordInput.addEventListener('input', () => {
+            const password = passwordInput.value;
+            const text = checkPasswordStrength(password);
+            
+            if (text === 'Weak Password') {
+                strengthDisplay.style.color = 'red';
+            } else if (text === 'Good Password') {
+                strengthDisplay.style.color = 'orange';
+            } else {
+                strengthDisplay.style.color = 'green';
+            }
+
+
+            strengthDisplay.textContent = `${text}`; // Corrected this line
+        });
+
+        confirmPasswordInput.addEventListener('input', checkPasswordMatch);
+
+        function checkPasswordMatch() {
+            if (confirmPasswordInput.value === passwordInput.value && confirmPasswordInput.value !== '') {
+                matchPasswordDisplay.textContent = 'Passwords match';
+                matchPasswordDisplay.style.color = 'green';
+            } else {
+                matchPasswordDisplay.textContent = 'Passwords do not match';
+                matchPasswordDisplay.style.color = 'red';
+            }
+        };
+    </script>
+    {{-- <script src="{{ asset('assets/js/shopRegistration.js') }}"></script> --}}
     @stack('scripts')
 </body>
 </html>

@@ -15,6 +15,7 @@ document.addEventListener('click', (event) => {
     }
 });
 
+// this is line for the password show or hide 
 const hideIcon = document.querySelector('#hide-icon');
 const showIcon = document.querySelector('#show-icon');
 const password = document.querySelector('#password');

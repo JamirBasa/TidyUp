@@ -109,4 +109,38 @@ function checkPasswordMatch() {
 };
 
 
+// this is line for the password show or hide
+const hideIcon = document.querySelector('#hide-icon');
+const showIcon = document.querySelector('#show-icon');
+const hideIcon2 = document.querySelector('#hide-icon2');
+const showIcon2 = document.querySelector('#show-icon2');
+
+//this is for password eye
+hideIcon.addEventListener('click', () => {
+    passwordInput.type = 'text';
+    hideIcon.classList.add('hidden');
+    showIcon.classList.remove('hidden');
+});
+
+showIcon.addEventListener('click', () => {
+    passwordInput.type = 'password';
+    hideIcon.classList.remove('hidden');
+    showIcon.classList.add('hidden');
+});
+
+
+//this is for confirm password eye
+hideIcon2.addEventListener('click', () => {
+    confirmPasswordInput.type = 'text';
+    hideIcon2.classList.add('hidden');
+    showIcon2.classList.remove('hidden');
+});
+
+showIcon2.addEventListener('click', () => {
+    confirmPasswordInput.type = 'password';
+    hideIcon2.classList.remove('hidden');
+    showIcon2.classList.add('hidden');
+});
+
+
 

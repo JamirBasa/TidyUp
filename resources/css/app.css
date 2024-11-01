@@ -27,6 +27,7 @@
     select::-ms-expand {
         display: none;
     }
+    
     #user-sidebar::-webkit-scrollbar {
         /* Customize the scrollbar width */
         width: 2px;

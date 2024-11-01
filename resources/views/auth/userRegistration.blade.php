@@ -65,11 +65,11 @@
                         <div class="relative flex items-center">
                             <select class="border border-neutral-400 py-3 px-4 rounded-lg w-full @error('gender')
                                 ring-1 ring-red-500 
-                            @enderror" name="gender" id="gender" value="{{ old('gender') }}">
-                                <option value="">Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Others">Others</option>
+                            @enderror" name="gender" id="gender">
+                                <option value="" class="appearance-none">Select Gender</option>
+                                <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
+                                <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
+                                <option value="Others" {{ old('gender') == 'Others' ? 'selected' : '' }}>Others</option>
                             </select>
                             <svg id="caret-down1" class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -114,8 +114,12 @@
                             <div class="relative flex items-center">
                                 <select class="border flex-1 border-neutral-400 py-3 px-4 rounded-lg truncate @error('region')
                                     ring-1 ring-red-500 
-                                @enderror" id="regionSelect" name="region" value="{{ old('region') }}">
+                                @enderror" id="regionSelect" name="region">
                                     <option value="">Select Region</option>
+                                    <option value="Region1" {{ old('region') == 'Region1' ? 'selected' : '' }}>Region 1</option>
+                                    <option value="Region2" {{ old('region') == 'Region2' ? 'selected' : '' }}>Region 2</option>
+                                    <option value="Region3" {{ old('region') == 'Region3' ? 'selected' : '' }}>Region 3</option>
+                                    <!-- Add other regions as needed -->
                                 </select>
                                 <svg id="caret-down1" class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round"/>

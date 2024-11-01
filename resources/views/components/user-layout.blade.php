@@ -1,3 +1,4 @@
+@props(['user'])
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 </head>
 <body>
     {{-- Header --}}
-    <x-user-header/>
+    <x-user-header :user="$user"/>
 
     <main class="bg-milk min-h-screen relative scroll-smooth">
         {{-- SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR --}}

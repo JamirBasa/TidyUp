@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\CanResetPassword;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
-{
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
@@ -25,10 +23,11 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         'email',
         'password',
         'phone_num',
-        'gender', 
+        'gender',
+        'is_service_provider',
     ];
-    
-    
+
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -60,8 +59,6 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 
     public function user()
     {
-    return $this->belongsTo(User::class); // Each address belongs to a user
+        return $this->belongsTo(User::class); // Each address belongs to a user
     }
-
-
 }

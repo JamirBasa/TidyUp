@@ -1,4 +1,4 @@
-<x-shop-layout :user="$user">
+<x-shop-layout :user="$user">  
     <div class="bg-white px-7 py-7 rounded-lg shadow-sm mb-4 flex items-center justify-between">
         <div>
             <h6>Your Shop</h6>

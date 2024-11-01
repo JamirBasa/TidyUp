@@ -6,10 +6,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Middleware\IsServiceProvider;
 use App\Http\Middleware\IsNotServiceProvider;
+use App\Http\Controllers\ShopController;
 use Illuminate\Auth\Notifications\ResetPassword;
 
 // User Authentication
-
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 
 

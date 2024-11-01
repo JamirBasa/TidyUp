@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Shop;
+//use Illuminate\Auth\Events\Registered;
+//use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -99,14 +100,12 @@ class AuthController extends Controller
 
         //Auth::login($user);
 
+       // event(new Registered($user));
+
         return redirect()->route('user.login');
     }
 
-    // Show shop login form
-    public function showShopLoginForm()
-    {
-        return view('auth.shopLogin');
-    }
+    
 
 
 
@@ -201,7 +200,23 @@ class AuthController extends Controller
 
         return redirect()->route('index');
     }
+    //email verify
 
+    /*
+    public function verifyNotice(){
+        return view('auth.verify-email');
+    }
+    public function verifyEmail(EmailVerificationRequest $request) {
+        $request->fulfill();
+     
+        return redirect()->route('index');
+    }
+    public function verifyHandler(Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+     
+        return back()->with('message', 'Verification link sent!');
+    }
+    */
 
     // DAVE show forgot password form
     public function showForgotPasswordForm()

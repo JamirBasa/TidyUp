@@ -54,6 +54,10 @@
                             </svg>
                         </div>
                     </div>
+                   {{-- forgot password link --}}
+                    <div class="flex justify-end mb-4">
+                        <a href="{{route('password.request')}}" class="text-sm text-brand-500 hover:text-brand-700">Forgot Password?</a>
+                    </div>
 
                     <button class="w-full bg-brand-500 text-white py-3 rounded-lg" type="submit">Login</button>
                     

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\User;
 use App\Models\Shop;
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +21,7 @@ class AuthController extends Controller
     // Handle user login
     public function userLogin(Request $request)
     {
-        
+
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
@@ -28,7 +29,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate(); // Add security against session fixation
-            
+
             return redirect()->intended()
                 ->with('success', 'Successfully logged in!');
         }
@@ -76,7 +77,7 @@ class AuthController extends Controller
             'barangay' => 'required|max:255',
             'detailed_address' => 'required|max:255',
         ]);
-        
+
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -85,9 +86,9 @@ class AuthController extends Controller
             'gender' => $request->gender,
             'phone_num' => $request->phone_num,
             'password' => Hash::make($request->password),
-            
+
         ]);
-        
+
         $user->addresses()->create([
             'region' => $request->region,
             'province' => $request->province,
@@ -106,6 +107,8 @@ class AuthController extends Controller
     {
         return view('auth.shopLogin');
     }
+
+
 
     // Handle shop login
     public function shopLogin(Request $request)
@@ -198,5 +201,11 @@ class AuthController extends Controller
 
         return redirect()->route('index');
     }
-    
+
+
+    // DAVE show forgot password form
+    public function showForgotPasswordForm()
+    {
+        return view('auth.forgot-password');
+    }
 }

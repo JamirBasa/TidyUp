@@ -30,7 +30,7 @@
                     <img class="absolute top-[0.60rem] right-[0.55rem]" src="{{ asset('assets/Icons/Communication/Bell_Notification.svg') }}" alt="">
                 </button>
                 <!-- profile picture -->
-                <button id="user-profile-button" class="shadow-sm rounded-full relative">
+                <button id="user-profile" class="shadow-sm rounded-full relative">
                     <img class="size-12 object-cover object-top rounded-full " src="{{ asset('assets/images/sampleDp.png') }}" alt="Profile Picture">
                     {{-- <x-profile-dropdown :user="$user"/> --}}
                     
@@ -40,3 +40,34 @@
         </div>
     </nav>
 </header>
+<script>
+    const userHeaderDropdown = document.getElementById('user-header-dropdown');
+const userProfileButton = document.getElementById('user-profile');
+
+userProfileButton.addEventListener('click', (event) => {
+    event.stopPropagation();
+    userHeaderDropdown.classList.toggle('hidden');
+});
+
+document.addEventListener('click', (event) => {
+    if (!userHeaderDropdown.contains(event.target) && !userProfileButton.contains(event.target)) {
+    userHeaderDropdown.classList.add('hidden');
+    }
+});
+
+const hideIcon = document.querySelector('#hide-icon');
+const showIcon = document.querySelector('#show-icon');
+const password = document.querySelector('#password');
+
+hideIcon.addEventListener('click', () => {
+    password.type = 'text';
+    hideIcon.classList.add('hidden');
+    showIcon.classList.remove('hidden');
+});
+
+showIcon.addEventListener('click', () => {
+    password.type = 'password';
+    hideIcon.classList.remove('hidden');
+    showIcon.classList.add('hidden');
+});
+</script>

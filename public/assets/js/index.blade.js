@@ -88,6 +88,8 @@ $(document).ready(function() {
             $('#home-link').addClass('bg-neutral-150');
         } else if (path === '/appointments') {
             $('#appointments-link').addClass('bg-neutral-150');
+        } else if (path === '/explore') {
+            $('#explore-link').addClass('bg-neutral-150');
         }
 
         // Show loading screen

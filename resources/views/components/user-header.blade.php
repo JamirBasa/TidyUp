@@ -57,3 +57,16 @@
         @endauth
     </nav>
 </header>
+<script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+<script>
+    $(window).on('scroll', function() {
+        const $header = $('header');
+        if ($(this).scrollTop() > 0) {
+            $header.addClass('backdrop-blur-2xl bg-transparent shadow-sm');
+            $('#search').addClass('bg-neutral-100');
+        } else {
+            $header.removeClass('backdrop-blur-2xl bg-transparent shadow-sm');
+            $('#search').removeClass('bg-neutral-100');  
+        }
+    });
+</script>

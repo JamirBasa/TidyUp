@@ -12,7 +12,7 @@
     {{-- Header --}}
     <x-user-header :user="$user"/>
     
-    <main  class="bg-milk min-h-screen relative scroll-smooth pb-[10rem]">
+    <main  class="bg-milk min-h-screen relative scroll-smooth pb-[5rem]">
         {{-- SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR --}}
         <x-user-sidebar/>
         <div id="content">

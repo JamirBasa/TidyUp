@@ -8,7 +8,7 @@ $(document).ready(function() {
     } else if (url === '/appointments') {
         $('.nav-link').removeClass('bg-neutral-150');
         $('#appointments-link').addClass('bg-neutral-150');
-    } else {
+    } else if (url === '/explore') {
         $('.nav-link').removeClass('bg-neutral-150');
         $(`a[href="${url}"]`).addClass('bg-neutral-150');
     }

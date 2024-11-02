@@ -13,17 +13,17 @@
             {{-- Search Bar --}}
             <input
             placeholder="Browse for Services"
-            class="placeholder:text-neutral-600 placeholder:font-poppins placeholder:font placeholder:text-sm border rounded-full border-neutral-800  pl-12 pr-40 py-[0.5rem] focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-transparent text-base bg-transparent flex-1"
+            class="placeholder:text-neutral-800 placeholder:font-poppins placeholder:font placeholder:text-sm border rounded-full border-neutral-800  pl-12 pr-40 py-[0.5rem] focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-transparent text-base flex-1"
             type="search"
             name="search"
-            id="search"
+            id="search-bar"
             />
             {{-- <img  src="{{ asset('assets/icons/Interface/Search_Magnifying_Glass.svg') }}" alt="icon"/> --}}
-            <svg class="absolute left-4 size-5 stroke-brand-500 hover:stroke-2 cursor-pointer"  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="absolute left-4 size-5 stroke-neutral-800 hover:stroke-2 cursor-pointer"  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 15L21 21M10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10C17 13.866 13.866 17 10 17Z" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             {{-- the Set Location Button --}}
-            <button class="absolute border-l border-neutral-300 py-2 px-4 rounded-r-full flex items-center gap-3 right-0">
+            <button class="absolute border-l border-neutral-800 py-2 px-4 rounded-r-full flex items-center gap-3 right-0">
                 <span class="text-sm">Set Location</span>
                 <img class="size-5" src="{{ asset('assets/icons/Navigation/Map_Pin.svg') }}" alt="">
             </button>
@@ -63,10 +63,10 @@
         const $header = $('header');
         if ($(this).scrollTop() > 0) {
             $header.addClass('backdrop-blur-2xl bg-transparent shadow-sm');
-            $('#search').addClass('bg-neutral-100');
+            $('#search-bar').addClass('bg-neutral-100 bg-opacity-50 backdrop-blur-2xl');
         } else {
             $header.removeClass('backdrop-blur-2xl bg-transparent shadow-sm');
-            $('#search').removeClass('bg-neutral-100');  
+            $('#search-bar').removeClass('bg-neutral-100 bg-opacity-50 backdrop-blur-2xl');  
         }
     });
 </script>

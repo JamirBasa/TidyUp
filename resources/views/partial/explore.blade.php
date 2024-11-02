@@ -71,7 +71,7 @@
         {{-- Featured Shop End Tag --}}
 
         {{-- Recommended for you Start --}}
-        <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center justify-between mb-8">
             <h1 class="font-clash font-medium text-2xl p-2 border-b-2 border-black">Recommended for you</h1>
             <a href="" class="inline-flex items-center gap-2">
                 <button id="left-arrow">
@@ -91,7 +91,7 @@
 
         <div id="carousel" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10">
             @for ($i = 0; $i < 6; $i++)
-            <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-4">
+            <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-8">
                 <div class="relative mb-2">
                     <img class="lazyload h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                     <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[$i]['tag'] }}</span>
@@ -146,7 +146,7 @@
         </div>
 
         {{-- Barbershop Explore Starting Point --}}
-        <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center justify-between mb-8">
             <a href="" class="inline-flex items-center">
                 <h1 class="font-clash font-medium text-2xl p-2 border-b-2 border-black">Barbershop</h1>
                 <svg class="stroke-black stroke-1" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -169,7 +169,7 @@
         {{-- Shop Cards For Barbershops --}}
         <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10">
             @for ($i = 0; $i < 6; $i++)
-            <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-4">
+            <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-8">
                 <div class="relative mb-2">
                     <img class="lazyload h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                     <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[0]['tag'] }}</span>
@@ -189,7 +189,7 @@
         </div>
 
         {{-- Beauty Salon Explore Starting Point --}}
-        <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center justify-between mb-8">
             <a href="" class="inline-flex items-center">
                 <h1 class="font-clash font-medium text-2xl p-2 border-b-2 border-black">Beauty Salon</h1>
                 <svg class="stroke-black stroke-1" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -213,7 +213,7 @@
         {{-- Shop Cards For Beauty Salon --}}
         <div id="carousel3" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10">
             @for ($i = 5; $i >= 0; $i--)
-            <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-4">
+            <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-8">
                 <div class="relative mb-2">
                     <img class="lazyload h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                     <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[1]['tag'] }}</span>
@@ -233,7 +233,7 @@
         </div>
 
         {{-- Nail Salon Explore Starting Point --}}
-        <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center justify-between mb-8">
             <a href="" class="inline-flex items-center">
                 <h1 class="font-clash font-medium text-2xl p-2 border-b-2 border-black">Nail Salon</h1>
                 <svg class="stroke-black stroke-1" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -256,7 +256,7 @@
         {{-- Shop Cards For Nail Salon --}}
         <div id="carousel4" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10">
             @for ($i = 0; $i < 6; $i++)
-            <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-4">
+            <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-8">
                 <div class="relative mb-2">
                     <img class="lazyload h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                     <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[3]['tag'] }}</span>
@@ -276,7 +276,7 @@
         </div>
 
         {{-- Hair Salon Explore Starting Point --}}
-        <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center justify-between mb-8">
             <a href="" class="inline-flex items-center">
                 <h1 class="font-clash font-medium text-2xl p-2 border-b-2 border-black">Hair Salon</h1>
                 <svg class="stroke-black stroke-1" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -300,7 +300,7 @@
         {{-- Shop Cards For Hair Salon --}}
         <div id="carousel5" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10">
             @for ($i = 5; $i >= 0; $i--)
-            <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-4">
+            <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-8">
                 <div class="relative mb-2">
                     <img class="lazyload h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                     <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[1]['tag'] }}</span>

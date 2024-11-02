@@ -30,18 +30,26 @@
     
     #user-sidebar::-webkit-scrollbar {
         /* Customize the scrollbar width */
-        width: 2px;
+        width: 0px;
     }
 
     #user-sidebar::-webkit-scrollbar-track {
         /* Customize the scrollbar track */
-        border-radius: 2px;
+        border-radius: 0px;
     }
     
     #user-sidebar::-webkit-scrollbar-thumb {
+        /* Customize the scrollbar thumb for WebKit browsers */
+    }
+
+    #user-sidebar::-moz-scrollbar{
+        /* Customize the scrollbar thumb for Mozilla browsers */
+        width: 0px;
+        border-radius: 0px;
+    }
         /* Customize the scrollbar thumb */
         
-    }
+  
     #user-sidebar {
         cursor: grab; /* Change cursor to indicate draggable element */
     }

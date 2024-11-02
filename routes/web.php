@@ -13,7 +13,7 @@ use App\Http\Middleware\IsNotServiceProvider;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\Request;
 
-// User Authentication
+// Routes
 Route::get('/', [SidebarController::class, 'index'])->name('index');
 Route::get('/appointments', [SidebarController::class, 'appointments'])->name('appointments');
 Route::get('/explore', [SidebarController::class, 'explore'])->name('explore');

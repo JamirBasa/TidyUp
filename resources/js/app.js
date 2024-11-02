@@ -32,16 +32,9 @@ showIcon.addEventListener('click', () => {
     showIcon.classList.add('hidden');
 });
 
-$(window).on('scroll', function() {
-    const $header = $('header');
-    if ($(this).scrollTop() > 0) {
-        $header.addClass('backdrop-blur-2xl bg-transparent shadow-sm');
-        $('#search').addClass('bg-neutral-100');
-    } else {
-        $header.removeClass('backdrop-blur-2xl bg-transparent shadow-sm');
-        $('#search').removeClass('bg-neutral-100');  
-    }
-});
+// this line is for when user scroll the page the header will be change the color
+
+
 
 
 

@@ -1,5 +1,5 @@
 @props(['user'])
-<header class=" fixed top-0 right-0 left-0 z-10">
+<header class=" fixed top-0 right-0 left-0 z-10 bg-neutral-100">
     <nav class="flex items-center max-w-screen-2xl mx-auto justify-between gap-40">
         {{-- Logo --}}
         <a class="flex items-center gap-2 -ml-2" href="{{ route('index') }}">
@@ -13,7 +13,7 @@
             {{-- Search Bar --}}
             <input
             placeholder="Browse for Services"
-            class="placeholder:text-neutral-800 placeholder:font-poppins placeholder:font placeholder:text-sm border rounded-full border-neutral-800  pl-12 pr-40 py-[0.5rem] focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-transparent text-base flex-1"
+            class="placeholder:text-neutral-800 placeholder:font-poppins placeholder:font placeholder:text-sm border rounded-full border-neutral-800  pl-12 pr-40 py-[0.5rem] focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-transparent text-base flex-1 bg-neutral-100"
             type="search"
             name="search"
             id="search-bar"
@@ -62,11 +62,12 @@
     $(window).on('scroll', function() {
         const $header = $('header');
         if ($(this).scrollTop() > 0) {
-            $header.addClass('backdrop-blur-2xl bg-transparent shadow-sm');
-            $('#search-bar').addClass('bg-neutral-100 bg-opacity-50 backdrop-blur-2xl');
+            $header.addClass('shadow-sm bg-black');
+            
         } else {
-            $header.removeClass('backdrop-blur-2xl bg-transparent shadow-sm');
-            $('#search-bar').removeClass('bg-neutral-100 bg-opacity-50 backdrop-blur-2xl');  
+            $header.removeClass('shadow-sm');
+            
         }
     });
 </script>
+

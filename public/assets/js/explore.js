@@ -43,30 +43,3 @@ $('#right-arrow5').on('click', function(e) {
     $('#carousel5').animate({scrollLeft: '+=400'}, 600);
 });
 
-// Carousel Snap
-$('#carousel').on('scroll', function() {
-    const $carousel = $('#carousel');
-    const scrollLeft = $carousel.scrollLeft();
-    const width = $carousel.width();
-    const scrollWidth = $carousel[0].scrollWidth;
-    const scrollRight = scrollWidth - width - scrollLeft;
-    
-});
-const cardWidth = $('#shop-card').outerWidth(true);
-const snapPoints = [];
-
-$('#shop-card').each(function(index) {
-    snapPoints.push(index * cardWidth);
-});
-
-$carousel.on('scroll', function() {
-    const scrollLeft = $carousel.scrollLeft();
-    const closestSnapPoint = snapPoints.reduce((prev, curr) => {
-        return (Math.abs(curr - scrollLeft) < Math.abs(prev - scrollLeft) ? curr : prev);
-    });
-
-    clearTimeout($.data(this, 'scrollTimer'));
-    $.data(this, 'scrollTimer', setTimeout(function() {
-        $carousel.animate({scrollLeft: closestSnapPoint}, 300);
-    }, 150));
-});

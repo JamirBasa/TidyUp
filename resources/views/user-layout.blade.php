@@ -16,6 +16,7 @@
         {{-- SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR --}}
         <x-user-sidebar/>
         <div id="content">
+            <x-loading-screen/>
             @if(isset($currentView))
                 @include('partial.' . $currentView, ['user' => $user])
             @else

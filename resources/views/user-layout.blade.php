@@ -12,11 +12,11 @@
     {{-- Header --}}
     <x-user-header :user="$user"/>
     
-    <main  class="bg-milk min-h-screen relative scroll-smooth">
+    <main  class="bg-milk min-h-screen relative scroll-smooth pb-[10rem]">
         {{-- SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR --}}
         <x-user-sidebar/>
         <div id="content">
-            <x-loading-screen/>
+            {{-- <x-loading-screen/> --}}
             @if(isset($currentView))
                 @include('partial.' . $currentView, ['user' => $user])
             @else
@@ -29,6 +29,18 @@
     <script src="{{ asset('assets/js/index.blade.js') }}"></script>
     <script src="{{ asset('assets/js/user-sidebar.js') }}"></script>
     <script src="{{ asset('assets/js/sidebar.js') }}"></script>
+    <script>
+        $(window).on('scroll', function() {
+            const $header = $('header');
+            if ($(this).scrollTop() > 0) {
+                $header.addClass('backdrop-blur-2xl bg-transparent shadow-sm');
+                $('#search').addClass('bg-neutral-100');
+            } else {
+                $header.removeClass('backdrop-blur-2xl bg-transparent shadow-sm');
+                $('#search').removeClass('bg-neutral-100');  
+            }
+        });
+    </script>
     @stack('scripts')
 </body>
 </html>

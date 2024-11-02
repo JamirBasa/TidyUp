@@ -1,6 +1,6 @@
 @props(['user'])
-<header class="max-w-screen-2xl mx-auto fixed top-0 right-0 left-0 z-10 bg-transparent">
-    <nav class="flex items-center justify-between  gap-40">
+<header class=" fixed top-0 right-0 left-0 z-10">
+    <nav class="flex items-center max-w-screen-2xl mx-auto justify-between gap-40">
         {{-- Logo --}}
         <a class="flex items-center gap-2 -ml-2" href="{{ route('index') }}">
             <img class="size-18" src="{{ asset('assets/images/tidyUpLogo.svg') }}" alt="logo">  
@@ -13,7 +13,7 @@
             {{-- Search Bar --}}
             <input
             placeholder="Browse for Services"
-            class="placeholder:text-neutral-600 placeholder:font-poppins placeholder:font placeholder:text-sm border rounded-full border-neutral-300  pl-12 pr-40 py-[0.5rem] focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-transparent text-base bg-transparent flex-1"
+            class="placeholder:text-neutral-600 placeholder:font-poppins placeholder:font placeholder:text-sm border rounded-full border-neutral-800  pl-12 pr-40 py-[0.5rem] focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-transparent text-base bg-transparent flex-1"
             type="search"
             name="search"
             id="search"

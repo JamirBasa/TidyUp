@@ -11,16 +11,16 @@
                 <div class="text-right font-semibold">{{ $user->first_name . ' ' . $user->last_name  }}</div>
                 <div class="text-right text-sm">{{ '@' . $user->username }}</div>
             </div>
-            <img class="size-14 object-cover object-top rounded-full " src="{{ asset('assets/images/sampleDp.png') }}" alt="Profile Picture">
+            <img class="lazyload size-14 object-cover object-top rounded-full " src="{{ asset('assets/images/sampleDp.png') }}" alt="Profile Picture">
         </div>
     </div>
     <div class="grid grid-cols-2 gap-4 mb-4">
         <div class="bg-white p-10 rounded-lg shadow-sm relative">
-            <img class="absolute top-10 right-10" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}" alt="icon">
+            <img class="lazyload absolute top-10 right-10" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}" alt="icon">
             <h6 class="font-semibold mb-2">Recent Income</h6>
             <h1 class="text-4xl font-bold mb-3">&#8369;0</h1>
             <div class="relative flex items-center">
-                <img class="absolute" src="{{ asset('assets/Icons/Arrow/Caret_Down_MD.svg') }}" alt="">
+                <img class="lazyload absolute" src="{{ asset('assets/Icons/Arrow/Caret_Down_MD.svg') }}" alt="">
                 <select name="" id="" class="focus:outline-none px-8 ">
                     <option value="">7 Days</option>
                     <option value="">Month</option>
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="bg-white p-10 rounded-lg shadow-sm relative">
-            <img class="absolute top-10 right-10" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}" alt="icon">
+            <img class="lazyload absolute top-10 right-10" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}" alt="icon">
             <h6 class="font-semibold mb-2">Appointments</h6>
             <h1 class="text-4xl font-bold mb-8">Awaiting Approval</h1>
             
@@ -84,7 +84,7 @@
             {{-- Profile Card --}}
             <div class="flex items-center justify-between py-4">
                 <div class="flex items-center gap-8">
-                    <img class="size-14 object-cover rounded-full" src="{{ asset('assets/images/huesca.png') }}" alt="">
+                    <img class="lazyload size-14 object-cover rounded-full" src="{{ asset('assets/images/huesca.png') }}" alt="">
                     <div>
                         <p class="text-xs mb-2">Single Appointment</p>
                         <p class="font-semibold">Anthony Billedo</p>
@@ -100,7 +100,7 @@
             {{-- Profile Card --}}
             <div class="flex items-center justify-between py-4">
                 <div class="flex items-center gap-8">
-                    <img class="size-14 object-cover rounded-full" src="{{ asset('assets/images/Dean.png') }}" alt="">
+                    <img class="lazyload size-14 object-cover rounded-full" src="{{ asset('assets/images/Dean.png') }}" alt="">
                     <div>
                         <p class="text-xs mb-2">Single Appointment</p>
                         <p class="font-semibold">Reight Huesca</p>
@@ -118,7 +118,7 @@
         </div>
     </div>
     <div class="bg-white p-10 rounded-lg shadow-sm relative mb-4">
-        <img class="absolute top-10 right-10" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}" alt="icon">
+        <img class="lazyload absolute top-10 right-10" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}" alt="icon">
         <h6 class="font-semibold mb-2">Upcoming</h6>
         <h1 class="text-4xl font-bold mb-8">Appointments</h1>
         
@@ -127,7 +127,7 @@
         {{-- Profile Card --}}
         <div class="flex items-center justify-between py-4">
             <div class="flex items-center gap-8">
-                <img class="size-14 object-cover rounded-full" src="{{ asset('assets/images/huesca.png') }}" alt="">
+                <img class="lazyload size-14 object-cover rounded-full" src="{{ asset('assets/images/huesca.png') }}" alt="">
                 <div>
                     <p class="text-xs mb-2">Single Appointment</p>
                     <p class="font-semibold">Anthony Billedo</p>
@@ -143,7 +143,7 @@
         {{-- Profile Card --}}
         <div class="flex items-center justify-between py-4">
             <div class="flex items-center gap-8">
-                <img class="size-14 object-cover rounded-full" src="{{ asset('assets/images/Dean.png') }}" alt="">
+                <img class="lazyload size-14 object-cover rounded-full" src="{{ asset('assets/images/Dean.png') }}" alt="">
                 <div>
                     <p class="text-xs mb-2">Single Appointment</p>
                     <p class="font-semibold">Reight Huesca</p>
@@ -163,7 +163,7 @@
         <div class="bg-white px-7 py-7 rounded-lg shadow-sm">
             <div class="flex items-center justify-between mb-10">
                 <div class="flex items-center gap-2">
-                    <img class="mt-2" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}" alt="icon">
+                    <img class="lazyload mt-2" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}" alt="icon">
                     <h2 class="text-4xl font-semibold">Customers</h2>
                 </div>
                 <button class="flex items-center gap-3">
@@ -189,7 +189,7 @@
         <div class="bg-white px-7 py-7 rounded-lg shadow-sm">
             <div class="flex items-center justify-between mb-10">
                 <div class="flex items-center gap-2">
-                    <img class="mt-2" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}" alt="icon">
+                    <img class="lazyload mt-2" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}" alt="icon">
                     <h2 class="text-4xl font-semibold">Shops</h2>
                 </div>
                 <button class="flex items-center gap-3">

@@ -1,6 +1,16 @@
 $(document).ready(function() {
-    if ($('.nav-link.bg-neutral-150').length === 0) {
-        $('.nav-link').first().addClass('bg-neutral-150');
+    
+
+    let url = window.location.pathname;
+    if(url === '/') {
+        $('#home-link').addClass('bg-neutral-150');
+        
+    } else if (url === '/appointments') {
+        $('.nav-link').removeClass('bg-neutral-150');
+        $('#appointments-link').addClass('bg-neutral-150');
+    } else {
+        $('.nav-link').removeClass('bg-neutral-150');
+        $(`a[href="${url}"]`).addClass('bg-neutral-150');
     }
 
     $.ajaxSetup({

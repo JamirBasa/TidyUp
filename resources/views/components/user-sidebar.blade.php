@@ -2,7 +2,7 @@
     <div id="user-sidebar" class="fixed w-52 pr-2 pb-8 top-28 bottom-0 gap-3 flex flex-col overflow-y-auto">
         {{-- Home --}}
         
-        <a href="{{ route('index') }}" id="home-link" data-url="{{ route('home.content') }}" class="nav-link inline-flex items-center gap-2 w-full py-3 px-6 rounded-lg hover:bg-neutral-150 transition-colors delay-150 ease-out {{ !isset($currentView) || request()->routeIs('index') ? 'neutral' : '' }}">
+        <a href="{{ route('index') }}" id="home-link" data-url="{{ route('home.content') }}" class="nav-link inline-flex items-center gap-2 w-full py-3 px-6 rounded-lg hover:bg-neutral-150 transition-colors delay-150 ease-out">
             <svg class="stroke-black stroke-[1.5]" width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 17.0007V11.4527C20 10.9184 19.9995 10.6511 19.9346 10.4024C19.877 10.1821 19.7825 9.97356 19.6546 9.78513C19.5102 9.5725 19.3096 9.39618 18.9074 9.04431L14.1074 4.84431C13.3608 4.19103 12.9875 3.86455 12.5674 3.74031C12.1972 3.63083 11.8026 3.63083 11.4324 3.74031C11.0126 3.86446 10.6398 4.19063 9.89436 4.84292L5.09277 9.04432C4.69064 9.39618 4.49004 9.5725 4.3457 9.78513C4.21779 9.97356 4.12255 10.1821 4.06497 10.4024C4 10.6511 4 10.9184 4 11.4527V17.0007C4 17.9325 4 18.3983 4.15224 18.7658C4.35523 19.2559 4.74432 19.6457 5.23438 19.8487C5.60192 20.0009 6.06786 20.001 6.99974 20.001C7.93163 20.001 8.39808 20.0009 8.76562 19.8487C9.25568 19.6457 9.64467 19.256 9.84766 18.7659C9.9999 18.3984 10 17.9324 10 17.0006V16.0006C10 14.896 10.8954 14.0006 12 14.0006C13.1046 14.0006 14 14.896 14 16.0006V17.0006C14 17.9324 14 18.3984 14.1522 18.7659C14.3552 19.256 14.7443 19.6457 15.2344 19.8487C15.6019 20.0009 16.0679 20.001 16.9997 20.001C17.9316 20.001 18.3981 20.0009 18.7656 19.8487C19.2557 19.6457 19.6447 19.2559 19.8477 18.7658C19.9999 18.3983 20 17.9325 20 17.0007Z" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -11,7 +11,7 @@
         
         {{-- Appointments --}}
         
-        <a href="{{ route('appointments') }}" id="appointments-link" data-url="{{ route('appointments.content') }}" class="nav-link inline-flex items-center gap-2 w-full py-3 px-6 rounded-lg hover:bg-neutral-150 transition-colors delay-150 ease-out {{ !isset($currentView) || request()->routeIs('appointments') ? 'bg-neutral-150' : '' }}">
+        <a href="{{ route('appointments') }}" id="appointments-link" data-url="{{ route('appointments.content') }}" class="nav-link inline-flex items-center gap-2 w-full py-3 px-6 rounded-lg hover:bg-neutral-150 transition-colors delay-150 ease-out ">
             <svg class="stroke-black stroke-[1.5]" width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 8H20M4 8V16.8002C4 17.9203 4 18.4801 4.21799 18.9079C4.40973 19.2842 4.71547 19.5905 5.0918 19.7822C5.5192 20 6.07899 20 7.19691 20H16.8031C17.921 20 18.48 20 18.9074 19.7822C19.2837 19.5905 19.5905 19.2842 19.7822 18.9079C20 18.4805 20 17.9215 20 16.8036V8M4 8V7.2002C4 6.08009 4 5.51962 4.21799 5.0918C4.40973 4.71547 4.71547 4.40973 5.0918 4.21799C5.51962 4 6.08009 4 7.2002 4H8M20 8V7.19691C20 6.07899 20 5.5192 19.7822 5.0918C19.5905 4.71547 19.2837 4.40973 18.9074 4.21799C18.4796 4 17.9203 4 16.8002 4H16M16 2V4M16 4H8M8 2V4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>

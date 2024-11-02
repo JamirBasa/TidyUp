@@ -48,7 +48,7 @@
     @endphp
     <div class="content-section pt-28 pl-[17rem] pb-20 max-w-screen-2xl mx-auto"> 
         {{-- Featured Shop in Explore Page --}}
-        <a href="">
+        <a href="bg-black">
             <div class="relative shadow-neutral-800 shadow-xl rounded-xl mb-10">
                 <div class="relative mb-2 overflow-hidden">
                     <img class="lazyload h-[32rem] w-full object-cover rounded-xl" src="{{ asset('assets/images/shops/' . $shops[0]['image'] ) }}" alt="">
@@ -323,5 +323,27 @@
     {{-- Sometimes the javascript wont get recognize so i just put here just incase it bugs --}}
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/explore.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let currentIndex = 0;
+            const shops = @json($shops);
+            const featuredImage = document.querySelector('.content-section a img');
+            const featuredName = document.querySelector('.content-section a h6');
+            const featuredRating = document.querySelector('.content-section a .text-4xl');
+
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % shops.length;
+                featuredImage.style.transition = 'opacity 0.5s';
+                featuredImage.style.opacity = 0;
+
+                setTimeout(() => {
+                    featuredImage.src = `{{ asset('assets/images/shops/') }}/${shops[currentIndex].image}`;
+                    featuredName.textContent = shops[currentIndex].name;
+                    featuredRating.textContent = shops[currentIndex].rating;
+                    featuredImage.style.opacity = 1;
+                }, 500);
+            }, 3000);
+        });
+    </script>
     @stack('scripts')
     {{-- </x-user-layout> --}}

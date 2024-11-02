@@ -65,7 +65,7 @@
             $header.addClass('shadow-sm bg-black');
             
         } else {
-            $header.removeClass('shadow-sm');
+            $header.removeClass('shadow-md');
             
         }
     });

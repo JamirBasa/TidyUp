@@ -79,9 +79,9 @@
     <div class="grid grid-cols-3 gap-6 mb-20">
         {{-- Shop Card --}}
         @for ($i = 0; $i < 6; $i++)
-        <div class="">
+        <a href="" class="">
             <div class="relative mb-2">
-                <img class="h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
+                <img class=" h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                 <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[$i]['tag'] }}</span>
             </div>
             <div class="relative">
@@ -94,7 +94,7 @@
                     </svg>
                 </span>
             </div>
-        </div>   
+        </a>   
         @endfor
     </div>
 

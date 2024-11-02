@@ -53,12 +53,38 @@
         -ms-user-select: none; /* Disable text selection for Internet Explorer/Edge */
     }
 
+    /* .carousel::-webkit-scrollbar {
+        /* Customize the scrollbar width */
+        /*width: 0px;
+    }
+
+    .carousel::-webkit-scrollbar-track {
+        /* Customize the scrollbar track */
+        /* border-radius: 0px;
+    }
+
+    .carousel {
+        cursor: grab;
+    }
+
+    .carousel {
+        cursor: grab;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    } */
+
     #loading-screen {
         opacity: 1;
         visibility: visible;
     }
     .caret-down {
         transition: transform 0.3s ease;
+    }
+
+    .featured-img {
+        background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     }
 }
 

@@ -18,6 +18,12 @@ class SidebarController extends Controller
         return view('user-layout', ['currentView' => 'appointments', 'user' => $user]);
     }
 
+    public function explore(Request $request)
+    {
+        $user = $request->user();
+        return view('user-layout', ['currentView' => 'explore', 'user' => $user]);
+    }
+
     public function homeContent(Request $request)
     {
         $user = $request->user();
@@ -34,5 +40,14 @@ class SidebarController extends Controller
             return view('partial.appointments', ['user' => $user]);
         }
         return redirect()->route('appointments');
+    }
+
+    public function exploreContent(Request $request)
+    {
+        $user = $request->user();
+        if($request->ajax()) {
+            return view('partial.explore', ['user' => $user]);
+        }
+        return redirect()->route('explore');
     }
 }

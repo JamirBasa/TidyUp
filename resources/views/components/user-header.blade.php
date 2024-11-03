@@ -1,5 +1,5 @@
 @props(['user'])
-<header class=" fixed top-0 right-0 left-0 z-10 bg-neutral-100">
+<header class=" fixed top-0 right-0 left-0 z-10 bg-neutral-100 transition-all duration-300 ease-in-out">
     <nav class="flex items-center max-w-screen-2xl mx-auto justify-between gap-40">
         {{-- Logo --}}
         <a class="flex items-center gap-2 -ml-2" href="{{ route('index') }}">
@@ -62,10 +62,10 @@
     $(window).on('scroll', function() {
         const $header = $('header');
         if ($(this).scrollTop() > 0) {
-            $header.addClass('shadow-sm bg-black');
+            $header.addClass('shadow-lg');
             
         } else {
-            $header.removeClass('shadow-sm');
+            $header.removeClass('shadow-lg');
             
         }
     });

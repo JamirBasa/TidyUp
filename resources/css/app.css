@@ -12,6 +12,16 @@
         font-family: 'Poppins', sans-serif;
     }
 
+    body::-webkit-scrollbar {
+        display: none;
+      }
+      
+      /* Hide scrollbar in Firefox */
+    body {
+        scrollbar-width: none;
+        overflow-y: scroll; /* Prevent layout shift */
+    }
+
     /* Hide the default clear button (x) in search inputs */
     input[type="search"]::-webkit-search-cancel-button {
         -webkit-appearance: none;

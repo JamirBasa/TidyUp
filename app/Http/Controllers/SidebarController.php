@@ -12,10 +12,10 @@ class SidebarController extends Controller
         
         return view('user-layout', ['user' => $user]);
     }
-    public function appointments(Request $request)
+    public function upcomingAp(Request $request)
     {
         $user = $request->user();
-        return view('user-layout', ['currentView' => 'appointments', 'user' => $user]);
+        return view('user-layout', ['currentView' => 'upcomingAp', 'user' => $user]);
     }
 
     public function explore(Request $request)
@@ -33,13 +33,13 @@ class SidebarController extends Controller
         return redirect()->route('index');
     }
 
-    public function appointmentsContent(Request $request)
+    public function upcomingApContent(Request $request)
     {
         $user = $request->user();
         if($request->ajax()) {
-            return view('partial.appointments', ['user' => $user]);
+            return view('partial.upcomingAp', ['user' => $user]);
         }
-        return redirect()->route('appointments');
+        return redirect()->route('upcomingAp');
     }
 
     public function exploreContent(Request $request)

@@ -1,63 +1,63 @@
 {{-- <x-user-layout :user="$user"> --}}
-    @php
-    // THIS IS JUST TEMPORARY DONT MIND THIS PART OF THE CODE
-        $shops = [
-            [
-                'name' => 'Paul\'s Barbershop',
-                'tag' => 'Barbershop',
-                'location' => 'Street Name, Barangay, City',
-                'rating' => '5.0',
-                'image' => '1.png'
-            ],
-            [
-                'name' => 'Jamir\'s Beauty Lounge',
-                'tag' => 'Beauty Salon',
-                'location' => 'Street Name, Barangay, City',
-                'rating' => '4.0',
-                'image' => '2.png'
-            ],
-            [
-                'name' => 'Art\'s Canvas',
-                'tag' => 'Barbershop',
-                'location' => 'Street Name, Barangay, City',
-                'rating' =>'5.0',
-                'image' => '3.png'
-            ],
-            [
-                'name' => 'Mosses\'s Nail Salon',
-                'tag' => 'Nail Salon',
-                'location' => 'Street Name, Barangay, City',
-                'rating' => '4.5',
-                'image' => '4.png'
-            ],
-            [
-                'name' => 'La Barberia de Jeco',
-                'tag' => 'Barbershop',
-                'location' => 'Street Name, Barangay, City',
-                'rating' => '4.9',
-                'image' => '5.png'
-            ],
-            [
-                'name' => 'Elevation Gents',
-                'tag' => 'Barbershop',
-                'location' => 'Street Name, Barangay, City',
-                'rating' => '5.0',
-                'image' => '6.png'
-            ],
-        ];
-    @endphp
+@php
+// THIS IS JUST TEMPORARY DONT MIND THIS PART OF THE CODE
+$shops = [
+    [
+        'name' => 'Paul\'s Barbershop',
+        'tag' => 'Barbershop',
+        'location' => 'Street Name, Barangay, City',
+        'rating' => '5.0',
+        'image' => '1.png'
+    ],
+    [
+        'name' => 'Jamir\'s Beauty Lounge',
+        'tag' => 'Beauty Salon',
+        'location' => 'Street Name, Barangay, City',
+        'rating' => '4.0',
+        'image' => '2.png'
+    ],
+    [
+        'name' => 'Art\'s Canvas',
+        'tag' => 'Barbershop',
+        'location' => 'Street Name, Barangay, City',
+        'rating' =>'5.0',
+        'image' => '3.png'
+    ],
+    [
+        'name' => 'Mosses\'s Nail Salon',
+        'tag' => 'Nail Salon',
+        'location' => 'Street Name, Barangay, City',
+        'rating' => '4.5',
+        'image' => '4.png'
+    ],
+    [
+        'name' => 'La Barberia de Jeco',
+        'tag' => 'Barbershop',
+        'location' => 'Street Name, Barangay, City',
+        'rating' => '4.9',
+        'image' => '5.png'
+    ],
+    [
+        'name' => 'Elevation Gents',
+        'tag' => 'Barbershop',
+        'location' => 'Street Name, Barangay, City',
+        'rating' => '5.0',
+        'image' => '6.png'
+    ],
+];
+@endphp
     <div class="content-section pt-28 pl-[17rem] pb-20 max-w-screen-2xl mx-auto"> 
         {{-- Featured Shop in Explore Page --}}
         <a href="bg-black">
-            <div class="relative shadow-neutral-800 shadow-xl rounded-xl mb-10">
+            <div class="relative  rounded-xl mb-10 group">
                 <div class="relative mb-2 overflow-hidden">
                     <img class="lazyload h-[32rem] w-full object-cover rounded-xl" src="{{ asset('assets/images/shops/' . $shops[0]['image'] ) }}" alt="">
                     <span class="absolute top-6 right-8 bg-white rounded-full py-1 px-4 text-sm shadow-md">{{ $shops[0]['tag'] }}</span>
                 </div>
                 <div class="absolute bottom-0 right-0 left-0 bg-gradient-to-t from-black to-transparent rounded-b-xl">
                     <div class="px-8 pb-8 pt-20 w-full">
-                        <p class=" text-sm text-white">Street Name, Barangay, City</p>
-                        <h6 class=" text-white text-3xl font-semibold">{{ $shops[0]['name'] }}</h6>
+                        <p class=" text-sm text-white group-hover:underline">Street Name, Barangay, City</p>
+                        <h6 class=" text-white text-3xl font-semibold group-hover:underline">{{ $shops[0]['name'] }}</h6>
                         <span class="absolute inline-flex items-center gap-2 bottom-0 p-8 right-0">
                             <p class="-mb-1 text-white text-4xl">{{ $shops[0]['rating'] }}</p>
                             <svg class="stroke-white stroke-1 size-5 fill-white" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">    
@@ -73,7 +73,7 @@
         {{-- Recommended for you Start --}}
         <div class="flex items-center justify-between mb-8">
             <h1 class="font-clash font-medium text-2xl p-2 border-b-2 border-black">Recommended for you</h1>
-            <a href="" class="inline-flex items-center gap-2">
+            <div class="inline-flex items-center gap-2">
                 <button id="left-arrow">
                     <svg class="bg-white p-1 stroke-black stroke-2 size-8 rounded-full shadow-md hover:shadow-md hover:scale-110 transition-transform duration-300 ease-in-out" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17 12H7M7 12L11 16M7 12L11 8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -84,7 +84,7 @@
                         <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
-            </a>
+            </div>
         </div>
         {{-- Shop Cards For Recommended For You --}}
         
@@ -153,7 +153,7 @@
                     <path d="M7 17L17 7M17 7H9M17 7V15"  stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </a>
-            <a href="" class="inline-flex items-center gap-2">
+            <div class="inline-flex items-center gap-2">
                 <button id="left-arrow2">
                     <svg class="bg-white p-1 stroke-black stroke-2 size-8 rounded-full shadow-md hover:shadow-md hover:scale-110 transition-transform duration-300 ease-in-out" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17 12H7M7 12L11 16M7 12L11 8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -164,7 +164,7 @@
                         <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
-            </a>
+            </div>
         </div>
         {{-- Shop Cards For Barbershops --}}
         <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10">
@@ -196,7 +196,7 @@
                     <path d="M7 17L17 7M17 7H9M17 7V15"  stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </a>
-            <a href="" class="inline-flex items-center gap-2">
+            <div class="inline-flex items-center gap-2">
                 <button id="left-arrow3">
                     <svg class="bg-white p-1 stroke-black stroke-2 size-8 rounded-full shadow-md hover:shadow-md hover:scale-110 transition-transform duration-300 ease-in-out" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17 12H7M7 12L11 16M7 12L11 8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -207,7 +207,7 @@
                         <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
-            </a>
+            </div>
         </div>
 
         {{-- Shop Cards For Beauty Salon --}}
@@ -240,7 +240,7 @@
                     <path d="M7 17L17 7M17 7H9M17 7V15"  stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </a>
-            <a href="" class="inline-flex items-center gap-2">
+            <div class="inline-flex items-center gap-2">
                 <button id="left-arrow4">
                     <svg class="bg-white p-1 stroke-black stroke-2 size-8 rounded-full shadow-md hover:shadow-md hover:scale-110 transition-transform duration-300 ease-in-out" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17 12H7M7 12L11 16M7 12L11 8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -251,7 +251,7 @@
                         <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
-            </a>
+            </div>
         </div>
         {{-- Shop Cards For Nail Salon --}}
         <div id="carousel4" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10">
@@ -283,7 +283,7 @@
                     <path d="M7 17L17 7M17 7H9M17 7V15"  stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </a>
-            <a href="" class="inline-flex items-center gap-2">
+            <div class="inline-flex items-center gap-2">
                 <button id="left-arrow5">
                     <svg class="bg-white p-1 stroke-black stroke-2 size-8 rounded-full shadow-md hover:shadow-md hover:scale-110 transition-transform duration-300 ease-in-out" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17 12H7M7 12L11 16M7 12L11 8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -294,7 +294,7 @@
                         <path d="M7 12H17M17 12L13 8M17 12L13 16" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
-            </a>
+            </div>
         </div>
 
         {{-- Shop Cards For Hair Salon --}}
@@ -320,30 +320,9 @@
         </div>
 
     </div>
-    {{-- Sometimes the javascript wont get recognize so i just put here just incase it bugs --}}
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
-    <script src="{{ asset('assets/js/explore.js') }}"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            let currentIndex = 0;
-            const shops = @json($shops);
-            const featuredImage = document.querySelector('.content-section a img');
-            const featuredName = document.querySelector('.content-section a h6');
-            const featuredRating = document.querySelector('.content-section a .text-4xl');
-
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % shops.length;
-                featuredImage.style.transition = 'opacity 0.5s';
-                featuredImage.style.opacity = 0;
-
-                setTimeout(() => {
-                    featuredImage.src = `{{ asset('assets/images/shops/') }}/${shops[currentIndex].image}`;
-                    featuredName.textContent = shops[currentIndex].name;
-                    featuredRating.textContent = shops[currentIndex].rating;
-                    featuredImage.style.opacity = 1;
-                }, 500);
-            }, 3000);
-        });
-    </script>
-    @stack('scripts')
-    {{-- </x-user-layout> --}}
+</div>
+<script>
+    window.shops = @json($shops);
+</script>
+<script src="{{ asset('assets/js/explore.js') }}"></script>
+@stack('scripts')

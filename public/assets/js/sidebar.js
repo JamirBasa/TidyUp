@@ -9,7 +9,9 @@ $(document).ready(function() {
         $('#appointments-link').addClass('bg-neutral-150');
     } else if (url === '/explore') {
         $('.nav-link').removeClass('bg-neutral-150');
-        $(`#explore-link`).addClass('bg-neutral-150');
+        $('#explore-link').addClass('bg-neutral-150');
+        $('#explore-link').trigger('click');
+        // Initialize carousel
     }
 
     $.ajaxSetup({
@@ -36,6 +38,27 @@ $(document).ready(function() {
         // Update URL without reload
         history.pushState({}, '', href);
     });
+
+    $('#get-started-btn').click(function(e) {
+        e.preventDefault();
+        
+        // Remove active class from all links
+        $('.nav-link').removeClass('bg-neutral-150');
+        // Add active class to clicked link
+        $('#explore-link').addClass('bg-neutral-150');
+        var url = $('#explore-link').data('url');
+        var href = $('#explore-link').attr('href');
+        
+        // Show loading state
+        $('#content').addClass('loading');
+        
+        loadContent(url);
+        // Update URL without reload
+        history.pushState({}, '', href);
+    });
+
+    
+
 
     function loadContent(url) {
         $.ajax({

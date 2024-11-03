@@ -31,7 +31,6 @@
     <script src="{{ asset('assets/js/index.blade.js') }}"></script>
     <script src="{{ asset('assets/js/user-sidebar.js') }}"></script>
     <script src="{{ asset('assets/js/sidebar.js') }}"></script>
-    <script src="{{ asset('assets/js/appointments.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

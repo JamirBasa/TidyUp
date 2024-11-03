@@ -112,7 +112,7 @@
                         <div class="flex flex-col gap-3">
                             <label for="region">Region</label>
                             <div class="relative flex items-center">
-                                <select class="border flex-1 border-neutral-400 py-3 px-4 rounded-lg truncate @error('region')
+                                <select class="border w-full border-neutral-400 py-3 px-4 rounded-lg truncate @error('region')
                                     ring-1 ring-red-500 
                                 @enderror" id="regionSelect" name="region">
                                     <option value="">Select Region</option>
@@ -167,7 +167,7 @@
                         <div class="flex flex-col gap-3">
                             <label for="barangay">Barangay</label>
                             <div class="relative flex items-center">
-                                <select class="border flex-1 border-neutral-400 py-3 px-4 rounded-lg @error('barangay')
+                                <select class="border w-full border-neutral-400 py-3 px-4 rounded-lg @error('barangay')
                                     ring-1 ring-red-500 
                                 @enderror" id="barangaySelect" name="barangay" value="{{ old('barangay') }}">
                                     <option value="">Select Barangay</option>

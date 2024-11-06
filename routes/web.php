@@ -1,17 +1,27 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\SidebarController;
+
 use App\Http\Middleware\IsServiceProvider;
 use App\Http\Middleware\IsNotServiceProvider;
 use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Http\Request;
 
-// User Authentication
+// Routes
+Route::get('/', [SidebarController::class, 'index'])->name('index');
+Route::get('/appointments', [SidebarController::class, 'appointments'])->name('appointments');
+Route::get('/explore', [SidebarController::class, 'explore'])->name('explore');
 
-
-
+//AJAX content routes
+Route::get('/home', [SidebarController::class, 'homeContent'])->name('home.content');
+Route::get('/appointment', [SidebarController::class, 'appointmentsContent'])->name('appointments.content');
+Route::get('/explore-content', [SidebarController::class, 'exploreContent'])->name('explore.content');
 
 //Routes that are only accessible to guests
 Route::middleware('guest')->group(function () {

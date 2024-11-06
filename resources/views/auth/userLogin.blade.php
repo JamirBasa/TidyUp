@@ -19,7 +19,7 @@
                     <img class="size-24 mb-4" src="{{ asset('assets/images/tidyUpLogo.svg') }}" alt="logo">
                 </a>
                 <h1 class="font-clash font-medium text-4xl mb-4 text-center">Welcome to TidyUp!</h1>
-                <p class="text-neutral-600 text-base mb-8 text-center">We are glad to have you here.</p>
+                <p class="text-neutral-600 text-base mb-4 text-center">We are glad to have you here.</p>
 
                 {{-- login form --}}
                 <form action="{{ route('user.login') }}" method="POST">
@@ -55,16 +55,12 @@
                                 <path d="M9.99951 12C9.99951 13.1046 10.8949 14 11.9995 14C13.1041 14 13.9995 13.1046 13.9995 12C13.9995 10.8954 13.1041 10 11.9995 10C10.8949 10 9.99951 10.8954 9.99951 12Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-
-                        <a href="{{ route('auth.forgot-password') }}">
-                            <span class="text-blue hover:underline cursor-pointer">Forgot Password?</span>
-                        </a>
-
+                        <div class="flex justify-end">
+                            <a href="{{route('password.request')}}" class="text-sm text-brand-500 hover:text-brand-700">Forgot Password?</a>
+                        </div>
                     </div>
                    {{-- forgot password link --}}
-                    <div class="flex justify-end mb-4">
-                        <a href="{{route('password.request')}}" class="text-sm text-brand-500 hover:text-brand-700">Forgot Password?</a>
-                    </div>
+                    
 
                     <button class="w-full bg-brand-500 text-white py-3 rounded-lg" type="submit">Login</button>
 

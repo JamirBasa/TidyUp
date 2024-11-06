@@ -8,6 +8,7 @@ use App\Models\Shop;
 //use Illuminate\Auth\Events\Registered;
 //use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 

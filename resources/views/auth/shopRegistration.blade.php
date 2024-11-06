@@ -173,7 +173,7 @@
                 
                 {{-- BUttons Container --}}
                 <div class="grid grid-cols-2 gap-4">
-                    <a href="{{ url()->previous() }}" class="bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-200 rounded-lg p-3 font-semibold w-full transition-colors duration-150 ease-in-out text-center">
+                    <a href="{{ route('index') }}" class="bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-200 rounded-lg p-3 font-semibold w-full transition-colors duration-150 ease-in-out text-center">
                         Back
                     </a>
                     <button class="bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-lg p-3 font-semibold">Submit</button>

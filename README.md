@@ -69,7 +69,7 @@ npm run dev
 ```
 - if there is no error congrats you are done.
 
-#HOW TO GET EMAIL FROM GOOGLE
+# HOW TO GET EMAIL FROM GOOGLE
 you need to modify your .env file and have access to your google account.
 
 ```

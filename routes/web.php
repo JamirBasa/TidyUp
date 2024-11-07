@@ -15,6 +15,7 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\Request;
 
 // Routes
+Route::view('/user/profile', 'user.userProfile')->name('user.profile');
 Route::get('/', [SidebarController::class, 'index'])->name('index');
 Route::get('/appointments/upcoming', [SidebarController::class, 'appointments'])->name('appointments');
 Route::get('/appointments', function () {

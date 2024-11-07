@@ -100,6 +100,7 @@ enter the app name "Laravel" then press create.
 
 if you see something like this copy it
 ![Screenshot 2024-11-07 213757](https://github.com/user-attachments/assets/5e0b779f-6242-4f4b-aa7d-4812a92fd9d2)
+
 then go back to your .env file and place it in the MAIL_PASSWORD=" " (put ut inside " " cus the password has spaces)
 
 go into your terminal in vscode and enter the command 

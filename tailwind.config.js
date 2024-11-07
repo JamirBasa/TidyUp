@@ -14,6 +14,7 @@ export default {
             colors: {
                 milk: "#f5f5f7",
                 brand: {
+                    300: "#90A955",
                     400: "#596934",
                     500: "#3f4a25",
                     600: "#2d3520",

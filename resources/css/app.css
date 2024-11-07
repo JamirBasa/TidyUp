@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('/css/fonts.css');
+/* @import url('/css/fonts.css'); */
 
 @layer base {
     * {
@@ -11,6 +11,18 @@
         box-sizing: border-box;
         font-family: 'Poppins', sans-serif;
     }
+
+    body::-webkit-scrollbar {
+        display: none;
+      }
+      
+      /* Hide scrollbar in Firefox */
+    body {
+        scrollbar-width: none;
+        overflow-y: scroll; /* Prevent layout shift */
+    }
+
+    
 
     /* Hide the default clear button (x) in search inputs */
     input[type="search"]::-webkit-search-cancel-button {
@@ -27,20 +39,29 @@
     select::-ms-expand {
         display: none;
     }
+    
     #user-sidebar::-webkit-scrollbar {
         /* Customize the scrollbar width */
-        width: 2px;
+        width: 0px;
     }
 
     #user-sidebar::-webkit-scrollbar-track {
         /* Customize the scrollbar track */
-        border-radius: 2px;
+        border-radius: 0px;
     }
     
     #user-sidebar::-webkit-scrollbar-thumb {
+        /* Customize the scrollbar thumb for WebKit browsers */
+    }
+
+    #user-sidebar::-moz-scrollbar{
+        /* Customize the scrollbar thumb for Mozilla browsers */
+        width: 0px;
+        border-radius: 0px;
+    }
         /* Customize the scrollbar thumb */
         
-    }
+  
     #user-sidebar {
         cursor: grab; /* Change cursor to indicate draggable element */
     }
@@ -50,6 +71,22 @@
         -webkit-user-select: none; /* Disable text selection for WebKit browsers */
         -moz-user-select: none; /* Disable text selection for Firefox */
         -ms-user-select: none; /* Disable text selection for Internet Explorer/Edge */
+    }
+
+    .slide-indicator {
+        transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    }
+
+    #loading-screen {
+        opacity: 1;
+        visibility: visible;
+    }
+    .caret-down {
+        transition: transform 0.3s ease;
+    }
+
+    .featured-img {
+        background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     }
 }
 

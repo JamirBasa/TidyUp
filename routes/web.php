@@ -64,3 +64,6 @@ Route::middleware(IsServiceProvider::class)->group(function () {
     });
 });
 
+Route::get('/shop/view', function (){
+    return view('partial.view-service');
+})->name('shop.view');

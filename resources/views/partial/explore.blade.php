@@ -24,7 +24,7 @@ $shops = [
         'image' => '3.png'
     ],
     [
-        'name' => 'Mosses\'s Nail Salon',
+        'name' => 'Mosses\' Nail Salon',
         'tag' => 'Nail Salon',
         'location' => 'Street Name, Barangay, City',
         'rating' => '4.5',

@@ -1,124 +1,105 @@
-// script.js
+// REGION DATA
+function populateSelectRegion(regionData) {
+    let loc = document.getElementById("regionSelect");
+    loc.innerHTML = '<option value="">Select Region</option>';
 
-// Sample function to load JSON data (update the path if necessary)
-async function loadJSON(filePath) {
-    const response = await fetch(filePath);
-    const data = await response.json();
-    return data.RECORDS;
-}
-
-// Load JSON data
-let regions = [];
-let provinces = [];
-let cities = [];
-let barangays = [];
-
-// Updated file paths
-Promise.all([
-    loadJSON('../json/refregion.json'),
-    loadJSON('../json/refprovince.json'),
-    loadJSON('../json/refcitymun.json'),
-    loadJSON('../json/refbrgy.json')
-]).then(data => {
-    regions = data[0];
-    provinces = data[1];
-    cities = data[2];
-    barangays = data[3];
-
-    populateRegions();
-}).catch(error => console.error('Error loading JSON data:', error));
-
-
-// Populate regions dropdown
-function populateRegions() {
-    const regionSelect = document.getElementById('regionSelect');
-    regions.forEach(region => {
-        const option = document.createElement('option');
-        option.value = region.regCode;
-        option.textContent = region.regDesc;
-        regionSelect.appendChild(option);
+    regionData.RECORDS.sort((a, b) => a.order - b.order).forEach((record) => {
+        let option = document.createElement("option");
+        option.value = record.regDesc;
+        option.setAttribute("data-reg-code", record.regCode);
+        option.textContent = record.regDesc2 || record.regDesc;
+        loc.append(option);
     });
 }
 
-// Event listener for region selection
-document.getElementById('regionSelect').addEventListener('change', function() {
-    const selectedRegion = this.value;
-    const provinceSelect = document.getElementById('provinceSelect');
-    const citySelect = document.getElementById('citySelect');
-    const barangaySelect = document.getElementById('barangaySelect');
+// PROVINCE DATA
+function populateSelectProvince(provinceData) {
+    let loc = document.getElementById("provinceSelect");
+    loc.innerHTML = '<option value="">Select Province</option>';
+    
+    let selectedRegionCode = document
+        .getElementById("regionSelect")
+        .options[document.getElementById("regionSelect").selectedIndex]
+        .getAttribute("data-reg-code");
 
-    // Clear and disable dropdowns
-    provinceSelect.innerHTML = '<option value="">Select Province</option>';
-    provinceSelect.disabled = true;
-    citySelect.innerHTML = '<option value="">Select City</option>';
-    citySelect.disabled = true;
-    barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
-    barangaySelect.disabled = true;
+    provinceData.RECORDS.filter(record => record.regCode === selectedRegionCode)
+        .sort((a, b) => a.provDesc.localeCompare(b.provDesc))
+        .forEach((record) => {
+            let option = document.createElement("option");
+            option.value = capitalizeFirstLetter(record.provDesc);
+            
+            option.setAttribute("data-prov-code", record.provCode);
+            option.textContent =  capitalizeFirstLetter(record.provDesc);
+            loc.append(option);
+        });
+}
 
-    // Filter provinces
-    const filteredProvinces = provinces.filter(province => province.regCode === selectedRegion);
-    filteredProvinces.forEach(province => {
-        const option = document.createElement('option');
-        option.value = province.provCode;
-        option.textContent = province.provDesc;
-        provinceSelect.appendChild(option);
-    });
+// CITY DATA
+function populateSelectCity(cityData) {
+    let loc = document.getElementById("citySelect");
+    loc.innerHTML = '<option value="">Select City</option>';
 
-    provinceSelect.disabled = filteredProvinces.length === 0;
+    let selectedProvinceCode = document
+        .getElementById("provinceSelect")
+        .options[document.getElementById("provinceSelect").selectedIndex]
+        .getAttribute("data-prov-code");
+
+    if (!selectedProvinceCode) return;
+
+    cityData.RECORDS.filter(record => record.provCode === selectedProvinceCode)
+        .sort((a, b) => a.citymunDesc.localeCompare(b.citymunDesc))
+        .forEach((record) => {
+            let option = document.createElement("option");
+            option.value = capitalizeFirstLetter(record.citymunDesc);
+            option.setAttribute("data-citymun-code", record.citymunCode);
+            option.textContent =  capitalizeFirstLetter(record.citymunDesc);
+            loc.append(option);
+        });
+}
+
+// BARANGAY DATA
+function populateSelectBarangay(barangayData) {
+    let loc = document.getElementById("barangaySelect");
+    loc.innerHTML = '<option value="">Select Barangay</option>';
+
+    let selectedCityCode = document
+        .getElementById("citySelect")
+        .options[document.getElementById("citySelect").selectedIndex]
+        .getAttribute("data-citymun-code");
+
+    if (!selectedCityCode) return;
+
+    barangayData.RECORDS.filter(record => record.citymunCode === selectedCityCode)
+        .sort((a, b) => a.brgyDesc.localeCompare(b.brgyDesc))
+        .forEach((record) => {
+            let option = document.createElement("option");
+            option.value = record.brgyDesc;
+            option.setAttribute("data-barangay-code", record.brgyCode);
+            option.textContent = record.brgyDesc;
+            loc.append(option);
+        });
+}
+
+// Event Listeners
+document.getElementById("regionSelect").addEventListener("change", function() {
+    populateSelectProvince(provinceData);
+    document.getElementById("citySelect").innerHTML = '<option value="">Select City</option>';
+    document.getElementById("barangaySelect").innerHTML = '<option value="">Select Barangay</option>';
 });
 
-// Event listener for province selection
-document.getElementById('provinceSelect').addEventListener('change', function() {
-    const selectedProvince = this.value;
-    const citySelect = document.getElementById('citySelect');
-    const barangaySelect = document.getElementById('barangaySelect');
-
-    // Clear and disable dropdowns
-    citySelect.innerHTML = '<option value="">Select City</option>';
-    citySelect.disabled = true;
-    barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
-    barangaySelect.disabled = true;
-
-    // Filter cities
-    const filteredCities = cities.filter(city => city.provCode === selectedProvince);
-    filteredCities.forEach(city => {
-        const option = document.createElement('option');
-        option.value = city.citymunCode;
-        option.textContent = city.citymunDesc;
-        citySelect.appendChild(option);
-    });
-
-    citySelect.disabled = filteredCities.length === 0;
+document.getElementById("provinceSelect").addEventListener("change", function() {
+    populateSelectCity(cityData);
+    document.getElementById("barangaySelect").innerHTML = '<option value="">Select Barangay</option>';
 });
 
-// Event listener for city selection
-document.getElementById('citySelect').addEventListener('change', function() {
-    const selectedCity = this.value;
-    const barangaySelect = document.getElementById('barangaySelect');
-
-    // Clear barangay dropdown
-    barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
-    barangaySelect.disabled = true;
-
-    // Filter barangays
-    const filteredBarangays = barangays.filter(brgy => brgy.citymunCode === selectedCity);
-    filteredBarangays.forEach(brgy => {
-        const option = document.createElement('option');
-        option.value = brgy.brgyCode;
-        option.textContent = brgy.brgyDesc;
-        barangaySelect.appendChild(option);
-    });
-
-    barangaySelect.disabled = filteredBarangays.length === 0;
+document.getElementById("citySelect").addEventListener("change", function() {
+    populateSelectBarangay(barangayData);
 });
 
-// Debugging statements
-console.log('Regions:', regions);
-console.log('Provinces:', provinces);
-console.log('Cities:', cities);
-console.log('Barangays:', barangays);
+// Initial population
+populateSelectRegion(regionData);
 
-// Verify that dropdowns are being populated
-populateRegions();
-console.log('Dropdowns populated');
-
+function capitalizeFirstLetter(val) {
+    let newVal = val.toLowerCase();
+    return String(newVal).charAt(0).toUpperCase() + String(newVal).slice(1);
+}

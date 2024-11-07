@@ -31,58 +31,29 @@ $(document).ready(function () {
         const leftArrowId = i === 1 ? "#left-arrow" : `#left-arrow${i}`;
         const rightArrowId = i === 1 ? "#right-arrow" : `#right-arrow${i}`;
 
+        const updateArrowVisibility = ($carousel) => {
+            const isAtStart = $carousel.scrollLeft() <= 0;
+            const isAtEnd = $carousel.scrollLeft() >= $carousel[0].scrollWidth - $carousel.width();
+            $(leftArrowId).toggleClass("invisible pointer-events-none", isAtStart);
+            $(rightArrowId).toggleClass("invisible pointer-events-none", isAtEnd);
+        };
+
         // Left arrow click handler
-        $(leftArrowId).on("click", function (e) {
+        $(leftArrowId).off("click").on("click", function (e) {
             e.preventDefault();
             const $carousel = $(carouselId);
             $carousel.animate({ scrollLeft: "-=400" }, 600, function () {
-                // Check scroll position after animation
-                $(leftArrowId).toggleClass(
-                    "invisible",
-                    $carousel.scrollLeft() <= 0
-                );
-                $(leftArrowId).toggleClass(
-                    "pointer-events-none",
-                    $carousel.scrollLeft() <= 0
-                );
-                $(rightArrowId).toggleClass(
-                    "invisible",
-                    $carousel.scrollLeft() >=
-                        $carousel[0].scrollWidth - $carousel.width()
-                );
-                $(rightArrowId).toggleClass(
-                    "pointer-events-none",
-                    $carousel.scrollLeft() >=
-                        $carousel[0].scrollWidth - $carousel.width()
-                );
+                updateArrowVisibility($carousel);
             });
         });
-
-        // Right arrow click handler
-        $(rightArrowId).on("click", function (e) {
+        
+        $(rightArrowId).off("click").on("click", function (e) {
             e.preventDefault();
             const $carousel = $(carouselId);
             $carousel.animate({ scrollLeft: "+=400" }, 600, function () {
-                // Check scroll position after animation
-                $(leftArrowId).toggleClass(
-                    "invisible",
-                    $carousel.scrollLeft() <= 0
-                );
-                $(leftArrowId).toggleClass(
-                    "pointer-events-none",
-                    $carousel.scrollLeft() <= 0
-                );
-                $(rightArrowId).toggleClass(
-                    "invisible",
-                    $carousel.scrollLeft() >=
-                        $carousel[0].scrollWidth - $carousel.width()
-                );
-                $(rightArrowId).toggleClass(
-                    "pointer-events-none",
-                    $carousel.scrollLeft() >=
-                        $carousel[0].scrollWidth - $carousel.width()
-                );
+                updateArrowVisibility($carousel);
             });
         });
+        
     }
 });

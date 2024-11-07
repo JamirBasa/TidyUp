@@ -15,7 +15,7 @@ class SidebarController extends Controller
     public function appointments(Request $request)
     {
         $user = $request->user();
-        return view('user-layout', ['currentView' => 'appointments', 'user' => $user]);
+        return view('user-layout', ['currentView' => 'appointments', 'appointmentsView' => 'upcoming', 'user' => $user]);
     }
 
     public function explore(Request $request)

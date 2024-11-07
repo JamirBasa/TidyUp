@@ -48,10 +48,10 @@ $shops = [
 @endphp
     <div class="content-section pt-28 pl-[17rem] pb-20 max-w-screen-2xl mx-auto"> 
         {{-- Featured Shop in Explore Page --}}
-        <a href="bg-black">
-            <div class="relative  rounded-xl mb-10 group">
+        <a href="" class="bg-black">
+            <div class="relative  rounded-xl mb-10 group bg-neutral-900">
                 <div class="relative mb-2 overflow-hidden">
-                    <img class="lazyload h-[32rem] w-full object-cover rounded-xl" src="{{ asset('assets/images/shops/' . $shops[0]['image'] ) }}" alt="">
+                    <img load="lazy" class=" h-[32rem] w-full object-cover rounded-xl" src="{{ asset('assets/images/shops/' . $shops[0]['image'] ) }}" alt="">
                     <span class="absolute top-6 right-8 bg-white rounded-full py-1 px-4 text-sm shadow-md">{{ $shops[0]['tag'] }}</span>
                 </div>
                 <div class="absolute bottom-0 right-0 left-0 bg-gradient-to-t from-black to-transparent rounded-b-xl">
@@ -93,7 +93,7 @@ $shops = [
             @for ($i = 0; $i < 6; $i++)
             <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-8">
                 <div class="relative mb-2">
-                    <img class="lazyload h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
+                    <img load="lazy" class=" h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                     <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[$i]['tag'] }}</span>
                 </div>
                 <div class="relative">
@@ -125,7 +125,7 @@ $shops = [
             @for ($i = 5; $i >= 0; $i--)
             <a href="" class="">
                 <div class="relative mb-2">
-                    <img class="lazyload h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
+                    <img load="lazy" class=" h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                     <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[$i]['tag'] }}</span>
                 </div>
                 <div class="relative">
@@ -171,7 +171,7 @@ $shops = [
             @for ($i = 0; $i < 6; $i++)
             <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-8">
                 <div class="relative mb-2">
-                    <img class="lazyload h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
+                    <img load="lazy" class=" h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                     <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[0]['tag'] }}</span>
                 </div>
                 <div class="relative">
@@ -215,7 +215,7 @@ $shops = [
             @for ($i = 5; $i >= 0; $i--)
             <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-8">
                 <div class="relative mb-2">
-                    <img class="lazyload h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
+                    <img load="lazy" class=" h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                     <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[1]['tag'] }}</span>
                 </div>
                 <div class="relative">
@@ -258,7 +258,7 @@ $shops = [
             @for ($i = 0; $i < 6; $i++)
             <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-8">
                 <div class="relative mb-2">
-                    <img class="lazyload h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
+                    <img load="lazy" class=" h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                     <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[3]['tag'] }}</span>
                 </div>
                 <div class="relative">
@@ -302,7 +302,7 @@ $shops = [
             @for ($i = 5; $i >= 0; $i--)
             <a href="" id="shop-card" class="w-[25.1rem] inline-block mr-6 mb-8">
                 <div class="relative mb-2">
-                    <img class="lazyload h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
+                    <img load="lazy" class=" h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                     <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[1]['tag'] }}</span>
                 </div>
                 <div class="relative">

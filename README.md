@@ -69,4 +69,58 @@ npm run dev
 ```
 - if there is no error congrats you are done.
 
+# HOW TO GET EMAIL FROM GOOGLE
+you need to modify your .env file and have access to your google account.
+
+in your .env file try to find the section for mails (press ctrl + f and search mail)
+![Screenshot 2024-11-07 212549](https://github.com/user-attachments/assets/137993f4-e682-451c-8bf2-4e402dff55a6)
+
+once you found it replace the all the block of code there with this code
+```
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your_email@gmail.com
+MAIL_PASSWORD=" "
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="your_email@gmail.com"
+MAIL_FROM_NAME="Your Name or App Name"
+
+```
+
+Make sure you use your email address. 
+
+Now go into your google account and click on manage google account
+![Screenshot 2024-11-07 213344](https://github.com/user-attachments/assets/27bb8933-4a56-448f-b51e-ab258c2900f7)
+then go to Security and enable the 2-step verification
+![Screenshot 2024-11-07 213526](https://github.com/user-attachments/assets/67282d59-a329-45ba-a827-7bedececf300)
+After that go and search for the app passwords
+![Screenshot 2024-11-07 213624](https://github.com/user-attachments/assets/81d43fbc-48af-473b-88e1-5e8a6b492ade)
+enter the app name "Laravel" then press create.
+
+if you see something like this copy it
+![Screenshot 2024-11-07 213757](https://github.com/user-attachments/assets/5e0b779f-6242-4f4b-aa7d-4812a92fd9d2)
+
+then go back to your .env file and place it in the MAIL_PASSWORD=" " (put ut inside " " cus the password has spaces)
+
+go into your terminal in vscode and enter the command 
+```
+php artisan config:cache
+```
+
+
+and your done! test it and see if it works
+if problem occurs, contact me on my socials at facebook pauldanielojales or email me at pauldanielojales@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
 

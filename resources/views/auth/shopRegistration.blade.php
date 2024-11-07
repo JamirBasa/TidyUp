@@ -39,37 +39,37 @@
 
                         {{-- Barbershop --}}
                         <button class="border border-neutral-400 rounded-lg p-4 inline-flex items-center justify-center gap-2 " id="button1">
-                            <svg id="check-icon1" class="stroke-white stroke-2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg id="check-icon1" class="stroke-white stroke-2 hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6 12.0005L10.2426 16.2431L18.727 7.75781" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span id="category1" class="mr-4">Barbershop</span>
+                            <span id="category1">Barbershop</span>
                         </button>
                         <input class="absolute invisible -top-4 right-1 pointer-events-none" type="checkbox" name="category[]" id="checkbox1" value="1">
 
                         {{-- Beauty Salon --}}
                         <button class="border border-neutral-400 rounded-lg p-4 inline-flex items-center justify-center gap-2" id="button2">
-                            <svg id="check-icon2" class="stroke-white stroke-2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg id="check-icon2" class="stroke-white stroke-2 hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6 12.0005L10.2426 16.2431L18.727 7.75781" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span id="category2" class="mr-4">Beauty Salon</span>
+                            <span id="category2">Beauty Salon</span>
                         </button>
                         <input class="absolute invisible -top-4 right-2 pointer-events-none" type="checkbox" name="category[]" id="checkbox2" value="2">
 
                         {{-- Hair Salon --}}
                         <button class="border border-neutral-400 rounded-lg p-4 inline-flex items-center justify-center gap-2" id="button3">
-                            <svg id="check-icon3" class="stroke-white stroke-2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg id="check-icon3" class="stroke-white stroke-2 hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6 12.0005L10.2426 16.2431L18.727 7.75781" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span id="category3" class="mr-4">Hair Salon</span>
+                            <span id="category3">Hair Salon</span>
                         </button>
                         <input class="absolute invisible -top-4 right-3 pointer-events-none" type="checkbox" name="category[]" id="checkbox3" value="3">
 
                         {{-- Nail Salon --}}
                         <button class="border border-neutral-400 rounded-lg p-4 inline-flex items-center justify-center gap-2" id="button4">
-                            <svg id="check-icon4" class="stroke-white stroke-2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg id="check-icon4" class="stroke-white stroke-2 hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6 12.0005L10.2426 16.2431L18.727 7.75781" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span id="category4" class="mr-4">Nail Salon</span>
+                            <span id="category4">Nail Salon</span>
                         </button>
                         <input class="absolute invisible -top-4 right-4 pointer-events-none" type="checkbox" name="category[]" id="checkbox4" value="4">
                     </div>
@@ -105,7 +105,7 @@
                         <div class="flex flex-col gap-3">
                             <label for="region">Region</label>
                             <div class="relative flex items-center">
-                                <select class="border flex-1 border-neutral-400 py-3 px-4 rounded-lg truncate @error('region')ring-1 ring-red-500 @enderror" id="regionSelect" name="region">
+                                <select class="border w-full border-neutral-400 py-3 px-4 rounded-lg truncate @error('region')ring-1 ring-red-500 @enderror" id="regionSelect" name="region">
                                     <option value="">Select Region</option>
                                 </select>
                                 <svg id="caret-down1" class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -150,7 +150,7 @@
                         <div class="flex flex-col gap-3">
                             <label for="barangay">Barangay</label>
                             <div class="relative flex items-center">
-                                <select class="border flex-1 border-neutral-400 py-3 px-4 rounded-lg @error('barangay')ring-1 ring-red-500 @enderror" id="barangaySelect" name="barangay">
+                                <select class="border w-full border-neutral-400 py-3 px-4 rounded-lg @error('barangay')ring-1 ring-red-500 @enderror" id="barangaySelect" name="barangay">
                                     <option value="">Select Barangay</option>
                                 </select>
                                 <svg id="caret-down4" class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -177,7 +177,7 @@
                         Back
                     </a>
                     <button class="bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-lg p-3 font-semibold">Submit</button>
-                </div>
+                </div>  
             </form>
 
         </div>

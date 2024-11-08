@@ -47,7 +47,9 @@
     ];
 @endphp
 <div class="content-section pt-28 pl-[17rem] pb-20 max-w-screen-2xl mx-auto"> 
+    {{-- Hero Section --}}
     <div class="grid grid-cols-3 mb-20">
+        {{-- Left Section --}}
         <div class="col-span-2 pt-20">
             <h1 class="font-clash font-medium text-6xl max-w-[37rem] text-pretty mb-4">Transformation in a click of a button </h1>
             <p class=" text-pretty max-w-[37rem] mb-6">A comprehensive booking platform for beauty-related services offering its users ease and comfort.</p>
@@ -64,6 +66,7 @@
                 </a>
             </div>
         </div>
+        {{-- Image Section --}}
         <div class="col-span-1">
             <img class="h-[30rem] lazyload" src="{{ asset('assets/images/landingpageVector.png') }}" alt="">
         </div>
@@ -81,9 +84,9 @@
     <div class="grid grid-cols-3 gap-6 mb-20">
         {{-- Shop Card --}}
         @for ($i = 0; $i < 6; $i++)
-        <a href="" class="">
+        <a href="{{ route('shop.view') }}" class="">
             <div class="relative mb-2">
-                <img class=" h-[15rem] w-full object-cover rounded-lg lazyload" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
+                <img class=" h-[15rem] w-full object-cover rounded-lg" load="lazy" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                 <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[$i]['tag'] }}</span>
             </div>
             <div class="relative">

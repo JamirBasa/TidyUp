@@ -56,7 +56,7 @@ $(document).ready(function() {
         // Update URL without reload
         history.pushState({}, '', href);
     });
-
+    
     
 
 

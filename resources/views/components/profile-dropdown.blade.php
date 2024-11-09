@@ -3,7 +3,7 @@
     <!-- Profile Header -->
     <div class="p-6 border-b">
         <div class="flex items-center gap-6">
-            <img class="size-16 object-cover object-top rounded-full " src="{{ asset('assets/images/sampleDp.png') }}" alt="Profile Picture">
+            <img class="size-16 object-cover object-top rounded-full " src="https://avatar.iran.liara.run/username?username={{ $user->first_name . $user->last_name }}" alt="Profile Picture">
             <div>
                 <div class="font-semibold mb-1">{{ $user->first_name . ' ' . $user->last_name }}</div>
                 <div class="text-xs text-neutral-700 text-left">{{ '@' . $user->username }}</div>

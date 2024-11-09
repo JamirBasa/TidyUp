@@ -36,6 +36,8 @@ if (hideIcon && showIcon && password) {
     });
 }
 
+
+
 // this line is for when user scroll the page the header will be change the color
 
 

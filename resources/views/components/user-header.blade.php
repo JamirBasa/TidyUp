@@ -48,7 +48,7 @@
                 <!-- profile picture -->
                 <div class="inline-flex items-center relative">
                     <button  class="shadow-sm rounded-full">
-                        <img id="user-profile-button" class="size-12 object-cover object-top rounded-full " src="{{ asset('assets/images/sampleDp.png') }}" alt="Profile Picture">
+                        <img id="user-profile-button" class="size-12 object-cover object-top rounded-full " src="https://avatar.iran.liara.run/username?username={{ $user->first_name . $user->last_name }}" alt="Profile Picture">
                     </button>
                     {{-- Dropdown --}}
                     <x-profile-dropdown :user="$user"/>

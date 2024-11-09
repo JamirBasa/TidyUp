@@ -97,7 +97,7 @@
                         <label class="font-semibold" for="phone_num">Phone Number</label>
                         <input class="border border-neutral-400 py-3 px-4 rounded-lg w-full @error('phone_num')
                             ring-1 ring-red-500 
-                        @enderror" type="text" name="phone_num" id="phone_num" placeholder="XXXX-XXX-XXXX" value="{{ old('phone_num') }}">
+                        @enderror" type="text" inputmode="numeric" name="phone_num" id="phone_num" placeholder="XXXX-XXX-XXXX" value="{{ old('phone_num') }}">
                         @error('phone_num')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
@@ -241,7 +241,7 @@
             </div>
                 {{-- BUttons Container --}}
                 <div class="grid grid-cols-2 gap-4">
-                    <a href="{{ route('user.login') }}" class="bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-200 rounded-lg p-3 font-semibold w-full transition-colors duration-150 ease-in-out text-center">
+                    <a id="example" href="{{ route('user.login') }}" class="bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-200 rounded-lg p-3 font-semibold w-full transition-colors duration-150 ease-in-out text-center">
                         Back
                     </a>
                     <button type="submit" class="bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-lg p-3 font-semibold">Register</button>

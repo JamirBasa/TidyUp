@@ -35,6 +35,11 @@ export default {
             gridTemplateColumns: {
                 3: 'repeat(3, minmax(0, 1fr))',
             },
+            screens: {
+                '3xl': '1600px',   // Custom 3X large devices
+                '4xl': '1920px',   // Custom 4X large devices
+                'ultra': '2560px',
+            },
         },
     },
     plugins: [],

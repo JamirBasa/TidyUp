@@ -141,6 +141,3 @@ showIcon2.addEventListener('click', () => {
     hideIcon2.classList.remove('hidden');
     showIcon2.classList.add('hidden');
 });
-
-
-

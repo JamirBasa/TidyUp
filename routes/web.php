@@ -27,7 +27,6 @@ Route::get('/explore', [SidebarController::class, 'explore'])->name('explore');
 Route::get('/home', [SidebarController::class, 'homeContent'])->name('home.content');
 Route::get('/appointments/upcoming-content', [SidebarController::class, 'appointmentsContent'])->name('appointments.content');
 Route::get('/explore-content', [SidebarController::class, 'exploreContent'])->name('explore.content');
-// Route::get('/appointments/upcoming-content', [AppointmentController::class, 'upcomingContent'])->name('upcoming.content');
 
 //Routes that are only accessible to guests
 Route::middleware('guest')->group(function () {

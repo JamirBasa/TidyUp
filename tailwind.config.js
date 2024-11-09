@@ -35,6 +35,27 @@ export default {
                 3: 'repeat(3, minmax(0, 1fr))',
             },
         },
+        // screens: {
+        //     'phone': '480px',
+        //     // => @media (min-width: 480px) { ... }
+
+        //     'tablet': '640px',
+        //     // => @media (min-width: 640px) { ... }
+      
+        //     'laptop': '1024px',
+        //     // => @media (min-width: 1024px) { ... }
+      
+        //     'desktop': '1280px',
+        //     // => @media (min-width: 1280px) { ... }
+
+        //     '1080p': '1920px',
+        //     // => @media (min-width: 1920px) { ... }
+
+        //     '1440p': '2560px',
+
+        //     '4k': '3840px',
+        //     // => @media (min-width: 3840px) { ... }
+        //   },
     },
     plugins: [],
 };

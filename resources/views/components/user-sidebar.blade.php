@@ -1,4 +1,8 @@
-<section class="max-w-screen-2xl mx-auto ">
+<section class="
+    2xl:max-w-screen-2xl 
+    mx-3 2xl:mx-auto
+    hidden lg:flex
+    ">
     <div id="user-sidebar" class="fixed w-52 pr-2 pb-8 top-28 bottom-0 gap-3 flex flex-col overflow-y-auto">
         {{-- Home --}}
         

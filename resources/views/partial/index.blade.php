@@ -48,18 +48,18 @@
 @endphp
 <div
     class="content-section 
-            px-10 
+            px-5 
             pt-10 2xl:pt-28 
-            lg:pl-[13rem] 2xl:pl-[17rem] 
+            lg:pl-[13rem] 3xl:pl-[17rem] 
             md:pb-20  
             2xl:max-w-screen-2xl 
-            md:mx-10 2xl:mx-auto ">
+            md:mx-10 3xl:px-0 3xl:mx-auto">
     {{-- Hero Section --}}
     <div class="flex mb-20 gap-10">
         {{-- Left Section --}}
         <div class="flex-1 pt-20 ">
             {{-- Catch Phrase --}}
-            <div class="flex flex-col items-center justify-center lg:block">
+            <div class="flex flex-col items-center justify-center z-0 lg:block">
                 <h1
                     class="font-clash font-medium text-[2.2rem] leading-10 sm:text-5xl lg:text-6xl max-w-[37rem] text-pretty mb-4 text-center lg:text-left">
                     Transformation in a click of a button </h1>
@@ -114,8 +114,7 @@
             <a href="{{ route('shop.view') }}" class="">
                 <div class="relative mb-2">
                     {{-- shop image --}}
-                    <img class="h-[13rem] sm:h-[15rem] w-full object-cover rounded-lg" load="lazy"
-                        src="{{ asset('assets/images/shops/' . $shops[$i]['image']) }}" alt="">
+                    <img load="lazy" class="h-[13rem] sm:h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image']) }}" alt="">
                     {{-- shop tag --}}
                     <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-xs sm:text-sm">{{ $shops[$i]['tag'] }}</span>
                 </div>
@@ -147,31 +146,31 @@
 
     <div class="grid lg:grid-cols-2 gap-6">
         <div
-            class="bg-white px-10 py-8 sm:py-16 rounded-2xl sm:rounded-[3rem] relative overflow-hidden flex flex-col justify-center">
-            <h1 class="font-semibold mb-4 text-sm sm:text-base z-20 relative">Service Selection</h1>
-            <p class="text-pretty text-xs sm:text-sm z-20 relative">A huge selection of services categorized to make it
+            class="bg-white px-10 py-8 sm:py-16 rounded-2xl sm:rounded-[3rem] relative overflow-hidden flex flex-col justify-center z-0 ">
+            <h1 class="font-semibold mb-4 text-sm sm:text-base z-10 relative">Service Selection</h1>
+            <p class="text-pretty text-xs sm:text-sm z-10 relative">A huge selection of services categorized to make it
                 easier for users to find what suits their needs.</p>
             <img class="absolute bottom-0 right-0 " src="{{ asset('assets/images/shops/Vector1.png') }}" alt="">
         </div>
         <div
-            class="bg-white px-10 py-8 sm:py-16 rounded-2xl sm:rounded-[3rem] relative overflow-hidden flex flex-col justify-center">
-            <h1 class="font-semibold mb-4 text-sm sm:text-base z-20 relative">Appointment Management Made Easyy</h1>
-            <p class="text-pretty text-xs sm:text-sm z-20 relative">A built-in feature to manage your appointments on
+            class="bg-white px-10 py-8 sm:py-16 rounded-2xl sm:rounded-[3rem] relative overflow-hidden flex flex-col justify-center z-0">
+            <h1 class="font-semibold mb-4 text-sm sm:text-base z-10 relative">Appointment Management Made Easyy</h1>
+            <p class="text-pretty text-xs sm:text-sm z-10 relative">A built-in feature to manage your appointments on
                 the go. </p>
             <img class="absolute bottom-4 right-0 " src="{{ asset('assets/images/shops/Vector2.png') }}" alt="">
         </div>
         <div
-            class="bg-white px-10 py-8 sm:py-16 rounded-2xl sm:rounded-[3rem] relative overflow-hidden flex flex-col justify-center">
-            <h1 class="font-semibold mb-4 text-sm sm:text-base z-20 relative">Shop Personalization</h1>
-            <p class="text-pretty text-xs sm:text-sm z-20 relative">From shop services to shop galleries, how you
+            class="bg-white px-10 py-8 sm:py-16 rounded-2xl sm:rounded-[3rem] relative overflow-hidden flex flex-col justify-center z-0">
+            <h1 class="font-semibold mb-4 text-sm sm:text-base z-10 relative">Shop Personalization</h1>
+            <p class="text-pretty text-xs sm:text-sm z-10 relative">From shop services to shop galleries, how you
                 customize and set up your shop is all up to you!</p>
             <img class="absolute bottom-0 right-0 " src="{{ asset('assets/images/shops/Vector3.png') }}"
                 alt="">
         </div>
         <div
-            class="bg-white px-10 py-8 sm:py-16 rounded-2xl sm:rounded-[3rem] relative overflow-hidden flex flex-col justify-center">
-            <h1 class="font-semibold mb-4 text-sm sm:text-base z-20 relative">Tracking Made Easy</h1>
-            <p class="text-pretty text-xs sm:text-sm z-20 relative">Automated notifications for upcoming appointments.
+            class="bg-white px-10 py-8 sm:py-16 rounded-2xl sm:rounded-[3rem] relative overflow-hidden flex flex-col justify-center z-0">
+            <h1 class="font-semibold mb-4 text-sm sm:text-base z-10 relative">Tracking Made Easy</h1>
+            <p class="text-pretty text-xs sm:text-sm z-10 relative">Automated notifications for upcoming appointments.
             </p>
             <img class="absolute bottom-0 h-[13rem]  right-0 " src="{{ asset('assets/images/shops/Vector4.png') }}"
                 alt="">

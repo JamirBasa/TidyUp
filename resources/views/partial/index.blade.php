@@ -97,7 +97,7 @@
                 ">
         {{-- Shop Card --}}
         @for ($i = 0; $i < 6; $i++)
-        <a href="" class="">
+        <a href="{{ route('shop.view') }}" class="">
             <div class="relative mb-2">
                 <img class="h-[13rem] sm:h-[15rem] w-full object-cover rounded-lg" load="lazy" src="{{ asset('assets/images/shops/' . $shops[$i]['image'] ) }}" alt="">
                 <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-sm">{{ $shops[$i]['tag'] }}</span>

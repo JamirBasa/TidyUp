@@ -55,7 +55,7 @@
                                 <path d="M9.99951 12C9.99951 13.1046 10.8949 14 11.9995 14C13.1041 14 13.9995 13.1046 13.9995 12C13.9995 10.8954 13.1041 10 11.9995 10C10.8949 10 9.99951 10.8954 9.99951 12Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <div class="flex justify-end">
+                        <div class="flex justify-start">
                             <a href="{{route('password.request')}}" class="text-sm text-brand-500 hover:text-brand-700">Forgot Password?</a>
                         </div>
                     </div>

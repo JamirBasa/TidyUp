@@ -1,5 +1,5 @@
 @props(['user'])
-<div id="user-header-dropdown" class="w-96 bg-white rounded-lg border border-neutral-300 !absolute top-14 right-0 hidden overflow-hidden">
+<div id="user-header-dropdown" class="w-96 bg-white rounded-lg border border-neutral-300 !absolute  -top-6 -right-10  sm:top-14 sm:right-0 hidden overflow-hidden scale-75 sm:scale-100">
     <!-- Profile Header -->
     <div class="p-6 border-b">
         <div class="flex items-center gap-6">

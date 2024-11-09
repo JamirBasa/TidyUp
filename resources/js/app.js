@@ -35,10 +35,25 @@ if (hideIcon && showIcon && password) {
         showIcon.classList.add('hidden');
     });
 }
+// This javascript code is for the mobile sidebar
+document.addEventListener('DOMContentLoaded', () => {
+    const burgerMenuMobile = document.getElementById('burger-menu-mobile');
+    const sidebarMobile = document.getElementById('sidebar-container');
+    
+    burgerMenuMobile.addEventListener('click', () => {
+        sidebarMobile.classList.toggle('hidden');
+        sidebarMobile.classList.toggle('block');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!sidebarMobile.contains(event.target) && !burgerMenuMobile.contains(event.target)) {
+            sidebarMobile.classList.add('hidden');
+            sidebarMobile.classList.remove('block');
+        }
+    });
+});
 
 
-
-// this line is for when user scroll the page the header will be change the color
 
 
 

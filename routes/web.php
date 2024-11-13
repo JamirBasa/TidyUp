@@ -15,6 +15,7 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\Request;
 
 // Routes
+Route::view('/user/profile', 'user.userProfile')->name('user.profile');
 Route::get('/', [SidebarController::class, 'index'])->name('index');
 Route::get('/appointments/upcoming', [SidebarController::class, 'appointments'])->name('appointments');
 Route::get('/appointments', function () {
@@ -26,7 +27,6 @@ Route::get('/explore', [SidebarController::class, 'explore'])->name('explore');
 Route::get('/home', [SidebarController::class, 'homeContent'])->name('home.content');
 Route::get('/appointments/upcoming-content', [SidebarController::class, 'appointmentsContent'])->name('appointments.content');
 Route::get('/explore-content', [SidebarController::class, 'exploreContent'])->name('explore.content');
-// Route::get('/appointments/upcoming-content', [AppointmentController::class, 'upcomingContent'])->name('upcoming.content');
 
 //Routes that are only accessible to guests
 Route::middleware('guest')->group(function () {

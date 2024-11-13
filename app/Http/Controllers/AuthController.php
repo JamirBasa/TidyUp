@@ -68,7 +68,7 @@ class AuthController extends Controller
                 'regex:/[@$!%*?&#]/', // At least one special character
                 'confirmed', // This requires a password confirmation field (password_confirmation)
             ],
-            'gender' => 'required|in:Male,Female,Other',
+            'gender' => 'required|in:Male,Female,Others',
             'phone_num' => [
                 'required',
                 'regex:/^\+?[0-9]{7,15}$/', // Validates phone numbers with optional + and 7 to 15 digits

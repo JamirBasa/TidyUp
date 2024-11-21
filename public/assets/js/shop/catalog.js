@@ -38,31 +38,45 @@ categoryButtons.forEach((button) => {
     });
 });
 
-const addDiscountBtn = document.getElementById("add-discount-btn1");
-const addDiscountModal = document.getElementById("add-discount-popover");
-const addDiscountModalContent = document.getElementById(
-    "add-discount-popover-content"
+function ModalPopOver(buttonId, modalId, modalContentId, closeButtonId) {
+    const addDiscountBtn = document.getElementById(buttonId);
+    const addDiscountModal = document.getElementById(modalId);
+    const addDiscountModalContent = document.getElementById(modalContentId);
+    const closeButton = document.getElementById(closeButtonId);
+
+    addDiscountBtn.addEventListener("click", () => {
+        if (addDiscountModal.classList.contains("hidden")) {
+            addDiscountModal.classList.remove("hidden");
+            addDiscountModal.classList.add("grid");
+        } else {
+            addDiscountModal.classList.add("hidden");
+            addDiscountModal.classList.remove("grid");
+        }
+    });
+
+    closeButton.addEventListener("click", () => {
+        addDiscountModal.classList.add("hidden");
+        addDiscountModal.classList.remove("grid");
+    });
+
+    addDiscountModal.addEventListener("click", (event) => {
+        if (!addDiscountModalContent.contains(event.target)) {
+            addDiscountModal.classList.add("hidden");
+            addDiscountModal.classList.remove("grid");
+        }
+    });
+}
+
+// Example usage:
+ModalPopOver(
+    "add-discount-btn1",
+    "add-discount-popover",
+    "add-discount-popover-content",
+    "close-button"
 );
-
-addDiscountBtn.addEventListener("click", () => {
-    if (addDiscountModal.classList.contains("hidden")) {
-        addDiscountModal.classList.remove("hidden");
-        addDiscountModal.classList.add("grid");
-    } else {
-        addDiscountModal.classList.add("hidden");
-        addDiscountModal.classList.remove("grid");
-    }
-});
-
-const closeButton = document.getElementById("close-button");
-closeButton.addEventListener("click", () => {
-    addDiscountModal.classList.add("hidden");
-    addDiscountModal.classList.remove("grid");
-});
-
-addDiscountModal.addEventListener("click", (event) => {
-    if (!addDiscountModalContent.contains(event.target)) {
-        addDiscountModal.classList.add("hidden");
-        addDiscountModal.classList.remove("grid");
-    }
-});
+ModalPopOver(
+    "add-service-btn",
+    "add-service-popover",
+    "add-service-popover-content",
+    "close-button2"
+);

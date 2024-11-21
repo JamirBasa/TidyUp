@@ -103,6 +103,7 @@
                     <button id="add-discount-btn1" class="bg-brand-500 p-4 rounded-xl w-full text-white">
                         Add Discount
                     </button>
+                    {{-- Add Discount Modal --}}
                     <div id="add-discount-popover"
                         class="absolute top-0 bottom-0 left-0 right-0 z-50 backdrop-brightness-50 place-items-center hidden">
                         <div id="add-discount-popover-content"
@@ -119,7 +120,7 @@
                             </div>
                             {{-- Category Field --}}
                             <div class="mb-4">
-                                <h6 class="font-semibold mb-2">Categories</h6>
+                                <label for="categoriesSelect" class="font-semibold mb-2">Categories</label>
                                 <div class="relative flex items-center">
                                     <select class="border border-neutral-400 w-full py-3 pl-5 pr-10 rounded-lg"
                                         id="categoriesSelect" name="categoriesSelect">
@@ -142,10 +143,10 @@
                             <div class="grid grid-cols-2 gap-4">
                                 {{-- Service Field --}}
                                 <div>
-                                    <h6 class="font-semibold mb-2">Services</h6>
+                                    <label for="servicesSelect" class="font-semibold mb-2">Services</label>
                                     <div class="relative flex items-center">
                                         <select class="border border-neutral-400 w-full py-3 pl-5 pr-10 rounded-lg"
-                                            id="servicesSelect" name="categoriesSelect">
+                                            id="servicesSelect" name="servicesSelect">
                                             <option value="">All Services</option>
                                             @foreach ($services[0] as $item)
                                                 <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
@@ -163,7 +164,7 @@
                                 </div>
                                 {{-- Discount Percentages Field --}}
                                 <div class="mb-8">
-                                    <h6 class="font-semibold mb-2">Discount Percentages</h6>
+                                    <label for="discount" class="font-semibold mb-2">Discount Percentages</label>
                                     <div class="relative flex items-center">
                                         <input type="text"
                                             class="border border-neutral-400 w-full py-3 pl-5 pr-10 rounded-lg"
@@ -190,12 +191,77 @@
                     </svg>
                     <div id="action-dropdown2" class="absolute bg-white -bottom-[10rem] right-0 hidden">
                         <ul class="border border-neutral-400 rounded-lg divide-x-0 div overflow-hidden">
-                            <li class="p-3 text-nowrap hover:bg-neutral-100 text-left">Add Services</li>
-                            <li class="p-3 text-nowrap hover:bg-neutral-100 text-left">Edit Services</li>
-                            <li class="p-3 text-nowrap hover:bg-neutral-100">Remove Services</li>
+                            <li id="add-service-btn" class="p-3 text-nowrap hover:bg-neutral-100 text-left">Add
+                                Services
+                            </li>
+                            <li id="edit-service-btn" class="p-3 text-nowrap hover:bg-neutral-100 text-left">Edit
+                                Services
+                            </li>
+                            <li id="delete-service-btn" class="p-3 text-nowrap hover:bg-neutral-100">Remove Services
+                            </li>
                         </ul>
                     </div>
                 </button>
+                {{-- Add ServiceModal --}}
+                <div id="add-service-popover"
+                    class="absolute top-0 bottom-0 left-0 right-0 z-50 backdrop-brightness-50 place-items-center hidden">
+                    <div id="add-service-popover-content"
+                        class="bg-white max-w-screen-lg w-full mx-auto p-10 rounded-lg shadow-lg">
+                        <div class="mb-10 flex items-center justify-between">
+                            <h1 class="text-3xl font-bold">Add Services</h1>
+                            <button id="close-button2">
+                                <svg class="stroke-black stroke-2" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 18L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
+                        {{-- Category Field --}}
+                        <div class="mb-4">
+                            <label for="categorySelect" class="font-semibold mb-2">Select Category</label>
+                            <div class="relative flex items-center">
+                                <select class="border border-neutral-400 w-full py-3 pl-5 pr-10 rounded-lg"
+                                    id="categorySelect" name="categorySelect">
+                                    <option value="">Select Category</option>
+                                    @php $index = 0; @endphp
+                                    @foreach ($categories as $category)
+                                        @php $index = $loop->index; @endphp
+                                        <option value="{{ $category }}" data-index="{{ $index }}">
+                                            {{ $category }}</option>
+                                    @endforeach
+                                </select>
+                                <svg id="caret-down4"
+                                    class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            {{-- Service Name Field --}}
+                            <div>
+                                <label for="service_name" class="font-semibold mb-2">Service Name</label>
+                                <div class="relative flex items-center">
+                                    <input type="text"
+                                        class="border border-neutral-400 w-full py-3 pl-5 pr-10 rounded-lg "
+                                        id="service_name" name="service_name" placeholder="Name of your service" />
+                                </div>
+                            </div>
+                            {{-- Service Price Field --}}
+                            <div class="mb-8">
+                                <label for="discount" class="font-semibold mb-2">Service Fee</label>
+                                <div class="relative flex items-center">
+                                    <input type="text"
+                                        class="border border-neutral-400 w-full py-3 pl-5 pr-10 rounded-lg"
+                                        id="discount" name="discount" placeholder="PHP" />
+                                </div>
+                            </div>
+                            <button class="p-4 bg-brand-500 text-white rounded-lg col-span-2">Add Service</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="flex items-center justify-between py-3 px-4 border-b border-black">

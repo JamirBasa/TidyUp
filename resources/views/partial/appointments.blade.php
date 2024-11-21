@@ -1,4 +1,4 @@
-<div class="content-section pt-28 pl-[17rem] max-w-screen-2xl mx-auto">
+<div class="content-section flex-1 w-full">
     {{-- back button --}}
     <a href="" class="inline-flex gap-2 items-center border-b border-black p-1 mb-10">
         <svg class="size-4 stroke-black stroke-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -55,7 +55,7 @@
 
     <div id="appointments-content">
         {{-- Shop Cards --}}
-        @if(isset($appointmentsView))
+        @if (isset($appointmentsView))
             @include('partial.appointmentsPartial.' . $appointmentsView)
         @else
             @include('partial.appointmentsPartial.upcoming')

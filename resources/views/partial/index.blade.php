@@ -46,14 +46,7 @@
         ],
     ];
 @endphp
-<div
-    class="content-section 
-            px-5 
-            pt-10 2xl:pt-28 
-            lg:pl-[13rem] 3xl:pl-[17rem] 
-            md:pb-20  
-            2xl:max-w-screen-2xl 
-            md:mx-10 3xl:px-0 3xl:mx-auto">
+<div class="content-section">
     {{-- Hero Section --}}
     <div class="flex mb-20 gap-10">
         {{-- Left Section --}}
@@ -63,7 +56,8 @@
                 <h1
                     class="font-clash font-medium text-[2.2rem] leading-10 sm:text-5xl lg:text-6xl max-w-[37rem] text-pretty mb-4 text-center lg:text-left">
                     Transformation in a click of a button </h1>
-                <p class="text-xs text-balance sm:text-pretty max-w-[37rem] mb-6 text-center lg:text-left">A comprehensive booking platform for
+                <p class="text-xs lg:text-base text-balance sm:text-pretty max-w-[37rem] mb-6 text-center lg:text-left">A
+                    comprehensive booking platform for
                     beauty-related services offering its users ease and comfort.</p>
             </div>
             {{-- Buttons --}}
@@ -98,8 +92,8 @@
     <div class="flex items-center justify-between mb-8">
         <h1 class="p-1 sm:p-2 font-clash font-medium text-sm sm:text-2xl border-b-2 border-black">Customer's Choice</h1>
         <a href="" class="inline-flex items-center gap-1 sm:gap-2 p-1 sm:p-2 border-b-2 border-neutral-400">
-            <svg class="stroke-neutral-500 stroke-1 size-4 sm:size-6" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
+            <svg class="stroke-neutral-500 stroke-1 size-4 sm:size-6" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7 17L17 7M17 7H9M17 7V15" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             <span class="font-clash text-xs sm:text-lg font-medium text-neutral-500">See More</span>
@@ -114,9 +108,11 @@
             <a href="{{ route('shop.view') }}" class="">
                 <div class="relative mb-2">
                     {{-- shop image --}}
-                    <img load="lazy" class="h-[13rem] sm:h-[15rem] w-full object-cover rounded-lg" src="{{ asset('assets/images/shops/' . $shops[$i]['image']) }}" alt="">
+                    <img load="lazy" class="h-[13rem] sm:h-[15rem] w-full object-cover rounded-lg"
+                        src="{{ asset('assets/images/shops/' . $shops[$i]['image']) }}" alt="">
                     {{-- shop tag --}}
-                    <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-xs sm:text-sm">{{ $shops[$i]['tag'] }}</span>
+                    <span
+                        class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-xs sm:text-sm">{{ $shops[$i]['tag'] }}</span>
                 </div>
                 <div class="relative">
                     {{-- Shop Name --}}

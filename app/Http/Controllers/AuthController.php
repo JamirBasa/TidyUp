@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\OperatingHours;
 use App\Models\User;
 use App\Models\Shop;
 //use Illuminate\Auth\Events\Registered;
@@ -101,12 +101,12 @@ class AuthController extends Controller
 
         //Auth::login($user);
 
-       // event(new Registered($user));
+        // event(new Registered($user));
 
         return redirect()->route('user.login');
     }
 
-    
+
 
 
 
@@ -138,6 +138,7 @@ class AuthController extends Controller
     // Handle shop registration
     public function shopRegister(Request $request)
     {
+        // dd($request);
         $request->validate([
             'shop_name' => 'required|string|max:255',
             'category' => 'required|array', // Accepts an array of category IDs
@@ -151,8 +152,26 @@ class AuthController extends Controller
             'city' => 'required|max:255',
             'barangay' => 'required|max:255',
             'detailed_address' => 'required|max:255',
+            // Validation for operating hours
+            // 'operating_hours' => 'array|size:7',
+            // 'operating_hours.*.day' => 'string|in:Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday',
+            // 'operating_hours.*.is_open' => 'boolean',
+            // 'operating_hours.*.opening_time' => 'nullable|required_if:operating_hours.*.is_open,true|date_format:H:i',
+            // 'operating_hours.*.closing_time' => 'nullable|required_if:operating_hours.*.is_open,true|date_format:H:i|after:operating_hours.*.opening_time',
         ]);
 
+        // Ensure at least one day is open
+        $isAnyDayOpen = collect($request->operating_hours)->contains(function ($day) {
+            return isset($day['is_open']) && $day['is_open'] == true;
+        });
+
+        if (!$isAnyDayOpen) {
+            return back()
+                ->withErrors(['operating_hours' => 'At least one day must be marked as open.'])
+                ->withInput();
+        }
+
+        // Create the shop
         $shop = Shop::create([
             'user_id' => Auth::id(),
             'shop_name' => $request->shop_name,
@@ -162,11 +181,10 @@ class AuthController extends Controller
         ]);
 
         // Attach categories
-        $shop->categories()->attach($request->category); // Assuming 'category' is an array of IDs
+        $shop->categories()->attach($request->category);
 
         // Save address details
-        $shop->addresses()->create([
-            'shop_id' => $shop->id,
+        $shop->address()->create([
             'region' => $request->region,
             'province' => $request->province,
             'city' => $request->city,
@@ -174,15 +192,24 @@ class AuthController extends Controller
             'detailed_address' => $request->detailed_address,
         ]);
 
-        $shop->user()->associate(Auth::user());
+        // Save operating hours
+        // foreach ($request->operating_hours as $operating_hour) {
+        //     $shop->operatingHours()->create([
+        //         'day' => $operating_hour['day'],
+        //         'is_open' => $operating_hour['is_open'] ?? 0,
+        //         'opening_time' => $operating_hour['is_open'] ? $operating_hour['opening_time'] : null,
+        //         'closing_time' => $operating_hour['is_open'] ? $operating_hour['closing_time'] : null,
+        //     ]);
+        // }
 
-        $user = Auth::user();
-        $user->is_service_provider = true;
-        if ($user instanceof Model) {
-            $user->save();
-        }
+        // Update user to service provider
+        $authenticatedUser = User::find(Auth::id());
+        $authenticatedUser->is_service_provider = true;
+        $authenticatedUser->save();
+
         return redirect()->route('shop.index');
     }
+
 
     public function userLogout(Request $request)
     {

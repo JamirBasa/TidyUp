@@ -63,6 +63,7 @@ Route::middleware(IsServiceProvider::class)->group(function () {
         return redirect()->route('shop.index');
     });
     Route::get('/shop/profile', [ShopController::class, 'shopProfile'])->name('shop.profile');
+    Route::get('/shop/catalog', [ShopController::class, 'catalog'])->name('shop.catalog');
 });
 
 Route::get('/shop/view', function () {

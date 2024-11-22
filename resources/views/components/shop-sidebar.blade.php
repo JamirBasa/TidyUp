@@ -1,3 +1,6 @@
+{{-- 
+NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USER WONT HAVE TO OPEN THE SIDE BAR EVERYTIME TO SEE THE NAME OF THE NAVIGATION.
+--}}
 <section id="sidebar-container"
     class="fixed top-0 bottom-0 left-0 pt-24 z-10 transition-all duration-300 ease-in-out overflow-hidden w-[6.8rem]">
     <nav class="">

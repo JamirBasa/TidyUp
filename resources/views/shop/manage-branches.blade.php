@@ -123,7 +123,7 @@
 
         </div>
         {{-- 2nd Row - 1st Column of the Grid --}}
-        <div class="bg-white p-10 rounded-lg shadow-sm mb-4 col-span-4">
+        <div class="bg-white p-10 rounded-lg shadow-sm col-span-4">
             <div class="flex items-center justify-between mb-20">
                 {{-- Box's Title --}}
                 <div class="inline-flex gap-4 items-center">
@@ -133,7 +133,7 @@
                 <div>
                     <button
                         class="bg-brand-500 text-white py-2 px-6 rounded-full hover:shadow-md hover:scale-105 transition-transform ease-in-out">
-                        Add New Staff
+                        Add New Staffc
                     </button>
                 </div>
             </div>
@@ -183,6 +183,45 @@
                     </div>
                 @endforeach
             </div>
+        </div>
+        {{-- 2nd Row - 2nd Column of the Grid --}}
+        <div class="bg-white p-10 rounded-lg shadow-sm col-span-2">
+            <div class="flex items-center justify-between mb-10">
+                <div class="inline-flex items-center gap-2">
+                    <h1 class="text-4xl font-bold">Top Services </h1>
+                </div>
+                <button class="flex items-center gap-2">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 16L8 19M8 19L5 16M8 19V5M13 8L16 5M16 5L19 8M16 5V19" stroke="black"
+                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span>Sort By</span>
+                </button>
+            </div>
+            <div class="border-b py-3 px-4 flex items-center justify-between">
+                <h6 class="font-bold">Service</h6>
+                <h6 class="font-bold">Total</h6>
+            </div>
+            <div class="py-3 px-4 flex items-center justify-between">
+                <p>Burst Fade ba to ya</p>
+                <p>419</p>
+            </div>
+            @for ($i = 0; $i < 3; $i++)
+                <div class="py-3 px-4 flex items-center justify-between">
+                    <p>Faded Haircut</p>
+                    <p>20</p>
+                </div>
+                <div class="py-3 px-4 flex items-center justify-between">
+                    <p>Regular Haircut</p>
+                    <p>20</p>
+                </div>
+                <div class="py-3 px-4 flex items-center justify-between">
+                    <p>Bald</p>
+                    <p>20</p>
+                </div>
+            @endfor
+
         </div>
     </section>
     <script>

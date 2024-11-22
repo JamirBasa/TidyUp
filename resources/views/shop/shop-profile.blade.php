@@ -207,7 +207,7 @@
         </div>
         <div class="flex mb-4">
             <div class="bg-white p-10 rounded-lg shadow-sm w-full">
-                <h1 class="text-4xl font-bold mb-10">Branch Owners</h1>
+                <h1 class="text-4xl font-bold mb-10">Branch Managers</h1>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <div class="mb-8">

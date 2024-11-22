@@ -58,12 +58,130 @@
                     </div>
                     {{-- Add Branch Manager Button --}}
                     <div>
-                        <button
+                        <button id="editManager"
                             class="bg-brand-500 text-white py-2 px-6 rounded-full hover:shadow-md hover:scale-105 transition-transform ease-in-out">
                             Edit Branch Manager
                         </button>
                     </div>
                 </div>
+                <div id="modalBackdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-40">
+                    <!-- Modal Content -->
+                    <div id="modalContent" class="bg-white rounded-lg w-[calc(100%+450px)] max-w-[calc(450px+450px)] mx-4 p-16 z-50 h-[calc(90%)]  ">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-3xl font-semibold">Edit Branch Manager</h2>
+                            <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <form id="editForm" class="space-y-4">
+                            <!-- First Name & Last Name -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-2">
+                                    <label class="font-semibold">First Name</label>
+                                    <input type="text" name="firstName" value="John" 
+                                        class="border border-neutral-400 py-3 px-4 rounded-lg w-full @error('email')ring-1 ring-red-500 @enderror">
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <label class="font-semibold">Last Name</label>
+                                    <input type="text" name="lastName" value="Doe"
+                                        class="border border-neutral-400 py-3 px-4 rounded-lg w-full @error('email')ring-1 ring-red-500 @enderror">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <!-- Role -->                            
+                                <div class="flex flex-col gap-2">
+                                    <label class="font-semibold" >Role </label>
+                                    <div class="relative flex items-center">
+                                    <input type="text" name="name" placeholder="Branch Owner" 
+                                        class="border border-neutral-400 py-3 px-4 rounded-lg w-full @error('email')ring-1 ring-red-500 @enderror" readonly class="block w-full rounded-md border-gray-300 text-gray-500">
+                                        </div>
+                                </div>
+                                <!-- Gender -->
+                                <div class="flex flex-col gap-2">
+                                    <label class="font-semibold" for="gender">Gender</label>
+                                    <div class="relative flex items-center">
+                                        <select class="border border-neutral-400 py-3 px-4 rounded-lg w-full appearance-none @error('gender') ring-1 ring-red-500 @enderror" 
+                                                name="gender" id="gender">
+                                            <option value="">Select Gender</option>
+                                            <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
+                                            <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
+                                            <option value="Others" {{ old('gender') == 'Others' ? 'selected' : '' }}>Others</option>
+                                        </select>
+                                        <svg class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    @error('gender')
+                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- Phone Number -->
+                            <div class="flex flex-col gap-2">
+                                <label class="font-semibold">Phone Number</label>
+                                <input type="tel" name="phoneNumber" placeholder="xxxx xxx xxxx"
+                                    class="border border-neutral-400 py-3 px-4 rounded-lg w-full @error('email')ring-1 ring-red-500 @enderror">
+                            </div>
+
+                            <div class="flex flex-col gap-2">
+                                <label class="font-semibold">Branch</label>
+                                <div class="relative">
+                                    <select name="branch" 
+                                            class="border border-neutral-400 py-3 px-4 rounded-lg w-full appearance-none @error('email') ring-1 ring-red-500 @enderror">
+                                        <option value="Upper Calarian" selected>Upper Calarian</option>
+                                    </select>
+                                    <svg class="absolute top-1/2 right-3 -translate-y-1/2 stroke-black stroke-1 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="flex flex-col gap-2 mb-4">
+                                <div class="flex items-center justify-between ">
+                                    <label class="font-semibold" for="password">New Password (Optional)</label>
+                                    <p id="strengthDisplay" class="text-sm"></p>
+                                </div>
+                                <div class="relative flex items-center">
+                                    <input class="border w-full border-neutral-400 py-3 px-4 rounded-lg @error('password') ring-1 ring-red-500 @enderror" 
+                                        type="password" name="password" id="password" placeholder="Enter your password">
+                                    <!-- Password visibility toggle icons -->
+                                </div>
+                                @error('password')
+                                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                                @enderror
+                            </div>
+                                <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-2 mb-6 text-center">
+                                    <li class="text-neutral-500 text-xs sm:text-sm">&bull; Use 8 or more Characters</li>
+                                    <li class="text-neutral-500 text-xs sm:text-sm">&bull; Use a number (e.g. 1234)</li>
+                                    <li class="text-neutral-500 text-xs sm:text-sm">&bull; Use upper and lower case letter (e.g. Aa)</li>
+                                    <li class="text-neutral-500 text-xs sm:text-sm">&bull; Use a symbol(e.g. !@#$)</li>
+                                </ul>
+                            <!-- Confirm Password -->
+                            <div class="flex flex-col gap-2 ">
+                                <label class="font-semibold">Confirm Password</label>
+                                <input type="password" name="confirmPassword" placeholder="Confirm new password"
+                                    class="border border-neutral-400 py-3 px-4 rounded-lg w-full @error('email')ring-1 ring-red-500 @enderror">
+                            </div>
+
+
+                            <!-- Form Buttons -->
+                            <div class="grid grid-cols-2 gap-4 pt-2">
+                                <button
+                                    class="bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-200 rounded-lg p-3 font-semibold w-full transition-colors duration-150 ease-in-out text-center">
+                                    Cancel
+                                </button>
+                                <button
+                                    class="bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-lg p-3 font-semibold">Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
                 {{-- Branch Manager Details --}}
                 <div class="flex items-center justify-between gap-10">
                     <img class="object-cover size-24 rounded-full" src="{{ asset('assets/images/DeanWong.png') }}">
@@ -123,7 +241,7 @@
 
         </div>
         {{-- 2nd Row - 1st Column of the Grid --}}
-        <div class="bg-white p-10 rounded-lg shadow-sm col-span-4">
+        <div class="bg-white p-10 rounded-lg shadow-sm mb-4 col-span-4">
             <div class="flex items-center justify-between mb-20">
                 {{-- Box's Title --}}
                 <div class="inline-flex gap-4 items-center">
@@ -133,7 +251,7 @@
                 <div>
                     <button
                         class="bg-brand-500 text-white py-2 px-6 rounded-full hover:shadow-md hover:scale-105 transition-transform ease-in-out">
-                        Add New Staffc
+                        Add New Staff
                     </button>
                 </div>
             </div>
@@ -184,50 +302,93 @@
                 @endforeach
             </div>
         </div>
-        {{-- 2nd Row - 2nd Column of the Grid --}}
-        <div class="bg-white p-10 rounded-lg shadow-sm col-span-2">
-            <div class="flex items-center justify-between mb-10">
-                <div class="inline-flex items-center gap-2">
-                    <h1 class="text-4xl font-bold">Top Services </h1>
-                </div>
-                <button class="flex items-center gap-2">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11 16L8 19M8 19L5 16M8 19V5M13 8L16 5M16 5L19 8M16 5V19" stroke="black"
-                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <span>Sort By</span>
-                </button>
-            </div>
-            <div class="border-b py-3 px-4 flex items-center justify-between">
-                <h6 class="font-bold">Service</h6>
-                <h6 class="font-bold">Total</h6>
-            </div>
-            <div class="py-3 px-4 flex items-center justify-between">
-                <p>Burst Fade ba to ya</p>
-                <p>419</p>
-            </div>
-            @for ($i = 0; $i < 3; $i++)
-                <div class="py-3 px-4 flex items-center justify-between">
-                    <p>Faded Haircut</p>
-                    <p>20</p>
-                </div>
-                <div class="py-3 px-4 flex items-center justify-between">
-                    <p>Regular Haircut</p>
-                    <p>20</p>
-                </div>
-                <div class="py-3 px-4 flex items-center justify-between">
-                    <p>Bald</p>
-                    <p>20</p>
-                </div>
-            @endfor
-
-        </div>
     </section>
     <script>
         // SENG DITO MO LANG MUNA ILAGAY ANG JAVASCRIPT. AKO NA BAHALA MAG SET KUNG SAAN ANG LOC NG JS, MINSAN KASI GALOKO
         // ~ ARTURITO
 
-        // Code here
+        const editButton = document.getElementById('editManager');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.getElementById('closeModal');
+        const cancelButton = document.getElementById('cancelButton');
+        const editForm = document.getElementById('editForm');
+
+        // Show modal
+        function showModal() {
+            modalBackdrop.classList.remove('hidden');
+            modalBackdrop.classList.add('flex');
+            // Add animation class
+            modalContent.classList.add('animate-fadeIn');
+        }
+
+        // Hide modal
+        function hideModal() {
+            modalBackdrop.classList.add('hidden');
+            modalBackdrop.classList.remove('flex');
+            modalContent.classList.remove('animate-fadeIn');
+        }
+
+        // Event listeners
+        editButton.addEventListener('click', showModal);
+        closeModal.addEventListener('click', hideModal);
+        cancelButton.addEventListener('click', hideModal);
+
+        // Close modal when clicking outside
+        // Close modal when clicking outside modal content
+        modalBackdrop.addEventListener('click', (e) => {
+            // Check if the click is outside the modalContent
+            if (!modalContent.contains(e.target)) {
+                hideModal();
+            }
+        });
+
+
+        // Handle form submission
+        editForm.addEventListener('submit', (e) => {
+            e.preventDefault();     
+            
+            // Create FormData object
+            const formData = new FormData(editForm);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Validate passwords match if new password is being set
+            if (data.password || data.confirmPassword) {
+                if (data.password !== data.confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+            }
+            
+            // Log the form data (replace with your API call)
+            console.log('Form data:', data);
+            
+            // Close modal after successful submission
+            hideModal();
+        });
+
+        // Add keydown event listener for ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideModal();
+            }
+        });
     </script>
+    <style>
+/* Add animation keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.2s ease-out;
+}
+</style>
 </x-shop-layout>

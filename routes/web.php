@@ -65,6 +65,7 @@ Route::middleware(IsServiceProvider::class)->group(function () {
     Route::get('/shop/profile', [ShopController::class, 'shopProfile'])->name('shop.profile');
     Route::get('/shop/catalog', [ShopController::class, 'catalog'])->name('shop.catalog');
     Route::get('/shop/branches', [ShopController::class, 'manageBranches'])->name('shop.manage-branches');
+    Route::get('/shop/appointment', [ShopController::class, 'appointment'])->name('shop.appointment');
 });
 
 Route::get('/shop/view', function () {

@@ -57,3 +57,32 @@ $(document).ready(function () {
         
     }
 });
+
+function buttonClicked(selectedButton) {
+    const buttons = document.querySelectorAll('#carousel .button');
+
+    // Retrieve the category_id of the clicked button
+    const categoryId = selectedButton.dataset.categoryId;
+    console.log("Selected Category ID:", categoryId);
+
+    // Remove active styles from all buttons and make them clickable again
+    buttons.forEach(button => {
+        button.classList.remove('bg-black', 'text-white');
+        button.classList.add('bg-neutral-150', 'text-black', 'hover:bg-neutral-200');
+        button.style.pointerEvents = 'auto'; // Re-enable clicking for inactive buttons
+    });
+
+    // Apply active styles to the clicked button and disable clicking on it
+    selectedButton.classList.remove('bg-neutral-150', 'text-black', 'hover:bg-neutral-200');
+    selectedButton.classList.add('bg-black', 'text-white');
+    selectedButton.style.pointerEvents = 'none'; // Disable clicking on the active button
+
+    // Call a function to load services for the selected category
+    loadServices(categoryId);
+}
+
+function loadServices(categoryId) {
+    // Implement the logic to load services based on the categoryId
+    console.log("Loading services for category:", categoryId);
+}
+

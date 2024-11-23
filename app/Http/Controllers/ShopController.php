@@ -47,4 +47,15 @@ class ShopController extends Controller
 
         return view('shop.manage-branches', ['shops' => $shops, 'user' => $user, 'shopAddress' => $shopAddress]);
     }
+
+    public function appointment(Request $request)
+    {
+        $user = $request->user();
+        $userId = $user->id;
+        $shops = DB::table('shops')->where('user_id', $userId)->get();
+        $shopId = $shops[0]->id;
+        $shopAddress = DB::table('addresses')->where('shop_id', $shopId)->select('detailed_address', 'barangay')->get();
+
+        return view('shop.appointment', ['shops' => $shops, 'user' => $user, 'shopAddress' => $shopAddress]);
+    }
 }

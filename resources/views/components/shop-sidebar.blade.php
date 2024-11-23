@@ -46,8 +46,9 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                 </a>
             </li>
             {{-- Appoinments --}}
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
-                <a href="" class="flex items-center gap-5">
+            <li
+                class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.appointment') ? 'bg-neutral-150' : '' }}">
+                <a href="{{ route('shop.appointment') }}" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path

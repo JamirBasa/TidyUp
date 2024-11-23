@@ -26,7 +26,7 @@ export default {
                     light: "#E1F1E9",
                     main: "#3f4a25",
                 },
-                started: {
+                ongoing: {
                     light: "#FFF2E0",
                     main: "#FF9904",
                 },
@@ -39,7 +39,7 @@ export default {
                     main: "#6258A6",
                 },
                 noshows: {
-                    light: "#FAE0E0",
+                    light: "#fae0e0",
                     main: "#642727",
                 },
             },

@@ -7,8 +7,8 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
         <!-- Dashboard -->
         <ul class="flex flex-col items-center gap-5 px-6">
             <li
-                class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.index') ? 'bg-neutral-150' : '' }}">
-                <a href="{{ route('shop.index') }}" class="flex items-center gap-5 ">
+                class=" flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.index') ? 'bg-neutral-150' : '' }}">
+                <a href="{{ route('shop.index') }}" class="flex items-center gap-5">
                     {{-- <img class="size-7" src="{{ asset('assets/Icons/Menu/More_Grid_Big.svg') }}" alt="icon"> --}}
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,13 +41,14 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     <p id="sidebar-link-name"
-                        class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
+                        class="font-poppins font-normal opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Dashboard</p>
                 </a>
+
             </li>
             {{-- Appoinments --}}
             <li
-                class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.appointment') ? 'bg-neutral-150' : '' }}">
+                class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.appointment') ? 'bg-neutral-150' : '' }}">
                 <a href="{{ route('shop.appointment') }}" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +63,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
             </li>
             {{-- Shop Profile --}}
             <li
-                class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.profile') ? 'bg-neutral-150' : '' }}">
+                class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.profile') ? 'bg-neutral-150' : '' }}">
                 <a href="{{ route('shop.profile') }}" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +78,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
             </li>
             <!-- Shop Catalog -->
             <li
-                class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.catalog') ? 'bg-neutral-150' : '' }}">
+                class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.catalog') ? 'bg-neutral-150' : '' }}">
                 <a href="{{ route('shop.catalog') }}" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -92,7 +93,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
             </li>
             {{-- Manage Branches --}}
             <li
-                class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.manage-branches') ? 'bg-neutral-150' : '' }}">
+                class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.manage-branches') ? 'bg-neutral-150' : '' }}">
                 <a href="{{ route('shop.manage-branches') }}" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -109,7 +110,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
             {{-- Separator --}}
             <div class="flex-grow border-t border-neutral-400 w-full"></div>
             {{-- Analytics  --}}
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -123,7 +124,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                 </a>
             </li>
             {{-- Shop Sales --}}
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -140,7 +141,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                 </a>
             </li>
             {{-- Shop Reviews --}}
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -156,7 +157,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
             {{-- Separator --}}
             <div class="flex-grow border-t border-neutral-400 w-full"></div>
             <!-- FAQs -->
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -170,7 +171,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                 </a>
             </li>
             <!-- Send Feedback -->
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -184,7 +185,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                 </a>
             </li>
             <!-- Report An Issue -->
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="staff.html" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -200,7 +201,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
             {{-- Separator --}}
             <div class="flex-grow border-t border-neutral-400 w-full"></div>
             <!-- About Us -->
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -58,8 +58,8 @@
         <h1 class="py-2 sm:py-4 px-3 font-semibold">CATEGORIES</h1>
         {{-- Barbershops --}}
 
-        <a href="" id=""
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('barbershops') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('barbershops') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -71,8 +71,8 @@
 
         {{-- Beauty Salon --}}
 
-        <a href="" id=""
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('beauty-salons') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('beauty-salons') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -84,8 +84,8 @@
 
         {{-- Nail Salon --}}
 
-        <a href="" id=""
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('nail-salons') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('nail-salons') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -97,8 +97,8 @@
 
         {{-- Hair Salon --}}
 
-        <a href="" id=""
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('hair-salons') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('hair-salons') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path

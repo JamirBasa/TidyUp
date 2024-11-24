@@ -17,16 +17,19 @@ use Illuminate\Http\Request;
 // Routes
 Route::view('/user/profile', 'user.userProfile')->name('user.profile');
 Route::get('/', [SidebarController::class, 'index'])->name('index');
-Route::get('/appointments/upcoming', [SidebarController::class, 'appointments'])->name('appointments');
-Route::get('/appointments', function () {
-    return redirect()->route('appointments');
-});
+Route::get('/appointments', [SidebarController::class, 'appointments'])->name('appointments');
+Route::get('/popular', [SidebarController::class, 'popular'])->name('popular');
 Route::get('/explore', [SidebarController::class, 'explore'])->name('explore');
+Route::get('/barbershops', [SidebarController::class, 'barbershops'])->name('barbershops');
+Route::get('/beauty-salons', [SidebarController::class, 'beautySalons'])->name('beauty-salons');
+Route::get('/nail-salons', [SidebarController::class, 'nailSalons'])->name('nail-salons');
+Route::get('/hair-salons', [SidebarController::class, 'hairSalons'])->name('hair-salons');
+Route::get('/shop/view', [SidebarController::class, 'view'])->name('shop.view');
 
 //AJAX content routes
-Route::get('/home', [SidebarController::class, 'homeContent'])->name('home.content');
-Route::get('/appointments/upcoming-content', [SidebarController::class, 'appointmentsContent'])->name('appointments.content');
-Route::get('/explore-content', [SidebarController::class, 'exploreContent'])->name('explore.content');
+// Route::get('/home', [SidebarController::class, 'homeContent'])->name('home.content');
+// Route::get('/appointments/upcoming-content', [SidebarController::class, 'appointmentsContent'])->name('appointments.content');
+// Route::get('/explore-content', [SidebarController::class, 'exploreContent'])->name('explore.content');
 
 //Routes that are only accessible to guests
 Route::middleware('guest')->group(function () {
@@ -40,7 +43,7 @@ Route::middleware('guest')->group(function () {
     //Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');
     Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('auth.forgot-password');
     Route::view('/forgot-password', 'auth.forgot-password')->middleware('guest')->name('password.request');
-    Route::post('/forgot-password',[ResetPasswordController::class, 'passwordEmail']);
+    Route::post('/forgot-password', [ResetPasswordController::class, 'passwordEmail']);
     Route::get('/reset-password/{token}', [ResetPasswordController::class, 'passwordReset'])->name('password.reset');
     Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'])->name('password.update');
 });
@@ -52,7 +55,7 @@ Route::middleware('auth')->group(function () {
     // Only allow non-service providers to access registration routes
     Route::middleware(IsNotServiceProvider::class)->group(function () {
         Route::get('/shop/registration', [AuthController::class, 'showShopRegistrationForm'])->name('shop.registration');
-        Route::post('/shop/registration', [AuthController::class, 'shopRegister']);
+        Route::post('/shop/registration', [AuthController::class, 'shopRegister'])->name('shop.register');
     });
 });
 
@@ -62,8 +65,8 @@ Route::middleware(IsServiceProvider::class)->group(function () {
     Route::get('/shop', function () {
         return redirect()->route('shop.index');
     });
+    Route::get('/shop/profile', [ShopController::class, 'shopProfile'])->name('shop.profile');
+    Route::get('/shop/catalog', [ShopController::class, 'catalog'])->name('shop.catalog');
+    Route::get('/shop/branches', [ShopController::class, 'manageBranches'])->name('shop.manage-branches');
+    Route::get('/shop/appointment', [ShopController::class, 'appointment'])->name('shop.appointment');
 });
-
-Route::get('/shop/view', function (){
-    return view('partial.view-service');
-})->name('shop.view');

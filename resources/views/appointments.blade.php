@@ -30,6 +30,7 @@
             'image' => '4.png',
             'status' => 'no-show',
         ],
+        // neww
     ];
 
     $pendingCount = count(array_filter($appointments, fn($appointment) => $appointment['status'] === 'pending'));

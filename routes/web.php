@@ -17,16 +17,15 @@ use Illuminate\Http\Request;
 // Routes
 Route::view('/user/profile', 'user.userProfile')->name('user.profile');
 Route::get('/', [SidebarController::class, 'index'])->name('index');
-Route::get('/appointments/upcoming', [SidebarController::class, 'appointments'])->name('appointments');
-Route::get('/appointments', function () {
-    return redirect()->route('appointments');
-});
+Route::get('/appointments', [SidebarController::class, 'appointments'])->name('appointments');
+Route::get('/popular', [SidebarController::class, 'popular'])->name('popular');
 Route::get('/explore', [SidebarController::class, 'explore'])->name('explore');
+Route::get('/shop/view', [SidebarController::class, 'view'])->name('shop.view');
 
 //AJAX content routes
-Route::get('/home', [SidebarController::class, 'homeContent'])->name('home.content');
-Route::get('/appointments/upcoming-content', [SidebarController::class, 'appointmentsContent'])->name('appointments.content');
-Route::get('/explore-content', [SidebarController::class, 'exploreContent'])->name('explore.content');
+// Route::get('/home', [SidebarController::class, 'homeContent'])->name('home.content');
+// Route::get('/appointments/upcoming-content', [SidebarController::class, 'appointmentsContent'])->name('appointments.content');
+// Route::get('/explore-content', [SidebarController::class, 'exploreContent'])->name('explore.content');
 
 //Routes that are only accessible to guests
 Route::middleware('guest')->group(function () {
@@ -67,7 +66,3 @@ Route::middleware(IsServiceProvider::class)->group(function () {
     Route::get('/shop/branches', [ShopController::class, 'manageBranches'])->name('shop.manage-branches');
     Route::get('/shop/appointment', [ShopController::class, 'appointment'])->name('shop.appointment');
 });
-
-Route::get('/shop/view', function () {
-    return view('partial.view-service');
-})->name('shop.view');

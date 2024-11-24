@@ -6,48 +6,30 @@ use Illuminate\Http\Request;
 
 class SidebarController extends Controller
 {
-    //
-    public function index(Request $request){
+    //NOT AJAX
+    public function index(Request $request)
+    {
         $user = $request->user();
-        
-        return view('user-layout', ['user' => $user]);
+        return view('index', ['user' => $user]);
     }
     public function appointments(Request $request)
     {
         $user = $request->user();
-        return view('user-layout', ['currentView' => 'appointments', 'appointmentsView' => 'upcoming', 'user' => $user]);
+        return view('appointments', ['user' => $user]);
     }
-
     public function explore(Request $request)
     {
         $user = $request->user();
-        return view('user-layout', ['currentView' => 'explore', 'user' => $user]);
+        return view('explore', ['user' => $user]);
     }
-
-    public function homeContent(Request $request)
+    public function view(Request $request)
     {
         $user = $request->user();
-        if($request->ajax()) {
-            return view('partial.index', ['user' => $user]);
-        }
-        return redirect()->route('index');
+        return view('view-service', ['user' => $user]);
     }
-
-    public function appointmentsContent(Request $request)
+    public function popular(Request $request)
     {
         $user = $request->user();
-        if($request->ajax()) {
-            return view('partial.appointments', ['user' => $user]);
-        }
-        return redirect()->route('appointments');
-    }
-
-    public function exploreContent(Request $request)
-    {
-        $user = $request->user();
-        if($request->ajax()) {
-            return view('partial.explore', ['user' => $user]);
-        }
-        return redirect()->route('explore');
+        return view('popular', ['user' => $user]);
     }
 }

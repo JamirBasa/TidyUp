@@ -20,14 +20,14 @@
         <div
             class="flex mx-4 justify-center lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl lg:mx-auto gap-10">
             <x-user-sidebar />
-            <div id="content" class="flex-1 min-w-0">
+            {{-- <div id="content" class="flex-1 min-w-0">
                 {{-- <x-loading-screen /> --}}
-                @if (isset($currentView))
+            {{-- @if (isset($currentView))
                     @include('partial.' . $currentView, ['user' => $user])
                 @else
                     @include('partial.index', ['user' => $user])
                 @endif
-            </div>
+            </div>  --}}
         </div>
     </main>
 

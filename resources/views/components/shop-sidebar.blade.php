@@ -108,9 +108,9 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
             </li>
 
             {{-- Separator --}}
-            <div class="flex-grow border-t border-neutral-400 w-full"></div>
+            {{-- <div class="flex-grow border-t border-neutral-400 w-full"></div> --}}
             {{-- Analytics  --}}
-            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -122,9 +122,9 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Analytics</p>
                 </a>
-            </li>
+            </li> --}}
             {{-- Shop Sales --}}
-            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -139,9 +139,9 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Shop Sales</p>
                 </a>
-            </li>
+            </li> --}}
             {{-- Shop Reviews --}}
-            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -153,11 +153,11 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Shop Reviews</p>
                 </a>
-            </li>
+            </li> --}}
             {{-- Separator --}}
-            <div class="flex-grow border-t border-neutral-400 w-full"></div>
+            {{-- <div class="flex-grow border-t border-neutral-400 w-full"></div> --}}
             <!-- FAQs -->
-            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -169,9 +169,9 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         FAQs</p>
                 </a>
-            </li>
+            </li> --}}
             <!-- Send Feedback -->
-            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -183,9 +183,9 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Send Feedback</p>
                 </a>
-            </li>
+            </li> --}}
             <!-- Report An Issue -->
-            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="staff.html" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -197,11 +197,11 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Report An Issue</p>
                 </a>
-            </li>
+            </li> --}}
             {{-- Separator --}}
-            <div class="flex-grow border-t border-neutral-400 w-full"></div>
+            {{-- <div class="flex-grow border-t border-neutral-400 w-full"></div> --}}
             <!-- About Us -->
-            <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -213,7 +213,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         About Us</p>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </nav>
 </section>

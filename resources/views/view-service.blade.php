@@ -116,9 +116,9 @@
 
 @endphp
 
-<x-user-layout>
+<x-user-layout :user="$user">
     {{-- View Shop --}}
-    <div class="content-section pt-28 pl-[17rem] pb-20 max-w-screen-2xl mx-auto">
+    <div class="content-section">
 
         {{-- Shop Name and Availability --}}
 
@@ -171,7 +171,7 @@
         </div>
 
         {{-- Grid Layout --}}
-        <section class="grid grid-cols-3 gap-8">
+        <section class="grid grid-cols-3 gap-8 mb-4">
 
             {{-- Service Information --}}
             <div class="grid grid-cols-1 gap-2 col-span-2">

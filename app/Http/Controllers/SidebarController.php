@@ -32,4 +32,24 @@ class SidebarController extends Controller
         $user = $request->user();
         return view('popular', ['user' => $user]);
     }
+    public function barbershops(Request $request)
+    {
+        $user = $request->user();
+        return view('barbershops', ['user' => $user]);
+    }
+    public function beautySalons(Request $request)
+    {
+        $user = $request->user();
+        return view('beauty-salons', ['user' => $user]);
+    }
+    public function nailSalons(Request $request)
+    {
+        $user = $request->user();
+        return view('nail-salons', ['user' => $user]);
+    }
+    public function hairSalons(Request $request)
+    {
+        $user = $request->user();
+        return view('hair-salons', ['user' => $user]);
+    }
 }

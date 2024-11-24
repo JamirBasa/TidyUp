@@ -20,6 +20,10 @@ Route::get('/', [SidebarController::class, 'index'])->name('index');
 Route::get('/appointments', [SidebarController::class, 'appointments'])->name('appointments');
 Route::get('/popular', [SidebarController::class, 'popular'])->name('popular');
 Route::get('/explore', [SidebarController::class, 'explore'])->name('explore');
+Route::get('/barbershops', [SidebarController::class, 'barbershops'])->name('barbershops');
+Route::get('/beauty-salons', [SidebarController::class, 'beautySalons'])->name('beauty-salons');
+Route::get('/nail-salons', [SidebarController::class, 'nailSalons'])->name('nail-salons');
+Route::get('/hair-salons', [SidebarController::class, 'hairSalons'])->name('hair-salons');
 Route::get('/shop/view', [SidebarController::class, 'view'])->name('shop.view');
 
 //AJAX content routes

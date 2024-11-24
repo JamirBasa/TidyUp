@@ -5,16 +5,18 @@
     <nav class="flex items-center max-w-screen-2xl mx-auto justify-between md:gap-3 lg:gap-20 xl:gap-40">
         {{-- Logo --}}
         <div class="flex items-center gap-2 -ml-1">
-            <a class="" href="{{ route('index') }}">
-                <img class="size-12 sm:size-18" src="{{ asset('assets/images/tidyUpLogo.svg') }}" alt="logo">
-            </a>
             <button id="burger-menu-mobile" class="lg:hidden">
                 <svg class="stroke-black stroke-1 size-8 sm:size-10" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 17H19M5 12H19M5 7H13" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </button>
-            <h1 class="font-clash font-medium text-xl hidden lg:block">TidyUp</h1>
+            <a class="" href="{{ route('index') }}">
+                <div class="flex items-center gap-2">
+                    <img class="size-12 sm:size-18" src="{{ asset('assets/images/tidyUpLogo.svg') }}" alt="logo">
+                    <h1 class="font-clash font-medium text-xl hidden lg:block">TidyUp</h1>
+                </div>
+            </a>
         </div>
 
         {{-- Form for Search Bar --}}

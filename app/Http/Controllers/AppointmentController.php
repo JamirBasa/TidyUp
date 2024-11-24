@@ -25,4 +25,11 @@ class AppointmentController extends Controller
 
         return view('booking.book-appointment3', ['user' => $user]);
     }
+
+    public function bookNow4(Request $request)
+    {
+        $user = $request->user();
+
+        return view('booking.book-appointment4', ['user' => $user]);
+    }
 }

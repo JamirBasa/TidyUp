@@ -28,7 +28,7 @@
         <div class="grid place-items-center mb-6">
             <x-process-flow :class1="'brand-500'" :color1="'white'" />
         </div>
-        <div class="grid grid-cols-7 gap-4">
+        <div class="grid grid-cols-7 gap-10">
             <div class="col-span-2 bg-white p-6 rounded-lg shadow-sm">
                 <div class="mb-4">
                     <img class="object-cover rounded-lg" src="{{ asset('assets/images/shops/3.png') }}" alt="">

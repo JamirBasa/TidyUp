@@ -33,7 +33,7 @@
         <div class="text-center text-sm text-gray-500">Su</div>
 
         <!-- Calendar days will be inserted here -->
-        <div id="calendarDays" class="col-span-7 grid grid-cols-7 gap-x-1 gap-y-8 place-items-center">
+        <div id="calendarDays" class="col-span-7 grid grid-cols-7 gap-1 place-items-center">
         </div>
     </div>
 

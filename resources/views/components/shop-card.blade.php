@@ -1,5 +1,5 @@
-@props(['i', 'shops', 'tag'])
-<a href="{{ route('shop.view') }}" class="w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8">
+@props(['i', 'shops', 'tag', 'class'])
+<a href="{{ route('shop.view') }}" class="{{ $class ?? '' }}">
     <div class="relative mb-2">
         {{-- shop image --}}
         <img load="lazy" class="h-[13rem] sm:h-[15rem] w-full object-cover rounded-lg"

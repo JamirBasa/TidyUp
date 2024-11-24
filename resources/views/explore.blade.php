@@ -95,7 +95,7 @@
         <div id="carousel" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10 relative">
 
             @for ($i = 0; $i < 6; $i++)
-                <x-shop-card :i="$i" :shops="$shops" />
+                <x-shop-card :i="$i" :shops="$shops" :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
             @endfor
         </div>
 
@@ -141,7 +141,7 @@
         {{-- Shop Cards For Barbershops --}}
         <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10">
             @for ($i = 0; $i < 6; $i++)
-                <x-shop-card :i="$i" :shops="$shops" :tag="'Barbershop'" />
+                <x-shop-card :i="$i" :shops="$shops" :tag="'Barbershop'" :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
             @endfor
         </div>
 
@@ -163,7 +163,7 @@
         {{-- Shop Cards For Beauty Salon --}}
         <div id="carousel3" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10">
             @for ($i = 5; $i >= 0; $i--)
-                <x-shop-card :i="$i" :shops="$shops" :tag="'Beauty Salon'" />
+                <x-shop-card :i="$i" :shops="$shops" :tag="'Beauty Salon'" :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
             @endfor
         </div>
 
@@ -184,7 +184,7 @@
         {{-- Shop Cards For Nail Salon --}}
         <div id="carousel4" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10">
             @for ($i = 0; $i < 6; $i++)
-                <x-shop-card :i="$i" :shops="$shops" :tag="'Nail Salon'" />
+                <x-shop-card :i="$i" :shops="$shops" :tag="'Nail Salon'" :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
             @endfor
         </div>
 
@@ -206,7 +206,7 @@
         {{-- Shop Cards For Hair Salon --}}
         <div id="carousel5" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10">
             @for ($i = 5; $i >= 0; $i--)
-                <x-shop-card :i="$i" :shops="$shops" :tag="'Hair Salon'" />
+                <x-shop-card :i="$i" :shops="$shops" :tag="'Hair Salon'" :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
             @endfor
         </div>
 

@@ -29,7 +29,7 @@
         <div class="grid place-items-center mb-6">
             <x-process-flow :class1="'brand-500'" :color1="'white'" :class2="'brand-500'" :color2="'white'" />
         </div>
-        <div class="grid grid-cols-7 gap-4">
+        <div class="grid grid-cols-7 gap-10">
 
             <div class="col-span-2 bg-white p-6 rounded-lg shadow-sm">
                 <div class="mb-4">
@@ -54,9 +54,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between mb-4">
                     <h6 class="text-lg">Total</h6>
                     <p>Php 0.00</p>
+                </div>
+                <div>
+                    <a href="{{ route('book-appointment3') }}">
+                        <button class="p-3 bg-brand-500 text-white rounded-full w-full">Continue</button>
+                    </a>
                 </div>
             </div>
             <div class="col-span-5 flex gap-4">
@@ -77,41 +82,12 @@
                         </div>
                     </div>
                     <div class="grid place-items-end">
-                        <a href="{{ route('book-appointment3') }}">
-                            <div class="bg-brand-500 text-white py-3 px-6 rounded-lg w-min">
-                                Continue
-                            </div>
-                        </a>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <script>
-        const times = [
-            '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM',
-            '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM',
-            '6:00 PM', '7:00 PM'
-        ];
-        let selectedTime = null;
-        const container = document.getElementById('timeButtons');
-
-        times.forEach(time => {
-            const button = document.createElement('button');
-            button.className = 'border border-neutral-500 p-3 rounded-lg transition-colors';
-            button.textContent = time;
-            button.onclick = () => {
-                if (selectedTime) {
-                    selectedTime.classList.remove('bg-brand-500', 'text-white');
-                }
-                if (selectedTime !== button) {
-                    button.classList.add('bg-brand-500', 'text-white');
-                    selectedTime = button;
-                } else {
-                    selectedTime = null;
-                }
-            };
-            container.appendChild(button);
-        });
-    </script>
+    <script src="{{ asset('assets/js/booking2.js') }}"></script>
+    @stack('scripts')
 </x-user-layout>

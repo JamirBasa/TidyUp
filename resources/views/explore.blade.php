@@ -50,7 +50,7 @@
 <x-user-layout :user="$user">
     <div class="content-section">
         {{-- Featured Shop in Explore Page --}}
-        <a href="" class="bg-black">
+        <a href="{{ route('shop.view') }}" class="bg-black">
             <div class="relative lg:rounded-xl mb-10 group bg-neutral-900 -mx-5 lg:mx-0">
                 <div class="relative mb-2 overflow-hidden">
                     <img load="lazy"
@@ -102,7 +102,8 @@
         {{-- Cards for the Most Popular Section --}}
         <div class="flex items-center justify-between mb-8">
             <h1 class="p-1 sm:p-2 font-clash font-medium text-sm sm:text-2xl border-b-2 border-black">Most Popular</h1>
-            <a href="" class="inline-flex items-center gap-1 sm:gap-2 p-1 sm:p-2 border-b-2 border-neutral-400">
+            <a href="{{ route('popular') }}"
+                class="inline-flex items-center gap-1 sm:gap-2 p-1 sm:p-2 border-b-2 border-neutral-400">
                 <svg class="stroke-neutral-500 stroke-1 size-4 sm:size-6" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 17L17 7M17 7H9M17 7V15" stroke-linecap="round" stroke-linejoin="round" />
@@ -126,7 +127,7 @@
 
         {{-- Barbershop Explore Starting Point --}}
         <div class="flex items-center justify-between mb-8">
-            <a href="" class="inline-flex items-center">
+            <a href="{{ route('barbershops') }}" class="inline-flex items-center">
                 <h1 class="p-1 sm:p-2 font-clash font-medium text-sm sm:text-2xl border-b-2 border-black">Barbershop
                 </h1>
                 <svg class="stroke-black stroke-1 size-4 sm:size-6" width="24" height="24" viewBox="0 0 24 24"
@@ -147,7 +148,7 @@
 
         {{-- Beauty Salon Explore Starting Point --}}
         <div class="flex items-center justify-between mb-8">
-            <a href="" class="inline-flex items-center">
+            <a href="{{ route('beauty-salons') }}" class="inline-flex items-center">
                 <h1 class="p-1 sm:p-2 font-clash font-medium text-sm sm:text-2xl border-b-2 border-black">Beauty Salon
                 </h1>
                 <svg class="stroke-black stroke-1 size-4 sm:size-6" width="24" height="24" viewBox="0 0 24 24"
@@ -169,7 +170,7 @@
 
         {{-- Nail Salon Explore Starting Point --}}
         <div class="flex items-center justify-between mb-8">
-            <a href="" class="inline-flex items-center">
+            <a href="{{ route('nail-salons') }}" class="inline-flex items-center">
                 <h1 class="p-1 sm:p-2 font-clash font-medium text-sm sm:text-2xl border-b-2 border-black">Nail Salon
                 </h1>
                 <svg class="stroke-black stroke-1 size-4 sm:size-6" width="24" height="24" viewBox="0 0 24 24"
@@ -190,7 +191,7 @@
 
         {{-- Hair Salon Explore Starting Point --}}
         <div class="flex items-center justify-between mb-8">
-            <a href="" class="inline-flex items-center">
+            <a href="{{ route('hair-salons') }}" class="inline-flex items-center">
                 <h1 class="p-1 sm:p-2 font-clash font-medium text-sm sm:text-2xl border-b-2 border-black">Hair Salon
                 </h1>
                 <svg class="stroke-black stroke-1 size-4 sm:size-6" width="24" height="24" viewBox="0 0 24 24"

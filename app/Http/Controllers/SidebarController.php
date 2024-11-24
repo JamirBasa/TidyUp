@@ -6,48 +6,68 @@ use Illuminate\Http\Request;
 
 class SidebarController extends Controller
 {
-    //
-    public function index(Request $request){
+    //NOT AJAX
+    public function index(Request $request)
+    {
         $user = $request->user();
-        
-        return view('user-layout', ['user' => $user]);
+        return view('index', ['user' => $user]);
     }
     public function appointments(Request $request)
     {
         $user = $request->user();
-        return view('user-layout', ['currentView' => 'appointments', 'appointmentsView' => 'upcoming', 'user' => $user]);
+        return view('appointments', ['user' => $user]);
     }
-
     public function explore(Request $request)
     {
         $user = $request->user();
-        return view('user-layout', ['currentView' => 'explore', 'user' => $user]);
+        return view('explore', ['user' => $user]);
     }
-
-    public function homeContent(Request $request)
+    public function view(Request $request)
     {
         $user = $request->user();
-        if($request->ajax()) {
-            return view('partial.index', ['user' => $user]);
-        }
-        return redirect()->route('index');
+        return view('view-service', ['user' => $user]);
     }
-
-    public function appointmentsContent(Request $request)
+    public function popular(Request $request)
     {
         $user = $request->user();
-        if($request->ajax()) {
-            return view('partial.appointments', ['user' => $user]);
-        }
-        return redirect()->route('appointments');
+        return view('popular', ['user' => $user]);
     }
-
-    public function exploreContent(Request $request)
+    public function barbershops(Request $request)
     {
         $user = $request->user();
-        if($request->ajax()) {
-            return view('partial.explore', ['user' => $user]);
-        }
-        return redirect()->route('explore');
+        return view('barbershops', ['user' => $user]);
+    }
+    public function beautySalons(Request $request)
+    {
+        $user = $request->user();
+        return view('beauty-salons', ['user' => $user]);
+    }
+    public function nailSalons(Request $request)
+    {
+        $user = $request->user();
+        return view('nail-salons', ['user' => $user]);
+    }
+    public function hairSalons(Request $request)
+    {
+        $user = $request->user();
+        return view('hair-salons', ['user' => $user]);
+    }
+    public function faqs(Request $request)
+    {
+
+        $user = $request->user();
+        return view('faqs', ['user' => $user]);
+    }
+    public function sendFeedback(Request $request)
+    {
+
+        $user = $request->user();
+        return view('send-feedback', ['user' => $user]);
+    }
+    public function reportIssue(Request $request)
+    {
+
+        $user = $request->user();
+        return view('report', ['user' => $user]);
     }
 }

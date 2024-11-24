@@ -42,8 +42,6 @@ return new class extends Migration
             $table->foreignId('shop_category_id')->constrained('shop_category')->onDelete('cascade'); // Link to the shop category
             $table->timestamps();
         });
-
-        
     }
 
     /**

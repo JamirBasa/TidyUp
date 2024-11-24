@@ -1,10 +1,10 @@
 <section class="hidden lg:block" id="sidebar-container">
     <div id="user-sidebar"
-        class="fixed lg:sticky shadow-lg w-64 lg:w-52 px-4 lg:px-0 lg:pr-2 pb-8 top-16 pt-10 lg:pt-0 lg:top-0 gap-3 flex flex-col overflow-y-auto bg-neutral-100 lg:bg-transparent lg:shadow-none z-50">
+        class="fixed lg:sticky shadow-lg w-64 lg:w-52 px-4 lg:px-0 lg:pr-2 pb-8 top-16 pt-10 lg:pt-0 lg:top-28 gap-3 flex flex-col overflow-y-auto bg-neutral-100 lg:bg-transparent lg:shadow-none z-50">
         {{-- Home --}}
 
-        <a href="{{ route('index') }}" id="home-link" data-url="{{ route('home.content') }}"
-            class="nav-link inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 transition-colors delay-150 ease-out">
+        <a href="{{ route('index') }}" id="home-link" data-url="{{-- route('home.content') --}}"
+            class=" inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 transition-colors delay-150 ease-out {{ request()->routeIs('index') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -15,8 +15,8 @@
         </a>
 
         {{-- Appointments --}}
-        <a href="{{ route('appointments') }}" id="appointments-link" data-url="{{ route('appointments.content') }}"
-            class="nav-link inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 transition-colors delay-150 ease-out ">
+        <a href="{{ route('appointments') }}" id="appointments-link" data-url="{{-- route('appointments.content') --}}"
+            class=" inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 transition-colors delay-150 ease-out {{ request()->routeIs('appointments') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -28,8 +28,8 @@
 
         {{-- Explore --}}
 
-        <a href="{{ route('explore') }}" id="explore-link" data-url="{{ route('explore.content') }}"
-            class="nav-link inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('explore') }}" id="explore-link" data-url="{{-- route('explore.content') --}}"
+            class=" inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('explore') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -42,8 +42,8 @@
 
         {{-- Popular --}}
 
-        <a href="" id="nav-link"
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('popular') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('popular') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -58,8 +58,8 @@
         <h1 class="py-2 sm:py-4 px-3 font-semibold">CATEGORIES</h1>
         {{-- Barbershops --}}
 
-        <a href="" id="nav-link"
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('barbershops') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('barbershops') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -71,8 +71,8 @@
 
         {{-- Beauty Salon --}}
 
-        <a href="" id="nav-link"
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('beauty-salons') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('beauty-salons') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -84,8 +84,8 @@
 
         {{-- Nail Salon --}}
 
-        <a href="" id="nav-link"
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('nail-salons') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('nail-salons') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -97,8 +97,8 @@
 
         {{-- Hair Salon --}}
 
-        <a href="" id="nav-link"
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('hair-salons') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('hair-salons') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -114,8 +114,8 @@
         <h1 class="py-4 px-3 font-semibold">Help Center</h1>
         {{-- FAQs --}}
 
-        <a href="" id="nav-link"
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('faqs') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('faqs') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -127,8 +127,8 @@
 
         {{-- Send Feedback --}}
 
-        <a href="" id="nav-link"
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('send-feedback') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('send-feedback') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -141,8 +141,8 @@
 
         {{-- Report An Issue --}}
 
-        <a href="" id="nav-link"
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('report-issue') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('report-issue') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -155,4 +155,4 @@
 
     </div>
 </section>
-<script src="{{ asset('assets/js/sidebar.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/sidebar.js') }}"></script>3 --}}

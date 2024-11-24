@@ -17,16 +17,26 @@ use Illuminate\Http\Request;
 // Routes
 Route::view('/user/profile', 'user.userProfile')->name('user.profile');
 Route::get('/', [SidebarController::class, 'index'])->name('index');
-Route::get('/appointments/upcoming', [SidebarController::class, 'appointments'])->name('appointments');
-Route::get('/appointments', function () {
-    return redirect()->route('appointments');
-});
+Route::get('/appointments', [SidebarController::class, 'appointments'])->name('appointments');
+Route::get('/popular', [SidebarController::class, 'popular'])->name('popular');
 Route::get('/explore', [SidebarController::class, 'explore'])->name('explore');
+Route::get('/barbershops', [SidebarController::class, 'barbershops'])->name('barbershops');
+Route::get('/beauty-salons', [SidebarController::class, 'beautySalons'])->name('beauty-salons');
+Route::get('/nail-salons', [SidebarController::class, 'nailSalons'])->name('nail-salons');
+Route::get('/hair-salons', [SidebarController::class, 'hairSalons'])->name('hair-salons');
+Route::get('/faqs', [SidebarController::class, 'faqs'])->name('faqs');
+Route::get('/send-feedback', [SidebarController::class, 'sendFeedback'])->name('send-feedback');
+Route::get('/report', [SidebarController::class, 'reportIssue'])->name('report-issue');
+Route::get('/shop/view', [SidebarController::class, 'view'])->name('shop.view');
+Route::get('/book-appointment', [AppointmentController::class, 'bookNow'])->name('book-appointment');
+Route::get('/book-appointment2', [AppointmentController::class, 'bookNow2'])->name('book-appointment2');
+Route::get('/book-appointment3', [AppointmentController::class, 'bookNow3'])->name('book-appointment3');
+Route::get('/book-appointment4', [AppointmentController::class, 'bookNow4'])->name('book-appointment4');
 
 //AJAX content routes
-Route::get('/home', [SidebarController::class, 'homeContent'])->name('home.content');
-Route::get('/appointments/upcoming-content', [SidebarController::class, 'appointmentsContent'])->name('appointments.content');
-Route::get('/explore-content', [SidebarController::class, 'exploreContent'])->name('explore.content');
+// Route::get('/home', [SidebarController::class, 'homeContent'])->name('home.content');
+// Route::get('/appointments/upcoming-content', [SidebarController::class, 'appointmentsContent'])->name('appointments.content');
+// Route::get('/explore-content', [SidebarController::class, 'exploreContent'])->name('explore.content');
 
 //Routes that are only accessible to guests
 Route::middleware('guest')->group(function () {
@@ -65,8 +75,5 @@ Route::middleware(IsServiceProvider::class)->group(function () {
     Route::get('/shop/profile', [ShopController::class, 'shopProfile'])->name('shop.profile');
     Route::get('/shop/catalog', [ShopController::class, 'catalog'])->name('shop.catalog');
     Route::get('/shop/branches', [ShopController::class, 'manageBranches'])->name('shop.manage-branches');
+    Route::get('/shop/appointment', [ShopController::class, 'appointment'])->name('shop.appointment');
 });
-
-Route::get('/shop/view', function () {
-    return view('partial.view-service');
-})->name('shop.view');

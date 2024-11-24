@@ -64,13 +64,15 @@
                         </button>
                     </div>
                 </div>
-            <!-- Modal Backdrop (kept static in HTML) -->
-            <div id="modalBackdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-40">
-                <!-- Modal Content (will be dynamically populated by JavaScript) -->
-                <div id="modalContent" class="bg-white rounded-lg w-[calc(100%+450px)] max-w-[calc(450px+450px)] mx-4 p-16 z-50 h-[calc(95%)] ">
-                    <!-- This content will be replaced by JavaScript when needed -->
+                <!-- Modal Backdrop (kept static in HTML) -->
+                <div id="modalBackdrop"
+                    class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-40">
+                    <!-- Modal Content (will be dynamically populated by JavaScript) -->
+                    <div id="modalContent"
+                        class="bg-white rounded-lg w-[calc(100%+450px)] max-w-[calc(450px+450px)] mx-4 p-16 z-50 h-[calc(95%)] ">
+                        <!-- This content will be replaced by JavaScript when needed -->
+                    </div>
                 </div>
-            </div>
 
                 {{-- Branch Manager Details --}}
                 <div class="flex items-center justify-between gap-10">
@@ -102,9 +104,11 @@
                         class="bg-brand-500 text-white text-xs py-2 px-6 rounded-full hover:shadow-md hover:scale-105 transition-transform ease-in-out">
                         Add Branch
                     </button>
-                            <div id="modalBackdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-40 ">
+                    <div id="modalBackdrop"
+                        class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-40 ">
                         <!-- Modal Content (will be dynamically populated by JavaScript) -->
-                        <div id="modalContent" class="bg-white rounded-lg w-[calc(100%+450px)] max-w-[calc(450px+450px)] mx-4 p-16 z-50 h-[calc(90%)] overflow-y overflow-x-auto">
+                        <div id="modalContent"
+                            class="bg-white rounded-lg w-[calc(100%+450px)] max-w-[calc(450px+450px)] mx-4 p-16 z-50 h-[calc(90%)] overflow-y overflow-x-auto">
                             <!-- This content will be replaced by JavaScript when needed -->
                         </div>
                     </div>
@@ -137,28 +141,30 @@
 
         </div>
         {{-- 2nd Row - 1st Column of the Grid --}}
-        <div class="bg-white p-10 rounded-lg shadow-sm mb-4 col-span-4">
+        <div class="bg-white p-10 rounded-lg shadow-sm col-span-4">
             <div class="flex items-center justify-between mb-20">
                 {{-- Box's Title --}}
                 <div class="inline-flex gap-4 items-center">
                     <h1 class="text-4xl font-bold">Staff list</h1>
                 </div>
                 {{-- Add Branch Manager Button --}}
-            <!-- Add Staff Button -->
-            <div>
-                <button id="addStaffButton"
-                    class="bg-brand-500 text-white py-2 px-6 rounded-full hover:shadow-md hover:scale-105 transition-transform ease-in-out">
-                    Add Staff
-                </button>
-            </div>
-
-            <!-- Modal Backdrop (kept static in HTML) -->
-            <div id="modalBackdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-40 ">
-                <!-- Modal Content (will be dynamically populated by JavaScript) -->
-                <div id="modalContent" class="bg-white rounded-lg w-[calc(100%+450px)] max-w-[calc(450px+450px)] mx-4 p-16 z-50 h-[calc(90%)] overflow-y overflow-x-auto">
-                    <!-- This content will be replaced by JavaScript when needed -->
+                <!-- Add Staff Button -->
+                <div>
+                    <button id="addStaffButton"
+                        class="bg-brand-500 text-white py-2 px-6 rounded-full hover:shadow-md hover:scale-105 transition-transform ease-in-out">
+                        Add Staff
+                    </button>
                 </div>
-            </div>
+
+                <!-- Modal Backdrop (kept static in HTML) -->
+                <div id="modalBackdrop"
+                    class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-40 ">
+                    <!-- Modal Content (will be dynamically populated by JavaScript) -->
+                    <div id="modalContent"
+                        class="bg-white rounded-lg w-[calc(100%+450px)] max-w-[calc(450px+450px)] mx-4 p-16 z-50 h-[calc(90%)] overflow-y overflow-x-auto">
+                        <!-- This content will be replaced by JavaScript when needed -->
+                    </div>
+                </div>
 
             </div>
             {{-- Branch Manager Details --}}
@@ -208,23 +214,57 @@
                 @endforeach
             </div>
         </div>
+        {{-- 2nd Row - 2nd Column of the grid --}}
+        <div class="bg-white p-10 rounded-lg shadow-sm col-span-2">
+            <div class="flex items-center justify-between mb-10">
+                <div class="inline-flex items-center gap-2">
+                    <svg class="stroke-black stroke-1" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H9M17 7V15" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <h1 class="text-4xl font-bold">Top Services </h1>
+                </div>
+                <button class="flex items-center gap-2">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 16L8 19M8 19L5 16M8 19V5M13 8L16 5M16 5L19 8M16 5V19" stroke="black"
+                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span>Sort By</span>
+                </button>
+            </div>
+            <div class="border-b py-3 px-4 flex items-center justify-between">
+                <h6 class="font-bold">Service</h6>
+                <h6 class="font-bold">Total</h6>
+            </div>
+            <div class="py-3 px-4 flex items-center justify-between">
+                <p>Burst Fade Parin to ya?</p>
+                <p>419</p>
+            </div>
+            @for ($i = 0; $i < 9; $i++)
+                <div class="py-3 px-4 flex items-center justify-between">
+                    <p>Faded Haircut</p>
+                    <p>20</p>
+                </div>
+            @endfor
+        </div>
     </section>
     <script>
         // SENG DITO MO LANG MUNA ILAGAY ANG JAVASCRIPT. AKO NA BAHALA MAG SET KUNG SAAN ANG LOC NG JS, MINSAN KASI GALOKO
         // ~ ARTURITO
 
-// DOM Elements
-const addStaffButton = document.getElementById('addStaffButton');
-const editButton = document.getElementById('editManager');  // For editing manager
-const addBranchButton = document.getElementById('addBranch');
-const modalBackdrop = document.getElementById('modalBackdrop');
-const modalContent = document.getElementById('modalContent');
-const closeModal = document.getElementById('closeModal');
-const editForm = document.getElementById('editForm');
+        // DOM Elements
+        const addStaffButton = document.getElementById('addStaffButton');
+        const editButton = document.getElementById('editManager'); // For editing manager
+        const addBranchButton = document.getElementById('addBranch');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.getElementById('closeModal');
+        const editForm = document.getElementById('editForm');
 
-// Function to set the modal content for Edit Manager
-function setEditManagerContent() {
-    modalContent.innerHTML = `
+        // Function to set the modal content for Edit Manager
+        function setEditManagerContent() {
+            modalContent.innerHTML = `
                                 <div class="flex justify-between items-center mb-4">
                             <h2 class="text-3xl font-semibold">Edit Branch Manager</h2>
                             <button id="closeModal" class="text-gray-500 hover:text-gray-700">
@@ -338,12 +378,12 @@ function setEditManagerContent() {
                             </div>
                         </form>
     `;
-    const closeModal = document.getElementById('closeModal');
-    closeModal.addEventListener('click', hideModal);
-}
-// Function to set the modal content adding staff
-function setAddStaffContent() {
-    modalContent.innerHTML = `
+            const closeModal = document.getElementById('closeModal');
+            closeModal.addEventListener('click', hideModal);
+        }
+        // Function to set the modal content adding staff
+        function setAddStaffContent() {
+            modalContent.innerHTML = `
     <div class="flex justify-between items-center mb-4">
         <h2 class="text-3xl font-semibold">Add a Staff Account</h2>
         <button id="closeModal" class="text-gray-500 hover:text-gray-700">
@@ -469,11 +509,12 @@ function setAddStaffContent() {
         </div>
     </form>
     `;
-    const closeModal = document.getElementById('closeModal');
-    closeModal.addEventListener('click', hideModal);
-}
-function setAddBranchContent() {
-    modalContent.innerHTML = `
+            const closeModal = document.getElementById('closeModal');
+            closeModal.addEventListener('click', hideModal);
+        }
+
+        function setAddBranchContent() {
+            modalContent.innerHTML = `
     <form>
      <div class="max-w-screen-xl mx-auto bg-white  rounded-lg ">
 
@@ -693,93 +734,94 @@ function setAddBranchContent() {
         </form>
 
     `;
-    const addBranchForm = document.getElementById('addBranchForm');
-    addBranchForm.addEventListener('submit', handleAddBranch);
+            const addBranchForm = document.getElementById('addBranchForm');
+            addBranchForm.addEventListener('submit', handleAddBranch);
 
-    const closeModal = document.getElementById('closeModal');
-    closeModal.addEventListener('click', hideModal);
-}
-// Function to handle adding a branch
-function handleAddBranch(e) {
-    e.preventDefault();
+            const closeModal = document.getElementById('closeModal');
+            closeModal.addEventListener('click', hideModal);
+        }
+        // Function to handle adding a branch
+        function handleAddBranch(e) {
+            e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
 
-    // Validate form data (e.g. check if required fields are filled)
-    if (!data.branchName || !data.location || !data.manager) {
-        alert('Please fill in all required fields.');
-        return;
-    }
+            // Validate form data (e.g. check if required fields are filled)
+            if (!data.branchName || !data.location || !data.manager) {
+                alert('Please fill in all required fields.');
+                return;
+            }
 
-    // Log the form data (replace with your API call)
-    console.log('Branch data:', data);
+            // Log the form data (replace with your API call)
+            console.log('Branch data:', data);
 
-    // Close the modal after submission
-    hideModal();
-}
+            // Close the modal after submission
+            hideModal();
+        }
 
-// Function to show the modal
-function showModal(type) {
-    modalBackdrop.classList.remove('hidden');
-    modalBackdrop.classList.add('flex');
+        // Function to show the modal
+        function showModal(type) {
+            modalBackdrop.classList.remove('hidden');
+            modalBackdrop.classList.add('flex');
 
-    if (type === 'addStaff') {
-        setAddStaffContent();
-    } else if (type === 'editManager') {
-        setEditManagerContent();
-    } else if (type === 'addBranch') {
-        setAddBranchContent();
-    }
+            if (type === 'addStaff') {
+                setAddStaffContent();
+            } else if (type === 'editManager') {
+                setEditManagerContent();
+            } else if (type === 'addBranch') {
+                setAddBranchContent();
+            }
 
-    modalContent.classList.add('animate-fadeIn');  // Optional, if you want to add animation
-}
+            modalContent.classList.add('animate-fadeIn'); // Optional, if you want to add animation
+        }
 
-// Hide modal
-function hideModal() {
-    modalBackdrop.classList.add('hidden');
-    modalBackdrop.classList.remove('flex');
-    modalContent.classList.remove('animate-fadeIn');  // Optional, if you used the animation
-}
+        // Hide modal
+        function hideModal() {
+            modalBackdrop.classList.add('hidden');
+            modalBackdrop.classList.remove('flex');
+            modalContent.classList.remove('animate-fadeIn'); // Optional, if you used the animation
+        }
 
-// Event Listeners
-addStaffButton.addEventListener('click', () => showModal('addStaff'));  // Add staff button opens modal
-editButton.addEventListener('click', () => showModal('editManager'));    // Edit manager button opens modal
-addBranchButton.addEventListener('click', () => showModal('addBranch'));  // Add branch button opens modal
+        // Event Listeners
+        addStaffButton.addEventListener('click', () => showModal('addStaff')); // Add staff button opens modal
+        editButton.addEventListener('click', () => showModal('editManager')); // Edit manager button opens modal
+        addBranchButton.addEventListener('click', () => showModal('addBranch')); // Add branch button opens modal
 
-// Close modal when clicking outside of modalContent (on the backdrop)
-modalBackdrop.addEventListener('click', (e) => {
-    // Check if the click target is outside the modal content
-    if (!modalContent.contains(e.target)) {
-        hideModal();
-    }
-});
+        // Close modal when clicking outside of modalContent (on the backdrop)
+        modalBackdrop.addEventListener('click', (e) => {
+            // Check if the click target is outside the modal content
+            if (!modalContent.contains(e.target)) {
+                hideModal();
+            }
+        });
 
-// Close modal with ESC key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        hideModal();
-    }
-});
+        // Close modal with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideModal();
+            }
+        });
     </script>
     <style>
-/* Add animation keyframes */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
+        /* Add animation keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
 
-.animate-fadeIn {
-    animation: fadeIn 0.2s ease-out;
-}
-</style>
-<script src="{{ asset('assets/js/regionObj.js') }}"></script>
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.2s ease-out;
+        }
+    </style>
+    <script src="{{ asset('assets/js/regionObj.js') }}"></script>
     <script src="{{ asset('assets/js/provinceObj.js') }}"></script>
     <script src="{{ asset('assets/js/cityObj.js') }}"></script>
     <script src="{{ asset('assets/js/barangayObj.js') }}"></script>

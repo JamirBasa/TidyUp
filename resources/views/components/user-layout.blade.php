@@ -15,11 +15,11 @@
     {{-- Header --}}
 
     {{-- <x-loading-screen /> --}}
-    <div class="bg-milk min-h-screen relative scroll-smooth pb-20 z-0">
+    <div class="bg-milk min-h-screen relative scroll-smooth pb-20 z-0 pt-[3rem] lg:pt-[6rem]">
         <x-user-header :user="$user" />
         {{-- SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR --}}
         <div
-            class="flex mx-4 justify-center lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl lg:mx-auto gap-10">
+            class="flex mx-4 justify-center lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl lg:mx-auto gap-10 ">
             <x-user-sidebar />
             <div id="content" class="flex-1 min-w-0">
                 {{ $slot }}

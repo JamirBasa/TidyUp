@@ -13,9 +13,10 @@
 
 <body>
     {{-- Header --}}
-    <x-user-header :user="$user" />
 
-    <main class="bg-milk min-h-screen relative scroll-smooth pt-10 pb-20">
+    {{-- <x-loading-screen /> --}}
+    <div class="bg-milk min-h-screen relative scroll-smooth pb-20 z-0">
+        <x-user-header :user="$user" />
         {{-- SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR --}}
         <div
             class="flex mx-4 justify-center lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl lg:mx-auto gap-10">
@@ -24,7 +25,7 @@
                 {{ $slot }}
             </div>
         </div>
-    </main>
+    </div>
 
     <x-footer />
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>

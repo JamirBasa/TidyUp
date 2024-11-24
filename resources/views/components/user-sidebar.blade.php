@@ -114,8 +114,8 @@
         <h1 class="py-4 px-3 font-semibold">Help Center</h1>
         {{-- FAQs --}}
 
-        <a href="" id=""
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('faqs') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('faqs') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -127,8 +127,8 @@
 
         {{-- Send Feedback --}}
 
-        <a href="" id=""
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('send-feedback') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('send-feedback') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -141,8 +141,8 @@
 
         {{-- Report An Issue --}}
 
-        <a href="" id=""
-            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150">
+        <a href="{{ route('report-issue') }}" id=""
+            class="inline-flex items-center gap-2 w-full py-2 sm:py-3 px-6 rounded-lg hover:bg-neutral-150 {{ request()->routeIs('report-issue') ? 'bg-neutral-150' : '' }}">
             <svg class="stroke-black stroke-[1.5] size-6" width="30" height="30" viewBox="0 0 24 24"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path

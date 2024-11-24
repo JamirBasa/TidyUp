@@ -1,11 +1,14 @@
+{{-- 
+NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USER WONT HAVE TO OPEN THE SIDE BAR EVERYTIME TO SEE THE NAME OF THE NAVIGATION.
+--}}
 <section id="sidebar-container"
     class="fixed top-0 bottom-0 left-0 pt-24 z-10 transition-all duration-300 ease-in-out overflow-hidden w-[6.8rem]">
     <nav class="">
         <!-- Dashboard -->
         <ul class="flex flex-col items-center gap-5 px-6">
             <li
-                class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.index') ? 'bg-neutral-150' : '' }}">
-                <a href="{{ route('shop.index') }}" class="flex items-center gap-5 ">
+                class=" flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.index') ? 'bg-neutral-150' : '' }}">
+                <a href="{{ route('shop.index') }}" class="flex items-center gap-5">
                     {{-- <img class="size-7" src="{{ asset('assets/Icons/Menu/More_Grid_Big.svg') }}" alt="icon"> --}}
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,13 +41,15 @@
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     <p id="sidebar-link-name"
-                        class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
+                        class="font-poppins font-normal opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Dashboard</p>
                 </a>
+
             </li>
             {{-- Appoinments --}}
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
-                <a href="" class="flex items-center gap-5">
+            <li
+                class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.appointment') ? 'bg-neutral-150' : '' }}">
+                <a href="{{ route('shop.appointment') }}" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -58,7 +63,7 @@
             </li>
             {{-- Shop Profile --}}
             <li
-                class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.profile') ? 'bg-neutral-150' : '' }}">
+                class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.profile') ? 'bg-neutral-150' : '' }}">
                 <a href="{{ route('shop.profile') }}" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,8 +77,9 @@
                 </a>
             </li>
             <!-- Shop Catalog -->
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
-                <a href="" class="flex items-center gap-5">
+            <li
+                class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.catalog') ? 'bg-neutral-150' : '' }}">
+                <a href="{{ route('shop.catalog') }}" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -86,8 +92,9 @@
                 </a>
             </li>
             {{-- Manage Branches --}}
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
-                <a href="" class="flex items-center gap-5">
+            <li
+                class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('shop.manage-branches') ? 'bg-neutral-150' : '' }}">
+                <a href="{{ route('shop.manage-branches') }}" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -101,9 +108,9 @@
             </li>
 
             {{-- Separator --}}
-            <div class="flex-grow border-t border-neutral-400 w-full"></div>
+            {{-- <div class="flex-grow border-t border-neutral-400 w-full"></div> --}}
             {{-- Analytics  --}}
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -115,9 +122,9 @@
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Analytics</p>
                 </a>
-            </li>
+            </li> --}}
             {{-- Shop Sales --}}
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -132,9 +139,9 @@
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Shop Sales</p>
                 </a>
-            </li>
+            </li> --}}
             {{-- Shop Reviews --}}
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -146,11 +153,11 @@
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Shop Reviews</p>
                 </a>
-            </li>
+            </li> --}}
             {{-- Separator --}}
-            <div class="flex-grow border-t border-neutral-400 w-full"></div>
+            {{-- <div class="flex-grow border-t border-neutral-400 w-full"></div> --}}
             <!-- FAQs -->
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -162,9 +169,9 @@
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         FAQs</p>
                 </a>
-            </li>
+            </li> --}}
             <!-- Send Feedback -->
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -176,9 +183,9 @@
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Send Feedback</p>
                 </a>
-            </li>
+            </li> --}}
             <!-- Report An Issue -->
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="staff.html" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -190,11 +197,11 @@
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Report An Issue</p>
                 </a>
-            </li>
+            </li> --}}
             {{-- Separator --}}
-            <div class="flex-grow border-t border-neutral-400 w-full"></div>
+            {{-- <div class="flex-grow border-t border-neutral-400 w-full"></div> --}}
             <!-- About Us -->
-            <li class="flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
+            {{-- <li class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden">
                 <a href="" class="flex items-center gap-5">
                     <svg class="size-7 stroke-[1.5] stroke-black" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -206,7 +213,7 @@
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         About Us</p>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </nav>
 </section>

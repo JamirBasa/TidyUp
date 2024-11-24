@@ -207,7 +207,7 @@
         </div>
         <div class="flex mb-4">
             <div class="bg-white p-10 rounded-lg shadow-sm w-full">
-                <h1 class="text-4xl font-bold mb-10">Branch Owners</h1>
+                <h1 class="text-4xl font-bold mb-10">Branch Managers</h1>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <div class="mb-8">
@@ -296,7 +296,7 @@
                             fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7 17L17 7M17 7H9M17 7V15" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <h1 class="text-4xl font-bold">Top Services </h1>
+                        <h1 class="text-4xl font-bold">Top Branches </h1>
                     </div>
                     <button class="flex items-center gap-2">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

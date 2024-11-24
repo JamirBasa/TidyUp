@@ -22,6 +22,26 @@ export default {
                 neutral: {
                     150: "#EBEBEB",
                 },
+                upcoming: {
+                    light: "#E1F1E9",
+                    main: "#3f4a25",
+                },
+                ongoing: {
+                    light: "#FFF2E0",
+                    main: "#FF9904",
+                },
+                completed: {
+                    light: "#E0F6FB",
+                    main: "#00B5DD",
+                },
+                cancelled: {
+                    light: "#ECEBF4",
+                    main: "#6258A6",
+                },
+                noshows: {
+                    light: "#fae0e0",
+                    main: "#642727",
+                },
             },
             size: {
                 17: "4.25rem",

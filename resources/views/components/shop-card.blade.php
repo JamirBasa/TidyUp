@@ -1,12 +1,12 @@
-@props(['i', 'shops'])
-<a href="{{ route('shop.view') }}" class="">
+@props(['i', 'shops', 'tag'])
+<a href="{{ route('shop.view') }}" class="w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8">
     <div class="relative mb-2">
         {{-- shop image --}}
         <img load="lazy" class="h-[13rem] sm:h-[15rem] w-full object-cover rounded-lg"
             src="{{ asset('assets/images/shops/' . $shops[$i]['image']) }}" alt="">
         {{-- shop tag --}}
         <span
-            class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-xs sm:text-sm">{{ $shops[$i]['tag'] }}</span>
+            class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-xs sm:text-sm">{{ $tag ?? $shops[$i]['tag'] }}</span>
     </div>
     <div class="relative">
         {{-- Shop Name --}}

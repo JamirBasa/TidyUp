@@ -39,7 +39,7 @@
     $cancelledCount = count(array_filter($appointments, fn($appointment) => $appointment['status'] === 'cancelled'));
     $noShowCount = count(array_filter($appointments, fn($appointment) => $appointment['status'] === 'no-show'));
 @endphp
-<x-user-layout :user="$user">
+<x-user-layout :user="$user" :user-role="$userRole">
     <div class="content-section flex-1 w-full">
         {{-- back button --}}
         <a href="" class="inline-flex gap-2 items-center border-b border-black p-1 mb-10">

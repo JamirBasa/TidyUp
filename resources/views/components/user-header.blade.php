@@ -1,4 +1,4 @@
-@props(['user'])
+@props(['user', 'userrole'])
 
 <header class="fixed top-0 right-0 left-0 z-[500] bg-neutral-100 transition-all duration-300 ease-in-out px-5 py-2">
     <nav class="flex items-center max-w-screen-2xl mx-auto justify-between md:gap-3 lg:gap-20 xl:gap-40">
@@ -93,7 +93,7 @@
                         <x-user-profile-pic :user="$user" />
                     </button>
                     {{-- Dropdown --}}
-                    <x-profile-dropdown :user="$user" />
+                    <x-profile-dropdown :user="$user" :userrole="$userrole" />
                     </div">
                 </div>
             @endauth

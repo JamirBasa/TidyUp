@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class SidebarController extends Controller
 {
@@ -10,7 +12,13 @@ class SidebarController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        return view('index', ['user' => $user]);
+        if ($user) {
+            $RoleId = DB::table('user_role')->where('user_id', $user->id)->get('role_id');
+        } else {
+            $RoleId = collect([(object) ['role_id' => null]]);
+        }
+        $userRole = $RoleId[0]->role_id;
+        return view('index', ['user' => $user, 'userRole' => $userRole]);
     }
     public function appointments(Request $request)
     {

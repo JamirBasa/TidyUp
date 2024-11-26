@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ShopSetupController;
 use App\Http\Controllers\SidebarController;
 use App\Http\Controllers\AppointmentController;
 
@@ -62,7 +63,7 @@ Route::middleware('auth')->group(function () {
     // Only allow non-service providers to access registration routes
     Route::middleware(IsNotServiceProvider::class)->group(function () {
         Route::get('/shop/registration', [AuthController::class, 'showShopRegistrationForm'])->name('shop.registration');
-        Route::post('/shop/registration', [AuthController::class, 'shopRegister'])->name('shop.register');
+        Route::post('/shop/registration', [ShopSetupController::class, 'shopRegister'])->name('shop.register');
     });
 });
 

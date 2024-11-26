@@ -1,4 +1,4 @@
-<x-user-layout :user="$user">
+<x-user-layout :user="$user" :user-role="$userRole">
     <div class="max-w-4xl mx-auto py-12">
         <div class="mb-12 text-center">
             <h1 class="font-clash text-4xl font-light text-gray-900 dark:text-white mb-4">Frequently Asked Questions

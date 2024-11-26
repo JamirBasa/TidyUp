@@ -116,7 +116,7 @@
 
 @endphp
 
-<x-user-layout :user="$user">
+<x-user-layout :user="$user" :user-role="$userRole">
     {{-- View Shop --}}
     <div class="content-section">
 

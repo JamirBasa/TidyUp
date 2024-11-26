@@ -1,4 +1,4 @@
-<x-shop-layout :user="$user">
+<x-shop-layout :user="$user" :userrole="$userRole">
     <section>
         <div class="grid grid-cols-5 gap-4 mb-4">
             {{-- General Information Card --}}
@@ -27,7 +27,7 @@
                         <p>{{ '@' . $user->username }}</p>
                     </div>
                 </div>
-                <div class="mb-4 flex items-center gap-8">
+                {{-- <div class="mb-4 flex items-center gap-8">
                     <div class="flex items-center gap-2">
                         <svg class="stroke-neutral-400 stroke-1" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@
                         </svg>
                         <p>7:00AM - 7:00PM</p>
                     </div>
-                </div>
+                </div> --}}
                 <div class="mb-4 flex gap-2">
                     <svg class="stroke-neutral-400 stroke-1" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,9 +54,7 @@
                             d="M9.50246 4.25722C9.19873 3.4979 8.46332 3 7.64551 3H4.89474C3.8483 3 3 3.8481 3 4.89453C3 13.7892 10.2108 21 19.1055 21C20.1519 21 21 20.1516 21 19.1052L21.0005 16.354C21.0005 15.5361 20.5027 14.8009 19.7434 14.4971L17.1069 13.4429C16.4249 13.1701 15.6483 13.2929 15.0839 13.7632L14.4035 14.3307C13.6089 14.9929 12.4396 14.9402 11.7082 14.2088L9.79222 12.2911C9.06079 11.5596 9.00673 10.3913 9.66895 9.59668L10.2363 8.9163C10.7066 8.35195 10.8305 7.57516 10.5577 6.89309L9.50246 4.25722Z"
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    @foreach ($shops as $shop)
-                        <p>{{ $shop->contact_number }}</p>
-                    @endforeach
+                    <p>{{ $shopBranches[0]->contact_number }}</p>
                 </div>
                 <div class="mb-4 flex gap-2">
                     <svg class="stroke-neutral-400 stroke-1" width="24" height="24" viewBox="0 0 24 24"
@@ -65,9 +63,7 @@
                             d="M3 12H8M3 12C3 16.9706 7.02944 21 12 21M3 12C3 7.02944 7.02944 3 12 3M8 12H16M8 12C8 16.9706 9.79086 21 12 21M8 12C8 7.02944 9.79086 3 12 3M16 12H21M16 12C16 7.02944 14.2091 3 12 3M16 12C16 16.9706 14.2091 21 12 21M21 12C21 7.02944 16.9706 3 12 3M21 12C21 16.9706 16.9706 21 12 21"
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    @foreach ($shops as $shop)
-                        <p>{{ $shop->email }}</p>
-                    @endforeach
+                    <p>{{ $shopBranches[0]->email }}</p>
                 </div>
                 <div class="mb-4 flex gap-2">
                     <svg class="stroke-neutral-400 stroke-1" width="24" height="24" viewBox="0 0 24 24"
@@ -76,7 +72,7 @@
                             d="M2 20H4M4 20H14M4 20V6.2002C4 5.08009 4 4.51962 4.21799 4.0918C4.40973 3.71547 4.71547 3.40973 5.0918 3.21799C5.51962 3 6.08009 3 7.2002 3H10.8002C11.9203 3 12.4796 3 12.9074 3.21799C13.2837 3.40973 13.5905 3.71547 13.7822 4.0918C14 4.5192 14 5.07899 14 6.19691V12M14 20H20M14 20V12M20 20H22M20 20V12C20 11.0681 19.9999 10.6024 19.8477 10.2349C19.6447 9.74481 19.2557 9.35523 18.7656 9.15224C18.3981 9 17.9316 9 16.9997 9C16.0679 9 15.6019 9 15.2344 9.15224C14.7443 9.35523 14.3552 9.74481 14.1522 10.2349C14 10.6024 14 11.0681 14 12M7 10H11M7 7H11"
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <p>1 Branch/es</p>
+                    <p>{{ count($shopBranches) }} Branch/es</p>
                 </div>
             </div>
             <div class="bg-white p-10 rounded-lg shadow-sm col-span-3">
@@ -84,22 +80,8 @@
                 <div class="grid grid-cols-4 gap-4">
                     {{-- Gallery-contents --}}
                     <div id="gallery-"class="contents">
-                        <div class="h-36 rounded-xl overflow-hidden">
-                            <img class="h-full w-full object-cover rounded-xl"
-                                src="{{ asset('assets/images/shops/1.png') }}">
-                        </div>
-                        <div class="h-36 rounded-xl overflow-hidden">
-                            <img class="h-full w-full    object-cover rounded-xl"
-                                src="{{ asset('assets/images/shops/1.png') }}">
-                        </div>
-                        <div class="h-36 rounded-xl overflow-hidden">
-                            <img class="h-full w-full    object-cover rounded-xl"
-                                src="{{ asset('assets/images/shops/1.png') }}">
-                        </div>
-                        <div class="h-36 rounded-xl overflow-hidden">
-                            <img class="h-full w-full    object-cover rounded-xl"
-                                src="{{ asset('assets/images/shops/1.png') }}">
-                        </div>
+                        s
+
                     </div>
                     {{-- Add Images Button --}}
                     <button
@@ -115,23 +97,35 @@
             </div>
             <div class="bg-white p-10 rounded-lg shadow-sm col-span-2 flex items-start   gap-10">
                 <div class="flex flex-col items-center justify-center">
-                    <h1 class="text-8xl font-bold mb-4">4.9</h1>
+                    <h1 class="text-8xl font-bold mb-4">0.0</h1>
                     {{-- Star Rating --}}
-                    <div class="flex items-start gap-1 mb-4">
-                        @for ($i = 0; $i < 5; $i++)
-                            <svg class="stroke-black stroke-1 fill-black size-4" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M2.33301 10.3363C2.01976 10.0466 2.18992 9.5229 2.61361 9.47267L8.61719 8.76058C8.78987 8.7401 8.93986 8.63166 9.0127 8.47376L11.5449 2.98397C11.7236 2.59654 12.2744 2.59646 12.4531 2.9839L14.9854 8.47365C15.0582 8.63155 15.2072 8.74028 15.3799 8.76075L21.3838 9.47267C21.8075 9.5229 21.9772 10.0468 21.6639 10.3364L17.2258 14.4414C17.0981 14.5595 17.0413 14.7352 17.0752 14.9058L18.2531 20.8355C18.3362 21.2539 17.8908 21.5782 17.5185 21.3698L12.2432 18.4161C12.0915 18.3312 11.9071 18.3316 11.7554 18.4165L6.47949 21.369C6.10718 21.5774 5.66099 21.2539 5.74414 20.8354L6.92219 14.9061C6.95608 14.7356 6.89938 14.5594 6.77172 14.4414L2.33301 10.3363Z"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        @endfor
+                    <div class=" relative">
+                        <div class="flex items-start gap-1 ">
+                            @for ($i = 0; $i < 5; $i++)
+                                <svg class="stroke-black stroke-1  size-4" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2.33301 10.3363C2.01976 10.0466 2.18992 9.5229 2.61361 9.47267L8.61719 8.76058C8.78987 8.7401 8.93986 8.63166 9.0127 8.47376L11.5449 2.98397C11.7236 2.59654 12.2744 2.59646 12.4531 2.9839L14.9854 8.47365C15.0582 8.63155 15.2072 8.74028 15.3799 8.76075L21.3838 9.47267C21.8075 9.5229 21.9772 10.0468 21.6639 10.3364L17.2258 14.4414C17.0981 14.5595 17.0413 14.7352 17.0752 14.9058L18.2531 20.8355C18.3362 21.2539 17.8908 21.5782 17.5185 21.3698L12.2432 18.4161C12.0915 18.3312 11.9071 18.3316 11.7554 18.4165L6.47949 21.369C6.10718 21.5774 5.66099 21.2539 5.74414 20.8354L6.92219 14.9061C6.95608 14.7356 6.89938 14.5594 6.77172 14.4414L2.33301 10.3363Z"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            @endfor
+                        </div>
+                        <div class="flex items-start gap-1 absolute top-0 right-0 left-0">
+                            @for ($i = 0; $i < 0; $i++)
+                                <svg class="stroke-black stroke-1 fill-black size-4" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2.33301 10.3363C2.01976 10.0466 2.18992 9.5229 2.61361 9.47267L8.61719 8.76058C8.78987 8.7401 8.93986 8.63166 9.0127 8.47376L11.5449 2.98397C11.7236 2.59654 12.2744 2.59646 12.4531 2.9839L14.9854 8.47365C15.0582 8.63155 15.2072 8.74028 15.3799 8.76075L21.3838 9.47267C21.8075 9.5229 21.9772 10.0468 21.6639 10.3364L17.2258 14.4414C17.0981 14.5595 17.0413 14.7352 17.0752 14.9058L18.2531 20.8355C18.3362 21.2539 17.8908 21.5782 17.5185 21.3698L12.2432 18.4161C12.0915 18.3312 11.9071 18.3316 11.7554 18.4165L6.47949 21.369C6.10718 21.5774 5.66099 21.2539 5.74414 20.8354L6.92219 14.9061C6.95608 14.7356 6.89938 14.5594 6.77172 14.4414L2.33301 10.3363Z"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            @endfor
+                        </div>
                     </div>
-                    <p class="text-lg">1400 reviews</p>
+                    <p class="text-lg">0 reviews</p>
                 </div>
                 <div class="flex-1 flex flex-col gap-2">
                     @php
-                        $barSizes = [0, 20, 10, 0, 50, 95];
+                        $barSizes = [0, 0, 0, 0, 0, 0];
                     @endphp
                     @for ($i = 5; $i > 0; $i--)
                         <div class="flex items-center gap-3">
@@ -151,12 +145,12 @@
                 <h1 class="text-4xl font-bold mb-10">Branch Locations</h1>
                 <div>
                     <div class="flex flex-wrap gap-4">
-                        <div class="border-1 border p-4 rounded-xl">
-                            <p>{{ $shopAddress[0]->detailed_address }}</p>
-                        </div>
-                        <div class="border-1 border p-4 rounded-xl">
-                            <p>3rd Floor, KCC Mall de Zamboanga.</p>
-                        </div>
+                        @foreach ($shopBranches as $shopBranch)
+                            <div
+                                class="border-1 border p-4 rounded-xl hover:bg-neutral-100 transition-colors hover:border-black ease-in-out">
+                                <p>{{ $shopBranch->detailed_address }}</p>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -224,7 +218,7 @@
                         </div>
                         <div class="grid grid-cols-6 mb-2">
                             <h6 class="col-span-2 font-bold">Branch:</h6>
-                            <p class="col-span-4">{{ $shopAddress[0]->detailed_address }}</p>
+                            <p class="col-span-4">{{ $shopBranches[0]->detailed_address }}</p>
                         </div>
                         <div class="grid grid-cols-6 mb-2">
                             <h6 class="col-span-2 font-bold">Contact Number:</h6>
@@ -316,7 +310,7 @@
                     <p>73%</p>
                 </div>
                 <div class="py-3 px-4 flex items-center justify-between">
-                    <p>{{ $shopAddress[0]->barangay }} Branch</p>
+                    <p>{{ $shopBranches[0]->barangay }} Branch</p>
                     <p>27%</p>
                 </div>
             </div>

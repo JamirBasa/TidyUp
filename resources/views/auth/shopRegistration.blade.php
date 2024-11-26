@@ -37,6 +37,8 @@
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
+                <input type="text" name="branch_name" value="Main Branch"
+                    class="border border-neutral-400 py-3 px-4 rounded-lg w-full sr-only">
                 {{-- Shop Category --}}
                 <div class="mb-8">
                     <label for="category[]" class="font-semibold mt-4 mb-2">Category</label>
@@ -227,99 +229,6 @@
                 </div>
 
                 {{-- Shop Hours --}}
-                <div class="mb-16">
-                    <div class="mb-4">
-                        <h1 class="text-lg font-semibold">Set Standard Hours</h1>
-                        <p class="text-sm">Configure the standard hours of the operation for this location.</p>
-                    </div>
-
-
-                    {{-- The container of the toggle toggle --}}
-
-                    @php
-                        $days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-                    @endphp
-
-                    @foreach ($days as $index => $day)
-                        <div class="mb-4">
-                            {{-- For toggling --}}
-                            <div class="grid grid-cols-2 mx-28 gap-6">
-                                <label class="inline-flex items-center cursor-pointer">
-                                    <div class="w-48">
-                                        <span
-                                            class="text-sm font-medium text-gray-900 dark:text-gray-300">{{ $day }}</span>
-                                    </div>
-                                    <div class="w-20">
-                                        <!-- Hidden input for day -->
-                                        <input type="hidden" name="operating_hours[{{ $index }}][day]"
-                                            value="{{ $day }}">
-                                        @error('operating_hours[{{ $index }}][day]')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                        <!-- Checkbox input -->
-                                        <input type="checkbox" name="operating_hours[{{ $index }}][is_open]"
-                                            value="1" class="sr-only peer">
-
-                                        <div
-                                            class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-brand-300 dark:peer-focus:ring-brand-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-brand-400">
-                                        </div>
-                                    </div>
-                                    <span class="status-text">Closed</span>
-                                    <script>
-                                        document.querySelector('input[name="operating_hours[{{ $index }}][is_open]"]').addEventListener('change',
-                                            function() {
-                                                const statusText = this.closest('label').querySelector('.status-text');
-                                                statusText.textContent = this.checked ? 'Open' : 'Closed';
-                                            });
-                                    </script>
-                                </label>
-                                {{-- Choosing time --}}
-                                <div class="flex items-center gap-4">
-                                    {{-- From time picker --}}
-                                    <div class="flex-1">
-                                        <div class="relative">
-                                            <div
-                                                class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                    fill="currentColor" viewBox="0 0 24 24">
-                                                    <path fill-rule="evenodd"
-                                                        d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
-                                                        clip-rule="evenodd" />
-                                                </svg>
-                                            </div>
-                                            <input type="time"
-                                                name="operating_hours[{{ $index }}][opening_time]"
-                                                class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-brand-500 focus:border-brand-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-brand-500 dark:focus:border-brand-500"
-                                                value="00:00" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        TO
-                                    </div>
-                                    <div class="flex-1">
-                                        <div class="relative">
-                                            <div
-                                                class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                    fill="currentColor" viewBox="0 0 24 24">
-                                                    <path fill-rule="evenodd"
-                                                        d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
-                                                        clip-rule="evenodd" />
-                                                </svg>
-                                            </div>
-                                            <input type="time"
-                                                name="operating_hours[{{ $index }}][closing_time]"
-                                                class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-brand-500 focus:border-brand-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-brand-500 dark:focus:border-brand-500"
-                                                value="00:00" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
 
 
                 {{-- BUttons Container --}}

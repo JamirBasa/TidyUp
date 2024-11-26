@@ -1,4 +1,4 @@
-@props(['user'])
+@props(['user', 'userrole'])
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +12,7 @@
 
 <body class="">
     {{-- Header --}}
-    <x-shop-header :user="$user" />
+    <x-shop-header :user="$user" :userrole="$userrole" />
     {{-- SideBar --}}
     <x-shop-sidebar />
     <!-- main content -->

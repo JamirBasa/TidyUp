@@ -1,4 +1,4 @@
-@props(['user'])
+@props(['user', 'userRole'])
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,8 +30,8 @@
             </div>  --}}
         </div>
     </main>
-
     <x-footer />
+
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/index.blade.js') }}"></script>
     <script src="{{ asset('assets/js/user-sidebar.js') }}"></script>

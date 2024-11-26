@@ -8,30 +8,16 @@ class Shop extends Model
 {
     //
     protected $fillable = [
-        'user_id',
-        'shop_name',
-        'contact_number',
-        'email',
-        'description',
-        'status'
+        'shop_name'
     ];
 
-    public function address()
+    public function shopAccount()
     {
-        return $this->hasOne(Address::class);
-    }
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(ShopAccount::class);
     }
 
-    public function operatingHours()
+    public function branches()
     {
-        return $this->hasMany(OperatingHours::class);
-    }
-
-    public function categories()
-    {
-        return $this->belongsToMany(ShopCategory::class, 'shop_shop_category');
+        return $this->hasMany(ShopBranch::class);
     }
 }

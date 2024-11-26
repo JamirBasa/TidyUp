@@ -1,14 +1,20 @@
-<x-shop-layout :user="$user">
+<x-shop-layout :user="$user" :userrole="$userrole">
     <div class="bg-white p-10 rounded-lg shadow-sm mb-4 flex items-center justify-between">
         <div>
             <h6>Your Shop</h6>
             @foreach ($shops as $shop)
                 <h1 class="text-4xl font-bold">{{ $shop->shop_name }}</h1>
             @endforeach
+            {{-- <p>{{ $shopBranches[0]->city }}</p> --}}
         </div>
         <div class="flex items-center gap-4">
             <div>
-                <div class="text-right font-semibold">{{ $user->first_name . ' ' . $user->last_name }}</div>
+
+                @if ($user->first_name && $user->last_name)
+                    <div class="text-right font-semibold">{{ $user->first_name . ' ' . $user->last_name }}</div>
+                @else
+                    <div class="text-right font-semibold">{{ $user->username }}</div>
+                @endif
                 <div class="text-right text-sm">{{ '@' . $user->username }}</div>
             </div>
             <div class=" size-14">

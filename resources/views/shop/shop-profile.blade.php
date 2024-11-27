@@ -349,9 +349,24 @@
             </div>
             <div class="mb-4 relative">
                 <select class="w-full border-1 border rounded-lg p-2" name="branch_id">
+                    @php
+                        $hasAvailableBranch = false;
+                    @endphp
                     @foreach ($shopBranches as $branch)
-                        <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                        @php
+                            $imageCount = $shopGallery->where('branch_id', $branch->id)->count();
+                            if ($imageCount < 3) {
+                                $hasAvailableBranch = true;
+                            }
+                        @endphp
+                        @if ($imageCount < 3)
+                            <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                        @endif
                     @endforeach
+                    @if (!$hasAvailableBranch)
+                        <option value="" disabled selected>All branches have reached the maximum limit of 3
+                            images</option>
+                    @endif
                 </select>
                 <svg class="stroke-1 stroke-black absolute top-2 right-2" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -384,139 +399,5 @@
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/showModal.js') }}"></script>
     <script src="{{ asset('assets/js/shop/shopProfile.js') }}"></script>
-    <script>
-        // Add file input validation
-        $('#branch_img').on('change', function(e) {
-            const files = e.target.files;
-            const $warning = $('#file-count-warning');
-            const $preview = $('#image-preview');
 
-            if (files.length > 3) {
-                $(this).val('');
-                $warning.removeClass('hidden');
-                $preview.empty();
-                return;
-            }
-
-            $warning.addClass('hidden');
-            $preview.empty();
-
-            // Show preview of selected images
-            Array.from(files).forEach(file => {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    $preview.append(`
-                <div class="h-36 rounded-xl overflow-hidden">
-                    <img src="${e.target.result}" class="h-full w-full object-cover rounded-xl">
-                </div>
-                `);
-                }
-                reader.readAsDataURL(file);
-            });
-        });
-
-        $('#add-image-modal-content').on('submit', function(e) {
-            e.preventDefault();
-            $('#upload-error').remove();
-
-            const formData = new FormData(this);
-            const files = formData.getAll('branch_img[]');
-
-            if (files.length > 3) {
-                alert('Maximum 3 files allowed');
-                return;
-            }
-
-            $.ajax({
-                url: $(this).attr('action'),
-                method: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                success: function(data) {
-                    if (data.success) {
-                        // Update gallery with new images
-                        if (data.images) {
-                            const galleryContainer = $('#gallery-');
-                            data.images.forEach(image => {
-                                const newImage = `
-                                    <div class="h-36 rounded-xl overflow-hidden">
-                                        <img class="h-full w-full object-cover rounded-xl" src="${image.url}">
-                                    </div>
-                                `;
-                                galleryContainer.append(newImage);
-                            });
-                        }
-
-                        // Show success message
-                        const $success = $('<div>', {
-                            id: 'upload-success',
-                            class: 'text-green-500 mt-2 bg-green-200 py-6 px-10 fixed bottom-20 right-20 rounded-lg opacity-0 transition-all duration-300 ease-in-out transform translate-y-10',
-                            text: data.message
-                        }).appendTo('body');
-
-                        // Fade in
-                        setTimeout(() => {
-                            $success.removeClass('opacity-0 translate-y-10');
-                        }, 100);
-
-                        // Fade out and remove
-                        setTimeout(() => {
-                            $success.addClass('opacity-0 translate-y-10');
-                            setTimeout(() => {
-                                $success.remove();
-                            }, 300);
-                        }, 3000);
-
-                        // Reset form and close modal
-                        $('#add-image-modal-content')[0].reset();
-                        $('#image-preview').empty();
-                        $('#add-image-modal').removeClass('grid').addClass('hidden');
-                    } else {
-                        const $error = $(`
-                            <div id="upload-error" class="text-red-500 mt-2 bg-red-200 py-6 px-10 fixed bottom-20 right-20 rounded-lg opacity-0 transition-all duration-300 ease-in-out transform translate-y-10">
-                                ${data.message || 'Error uploading images'}
-                            </div>
-                        `).appendTo('#add-image-modal-content');
-
-                        // Fade in
-                        setTimeout(() => {
-                            $error.removeClass('opacity-0 translate-y-10');
-                        }, 100);
-
-                        // Fade out and remove
-                        setTimeout(() => {
-                            $error.addClass('opacity-0 translate-y-10');
-                            setTimeout(() => {
-                                $error.remove();
-                            }, 300);
-                        }, 3000);
-                    }
-                },
-                error: function() {
-                    const $error = $(`
-                        <div id="upload-error" class="text-red-500 mt-2 bg-red-200 py-6 px-10 fixed bottom-20 right-20 rounded-lg opacity-0 transition-all duration-300 ease-in-out transform translate-y-10">
-                            Error uploading images. Please try again.
-                        </div>
-                    `).appendTo('#add-image-modal-content');
-
-                    // Fade in
-                    setTimeout(() => {
-                        $error.removeClass('opacity-0 translate-y-10');
-                    }, 100);
-
-                    // Fade out and remove
-                    setTimeout(() => {
-                        $error.addClass('opacity-0 translate-y-10');
-                        setTimeout(() => {
-                            $error.remove();
-                        }, 300);
-                    }, 3000);
-                }
-            });
-        });
-    </script>
 </x-shop-layout>

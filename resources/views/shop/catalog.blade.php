@@ -16,7 +16,7 @@
                 <select class="border border-neutral-400 w-[13rem] py-3 px-10 rounded-lg" id="branchSelect"
                     name="branch">
                     @foreach ($shopBranches as $branch)
-                        <option value="{{ $branch->id }}">{{ $branch->barangay }} Branch</option>
+                        <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
                     @endforeach
                 </select>
                 <svg id="caret-down4" class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24"

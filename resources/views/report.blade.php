@@ -1,4 +1,4 @@
-<x-user-layout :user="$user" :user-role="$userRole">
+<x-user-layout :user="$user" :userrole="$userRole">
     <div class="max-w-screen-lg mx-auto p-8">
         <h1 class="text-4xl font-light font-clash mb-8 text-gray-800">
             Report an Issue</h1>

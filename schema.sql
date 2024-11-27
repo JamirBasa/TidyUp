@@ -198,6 +198,7 @@ CREATE TABLE appointment_services (
         ON DELETE CASCADE ON UPDATE CASCADE                 -- Ensures referential integrity for service
 ); 
 
+
 CREATE TABLE services (
     service_id INT AUTO_INCREMENT PRIMARY KEY,         -- Unique identifier for each service
     branch_category_id INT NOT NULL,                    -- Foreign key referencing branch_categories table
@@ -271,16 +272,6 @@ CREATE TABLE shop_roles (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  -- Automatically tracks updates
 ); 
 
-CREATE TABLE appointments (
-    appointment_id INT AUTO_INCREMENT PRIMARY KEY,
-    branch_appointment_type_id INT,
-    appointment_schedule DATETIME,
-    status VARCHAR(50),
-    total_price DECIMAL(10, 2),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (branch_appointment_type_id) REFERENCES branch_appointment_types(branch_appointment_type_id)
-);
 
 CREATE TABLE appointment_employee (
     appointment_employee_id INT AUTO_INCREMENT PRIMARY KEY,

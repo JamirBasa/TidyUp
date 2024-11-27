@@ -13,6 +13,7 @@
                         d="M10 9C10 10.1046 10.8954 11 12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7C10.8954 7 10 7.89543 10 9Z"
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
+                {{-- Branch Selector --}}
                 <select class="border border-neutral-400 w-[13rem] py-3 px-10 rounded-lg" id="branchSelect"
                     name="branch">
                     @foreach ($shopBranches as $branch)
@@ -67,34 +68,29 @@
                         </div>
                     </button>
                 </div>
+
                 @php
-                    $categories = ['Haircut', 'Beard Grooming', 'Hairstyling'];
-                    $services = [
-                        [
-                            ['name' => 'Regular Haircut', 'price' => '₱150'],
-                            ['name' => 'Beard Grooming', 'price' => '₱200'],
-                            ['name' => 'Hairstyling', 'price' => '₱200'],
-                        ],
-                        [
-                            ['name' => 'Regular Haircut', 'price' => '₱150'],
-                            ['name' => 'Hairstyling', 'price' => '₱200'],
-                            ['name' => 'Beard Grooming', 'price' => '₱200'],
-                        ],
-                        [
-                            ['name' => 'Beard Grooming', 'price' => '₱200'],
-                            ['name' => 'Hairstyling', 'price' => '₱200'],
-                            ['name' => 'Regular Haircut', 'price' => '₱150'],
-                        ],
-                    ];
+                    $serviceCategories = DB::table('service_categories')->get(['id', 'category_name']);
+                    $branchServiceCategories = DB::table('branch_service_categories')
+                        ->where('branch_id', $shopBranches[0]->id)
+                        ->get(['service_category_id'])
+                        ->groupBy('service_category_id');
                 @endphp
-                <div class="grid">
-                    @foreach ($categories as $category)
-                        @php $index = $loop->index; @endphp
-                        <div id="category-button[{{ $index }}]" class="p-4 rounded-xl cursor-pointer">
-                            {{ $category }}
-                        </div>
+
+                @foreach ($branchServiceCategories as $branchServiceCategory)
+                    @foreach ($serviceCategories as $serviceCategory)
+                        @php
+                            $index = $loop->index;
+                        @endphp
+                        @if ($serviceCategory->id == $branchServiceCategory[0]->service_category_id)
+                            <button id="category-button[{{ $index }}]"
+                                class="flex items-center justify-between p-4 w-full rounded-lg">
+                                {{ $serviceCategory->category_name }}
+                            </button>
+                        @endif
                     @endforeach
-                </div>
+                @endforeach
+
             </div>
             <div class="bg-white p-10 rounded-lg shadow-sm">
                 <div class="mb-10">
@@ -126,12 +122,12 @@
                                     <select class="border border-neutral-400 w-full py-3 pl-5 pr-10 rounded-lg"
                                         id="categoriesSelect" name="categoriesSelect">
                                         <option value="">All Categories</option>
-                                        @php $index = 0; @endphp
+                                        {{-- @php $index = 0; @endphp
                                         @foreach ($categories as $category)
                                             @php $index = $loop->index; @endphp
                                             <option value="{{ $category }}" data-index="{{ $index }}">
                                                 {{ $category }}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                     <svg id="caret-down4"
                                         class="absolute stroke-black stroke-1 right-3 pointer-events-none"
@@ -149,9 +145,9 @@
                                         <select class="border border-neutral-400 w-full py-3 pl-5 pr-10 rounded-lg"
                                             id="servicesSelect" name="servicesSelect">
                                             <option value="">All Services</option>
-                                            @foreach ($services[0] as $item)
+                                            {{-- @foreach ($services[0] as $item)
                                                 <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
-                                            @endforeach
+                                            @endforeach --}}
 
                                         </select>
                                         <svg id="caret-down4"
@@ -226,11 +222,11 @@
                                     id="categorySelect" name="categorySelect">
                                     <option value="">Select Category</option>
                                     @php $index = 0; @endphp
-                                    @foreach ($categories as $category)
+                                    {{-- @foreach ($categories as $category)
                                         @php $index = $loop->index; @endphp
                                         <option value="{{ $category }}" data-index="{{ $index }}">
                                             {{ $category }}</option>
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                                 <svg id="caret-down4"
                                     class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24"
@@ -269,7 +265,7 @@
                 <h1 class="font-bold">Services</h1>
                 <h1 class="font-bold">Price</h1>
             </div>
-            @foreach ($services[0] as $service)
+            {{-- @foreach ($services[0] as $service)
                 <div class="flex items-center justify-between py-3 px-4">
                     <div>
                         <h1 class="">{{ $service['name'] }}</h1>
@@ -277,7 +273,7 @@
                     </div>
                     <h1 class="">Php {{ $service['price'] }}.00</h1>
                 </div>
-            @endforeach
+            @endforeach --}}
         </div>
         <script></script>
         <script src="{{ asset('assets/js/shop/catalog.js') }}"></script>

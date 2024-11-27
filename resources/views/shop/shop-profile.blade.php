@@ -19,7 +19,7 @@
                 </div>
                 {{-- Basic Owner Info --}}
                 <div class="mb-8 flex items-center gap-4">
-                    <div class="size-12">
+                    <div class="size-18">
                         <x-user-profile-pic />
                     </div>
                     <div class="flex flex-col gap-1">

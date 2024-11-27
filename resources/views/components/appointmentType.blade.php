@@ -11,7 +11,7 @@
                 @endphp
                 @if ($appointmentType)
                     <div
-                        class="border-b-1 border-b border-b-neutral-400 p-4 rounded-t-lg hover:bg-neutral-150 transition-colors hover:border-black ease-in-out flex items-center gap-2">
+                        class="border-b-2 border-t border-x shadow border-b-neutral-400 p-4 rounded-t-lg hover:bg-neutral-100 transition-colors hover:border-b-black ease-in-out flex items-center gap-2 group">
                         @if ($appointmentType->appointment_type == 'Solo Appointment')
                             <svg class="stroke-neutral-400 stroke-1 group-hover:stroke-black transition-colors"
                                 width="24" height="24" viewBox="0 0 24 24" fill="none"

@@ -22,20 +22,7 @@ class ShopController extends Controller
         return view('shop.index', ['shops' => $shops, 'user' => $user, 'shopBranches' => $shopBranches, 'userrole' => $userRole]);
     }
 
-    public function shopProfile(Request $request)
-    {
-        $user = $request->user();
-        $userRole = DB::table('user_role')->where('user_id', $user->id)->first();
-        $userId = $user->id;
-        $shopAccount = DB::table('shop_account')->where('shop_owner_id', $userId)->get();
-        $shopId = $shopAccount->isNotEmpty() ? $shopAccount[0]->shop_id : null;
-        $shops = $shopId ? DB::table('shops')->where('id', $shopId)->get() : collect();
-        $shopBranches = $shopId ? DB::table('shop_branch')->where('shop_id', $shopId)->get() : collect();
-        $shopAccountOwner = DB::table('shop_account')->where('shop_owner_id', $userId)->get();
-        $shopOwner = DB::table('users')->where('id', $shopAccountOwner[0]->shop_owner_id)->get();
-        $shopGallery = $shopId ? DB::table('shop_gallery')->where('branch_id', $shopBranches[0]->id)->get() : collect();
-        return view('shop.shop-profile', ['shops' => $shops, 'user' => $user, 'shopBranches' => $shopBranches, 'userRole' => $userRole, 'shopOwner' => $shopOwner, 'shopGallery' => $shopGallery]);
-    }
+
 
     public function catalog(Request $request)
     {

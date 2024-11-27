@@ -32,26 +32,6 @@
                         <p>{{ '@' . $user->username }}</p>
                     </div>
                 </div>
-                {{-- <div class="mb-4 flex items-center gap-8">
-                    <div class="flex items-center gap-2">
-                        <svg class="stroke-neutral-400 stroke-1" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12 4V2M12 20V22M6.41421 6.41421L5 5M17.728 17.728L19.1422 19.1422M4 12H2M20 12H22M17.7285 6.41421L19.1427 5M6.4147 17.728L5.00049 19.1422M12 17C9.23858 17 7 14.7614 7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17Z"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <p>Monday - Saturday</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="stroke-neutral-400 stroke-1" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12 7V12H17M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <p>7:00AM - 7:00PM</p>
-                    </div>
-                </div> --}}
                 <div class="mb-4 flex gap-2">
                     <svg class="stroke-neutral-400 stroke-1" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,25 +62,44 @@
             </div>
             <div class="bg-white p-10 rounded-lg shadow-sm col-span-3">
                 <h1 class="text-4xl font-bold mb-10">Shop Gallery</h1>
-                <div class="grid grid-cols-4 gap-4 h-[19.5rem] overflow-y-scroll">
-                    {{-- Add Images Button --}}
-                    <button id="add-image-open-btn"
-                        class="h-36 rounded-xl overflow-hidden bg-neutral-100 flex flex-col items-center justify-center">
-                        <svg class="stroke-neutral-400 stroke-1 size-14" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                        <p class="text-neutral-400">Add Image</p>
-                    </button>
+                <div class="grid grid-cols-3     gap-4 h-[19.5rem] overflow-y-scroll">
+                    @php
+                        $hasAvailableBranch = false;
+                        $shopGallery = DB::table('shop_gallery')->get();
+                    @endphp
+                    @foreach ($shopBranches as $branch)
+                        @php
+                            $imageCount = $shopGallery->where('branch_id', $branch->id)->count();
+                            if ($imageCount < 3) {
+                                $hasAvailableBranch = true;
+                            }
+                        @endphp
+                    @endforeach
+                    @if ($hasAvailableBranch)
+                        {{-- Add Images Button --}}
+                        <button id="add-image-open-btn"
+                            class="h-36 rounded-xl overflow-hidden bg-neutral-100 flex flex-col items-center justify-center">
+                            <svg class="stroke-neutral-400 stroke-1 size-14" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <p class="text-neutral-400">Add Image</p>
+                        </button>
+                    @endif
                     {{-- Gallery-contents --}}
-                    <div id="gallery-"class="contents">
-                        @foreach ($shopGallery as $image)
-                            <div class="h-36 rounded-xl overflow-hidden">
-                                <img class="h-full w-full object-cover rounded-xl"
-                                    src="{{ asset('storage/' . $image->path) }}">
-                            </div>
-                        @endforeach
+                    <div id="gallery-contents" class="contents">
+                        @php
+                            $allImages = collect();
+                            foreach ($shopBranches as $branch) {
+                                $shopGallery = DB::table('shop_gallery')
+                                    ->where('branch_id', $branch->id)
+                                    ->get();
+                                $allImages = $allImages->concat($shopGallery);
+                            }
+                            $sortedImages = $allImages->sortByDesc('created_at');
+                        @endphp
+                        <x-gallery-image :sortedimages="$sortedImages" />
                     </div>
 
                 </div>
@@ -169,43 +168,12 @@
             <div class="bg-white p-10 rounded-lg shadow-sm w-full">
                 <p>Available</p>
                 <h1 class="text-4xl font-bold mb-10">Type of Services</h1>
-                <div class="flex flex-wrap gap-4">
-                    <div class="border-1 border p-4 rounded-xl flex items-center gap-1">
-                        <svg class="stroke-neutral-400 stroke-1" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M18 19C18 16.7909 15.3137 15 12 15C8.68629 15 6 16.7909 6 19M12 12C9.79086 12 8 10.2091 8 8C8 5.79086 9.79086 4 12 4C14.2091 4 16 5.79086 16 8C16 10.2091 14.2091 12 12 12Z"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <p>Solo Appointment</p>
-                    </div>
-                    <div class="border-1 border p-4 rounded-xl flex items-center gap-1">
-                        <svg class="stroke-neutral-400 stroke-1" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M21 19.9999C21 18.2583 19.3304 16.7767 17 16.2275M15 20C15 17.7909 12.3137 16 9 16C5.68629 16 3 17.7909 3 20M15 13C17.2091 13 19 11.2091 19 9C19 6.79086 17.2091 5 15 5M9 13C6.79086 13 5 11.2091 5 9C5 6.79086 6.79086 5 9 5C11.2091 5 13 6.79086 13 9C13 11.2091 11.2091 13 9 13Z"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <p>Multiple People Appointment</p>
-                    </div>
-                    <div class="border-1 border p-4 rounded-xl flex items-center gap-1">
-                        <svg class="stroke-neutral-400 stroke-1" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M17 20C17 18.3431 14.7614 17 12 17C9.23858 17 7 18.3431 7 20M21 17.0004C21 15.7702 19.7659 14.7129 18 14.25M3 17.0004C3 15.7702 4.2341 14.7129 6 14.25M18 10.2361C18.6137 9.68679 19 8.8885 19 8C19 6.34315 17.6569 5 16 5C15.2316 5 14.5308 5.28885 14 5.76389M6 10.2361C5.38625 9.68679 5 8.8885 5 8C5 6.34315 6.34315 5 8 5C8.76835 5 9.46924 5.28885 10 5.76389M12 14C10.3431 14 9 12.6569 9 11C9 9.34315 10.3431 8 12 8C13.6569 8 15 9.34315 15 11C15 12.6569 13.6569 14 12 14Z"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <p>Bulk Appointment</p>
-                    </div>
-                    <button class="border-1 border p-4 rounded-xl flex items-center gap-1">
-                        <svg class="stroke-neutral-300 stroke-1" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12 8.00012L4 16.0001V20.0001L8 20.0001L16 12.0001M12 8.00012L14.8686 5.13146L14.8704 5.12976C15.2652 4.73488 15.463 4.53709 15.691 4.46301C15.8919 4.39775 16.1082 4.39775 16.3091 4.46301C16.5369 4.53704 16.7345 4.7346 17.1288 5.12892L18.8686 6.86872C19.2646 7.26474 19.4627 7.46284 19.5369 7.69117C19.6022 7.89201 19.6021 8.10835 19.5369 8.3092C19.4628 8.53736 19.265 8.73516 18.8695 9.13061L18.8686 9.13146L16 12.0001M12 8.00012L16 12.0001"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <p>Edit</p>
-                    </button>
+                <div class="flex gap-10">
+                    @php
+                        $appointmentTypes = DB::table('appointment_types')->get();
+                        $branchAppointmentTypes = DB::table('branch_appointment_types')->get();
+                    @endphp
+                    <x-appointmentType :shopbranches="$shopBranches" :appointmenttypes="$appointmentTypes" :branchappointmenttyppes="$branchAppointmentTypes" />
                 </div>
             </div>
         </div>
@@ -315,14 +283,12 @@
                     <h6 class="font-bold">Branch</h6>
                     <h6 class="font-bold">Earning in Percentage</h6>
                 </div>
-                <div class="py-3 px-4 flex items-center justify-between">
-                    <p>KCC Branch</p>
-                    <p>73%</p>
-                </div>
-                <div class="py-3 px-4 flex items-center justify-between">
-                    <p>{{ $shopBranches[0]->barangay }} Branch</p>
-                    <p>27%</p>
-                </div>
+                @foreach ($shopBranches as $branch)
+                    <div class="py-3 px-4 flex items-center justify-between">
+                        <p>{{ $branch->branch_name }}</p>
+                        <p>0%</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -350,23 +316,22 @@
             <div class="mb-4 relative">
                 <select class="w-full border-1 border rounded-lg p-2" name="branch_id">
                     @php
-                        $hasAvailableBranch = false;
+                        $shopGallery = DB::table('shop_gallery')->get();
                     @endphp
                     @foreach ($shopBranches as $branch)
                         @php
-                            $imageCount = $shopGallery->where('branch_id', $branch->id)->count();
-                            if ($imageCount < 3) {
-                                $hasAvailableBranch = true;
-                            }
+                            $imageCount = 0;
                         @endphp
+                        @foreach ($shopGallery as $image)
+                            @php
+                                $imageCount = $shopGallery->where('branch_id', $branch->id)->count();
+                            @endphp
+                        @endforeach
                         @if ($imageCount < 3)
                             <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
                         @endif
                     @endforeach
-                    @if (!$hasAvailableBranch)
-                        <option value="" disabled selected>All branches have reached the maximum limit of 3
-                            images</option>
-                    @endif
+
                 </select>
                 <svg class="stroke-1 stroke-black absolute top-2 right-2" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -377,7 +342,7 @@
                 <label for="branch_img" class="text-xl">
                     <span>Images</span>
                     <p class="text-sm opacity-80">Please select up to 3 images to upload</p>
-                    <div id="file-count-warning" class="text-red-500 hidden">Maximum 3 files allowed</div>
+                    <div id="file-count-warning" class="text-red-500 hidden text-sm">Maximum 3 files allowed</div>
                     {{-- @error('branch_img')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror --}}
@@ -396,6 +361,7 @@
             </div>
         </form>
     </div>
+
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/showModal.js') }}"></script>
     <script src="{{ asset('assets/js/shop/shopProfile.js') }}"></script>

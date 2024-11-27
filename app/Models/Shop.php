@@ -20,4 +20,9 @@ class Shop extends Model
     {
         return $this->hasMany(ShopBranch::class);
     }
+
+    public function shopGallery()
+    {
+        return $this->hasMany(ShopGallery::class, ShopBranch::class);
+    }
 }

@@ -1,3 +1,4 @@
+
 CREATE TABLE accounts (
     id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each account
     username VARCHAR(50) NOT NULL UNIQUE,      -- Unique username for the account

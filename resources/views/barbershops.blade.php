@@ -45,7 +45,7 @@
         ],
     ];
 @endphp
-<x-user-layout :user="$user" :user-role="$userRole">
+<x-user-layout :user="$user" :userrole="$userRole">
     <div>
         <div class="flex items-center justify-between mb-10">
             {{-- Page Title --}}

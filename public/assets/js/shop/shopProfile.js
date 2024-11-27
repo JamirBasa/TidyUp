@@ -87,9 +87,9 @@ $("#add-image-modal-content").on("submit", function (e) {
                 // Fade out and remove
                 setTimeout(() => {
                     $success.addClass("opacity-0 translate-y-10");
-                    setTimeout(() => {
-                        $success.remove();
-                    }, 300);
+                    $success.remove();
+                    // Reload page after success message is removed
+                    location.href = location.href;
                 }, 3000);
 
                 // Reset form and close modal
@@ -117,10 +117,10 @@ $("#add-image-modal-content").on("submit", function (e) {
                 }, 3000);
             }
         },
-        error: function () {
+        error: function (xhr, status, error) {
             const $error = $(`
                 <div id="upload-error" class="text-red-500 font-bold mt-2 bg-red-200 py-4 px-10 fixed bottom-20 right-20 rounded-lg opacity-0 transition-all duration-300 ease-in-out transform translate-y-10">
-                    Error uploading images. Please try again.
+                    ${xhr.responseJSON.message || "Error uploading images"}
                 </div>
             `).appendTo("#add-image-modal-content");
 

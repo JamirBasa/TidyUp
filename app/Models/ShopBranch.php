@@ -37,4 +37,9 @@ class ShopBranch extends Model
     {
         return $this->hasMany(ShopGallery::class, 'branch_id');
     }
+
+    public function branchAppointmentTypes()
+    {
+        return $this->belongsToMany(BranchAppointmentType::class, 'branch_appointment_types', 'branch_id', 'appointment_type_id');
+    }
 }

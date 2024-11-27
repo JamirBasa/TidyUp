@@ -9,7 +9,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ShopSetupController;
 use App\Http\Controllers\SidebarController;
 use App\Http\Controllers\AppointmentController;
-
+use App\Http\Controllers\BranchController;
 use App\Http\Middleware\IsServiceProvider;
 use App\Http\Middleware\IsNotServiceProvider;
 use Illuminate\Auth\Notifications\ResetPassword;
@@ -74,6 +74,7 @@ Route::middleware(IsServiceProvider::class)->group(function () {
         return redirect()->route('shop.index');
     });
     Route::get('/shop/profile', [ShopController::class, 'shopProfile'])->name('shop.profile');
+    Route::post('/shop/profile/image-upload', [BranchController::class, 'uploadImages'])->name('shop.upload-images');
     Route::get('/shop/catalog', [ShopController::class, 'catalog'])->name('shop.catalog');
     Route::get('/shop/branches', [ShopController::class, 'manageBranches'])->name('shop.manage-branches');
     Route::get('/shop/appointment', [ShopController::class, 'appointment'])->name('shop.appointment');

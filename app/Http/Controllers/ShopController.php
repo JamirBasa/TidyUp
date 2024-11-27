@@ -33,8 +33,8 @@ class ShopController extends Controller
         $shopBranches = $shopId ? DB::table('shop_branch')->where('shop_id', $shopId)->get() : collect();
         $shopAccountOwner = DB::table('shop_account')->where('shop_owner_id', $userId)->get();
         $shopOwner = DB::table('users')->where('id', $shopAccountOwner[0]->shop_owner_id)->get();
-
-        return view('shop.shop-profile', ['shops' => $shops, 'user' => $user, 'shopBranches' => $shopBranches, 'userRole' => $userRole, 'shopOwner' => $shopOwner]);
+        $shopGallery = $shopId ? DB::table('shop_gallery')->where('branch_id', $shopBranches[0]->id)->get() : collect();
+        return view('shop.shop-profile', ['shops' => $shops, 'user' => $user, 'shopBranches' => $shopBranches, 'userRole' => $userRole, 'shopOwner' => $shopOwner, 'shopGallery' => $shopGallery]);
     }
 
     public function catalog(Request $request)

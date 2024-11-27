@@ -23,7 +23,12 @@
                         <x-user-profile-pic />
                     </div>
                     <div class="flex flex-col gap-1">
-                        <h6 class="font-semibold">{{ $user->first_name . ' ' . $user->last_name }}</h6>
+                        @if ($shopOwner[0]->first_name && $shopOwner[0]->last_name)
+                            <h6 class="font-semibold">{{ $shopOwner[0]->first_name . ' ' . $shopOwner[0]->last_name }}
+                            </h6>
+                        @else
+                            <h6 class="font-semibold">{{ $shopOwner[0]->username }}</h6>
+                        @endif
                         <p>{{ '@' . $user->username }}</p>
                     </div>
                 </div>
@@ -72,19 +77,14 @@
                             d="M2 20H4M4 20H14M4 20V6.2002C4 5.08009 4 4.51962 4.21799 4.0918C4.40973 3.71547 4.71547 3.40973 5.0918 3.21799C5.51962 3 6.08009 3 7.2002 3H10.8002C11.9203 3 12.4796 3 12.9074 3.21799C13.2837 3.40973 13.5905 3.71547 13.7822 4.0918C14 4.5192 14 5.07899 14 6.19691V12M14 20H20M14 20V12M20 20H22M20 20V12C20 11.0681 19.9999 10.6024 19.8477 10.2349C19.6447 9.74481 19.2557 9.35523 18.7656 9.15224C18.3981 9 17.9316 9 16.9997 9C16.0679 9 15.6019 9 15.2344 9.15224C14.7443 9.35523 14.3552 9.74481 14.1522 10.2349C14 10.6024 14 11.0681 14 12M7 10H11M7 7H11"
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <p>{{ count($shopBranches) }} Branch/es</p>
+                    <p>{{ count($shopBranches) }} {{ Str::plural('Branch', count($shopBranches)) }}</p>
                 </div>
             </div>
             <div class="bg-white p-10 rounded-lg shadow-sm col-span-3">
                 <h1 class="text-4xl font-bold mb-10">Shop Gallery</h1>
-                <div class="grid grid-cols-4 gap-4">
-                    {{-- Gallery-contents --}}
-                    <div id="gallery-"class="contents">
-                        s
-
-                    </div>
+                <div class="grid grid-cols-4 gap-4 h-[19.5rem] overflow-y-scroll">
                     {{-- Add Images Button --}}
-                    <button
+                    <button id="add-image-open-btn"
                         class="h-36 rounded-xl overflow-hidden bg-neutral-100 flex flex-col items-center justify-center">
                         <svg class="stroke-neutral-400 stroke-1 size-14" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,6 +93,16 @@
                         </svg>
                         <p class="text-neutral-400">Add Image</p>
                     </button>
+                    {{-- Gallery-contents --}}
+                    <div id="gallery-"class="contents">
+                        @foreach ($shopGallery as $image)
+                            <div class="h-36 rounded-xl overflow-hidden">
+                                <img class="h-full w-full object-cover rounded-xl"
+                                    src="{{ asset('storage/' . $image->path) }}">
+                            </div>
+                        @endforeach
+                    </div>
+
                 </div>
             </div>
             <div class="bg-white p-10 rounded-lg shadow-sm col-span-2 flex items-start   gap-10">
@@ -316,4 +326,78 @@
             </div>
         </div>
     </section>
+    {{-- Add Image Modal --}}
+    <div id="add-image-modal"
+        class="fixed top-0 bottom-0 left-0 right-0 z-50 backdrop-brightness-50 place-items-center hidden">
+        <form id="add-image-modal-content" class="bg-white w-[50rem] mx-auto p-10 rounded-lg shadow-lg relative"
+            action="{{ route('shop.upload-images') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div>
+                <h6 class="font-bold text-4xl">Add Image</h6>
+                <h1 class="font-bold text-4xl"></h1>
+                <button id="add-image-modal-close-btn">
+                    <svg class="absolute top-10 right-10" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 18L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="black" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mb-4">
+                <h4 class="text-xl">Branch</h4>
+                <p class="text-sm opacity-80">Please select the branch to which these images belong.</p>
+            </div>
+            <div class="mb-4 relative">
+                <select class="w-full border-1 border rounded-lg p-2" name="branch_id">
+                    @php
+                        $hasAvailableBranch = false;
+                    @endphp
+                    @foreach ($shopBranches as $branch)
+                        @php
+                            $imageCount = $shopGallery->where('branch_id', $branch->id)->count();
+                            if ($imageCount < 3) {
+                                $hasAvailableBranch = true;
+                            }
+                        @endphp
+                        @if ($imageCount < 3)
+                            <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                        @endif
+                    @endforeach
+                    @if (!$hasAvailableBranch)
+                        <option value="" disabled selected>All branches have reached the maximum limit of 3
+                            images</option>
+                    @endif
+                </select>
+                <svg class="stroke-1 stroke-black absolute top-2 right-2" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="mb-4">
+                <label for="branch_img" class="text-xl">
+                    <span>Images</span>
+                    <p class="text-sm opacity-80">Please select up to 3 images to upload</p>
+                    <div id="file-count-warning" class="text-red-500 hidden">Maximum 3 files allowed</div>
+                    {{-- @error('branch_img')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror --}}
+                </label>
+            </div>
+            <div class="mb-4">
+                <input name="branch_img[]" id="branch_img" type="file" multiple accept="image/*"
+                    class="mt-2 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:bg-neutral-100 file:text-bwhite hover:file:bg-neutral-150">
+            </div>
+            <div id="image-preview" class="grid grid-cols-3 gap-4 mb-10">
+                <!-- Preview images will be appended here -->
+            </div>
+
+            <div class="flex justify-end">
+                <button type="submit" class="bg-brand-500 text-white px-8 py-2 rounded-lg">Upload</button>
+            </div>
+        </form>
+    </div>
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/showModal.js') }}"></script>
+    <script src="{{ asset('assets/js/shop/shopProfile.js') }}"></script>
+
 </x-shop-layout>

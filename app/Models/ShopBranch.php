@@ -42,4 +42,14 @@ class ShopBranch extends Model
     {
         return $this->belongsToMany(BranchAppointmentType::class, 'branch_appointment_types', 'branch_id', 'appointment_type_id');
     }
+
+    public function operationHours()
+    {
+        return $this->hasMany(OperationHours::class, 'branch_id');
+    }
+
+    public function services()
+    {
+        return $this->hasMany(BranchServices::class, 'branch_id');
+    }
 }

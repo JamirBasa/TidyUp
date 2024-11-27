@@ -47,7 +47,7 @@
     ];
 @endphp
 
-<x-user-layout :user="$user" :user-role="$userRole">
+<x-user-layout :user="$user" :userrole="$userRole">
     <div class="content-section">
         {{-- Featured Shop in Explore Page --}}
         <a href="{{ route('shop.view') }}" class="bg-black">

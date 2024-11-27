@@ -1,6 +1,8 @@
-ModalPopOver(
-    "open-operation-hours-btn",
-    "operation-hours-modal",
-    "operation-hours-modal-content",
-    "close-operation-hours-btn"
-);
+document.addEventListener("DOMContentLoaded", function () {
+    ModalPopOver(
+        "add-image-open-btn",
+        "add-image-modal",
+        "add-image-modal-content",
+        "add-image-modal-close-btn"
+    );
+});

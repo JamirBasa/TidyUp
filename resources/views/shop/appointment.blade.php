@@ -207,7 +207,7 @@
                         name="branch">
                         <option value="">All Branch</option>
                         @foreach ($shopBranches as $shopBranch)
-                            <option value="{{ $shopBranch->barangay }}">{{ $shopBranch->barangay }} Branch</option>
+                            <option value="{{ $shopBranch->branch_name }}">{{ $shopBranch->branch_name }}</option>
                         @endforeach
                     </select>
                     <svg id="caret-down4" class="absolute stroke-black stroke-1 right-3 pointer-events-none"
@@ -290,7 +290,7 @@
                         <select class="border shadow-md w-[10rem] py-2 px-8 rounded-lg text-xs" id="branchSelect"
                             name="branch">
                             @foreach ($shopBranches as $shopBranch)
-                                <option value="{{ $shopBranch->barangay }}">{{ $shopBranch->barangay }} Branch
+                                <option value="{{ $shopBranch->branch_name }}">{{ $shopBranch->branch_name }}
                                 </option>
                             @endforeach
 
@@ -399,7 +399,7 @@
                     name="branch">
                     <option value="">All Branch</option>
                     @foreach ($shopBranches as $shopBranch)
-                        <option value="{{ $shopBranch->barangay }}">{{ $shopBranch->barangay }} Branch</option>
+                        <option value="{{ $shopBranch->branch_name }}">{{ $shopBranch->branch_name }}</option>
                     @endforeach
                 </select>
                 <svg id="caret-down4" class="absolute stroke-black stroke-1 right-3 pointer-events-none"

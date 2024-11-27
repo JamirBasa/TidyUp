@@ -37,7 +37,7 @@
         ],
     ];
 @endphp
-<x-shop-layout :user="$user">
+<x-shop-layout :user="$user" :userrole="$userRole">
     <section class="grid grid-cols-6 gap-4">
         {{-- 1st Row - 1st Column Of the Grid --}}
         <div class=" col-span-4">
@@ -87,7 +87,7 @@
                         <div class="grid gap-3">
                             <div class="text-left">Dean Wong</div>
                             <div class="text-left">deanwong@gmail.com</div>
-                            <div class="text-left">{{ $shopAddress[0]->detailed_address }}</div>
+                            <div class="text-left">{{ $shopBranches[0]->detailed_address }}</div>
                             <div class="text-left">09877896789</div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div>
-                    <h1 class="text-4xl font-bold">{{ $shopAddress[0]->barangay }}, Zamboanga City</h1>
+                    <h1 class="text-4xl font-bold">{{ $shopBranches[0]->barangay }}, Zamboanga City</h1>
                 </div>
             </div>
             <div class="bg-white p-10 rounded-lg shadow-sm">

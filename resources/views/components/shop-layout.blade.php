@@ -1,4 +1,4 @@
-@props(['user'])
+@props(['user', 'userrole'])
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,11 +8,12 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="">
     @vite(['resources/js/app.js', 'resources/js/index.js', 'resources/css/app.css', 'resources/css/fonts.css'])
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body class="">
     {{-- Header --}}
-    <x-shop-header :user="$user" />
+    <x-shop-header :user="$user" :userrole="$userrole" />
     {{-- SideBar --}}
     <x-shop-sidebar />
     <!-- main content -->

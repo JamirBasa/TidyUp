@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -13,9 +14,15 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('role_name')->unique(); // e.g., 'Staff', 'Shop Owner', 'Branch Manager'
-            $table->timestamps();
+            $table->string('role_name')->unique();
         });
+
+        DB::table('roles')->insert([
+            ['role_name' => 'Customer'],
+            ['role_name' => 'Shop Staff'],
+            ['role_name' => 'Shop Owner'],
+            ['role_name' => 'Admin'],
+        ]);
     }
 
     /**

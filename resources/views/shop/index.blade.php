@@ -1,14 +1,20 @@
-<x-shop-layout :user="$user">
+<x-shop-layout :user="$user" :userrole="$userrole">
     <div class="bg-white p-10 rounded-lg shadow-sm mb-4 flex items-center justify-between">
         <div>
             <h6>Your Shop</h6>
             @foreach ($shops as $shop)
                 <h1 class="text-4xl font-bold">{{ $shop->shop_name }}</h1>
             @endforeach
+            {{-- <p>{{ $shopBranches[0]->city }}</p> --}}
         </div>
         <div class="flex items-center gap-4">
             <div>
-                <div class="text-right font-semibold">{{ $user->first_name . ' ' . $user->last_name }}</div>
+
+                @if ($user->first_name && $user->last_name)
+                    <div class="text-right font-semibold">{{ $user->first_name . ' ' . $user->last_name }}</div>
+                @else
+                    <div class="text-right font-semibold">{{ $user->username }}</div>
+                @endif
                 <div class="text-right text-sm">{{ '@' . $user->username }}</div>
             </div>
             <div class=" size-14">
@@ -170,12 +176,20 @@
         <div class="bg-white px-7 py-7 rounded-lg shadow-sm">
             <div class="flex items-center justify-between mb-10">
                 <div class="flex items-center gap-2">
-                    <img class="lazyload mt-2" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}"
-                        alt="icon">
+                    <svg class="stroke-black stroke-1" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H9M17 7V15" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
                     <h2 class="text-4xl font-semibold">Customers</h2>
                 </div>
                 <button class="flex items-center gap-3">
-                    <img src="{{ asset('assets/Icons/Arrow/Arrow_Down_Up.svg') }}" alt="">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 16L8 19M8 19L5 16M8 19V5M13 8L16 5M16 5L19 8M16 5V19" stroke="black"
+                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
                     <span>Sort by</span>
                 </button>
             </div>
@@ -197,27 +211,33 @@
         <div class="bg-white px-7 py-7 rounded-lg shadow-sm">
             <div class="flex items-center justify-between mb-10">
                 <div class="flex items-center gap-2">
-                    <img class="lazyload mt-2" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}"
-                        alt="icon">
+                    <svg class="stroke-black stroke-1" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H9M17 7V15" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
                     <h2 class="text-4xl font-semibold">Shops</h2>
                 </div>
                 <button class="flex items-center gap-3">
-                    <img src="{{ asset('assets/Icons/Arrow/Arrow_Down_Up.svg') }}" alt="">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 16L8 19M8 19L5 16M8 19V5M13 8L16 5M16 5L19 8M16 5V19" stroke="black"
+                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
                     <span>Sort by</span>
                 </button>
             </div>
             <div class="flex items-center justify-between border-b-2 p-3">
-                <div class="font-semibold">Shop Name</div>
+                <div class="font-semibold">Branch Name</div>
                 <div class="font-semibold">Date Created</div>
             </div>
-            <div class="flex items-center justify-between p-3">
-                <div class="opacity-70">Gupit ni John</div>
-                <div class="opacity-70">10/5/24</div>
-            </div>
-            <div class="flex items-center justify-between p-3">
-                <div class="opacity-70">David's Salon</div>
-                <div class="opacity-70">10/5/24</div>
-            </div>
+            @foreach ($shopBranches as $branch)
+                <div class="flex items-center justify-between p-3">
+                    <div class="opacity-70">{{ $branch->branch_name }}</div>
+                    <div class="opacity-70">{{ \Carbon\Carbon::parse($branch->created_at)->format('F d, Y') }}</div>
+                </div>
+            @endforeach
         </div>
     </div>
     <!-- grid with 2 columns -->

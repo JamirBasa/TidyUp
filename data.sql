@@ -1,7 +1,7 @@
 INSERT INTO roles (role_name)
 VALUES 
     ('Platform Admin'),
-    ('Shop Admin'),
+    ('Shop Owner'),
     ('Shop Staff'),
     ('Customer');
 
@@ -10,6 +10,12 @@ VALUES
     ('Manager'),
     ('Stylist'),
     ('Staff');
+
+INSERT INTO branch_categories (category_name) VALUES
+('Barbershop'),
+('Beauty Salon'),
+('Nail Salon'),
+('Hair Salon');
 
 INSERT INTO appointment_categories (category_name)
 VALUES 

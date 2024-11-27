@@ -1,4 +1,4 @@
-<x-shop-layout :user="$user">
+<x-shop-layout :user="$user" :userrole="$userRole">
     <div class="flex mb-4">
         {{-- Container --}}
         <div class="bg-white p-5 rounded-lg shadow-sm w-full flex items-center justify-between gap-20">
@@ -15,8 +15,9 @@
                 </svg>
                 <select class="border border-neutral-400 w-[13rem] py-3 px-10 rounded-lg" id="branchSelect"
                     name="branch">
-                    <option value="">{{ $shopAddress[0]->barangay }} Branch</option>
-                    <option value="">KCC Branch</option>
+                    @foreach ($shopBranches as $branch)
+                        <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                    @endforeach
                 </select>
                 <svg id="caret-down4" class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24"
                     height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

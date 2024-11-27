@@ -116,7 +116,7 @@
 
 @endphp
 
-<x-user-layout :user="$user">
+<x-user-layout :user="$user" :userrole="$userRole">
     {{-- View Shop --}}
     <div class="content-section">
 
@@ -129,15 +129,15 @@
                 <circle cx="2.5" cy="3" r="2.5" fill="black" />
             </svg>
             {{-- Shop Availability --}}
-            <div class="p-2 font-medium text-xl text-brand-300">{{ $shops[0]['availability'] }}</div>
+            <div class="p-2 font-medium text-brand-300">{{ $shops[0]['availability'] }}</div>
         </div>
 
         {{-- Shop Rating, Shop Schedule and Shop Location --}}
 
         <div class="flex items-center gap-4 mb-4">
             {{-- Shop Rating --}}
-            <div class="flex items-center gap-2">
-                <div class="p-2 font-semibold">{{ $shops[0]['rating'] }}</div>
+            <div class="flex items-center justify-between">
+                <div class="p-2">{{ $shops[0]['rating'] }}</div>
                 <svg width="78" height="14" viewBox="0 0 57 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M4.5 0L6.02963 2.60796L9 3.24671L6.975 5.49727L7.28115 8.5L4.5 7.28296L1.71885 8.5L2.025 5.49727L0 3.24671L2.97037 2.60796L4.5 0Z"
@@ -155,39 +155,39 @@
                         d="M52.5 0L54.0296 2.60796L57 3.24671L54.975 5.49727L55.2812 8.5L52.5 7.28296L49.7188 8.5L50.025 5.49727L48 3.24671L50.9704 2.60796L52.5 0Z"
                         fill="#DFB300" />
                 </svg>
-                <div class="p-2 font-medium text-brand-300">( {{ $shops[0]['shop_reviews'] }} ) </div>
+                <div class="p-2 font-medium text-brand-300">({{ $shops[0]['shop_reviews'] }}) </div>
             </div>
             <svg width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="2.5" cy="3" r="2.5" fill="black" />
             </svg>
             {{-- Shop Schedule --}}
-            <div class="p-2 font-medium text-x1">Open {{ $shop_schedule[0]['day_open'] }} from
+            <div class="p-2">Open {{ $shop_schedule[0]['day_open'] }} from
                 {{ $shop_schedule[0]['time_open'] }} - {{ $shop_schedule[0]['time_close'] }} </div>
             <svg width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="2.5" cy="3" r="2.5" fill="black" />
             </svg>
             {{-- Shop Location --}}
-            <div class="p-2 font-medium text-x1">{{ $shops[0]['location'] }}</div>
+            <div class="p-2">{{ $shops[0]['location'] }}</div>
         </div>
 
         {{-- Grid Layout --}}
-        <section class="grid grid-cols-3 gap-8 mb-4">
+        <section class="grid grid-cols-3 gap-4 mb-4">
 
             {{-- Service Information --}}
             <div class="grid grid-cols-1 gap-2 col-span-2">
 
                 {{-- Shop Gallery --}}
                 <div class="mb-20">
-                    <div class="relative mb-2 overflow-hidden">
-                        <img class="lazyload h-[26rem] w-full object-cover rounded-xl"
+                    <div class="relative mb-4 overflow-hidden">
+                        <img class="lazyload h-[26rem] w-full object-cover rounded-lg"
                             src="{{ asset('assets/images/shops/' . $shops[0]['image']) }}" alt="">
                     </div>
-                    <div class="relative grid grid-cols-3 mb-2 gap-2 overflow-hidden">
-                        <img class="lazyload h-[10rem] w-full object-cover rounded-xl"
+                    <div class="relative grid grid-cols-3 mb-2 gap-4 overflow-hidden">
+                        <img class="lazyload h-[10rem] w-full object-cover rounded-lg"
                             src="{{ asset('assets/images/shops/' . $shops[0]['image']) }}" alt="">
-                        <img class="lazyload h-[10rem] w-full object-cover rounded-xl"
+                        <img class="lazyload h-[10rem] w-full object-cover rounded-lg"
                             src="{{ asset('assets/images/shops/' . $shops[0]['image']) }}" alt="">
-                        <img class="lazyload h-[10rem] w-full object-cover rounded-xl"
+                        <img class="lazyload h-[10rem] w-full object-cover rounded-lg"
                             src="{{ asset('assets/images/shops/' . $shops[0]['image']) }}" alt="">
                     </div>
                 </div>
@@ -235,10 +235,10 @@
                             {{-- Initially display the first category's services --}}
                             <div class="flex justify-between items-center p-2 border-b border-black">
                                 <div class="p-2">
-                                    <div class="font-medium text-lg">{{ $serviceItem['service_name'] }}</div>
-                                    <div class="text-sm opacity-80">{{ $serviceItem['duration'] }} Minutes</div>
+                                    <div class="font-medium">{{ $serviceItem['service_name'] }}</div>
+                                    <div class="text- opacity-80">{{ $serviceItem['duration'] }} Minutes</div>
                                 </div>
-                                <div class="p-2 font-medium text-lg">Php {{ number_format($serviceItem['price'], 2) }}
+                                <div class="p-2 font-medium">Php {{ number_format($serviceItem['price'], 2) }}
                                 </div>
                             </div>
                         @endforeach
@@ -397,11 +397,11 @@
                 {{-- Shop Name, Availability and Rating --}}
                 <div class="flex flex-col items-start mb-1">
                     {{-- Shop Name, Availability --}}
-                    <div class="font-medium text-2xl text-brand-300 mb-2">{{ $shops[0]['availability'] }}</div>
+                    <div class=" text-brand-300 mb-2">{{ $shops[0]['availability'] }}</div>
                     <div class="font-clash font-medium text-4xl mb-2">{{ $shops[0]['name'] }}</div>
 
                     {{-- Shop Rating --}}
-                    <div class="flex items-center gap-2 mb-10">
+                    <div class="flex items-center gap-2 mb-4">
                         <div class="font-semibold">{{ $shops[0]['rating'] }}</div>
                         <svg width="78" height="14" viewBox="0 0 57 9" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -426,9 +426,9 @@
                 </div>
 
                 {{-- Shop Branches and Book Now Button --}}
-                <form action="" method="POST">
+                <form action="" method="POST" class=" mb-4">
                     {{-- Branches --}}
-                    <div class="flex flex-col gap-2 w-full mb-4">
+                    <div class="flex flex-col gap-2 w-full mb-8">
                         <div class="relative flex items-center">
                             <select class="border border-neutral-400 py-3 px-4 rounded-lg w-full" name="branch"
                                 id="branch">
@@ -449,9 +449,12 @@
 
                     {{-- Book Now Button --}}
                     <div class="w-full">
-                        <button type="submit"
-                            class="bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-full p-3 font-medium w-full">Book
-                            Now</button>
+                        <a href="{{ route('book-appointment') }}"> {{-- Remove the anchor tags once the backend is --}}
+                            <div
+                                class="bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-full p-3 font-medium w-full grid place-items-center">
+                                Book Now
+                            </div>
+                        </a>
                     </div>
                 </form>
 
@@ -469,7 +472,7 @@
                                     stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <div class="p-2 font-medium text-lg">Open until {{ $shop_schedule[0]['time_close'] }} </div>
+                        <div class="p-2 text-sm">Open until {{ $shop_schedule[0]['time_close'] }} </div>
                     </div>
                     {{-- Share --}}
                     <a href="" class="flex mb-1 hover:bg-neutral-100 rounded-lg">
@@ -481,7 +484,7 @@
                                     stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <div class="p-2 font-medium text-lg">Share</div>
+                        <div class="p-2 text-sm">Share</div>
                     </a>
                     {{-- Report --}}
                     <a href="" class="flex mb-1 hover:bg-neutral-100 rounded-lg">
@@ -493,7 +496,7 @@
                                     stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <div class="p-2 font-medium text-lg">Report</div>
+                        <div class="p-2 text-sm">Report</div>
                     </a>
                 </div>
             </div>
@@ -512,7 +515,7 @@
 
         <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10">
             @for ($i = 0; $i < 6; $i++)
-                <x-shop-card :shops="$shops" :i="$i" />
+                <x-shop-card :shops="$shops" :i="$i" :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
             @endfor
         </div>
 
@@ -522,5 +525,6 @@
         window.shops = @json($shops);
     </script>
     <script src="{{ asset('assets/js/explore.js') }}"></script>
+    <script src="{{ asset('assets/js/view-service.js') }}"></script>
     @stack('scripts')
 </x-user-layout>

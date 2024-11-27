@@ -1,16 +1,16 @@
 CREATE TABLE accounts (
-    account_id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each account
+    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each account
     username VARCHAR(50) NOT NULL UNIQUE,      -- Unique username for the account
     email VARCHAR(100) NOT NULL UNIQUE,        -- Unique email for the account
     password VARCHAR(255) NOT NULL,            -- Encrypted password for the account
-    first_name VARCHAR(50) NOT NULL,           -- User's first name
-    last_name VARCHAR(50) NOT NULL,            -- User's last name
+    first_name VARCHAR(50),           -- User's first name
+    last_name VARCHAR(50),            -- User's last name
     gender ENUM('Male', 'Female', 'Other') DEFAULT 'Other', -- Gender with default value
-    contact_number VARCHAR(20) NOT NULL,       -- Contact number of the user
-    region VARCHAR(100) NOT NULL,              -- Region where the user resides
-    province VARCHAR(100) NOT NULL,            -- Province of the user
-    city VARCHAR(100) NOT NULL,                -- City of the user
-    barangay VARCHAR(100) NOT NULL,            -- Barangay of the user
+    contact_number VARCHAR(20),       -- Contact number of the user
+    region VARCHAR(100),              -- Region where the user resides
+    province VARCHAR(100),            -- Province of the user
+    city VARCHAR(100),                -- City of the user
+    barangay VARCHAR(100),            -- Barangay of the user
     detailed_address TEXT,                     -- Detailed address (optional for flexibility)
     profile_photo_path VARCHAR(255),           -- Path to the user's profile photo
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp of account creation
@@ -18,41 +18,43 @@ CREATE TABLE accounts (
 );
 
 CREATE TABLE account_roles (
-    account_role_id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each record
+    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each record
     account_id INT NOT NULL,                        -- Foreign key referencing accounts table
     role_id INT NOT NULL,                           -- Foreign key referencing roles table
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp for record creation
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp for updates
-    CONSTRAINT fk_account_roles_account FOREIGN KEY (account_id) REFERENCES accounts(account_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT fk_account_roles_role FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_account_roles_account FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_account_roles_role FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE ON UPDATE CASCADE,
     UNIQUE(account_id, role_id)                     -- Prevent duplicate combinations of account_id and role_id
 ); 
 
 CREATE TABLE roles (
-    role_id INT AUTO_INCREMENT PRIMARY KEY,    -- Unique identifier for each role
+    id INT AUTO_INCREMENT PRIMARY KEY,    -- Unique identifier for each role
     role_name VARCHAR(50) NOT NULL UNIQUE,     -- Name of the role (e.g., Customer, Shop Admin)
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp for record creation
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Timestamp for updates
 ); 
 
-CREATE TABLE shop (
+CREATE TABLE shops (
     shop_id INT AUTO_INCREMENT PRIMARY KEY,       -- Unique identifier for each shop
     shop_name VARCHAR(100) NOT NULL UNIQUE,       -- Name of the shop
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp for record creation
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Timestamp for updates
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp for updates
+    CONSTRAINT fk_shop_owner FOREIGN KEY (shop_owner_id) REFERENCES accounts(account_id) 
+        ON DELETE CASCADE ON UPDATE CASCADE,
 ); 
 
 CREATE TABLE shop_account (
     shop_account_id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each record
-    account_id INT NOT NULL,                        -- Foreign key referencing accounts table
+    shop_owner_id INT NOT NULL,                        -- Foreign key referencing accounts table
     shop_id INT NOT NULL,                           -- Foreign key referencing shop table
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp for record creation
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp for updates
-    CONSTRAINT fk_shop_account_account FOREIGN KEY (account_id) REFERENCES accounts(account_id) 
+    CONSTRAINT fk_shop_account_owner FOREIGN KEY (shop_owner_id) REFERENCES accounts(account_id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_shop_account_shop FOREIGN KEY (shop_id) REFERENCES shop(shop_id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
-    UNIQUE KEY unique_account_shop (account_id, shop_id) -- Prevent duplicate combinations of account_id and shop_id
+    UNIQUE KEY unique_account_shop (shop_owner_id, shop_id) -- Prevent duplicate combinations of account_id and shop_id
 ); 
 
 CREATE TABLE shop_branch (
@@ -66,6 +68,7 @@ CREATE TABLE shop_branch (
     barangay VARCHAR(100),                             -- Barangay of the branch
     detailed_address TEXT,                             -- Detailed address of the branch
     availability ENUM('Available', 'Unavailable') DEFAULT 'Available', -- Availability status
+    is_verified BOOLEAN DEFAULT FALSE,                 -- Verification status
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,    -- Record creation timestamp
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Record update timestamp
     CONSTRAINT fk_shop_branch_shop FOREIGN KEY (shop_id) REFERENCES shop(shop_id)
@@ -73,7 +76,7 @@ CREATE TABLE shop_branch (
 ); 
 
 CREATE TABLE shop_gallery (
-    shop_gallery_id INT AUTO_INCREMENT PRIMARY KEY,    -- Unique identifier for each gallery entry
+    id INT AUTO_INCREMENT PRIMARY KEY,    -- Unique identifier for each gallery entry
     branch_id INT NOT NULL,                            -- Foreign key referencing shop_branch table
     img_url TEXT NOT NULL,                             -- URL of the image
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,    -- Record creation timestamp
@@ -94,21 +97,37 @@ CREATE TABLE operation_hours (
         ON DELETE CASCADE ON UPDATE CASCADE
 ); 
 
-CREATE TABLE branch_categories (
-    branch_category_id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each record
+CREATE TABLE branch_category (
+    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each record
+    category_name VARCHAR(100) NOT NULL UNIQUE, -- Name of the category
+);
+
+CREATE TABLE branch_branch_category (
+    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each record
+    branch_id INT NOT NULL,            -- Foreign key referencing shop_branch table
+    branch_category_id INT NOT NULL,   -- Foreign key referencing branch_categories table
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Record creation timestamp
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Record update timestamp
+    CONSTRAINT fk_branch_branch_categories_branch FOREIGN KEY (branch_id) REFERENCES shop_branch(branch_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_branch_branch_categories_category FOREIGN KEY (branch_category_id) REFERENCES branch_categories(id),
+);
+
+CREATE TABLE branch_service_categories (
+    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each record
     branch_id INT NOT NULL,                              -- Foreign key referencing shop_branch table
-    category_id INT NOT NULL,                            -- Foreign key referencing appointment_categories table
+    service_category_id INT NOT NULL,                            -- Foreign key referencing service_categories table
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,      -- Record creation timestamp
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Record update timestamp
     CONSTRAINT fk_branch_categories_branch FOREIGN KEY (branch_id) REFERENCES shop_branch(branch_id)
         ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT fk_branch_categories_category FOREIGN KEY (category_id) REFERENCES appointment_categories(category_id)
+    CONSTRAINT fk_branch_categories_category FOREIGN KEY (service_category_id) REFERENCES service_categories(service_category_id)
         ON DELETE CASCADE ON UPDATE CASCADE,
-    UNIQUE KEY unique_branch_category (branch_id, category_id) -- Prevent duplicate combinations
+    UNIQUE KEY unique_branch_category (branch_id, service_category_id) -- Prevent duplicate combinations
 );
 
-CREATE TABLE appointment_categories (
-    category_id INT AUTO_INCREMENT PRIMARY KEY,        -- Unique identifier for each category
+CREATE TABLE service_categories (
+    service_category_id INT AUTO_INCREMENT PRIMARY KEY,        -- Unique identifier for each category
     category_name VARCHAR(100) NOT NULL UNIQUE,        -- Name of the category
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,    -- Record creation timestamp
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Record update timestamp
@@ -126,6 +145,20 @@ CREATE TABLE branch_appointment_types (
         ON DELETE CASCADE ON UPDATE CASCADE,
     UNIQUE KEY unique_branch_appointment_type (branch_id, appointment_type_id) -- Prevent duplicate combinations
 ); 
+
+CREATE TABLE appointments (
+    appointment_id INT AUTO_INCREMENT PRIMARY KEY,
+    branch_appointment_type_id INT NOT NULL,
+    appointment_schedule DATETIME NOT NULL,
+    status ENUM('Pending', 'Confirmed', 'Completed', 'Cancelled', 'Rescheduled') DEFAULT 'Pending',
+    total_price DECIMAL(10, 2) NOT NULL,
+    rescheduled_from INT DEFAULT NULL,
+    reschedule_count INT DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (branch_appointment_type_id) REFERENCES branch_appointment_types(branch_appointment_type_id),
+    FOREIGN KEY (rescheduled_from) REFERENCES appointments(appointment_id)
+);
 
 CREATE TABLE appointment_types (
     appointment_type_id INT AUTO_INCREMENT PRIMARY KEY,       -- Unique identifier for each appointment type
@@ -259,4 +292,14 @@ CREATE TABLE appointment_employee (
     FOREIGN KEY (appointment_id) REFERENCES appointments(appointment_id),
     FOREIGN KEY (branch_id) REFERENCES shop_branch(branch_id),
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+);
+
+CREATE TABLE reschedule_logs (
+    reschedule_log_id INT AUTO_INCREMENT PRIMARY KEY,
+    appointment_id INT NOT NULL,
+    old_schedule DATETIME NOT NULL,
+    new_schedule DATETIME NOT NULL,
+    reschedule_reason VARCHAR(255) DEFAULT NULL,
+    reschedule_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (appointment_id) REFERENCES appointments(appointment_id)
 );

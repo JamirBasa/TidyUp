@@ -104,7 +104,7 @@
         ],
     ];
 @endphp
-<x-shop-layout :user="$user">
+<x-shop-layout :user="$user" :userrole="$userRole">
     <section class="space-y-4">
         <div class="flex gap-4">
             <div class="grid gap-4 shadow-sm flex-1">
@@ -113,9 +113,11 @@
                     <div class="border-b pb-4 px-6 -mx-6 mb-4">
                         <h1 class="font-bold">Branch Information</h1>
                     </div>
-                    <p class="mb-4">Branch Owner: Dean Wong</p>
+                    <p class="mb-4">Current Branch: {{ $shopBranches[0]->branch_name }}</p>
+                    <p class="mb-4">Branch Manager: Dean Wong</p>
                     <p class="mb-4">Appointments: 12</p>
-                    <p class="">Location: {{ $shopAddress[0]->detailed_address }}</p>
+                    <p class="">Location: {{ $shopBranches[0]->detailed_address }}</p>
+
                 </div>
                 {{-- View As Wrapper --}}
                 <div class="bg-white p-6 rounded-lg shadow-sm">
@@ -131,7 +133,12 @@
                             <x-user-profile-pic />
                         </div>
                         <div class="grid gap-2">
-                            <p class="font-bold">{{ $user->first_name . ' ' . $user->last_name }}</p>
+                            @if ($shopOwner[0]->first_name && $shopOwner[0]->last_name)
+                                <p class="font-bold">{{ $shopOwner[0]->first_name + ' ' + $shopOwner[0]->last_name }}
+                                </p>
+                            @else
+                                <p class="font-bold">{{ $shopOwner[0]->username }}</p>
+                            @endif
                             <p>Shop Owner</p>
                         </div>
                     </div>
@@ -199,8 +206,9 @@
                     <select class="border shadow-md w-[10rem] py-2 px-8 rounded-lg text-xs" id="branchSelect"
                         name="branch">
                         <option value="">All Branch</option>
-                        <option value="{{ $shopAddress[0]->barangay }}">{{ $shopAddress[0]->barangay }} Branch</option>
-                        <option value="KCC">KCC Branch</option>
+                        @foreach ($shopBranches as $shopBranch)
+                            <option value="{{ $shopBranch->branch_name }}">{{ $shopBranch->branch_name }}</option>
+                        @endforeach
                     </select>
                     <svg id="caret-down4" class="absolute stroke-black stroke-1 right-3 pointer-events-none"
                         width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -281,9 +289,11 @@
                         </svg>
                         <select class="border shadow-md w-[10rem] py-2 px-8 rounded-lg text-xs" id="branchSelect"
                             name="branch">
-                            <option value="{{ $shopAddress[0]->barangay }}">{{ $shopAddress[0]->barangay }} Branch
-                            </option>
-                            <option value="KCC">KCC Branch</option>
+                            @foreach ($shopBranches as $shopBranch)
+                                <option value="{{ $shopBranch->branch_name }}">{{ $shopBranch->branch_name }}
+                                </option>
+                            @endforeach
+
                         </select>
                         <svg id="caret-down4" class="absolute stroke-black stroke-1 right-3 pointer-events-none"
                             width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -388,8 +398,9 @@
                 <select class="border shadow-md w-[10rem] py-2 px-8 rounded-lg text-xs" id="branchSelect"
                     name="branch">
                     <option value="">All Branch</option>
-                    <option value="{{ $shopAddress[0]->barangay }}">{{ $shopAddress[0]->barangay }} Branch</option>
-                    <option value="KCC">KCC Branch</option>
+                    @foreach ($shopBranches as $shopBranch)
+                        <option value="{{ $shopBranch->branch_name }}">{{ $shopBranch->branch_name }}</option>
+                    @endforeach
                 </select>
                 <svg id="caret-down4" class="absolute stroke-black stroke-1 right-3 pointer-events-none"
                     width="24" height="24" viewBox="0 0 24 24" fill="none"

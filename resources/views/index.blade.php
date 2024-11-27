@@ -1,4 +1,3 @@
-{{-- <x-user-layout :user="$user"> --}}
 @php
     // THIS IS JUST TEMPORARY DONT MIND THIS PART OF THE CODE
     $shops = [
@@ -47,7 +46,7 @@
     ];
 @endphp
 
-<x-user-layout :user="$user">
+<x-user-layout :user="$user" :userrole="$userRole">
     <div class="">
         {{-- Hero Section --}}
         <div class="flex mb-20 gap-10">
@@ -162,8 +161,4 @@
         <script src="{{ asset('assets/js/sidebar.js') }}"></script>
         @stack('scripts')
     </div>
-
 </x-user-layout>
-
-
-{{-- </x-user-layout> --}}

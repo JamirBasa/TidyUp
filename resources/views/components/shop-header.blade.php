@@ -1,4 +1,4 @@
-@props(['user'])
+@props(['user', 'userrole'])
 <header class="transition-all duration-1000 ease-in-out fixed top-0 left-0 right-0 z-20">
     <nav class=" flex items-center  justify-between px-6">
         <!-- logo -->
@@ -33,7 +33,7 @@
                     <div class="size-12">
                         <x-user-profile-pic />
                     </div>
-                    <x-profile-dropdown :user="$user" />
+                    <x-profile-dropdown :user="$user" :userrole="$userrole" />
                 </div>
             </div>
 

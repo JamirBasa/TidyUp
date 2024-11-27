@@ -54,13 +54,14 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         ];
     }
 
-    public function addresses()
-    {
-        return $this->hasMany(Address::class); // A user can have multiple addresses
-    }
 
     public function user()
     {
         return $this->belongsTo(User::class); // Each address belongs to a user
+    }
+
+    public function userRole()
+    {
+        return $this->hasOne(UserRole::class); // Each user has one role
     }
 }

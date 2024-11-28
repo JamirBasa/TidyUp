@@ -1,5 +1,6 @@
 @php
     $currentBranch = $shopBranches->where('id', $branchId)->first();
+
 @endphp
 <x-user-layout :user="$sidebarData['user']" :userrole="$sidebarData['userRole']">
     {{-- View Shop --}}
@@ -212,7 +213,6 @@
                                     <div class="h-4 bg-brand-300 rounded-full" style="width: 100%"></div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="flex items-center justify-center gap-4">
                             <div class="p-2 font-semibold text-xl">4</div>
@@ -328,6 +328,7 @@
                     <div class="relative">
                         <button class="branch-change-btn  transition-transform ease-in-out group">
                             <svg class="stroke-1 stroke-black group-hover:scale-105 group-hover:stroke-2"
+
                                 width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path

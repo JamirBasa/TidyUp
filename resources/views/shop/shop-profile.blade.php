@@ -134,7 +134,7 @@
                 </div>
                 <div class="flex-1 flex flex-col gap-2">
                     @php
-                        $barSizes = [0, 0, 0, 0, 0, 0];
+                        $barSizes = [0, 50, 0, 0, 50, 0];
                     @endphp
                     @for ($i = 5; $i > 0; $i--)
                         <div class="flex items-center gap-3">

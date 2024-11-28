@@ -58,7 +58,7 @@
         [
             'shop_id' => '1',
             'branch_id' => '1',
-            'branch' => 'Tetuan Branch',
+            'branch' => 'Main Branch',
         ],
         [
             'shop_id' => '1',

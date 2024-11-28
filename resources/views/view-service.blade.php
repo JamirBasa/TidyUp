@@ -58,7 +58,7 @@
         [
             'shop_id' => '1',
             'branch_id' => '1',
-            'branch' => 'Tetuan Branch',
+            'branch' => 'Main Branch',
         ],
         [
             'shop_id' => '1',
@@ -229,19 +229,43 @@
                         @endforeach
                     </div>
 
+
                     {{-- Services List --}}
                     <div id="services-list">
-                        @foreach ($service[0]['services'] as $serviceItem)
-                            {{-- Initially display the first category's services --}}
-                            <div class="flex justify-between items-center p-2 border-b border-black">
-                                <div class="p-2">
-                                    <div class="font-medium">{{ $serviceItem['service_name'] }}</div>
-                                    <div class="text- opacity-80">{{ $serviceItem['duration'] }} Minutes</div>
-                                </div>
-                                <div class="p-2 font-medium">Php {{ number_format($serviceItem['price'], 2) }}
-                                </div>
-                            </div>
-                        @endforeach
+                        <table
+                            class="mt-4 w-full text-medium text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                            <thead class=" text-gray-900 uppercase border-b dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Service Name
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Duration
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Price
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($service[0]['services'] as $serviceItem)
+                                    <tr class="border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <th scope="row"
+                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{ $serviceItem['service_name'] }}
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            {{ $serviceItem['duration'] }} Minutes
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            Php {{ number_format($serviceItem['price'], 2) }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -432,7 +456,6 @@
                         <div class="relative flex items-center">
                             <select class="border border-neutral-400 py-3 px-4 rounded-lg w-full" name="branch"
                                 id="branch">
-                                <option value="" class="appearance-none">Select Branch</option>
                                 @for ($i = 0; $i < 3; $i++)
                                     <option value="{{ $shop_branches[$i]['branch'] }}" class="appearance-none">
                                         {{ $shop_branches[$i]['branch'] }}</option>

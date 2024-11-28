@@ -1,4 +1,4 @@
-<x-user-layout :user="$user">
+<x-user-layout :user="$user" :userrole="$userRole">
     <section>
         <div class="flex items-center justify-between mb-6">
             <div class="w-[5rem]">

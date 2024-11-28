@@ -21,11 +21,6 @@ class ShopController extends Controller
         // dd($shopBranches);
         return view('shop.index', ['shops' => $shops, 'user' => $user, 'shopBranches' => $shopBranches, 'userrole' => $userRole]);
     }
-
-
-
-
-
     public function manageBranches(Request $request)
     {
         $user = $request->user();

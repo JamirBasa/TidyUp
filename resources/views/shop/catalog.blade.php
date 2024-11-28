@@ -17,7 +17,8 @@
                 <select class="border border-neutral-400 w-[13rem] py-3 px-10 rounded-lg" id="branchSelect"
                     name="branch">
                     @foreach ($shopBranches as $branch)
-                        <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                        <option value="{{ $branch->id }}" data-branch-selected="{{ $branch->id }}">
+                            {{ $branch->branch_name }}</option>
                     @endforeach
                 </select>
                 <svg id="caret-down4" class="absolute stroke-black stroke-1 right-3 pointer-events-none" width="24"
@@ -84,7 +85,8 @@
                         @endphp
                         @if ($serviceCategory->id == $branchServiceCategory[0]->service_category_id)
                             <button id="category-button[{{ $index }}]"
-                                class="flex items-center justify-between p-4 w-full rounded-lg">
+                                class="flex items-center justify-between p-4 w-full rounded-lg"
+                                data-category-selected="{{ $serviceCategory->id }}">
                                 {{ $serviceCategory->category_name }}
                             </button>
                         @endif
@@ -265,15 +267,24 @@
                 <h1 class="font-bold">Services</h1>
                 <h1 class="font-bold">Price</h1>
             </div>
-            {{-- @foreach ($services[0] as $service)
-                <div class="flex items-center justify-between py-3 px-4">
+
+
+            @php
+                $services = DB::table('branch_service_categories')
+                    ->where('service_category_id', $serviceCategories[0]->id)
+                    ->get(['service_name', 'duration', 'cost']);
+            @endphp
+
+            @foreach ($services as $service)
+                <div class="flex items-center justify-between py-3 px-4 space-y-2">
                     <div>
-                        <h1 class="">{{ $service['name'] }}</h1>
-                        <p class="text-xs">30 minutes</p>
+                        <h1>{{ $service->service_name }}</h1>
+                        <p class="text-xs">{{ $service->duration }} minutes</p>
                     </div>
-                    <h1 class="">Php {{ $service['price'] }}.00</h1>
+                    <h1>Php {{ $service->cost }}.00</h1>
                 </div>
-            @endforeach --}}
+            @endforeach
+
         </div>
         <script></script>
         <script src="{{ asset('assets/js/shop/catalog.js') }}"></script>

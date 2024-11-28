@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             DefaultUserSeeder::class,
             DefaultShopSeeder::class,
             DefaultShopBranchSeeder::class,
+            ShopImageSeeder::class,
         ]);
     }
 }

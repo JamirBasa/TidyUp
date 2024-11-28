@@ -94,7 +94,9 @@ class SidebarController extends Controller
             ->join('shops as s', 'sb.shop_id', '=', 's.id')
             ->select('sc.id', 'sc.category_name', 'bsc.service_name', 'bsc.duration', 'bsc.cost', 'bsc.branch_id',  's.id as shop_id')
             ->get();
-
+        $currentBranch = $shopBranches->where('id', $branchId)->first();
+        $shopBranchesCount = $shopBranches->count();
+        $firstImage = $shopGallery->where('branch_id', $currentBranch->id)->first();
         // dd($branchServiceCategories->toArray());
         return view('view-service', [
             'viewShop' => $ShopId,
@@ -106,7 +108,10 @@ class SidebarController extends Controller
             'shopName' => $shopName,
             'operationHours' => $operationHours,
             'branchServiceCategories' => $branchServiceCategories,
-            'branchId' => $branchId
+            'currentBranch' => $currentBranch,
+            'shopBranchesCount' => $shopBranchesCount,
+            'branchId' => $branchId,
+            'firstImage' => $firstImage
         ]);
     }
     public function popular(Request $request)

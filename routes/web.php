@@ -29,10 +29,7 @@ Route::get('/faqs', [SidebarController::class, 'faqs'])->name('faqs');
 Route::get('/send-feedback', [SidebarController::class, 'sendFeedback'])->name('send-feedback');
 Route::get('/report', [SidebarController::class, 'reportIssue'])->name('report-issue');
 Route::get('/view/shop/{id}/{branchId}', [SidebarController::class, 'view'])->name('shop.view');
-Route::get('/book-appointment', [AppointmentController::class, 'bookNow'])->name('book-appointment');
-Route::get('/book-appointment2', [AppointmentController::class, 'bookNow2'])->name('book-appointment2');
-Route::get('/book-appointment3', [AppointmentController::class, 'bookNow3'])->name('book-appointment3');
-Route::get('/book-appointment4', [AppointmentController::class, 'bookNow4'])->name('book-appointment4');
+
 
 //AJAX content routes
 // Route::get('/home', [SidebarController::class, 'homeContent'])->name('home.content');
@@ -59,6 +56,11 @@ Route::middleware('guest')->group(function () {
 //Routes that are only accessible to authenticated users
 Route::middleware('auth')->group(function () {
     Route::post('/user/logout', [AuthController::class, 'userLogout'])->name('user.logout');
+    Route::get('/book/shop/{id}/{branchId}', [AppointmentController::class, 'bookNow'])->name('book-appointment');
+    Route::get('/bookAppointment2', [AppointmentController::class, 'bookNow2'])->name('book-appointment2');
+    Route::get('/bookAppointment3', [AppointmentController::class, 'bookNow3'])->name('book-appointment3');
+    Route::get('/bookAppointment4', [AppointmentController::class, 'bookNow4'])->name('book-appointment4');
+    Route::post('/book/shop/{id}/{branchId}', [AppointmentController::class, 'firstProcess'])->name('first-process');
 
     // Only allow non-service providers to access registration routes
     Route::middleware(IsNotServiceProvider::class)->group(function () {

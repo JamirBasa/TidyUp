@@ -6,7 +6,7 @@
     $imagePath = asset('storage/' . ($shopGallery ? $shopGallery->path : ''));
     $shopBranchCategories = $branchcategory->filter(fn($item) => $item->shop_id === $shop->id)->unique('category_name');
 @endphp
-<a href="{{ route('shop.view', $shop->id) }}" class="">
+<a href="{{ route('shop.view', ['id' => $shop->id, 'branchId' => $shopBranch->id]) }}" class="{{ $class ?? '' }}">
     <div class="relative mb-2">
         {{-- shop image --}}
         {{-- asset('storage/' . $shopgallery[0]->path) --}}

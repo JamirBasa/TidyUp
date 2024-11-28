@@ -1,5 +1,3 @@
-@php
-@endphp
 <x-user-layout :user="$sidebarData['user']" :userrole="$sidebarData['userRole']">
     {{-- View Shop --}}
     <div class="content-section">
@@ -320,12 +318,13 @@
                     <div class=" text-brand-300 ">{{ $currentBranch->availability }}</div>
 
                     <div class="inline-flex items-center gap-2">
-                        @if (count($shopBranches) > 1)
-                            <h1 class="font-medium text-3xl ">{{ $currentBranch->branch_name }}
-                            @else
-                                <h1 class="text-4xl font-medium font-clash">{{ $shopName }}
-                        @endif
-                        </h1>
+                        <div class="w-auto max-w-[15rem]">
+                            @if (count($shopBranches) > 1)
+                                <h1 class="font-medium text-3xl text-balance">{{ $currentBranch->branch_name }}
+                                @else
+                                    <h1 class="text-4xl font-medium font-clash">{{ $shopName }}</h1>
+                            @endif
+                        </div>
                         <div class="relative">
                             {{-- Switch Button --}}
                             @if (count($shopBranches) > 1)
@@ -341,14 +340,14 @@
                             @endif
 
                             <div id="branch-dropdown"
-                                class="hidden absolute right-0 border mt-2 w-48 bg-white rounded-lg shadow overflow-hidden z-50">
+                                class="hidden absolute right-0 border mt-2 m-w-48 bg-white rounded-lg shadow overflow-hidden z-50">
                                 @foreach ($shopBranches as $branch)
                                     @if ($branch->id === $currentBranch->id)
                                         @continue
                                     @endif
                                     <a
                                         href="{{ route('shop.view', ['id' => $shop->id, 'branchId' => $branch->id]) }}">
-                                        <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                        <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-nowrap">
                                             {{ $branch->branch_name }}
                                         </div>
                                     </a>
@@ -379,32 +378,9 @@
                                 d="M52.5 0L54.0296 2.60796L57 3.24671L54.975 5.49727L55.2812 8.5L52.5 7.28296L49.7188 8.5L50.025 5.49727L48 3.24671L50.9704 2.60796L52.5 0Z"
                                 fill="#DFB300" />
                         </svg>
-                        <div class="font-medium text-brand-300">( 1500) </div>
+
                     </div>
                 </div>
-
-                {{-- Shop Branches and Book Now Button --}}
-                {{-- Branches
-                <div class="flex flex-col gap-2 w-full mb-8">
-                    <div class="relative flex items-center">
-                        <select class="border border-neutral-400 py-3 px-4 rounded-lg w-full" name="branch"
-                            id="branch">
-                            <option value="" class="appearance-none">Select Branch</option>
-                            @foreach ($shopBranches as $branch)
-                                <option id="branch-options" value="{{ $branch->name }}" class="appearance-none"
-                                    data-branch-id="{{ $branch->id }}">
-                                    {{ $branch->branch_name }}</option>
-                            @endforeach
-                        </select>
-
-                        <svg id="caret-down1" class="absolute stroke-black stroke-1 right-3 pointer-events-none"
-                            width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                </div> --}}
-
 
                 @if (count($shopBranches) > 1)
                     <div>

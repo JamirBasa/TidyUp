@@ -38,65 +38,6 @@ class DefaultUserSeeder extends Seeder
         $categoryIds = [[1, 2], [2], [3, 4]];
         $appointmentTypeIds = [[1, 2, 3], [1, 3], [1, 2]];
 
-        $services = [
-            [
-                'branch_id' => 1,
-                'service_category_id' => 1,
-                'service_name' => 'Burst Fade',
-                'cost' => 150.00,
-                'duration' => '45 minutes'
-            ],
-            [
-                'branch_id' => 2,
-                'service_category_id' => 1,
-                'service_name' => 'Undercut',
-                'cost' => 200.00,
-                'duration' => '45 minutes'
-            ],
-            [
-                'branch_id' => 1,
-                'service_category_id' => 3,
-                'service_name' => 'Basic Manicure',
-                'cost' => 250.00,
-                'duration' => '45 minutes'
-            ],
-            [
-                'branch_id' => 2,
-                'service_category_id' => 2,
-                'service_name' => 'Brazilian Blowout',
-                'cost' => 2500.00,
-                'duration' => '3 hours'
-            ],
-            [
-                'branch_id' => 3,
-                'service_category_id' => 3,
-                'service_name' => 'Classic Manicure',
-                'cost' => 350.00,
-                'duration' => '1 hour'
-            ],
-            [
-                'branch_id' => 3,
-                'service_category_id' => 3,
-                'service_name' => 'Gel Manicure',
-                'cost' => 550.00,
-                'duration' => '1 hour 30 minutes'
-            ],
-            [
-                'branch_id' => 3,
-                'service_category_id' => 4,
-                'service_name' => 'Classic Pedicure',
-                'cost' => 400.00,
-                'duration' => '1 hour'
-            ],
-            [
-                'branch_id' => 2,
-                'service_category_id' => 4,
-                'service_name' => 'Spa Pedicure',
-                'cost' => 600.00,
-                'duration' => '1 hour 30 minutes'
-            ],
-        ];
-
         // Create branch
         $branch = $shop->branches()->create([
             'shop_id' => $shop->id,
@@ -122,7 +63,7 @@ class DefaultUserSeeder extends Seeder
         ]);
         foreach ($days as $day) {
             // Set Sunday as closed, other days as open
-            $isOpen = ($day !== 'Sunday');
+            $isOpen = $day !== 'Sunday';
 
             DB::table('operation_hours')->insert([
                 'branch_id' => $branch->id,
@@ -134,6 +75,73 @@ class DefaultUserSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
+
+        $services1 = [
+            // Haircut services (category_id: 1)
+            [
+                'branch_id' => $branch->id,
+                'service_name' => 'Burst Fade',
+                'cost' => 150.00,
+                'duration' => '45 minutes',
+                'service_category_id' => 1
+            ],
+            [
+                'branch_id' => $branch->id,
+                'service_name' => 'Undercut',
+                'cost' => 200.00,
+                'duration' => '45 minutes',
+                'service_category_id' => 1
+            ],
+            [
+                'branch_id' => $branch->id,
+                'service_name' => 'Faded',
+                'cost' => 200.00,
+                'duration' => '45 minutes',
+                'service_category_id' => 1
+            ],
+            [
+                'branch_id' => $branch->id,
+                'service_name' => 'Crew Cut',
+                'cost' => 180.00,
+                'duration' => '30 minutes',
+                'service_category_id' => 1
+            ],
+            [
+                'branch_id' => $branch->id,
+                'service_name' => 'Classic Taper',
+                'cost' => 170.00,
+                'duration' => '40 minutes',
+                'service_category_id' => 1
+            ],
+            // Nail services (category_id: 3, 4)
+            [
+                'branch_id' => $branch->id,
+                'service_name' => 'Basic Manicure',
+                'cost' => 250.00,
+                'duration' => '45 minutes',
+                'service_category_id' => 3
+            ],
+            [
+                'branch_id' => $branch->id,
+                'service_name' => 'Not Basic Manicure',
+                'cost' => 1000.00,
+                'duration' => '1 hour',
+                'service_category_id' => 3
+            ],
+            [
+                'branch_id' => $branch->id,
+                'service_name' => 'Basic Manicure',
+                'cost' => 250.00,
+                'duration' => '45 minutes',
+                'service_category_id' => 4
+            ],
+        ];
+
+        // Add branch_id to all services
+        $services1 = array_map(function ($service) use ($branch) {
+            return array_merge($service, ['branch_id' => $branch->id]);
+        }, $services1);
+
 
         $branch3 = $shop->branches()->create([
             'shop_id' => $shop->id,
@@ -160,7 +168,7 @@ class DefaultUserSeeder extends Seeder
 
         foreach ($days as $day) {
             // Set Sunday as closed, other days as open
-            $isOpen = ($day !== 'Sunday' && $day !== 'Wednesday');
+            $isOpen = $day !== 'Sunday' && $day !== 'Wednesday';
 
             DB::table('operation_hours')->insert([
                 'branch_id' => $branch3->id,
@@ -172,6 +180,78 @@ class DefaultUserSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
+
+        $services2 = [
+            // Haircut services (category_id: 2)
+            [
+                'branch_id' => $branch3->id,
+                'service_name' => 'Brazilian Blowout',
+                'cost' => 2500.00,
+                'duration' => '3 hours',
+                'service_category_id' => 2
+            ],
+            [
+                'branch_id' => $branch3->id,
+                'service_name' => 'Hair Rebond',
+                'cost' => 2000.00,
+                'duration' => '2 hours',
+                'service_category_id' => 2
+            ],
+            [
+                'branch_id' => $branch3->id,
+                'service_name' => 'Hair Color',
+                'cost' => 1500.00,
+                'duration' => '1 hour 30 minutes',
+                'service_category_id' => 2
+            ],
+            [
+                'branch_id' => $branch3->id,
+                'service_name' => 'Haircut',
+                'cost' => 300.00,
+                'duration' => '30 minutes',
+                'service_category_id' => 2
+            ],
+            [
+                'branch_id' => $branch3->id,
+                'service_name' => 'Hair Treatment',
+                'cost' => 1000.00,
+                'duration' => '1 hour',
+                'service_category_id' => 2
+            ],
+            // Nail services (category_id: 3, 4)
+            [
+                'branch_id' => $branch3->id,
+                'service_name' => 'Classic Manicure',
+                'cost' => 350.00,
+                'duration' => '1 hour',
+                'service_category_id' => 3
+            ],
+            [
+                'branch_id' => $branch3->id,
+                'service_name' => 'Gel Manicure',
+                'cost' => 550.00,
+                'duration' => '1 hour 30 minutes',
+                'service_category_id' => 3
+            ],
+            [
+                'branch_id' => $branch3->id,
+                'service_name' => 'Classic Pedicure',
+                'cost' => 400.00,
+                'duration' => '1 hour',
+                'service_category_id' => 4
+            ],
+            [
+                'branch_id' => $branch3->id,
+                'service_name' => 'Spa Pedicure',
+                'cost' => 600.00,
+                'duration' => '1 hour 30 minutes',
+                'service_category_id' => 4
+            ],
+        ];
+        $services2 = array_map(function ($service) use ($branch3) {
+            return array_merge($service, ['branch_id' => $branch3->id]);
+        }, $services2);
+
 
         $branch4 = $shop->branches()->create([
             'shop_id' => $shop->id,
@@ -198,7 +278,7 @@ class DefaultUserSeeder extends Seeder
 
         foreach ($days as $day) {
             // Set Sunday as closed, other days as open
-            $isOpen = ($day !== 'Sunday' && $day !== 'Saturday');
+            $isOpen = $day !== 'Sunday' && $day !== 'Saturday';
 
             DB::table('operation_hours')->insert([
                 'branch_id' => $branch4->id,
@@ -211,13 +291,97 @@ class DefaultUserSeeder extends Seeder
             ]);
         }
 
-        $services = collect($services)->map(function ($service) {
-            return array_merge($service, [
+        $services3 = [
+            // Haircut services (category_id: 3)
+            [
+                'branch_id' => $branch4->id,
+                'service_name' => 'Haircut',
+                'cost' => 150.00,
+                'duration' => '30 minutes',
+                'service_category_id' => 3
+            ],
+            [
+                'branch_id' => $branch4->id,
+                'service_name' => 'Haircut',
+                'cost' => 150.00,
+                'duration' => '30 minutes',
+                'service_category_id' => 3
+            ],
+            [
+                'branch_id' => $branch4->id,
+                'service_name' => 'Haircut',
+                'cost' => 150.00,
+                'duration' => '30 minutes',
+                'service_category_id' => 3
+            ],
+            [
+                'branch_id' => $branch4->id,
+                'service_name' => 'Haircut',
+                'cost' => 150.00,
+                'duration' => '30 minutes',
+                'service_category_id' => 3
+            ],
+            [
+                'branch_id' => $branch4->id,
+                'service_name' => 'Haircut',
+                'cost' => 150.00,
+                'duration' => '30 minutes',
+                'service_category_id' => 3
+            ],
+            // Nail services (category_id: 4)
+            [
+                'branch_id' => $branch4->id,
+                'service_name' => 'Classic Pedicure',
+                'cost' => 400.00,
+                'duration' => '1 hour',
+                'service_category_id' => 4
+            ],
+            [
+                'branch_id' => $branch4->id,
+                'service_name' => 'Spa Pedicure',
+                'cost' => 600.00,
+                'duration' => '1 hour 30 minutes',
+                'service_category_id' => 4
+            ],
+            [
+                'branch_id' => $branch4->id,
+                'service_name' => 'Classic Pedicure',
+                'cost' => 400.00,
+                'duration' => '1 hour',
+                'service_category_id' => 4
+            ],
+            [
+                'branch_id' => $branch4->id,
+                'service_name' => 'Spa Pedicure',
+                'cost' => 600.00,
+                'duration' => '1 hour 30 minutes',
+                'service_category_id' => 4
+            ],
+        ];
+
+        $services1 = collect($services1)->map(function ($service1) {
+            return array_merge($service1, [
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
         })->toArray();
 
-        DB::table('branch_service_categories')->insert($services);
+        $services2 = collect($services2)->map(function ($service2) {
+            return array_merge($service2, [
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        })->toArray();
+
+        $services3 = collect($services3)->map(function ($service3) {
+            return array_merge($service3, [
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        })->toArray();
+
+        DB::table('branch_service_categories')->insert($services1);
+        DB::table('branch_service_categories')->insert($services2);
+        DB::table('branch_service_categories')->insert($services3);
     }
 }

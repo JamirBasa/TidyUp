@@ -1,4 +1,4 @@
-<x-user-layout :user="$user">
+<x-user-layout :user="$user" :userrole="$userRole">
     <section class="max-w-7xl mx-auto px-4 py-8">
         <!-- Header Navigation -->
         <div class="flex items-center justify-between mb-6">

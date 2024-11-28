@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class BranchCategory extends Model
 {
     //
+
+
     protected $table = 'branch_branch_category';
     protected $fillable = [
         'branch_id',

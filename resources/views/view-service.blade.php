@@ -1,122 +1,4 @@
-@php
-    $shops = [
-        [
-            'name' => 'Paul\'s Barbershop',
-            'tag' => 'Barbershop',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '5.0',
-            'image' => '1.png',
-            'availability' => 'Available',
-            'shop_reviews' => '1500',
-        ],
-        [
-            'name' => 'Jamir\'s Beauty Lounge',
-            'tag' => 'Beauty Salon',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.0',
-            'image' => '2.png',
-        ],
-        [
-            'name' => 'Art\'s Canvas',
-            'tag' => 'Barbershop',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '5.0',
-            'image' => '3.png',
-        ],
-        [
-            'name' => 'Mosses\' Nail Salon',
-            'tag' => 'Nail Salon',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.5',
-            'image' => '4.png',
-        ],
-        [
-            'name' => 'La Barberia de Jeco',
-            'tag' => 'Barbershop',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.9',
-            'image' => '5.png',
-        ],
-        [
-            'name' => 'Elevation Gents',
-            'tag' => 'Barbershop',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '5.0',
-            'image' => '6.png',
-        ],
-    ];
-
-    $shop_schedule = [
-        [
-            'day_open' => 'MON-SAT',
-            'time_open' => '10:00 AM',
-            'time_close' => '7:00 PM',
-        ],
-    ];
-
-    $shop_branches = [
-        [
-            'shop_id' => '1',
-            'branch_id' => '1',
-            'branch' => 'Main Branch',
-        ],
-        [
-            'shop_id' => '1',
-            'branch_id' => '2',
-            'branch' => 'Culianan Branch',
-        ],
-        [
-            'shop_id' => '1',
-            'branch_id' => '3',
-            'branch' => 'San Jose Gusu Branch',
-        ],
-    ];
-
-    $category = [
-        [
-            'category_id' => '1',
-            'category_name' => 'Haircut',
-        ],
-        [
-            'category_id' => '2',
-            'category_name' => 'Hairstyling',
-        ],
-        [
-            'category_id' => '3',
-            'category_name' => 'Grooming',
-        ],
-    ];
-
-    $service = [
-        [
-            'category_id' => '1',
-            'services' => [
-                ['service_id' => '1', 'service_name' => 'Buzz Cut', 'duration' => 20, 'price' => 150],
-                ['service_id' => '2', 'service_name' => 'Fade Cut', 'duration' => 30, 'price' => 250],
-                ['service_id' => '3', 'service_name' => 'Crew Cut', 'duration' => 25, 'price' => 200],
-            ],
-        ],
-        [
-            'category_id' => '2',
-            'services' => [
-                ['service_id' => '4', 'service_name' => 'Blow Dry', 'duration' => 40, 'price' => 350],
-                ['service_id' => '5', 'service_name' => 'Curls & Waves', 'duration' => 60, 'price' => 500],
-                ['service_id' => '6', 'service_name' => 'Straightening', 'duration' => 90, 'price' => 700],
-            ],
-        ],
-        [
-            'category_id' => '3',
-            'services' => [
-                ['service_id' => '7', 'service_name' => 'Beard Trim', 'duration' => 15, 'price' => 100],
-                ['service_id' => '8', 'service_name' => 'Shave', 'duration' => 30, 'price' => 150],
-                ['service_id' => '9', 'service_name' => 'Eyebrow Shaping', 'duration' => 20, 'price' => 120],
-            ],
-        ],
-    ];
-
-@endphp
-
-<x-user-layout :user="$user" :userrole="$userRole">
+<x-user-layout :user="$sidebarData['user']" :userrole="$sidebarData['userRole']">
     {{-- View Shop --}}
     <div class="content-section">
 
@@ -124,20 +6,20 @@
 
         <div class="flex items-center gap-4 mb-1">
             {{-- Shop Name --}}
-            <div class="p-2 font-clash font-medium text-2xl">{{ $shops[0]['name'] }}</div>
+            <div class="p-2 font-clash font-medium text-2xl">{{ $shopName }}</div>
             <svg width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="2.5" cy="3" r="2.5" fill="black" />
             </svg>
             {{-- Shop Availability --}}
-            <div class="p-2 font-medium text-brand-300">{{ $shops[0]['availability'] }}</div>
+            <div class="p-2 font-medium text-brand-300 text-lg">{{ $currentBranch->availability }}</div>
         </div>
 
         {{-- Shop Rating, Shop Schedule and Shop Location --}}
 
-        <div class="flex items-center gap-4 mb-4">
+        <div class="flex items-center gap-4 mb-4 overflow-hidden">
             {{-- Shop Rating --}}
             <div class="flex items-center justify-between">
-                <div class="p-2">{{ $shops[0]['rating'] }}</div>
+                <div class="p-2">5.0</div>
                 <svg width="78" height="14" viewBox="0 0 57 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M4.5 0L6.02963 2.60796L9 3.24671L6.975 5.49727L7.28115 8.5L4.5 7.28296L1.71885 8.5L2.025 5.49727L0 3.24671L2.97037 2.60796L4.5 0Z"
@@ -155,19 +37,26 @@
                         d="M52.5 0L54.0296 2.60796L57 3.24671L54.975 5.49727L55.2812 8.5L52.5 7.28296L49.7188 8.5L50.025 5.49727L48 3.24671L50.9704 2.60796L52.5 0Z"
                         fill="#DFB300" />
                 </svg>
-                <div class="p-2 font-medium text-brand-300">({{ $shops[0]['shop_reviews'] }}) </div>
+                <div class="p-2 font-medium text-brand-300">(1500) </div>
             </div>
             <svg width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="2.5" cy="3" r="2.5" fill="black" />
             </svg>
             {{-- Shop Schedule --}}
-            <div class="p-2">Open {{ $shop_schedule[0]['day_open'] }} from
-                {{ $shop_schedule[0]['time_open'] }} - {{ $shop_schedule[0]['time_close'] }} </div>
+            @php
+                $operationFirstDay = $operationHours->where('branch_id', $currentBranch->id)->first();
+                $operationLastDay = $operationHours->where('branch_id', $currentBranch->id)->last();
+                $openingTime = date('h:i A', strtotime($operationFirstDay->opening_time));
+                $closingTime = date('h:i A', strtotime($operationLastDay->closing_time));
+            @endphp
+            <div class="p-2 uppercase">Open {{ substr($operationFirstDay->day, 0, 3) }} -
+                {{ substr($operationLastDay->day, 0, 3) }} from
+                {{ $openingTime }} - {{ $closingTime }} </div>
             <svg width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="2.5" cy="3" r="2.5" fill="black" />
             </svg>
             {{-- Shop Location --}}
-            <div class="p-2">{{ $shops[0]['location'] }}</div>
+            <div class="p-2">{{ $currentBranch->detailed_address }}</div>
         </div>
 
         {{-- Grid Layout --}}
@@ -176,25 +65,42 @@
             {{-- Service Information --}}
             <div class="grid grid-cols-1 gap-2 col-span-2">
 
-                {{-- Shop Gallery --}}
-                <div class="mb-20">
+
+                {{-- Displaye pictures --}}
+                <div class="mb-4">
                     <div class="relative mb-4 overflow-hidden">
-                        <img class="lazyload h-[26rem] w-full object-cover rounded-lg"
-                            src="{{ asset('assets/images/shops/' . $shops[0]['image']) }}" alt="">
+                        @php
+                            $imagePath = $firstImage
+                                ? asset('storage/' . $firstImage->path)
+                                : asset('path/to/default/image.jpg');
+                        @endphp
+                        <img id="displayPicture" class="h-[26rem] w-full object-cover rounded-lg" loading="lazy"
+                            src="{{ $imagePath }}" alt="Shop Display Image">
                     </div>
+                    {{-- 3 more pictures --}}
                     <div class="relative grid grid-cols-3 mb-2 gap-4 overflow-hidden">
-                        <img class="lazyload h-[10rem] w-full object-cover rounded-lg"
-                            src="{{ asset('assets/images/shops/' . $shops[0]['image']) }}" alt="">
-                        <img class="lazyload h-[10rem] w-full object-cover rounded-lg"
-                            src="{{ asset('assets/images/shops/' . $shops[0]['image']) }}" alt="">
-                        <img class="lazyload h-[10rem] w-full object-cover rounded-lg"
-                            src="{{ asset('assets/images/shops/' . $shops[0]['image']) }}" alt="">
+                        @foreach ($shopGallery as $image)
+                            @php
+                                $imagePath = asset('storage/' . $image->path);
+                            @endphp
+                            @if ($image->branch_id !== $currentBranch->id)
+                                @continue
+                            @endif
+                            <img class="lazyload h-[10rem] w-full object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
+                                src="{{ asset($imagePath) }}" onclick="updateDisplayPicture('{{ $imagePath }}')"
+                                alt="">
+                        @endforeach
                     </div>
+                    <style>
+                        #displayPicture {
+                            transition: opacity 0.3s ease-in-out;
+                        }
+                    </style>
                 </div>
 
                 {{-- Offered Services --}}
                 <div class="flex flex-col col-span-2 w-full mb-20">
-                    <div class="flex items-center justify-between mb-8 col-span-2">
+                    <div class="flex items-center justify-between mb-4 col-span-2">
                         <div class="font-clash font-medium text-xl p-2">Offered Services</div>
                         <div class="inline-flex items-center gap-2">
                             <button id="left-arrow">
@@ -216,59 +122,47 @@
                         </div>
                     </div>
 
+                    @php
+                        $serviceCategories = $branchServiceCategories
+                            ->filter(fn($item) => $item->branch_id === $currentBranch->id)
+                            ->unique('category_name');
+                    @endphp
+
                     {{-- Categories Carousel --}}
                     <div id="carousel" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-4">
-                        @foreach ($category as $index => $cat)
+                        @foreach ($serviceCategories as $serviceCategory)
+                            @php
+                                $index = $loop->index;
+                            @endphp
                             <button id="category-card"
-                                class="inline-block rounded-full p-4 px-32 button
-                                {{ $index === 0 ? 'bg-black text-white' : 'bg-neutral-150 text-black hover:bg-neutral-200' }}"
-                                data-category-id="{{ $cat['category_id'] }}" onclick="buttonClicked(this)"
-                                style="{{ $index === 0 ? 'pointer-events: none;' : '' }}">
-                                <div> {{ $cat['category_name'] }} </div>
+                                class="inline-block rounded-full p-4 px-32 button text-black hover:bg-neutral-200 {{ $index === 0 ? ' text-white bg-black' : 'bg-neutral-150 text-black hover:bg-neutral-200' }}"
+                                data-category-id="{{ $serviceCategory->id }}"
+                                data-branch-id="{{ $serviceCategory->branch_id }}">
+                                {{ $serviceCategory->category_name }}
                             </button>
                         @endforeach
                     </div>
-
-
                     {{-- Services List --}}
-                    <div id="services-list">
-                        <table
-                            class="mt-4 w-full text-medium text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead class=" text-gray-900 uppercase border-b dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3">
-                                        Service Name
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Duration
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Price
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    @php
+                        $services = $branchServiceCategories->filter(
+                            fn($item) => $item->branch_id === $currentBranch->id,
+                        );
+                    @endphp
+                    <div id="services-list relative top-0 left-0 right-0">
+                        @foreach ($services as $service)
+                            <div class=" flex items-center justify-between py-3 px-4 space-y-2 border-b border-black service-item"
+                                data-category-id="{{ $service->id }}">
+                                <div>
+                                    <h1>{{ $service->service_name }}</h1>
+                                    <p class="text-xs">{{ $service->duration }} minutes</p>
+                                </div>
+                                <h1>Php {{ $service->cost }}.00</h1>
+                            </div>
+                        @endforeach
 
-                                @foreach ($service[0]['services'] as $serviceItem)
-                                    <tr class="border-b dark:bg-gray-800 dark:border-gray-700">
-                                        <th scope="row"
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{ $serviceItem['service_name'] }}
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            {{ $serviceItem['duration'] }} Minutes
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Php {{ number_format($serviceItem['price'], 2) }}
-                                        </td>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
                     </div>
                 </div>
-
+                <script></script>
 
                 {{-- Ratings and Reviews --}}
                 <div class="flex flex-col col-span-2 w-full mb-20">
@@ -282,7 +176,7 @@
 
                         {{-- Rating, Stars and Number of Reviews --}}
                         <div class="flex flex-col items-center justify-center">
-                            <div class="p-2 font-semibold text-9xl">{{ $shops[0]['rating'] }}</div>
+                            <div class="p-2 font-semibold text-9xl">5.0</div>
                             <svg width="120" height="30" viewBox="0 0 57 9" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -301,7 +195,7 @@
                                     d="M52.5 0L54.0296 2.60796L57 3.24671L54.975 5.49727L55.2812 8.5L52.5 7.28296L49.7188 8.5L50.025 5.49727L48 3.24671L50.9704 2.60796L52.5 0Z"
                                     fill="#DFB300" />
                             </svg>
-                            <div class="p-2 font-medium text-lg"> {{ $shops[0]['shop_reviews'] }} User Reviews </div>
+                            <div class="p-2 font-medium text-lg"> 1500 User Reviews </div>
                         </div>
 
                         {{-- Rating Graphs --}}
@@ -419,14 +313,53 @@
             <div class="flex flex-col col-span-1 bg-white rounded-lg h-min shadow-md p-6 gap-4 sticky top-32">
 
                 {{-- Shop Name, Availability and Rating --}}
-                <div class="flex flex-col items-start mb-1">
+                <div class="flex flex-col items-start gap-2">
                     {{-- Shop Name, Availability --}}
-                    <div class=" text-brand-300 mb-2">{{ $shops[0]['availability'] }}</div>
-                    <div class="font-clash font-medium text-4xl mb-2">{{ $shops[0]['name'] }}</div>
+                    <div class=" text-brand-300 ">{{ $currentBranch->availability }}</div>
+
+                    <div class="inline-flex items-center gap-2">
+                        <div class="w-auto max-w-[15rem]">
+                            @if (count($shopBranches) > 1)
+                                <h1 class="font-medium text-3xl text-balance">{{ $currentBranch->branch_name }}
+                                @else
+                                    <h1 class="text-4xl font-medium font-clash">{{ $shopName }}</h1>
+                            @endif
+                        </div>
+                        <div class="relative">
+                            {{-- Switch Button --}}
+                            @if (count($shopBranches) > 1)
+                                <button class="branch-change-btn  transition-transform ease-in-out group">
+                                    <svg class="stroke-1 stroke-black group-hover:scale-105 group-hover:stroke-2"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M9.99902 16H4.99902V21M13.999 8H18.999V3M4.58203 9.0034C5.14272 7.61566 6.08146 6.41304 7.29157 5.53223C8.50169 4.65141 9.93588 4.12752 11.4288 4.02051C12.9217 3.9135 14.4138 4.2274 15.7371 4.92661C17.0605 5.62582 18.1603 6.68254 18.9131 7.97612M19.4166 14.9971C18.8559 16.3848 17.9171 17.5874 16.707 18.4682C15.4969 19.3491 14.0642 19.8723 12.5713 19.9793C11.0784 20.0863 9.58509 19.7725 8.26172 19.0732C6.93835 18.374 5.83785 17.3175 5.08496 16.0239"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            @endif
+
+                            <div id="branch-dropdown"
+                                class="hidden absolute right-0 border mt-2 m-w-48 bg-white rounded-lg shadow overflow-hidden z-50">
+                                @foreach ($shopBranches as $branch)
+                                    @if ($branch->id === $currentBranch->id)
+                                        @continue
+                                    @endif
+                                    <a
+                                        href="{{ route('shop.view', ['id' => $shop->id, 'branchId' => $branch->id]) }}">
+                                        <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-nowrap">
+                                            {{ $branch->branch_name }}
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
+
+                        </div>
+                    </div>
 
                     {{-- Shop Rating --}}
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="font-semibold">{{ $shops[0]['rating'] }}</div>
+                    <div class="flex items-center gap-2">
+                        <div class="font-semibold">5.0</div>
                         <svg width="78" height="14" viewBox="0 0 57 9" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -445,41 +378,27 @@
                                 d="M52.5 0L54.0296 2.60796L57 3.24671L54.975 5.49727L55.2812 8.5L52.5 7.28296L49.7188 8.5L50.025 5.49727L48 3.24671L50.9704 2.60796L52.5 0Z"
                                 fill="#DFB300" />
                         </svg>
-                        <div class="font-medium text-brand-300">( {{ $shops[0]['shop_reviews'] }} ) </div>
+
                     </div>
                 </div>
 
-                {{-- Shop Branches and Book Now Button --}}
-                <form action="" method="POST" class=" mb-4">
-                    {{-- Branches --}}
-                    <div class="flex flex-col gap-2 w-full mb-8">
-                        <div class="relative flex items-center">
-                            <select class="border border-neutral-400 py-3 px-4 rounded-lg w-full" name="branch"
-                                id="branch">
-                                @for ($i = 0; $i < 3; $i++)
-                                    <option value="{{ $shop_branches[$i]['branch'] }}" class="appearance-none">
-                                        {{ $shop_branches[$i]['branch'] }}</option>
-                                @endfor
-                            </select>
+                @if (count($shopBranches) > 1)
+                    <div>
+                        <p class="text-center text-sm opacity-80">Make sure to check other branches as well!</p>
+                    </div>
+                @endif
 
-                            <svg id="caret-down1" class="absolute stroke-black stroke-1 right-3 pointer-events-none"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
+                {{-- Book Now Button --}}
+                <div class="w-full">
+                    <a href="{{ route('book-appointment', ['id' => $shop->id, 'branchId' => $currentBranch->id]) }}">
+                        {{-- Remove the anchor tags once the backend is --}}
+                        <div
+                            class="bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-full p-3 font-medium w-full grid place-items-center">
+                            Book Now
                         </div>
-                    </div>
-
-                    {{-- Book Now Button --}}
-                    <div class="w-full">
-                        <a href="{{ route('book-appointment') }}"> {{-- Remove the anchor tags once the backend is --}}
-                            <div
-                                class="bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-full p-3 font-medium w-full grid place-items-center">
-                                Book Now
-                            </div>
-                        </a>
-                    </div>
-                </form>
+                    </a>
+                </div>
+                {{-- </form> --}}
 
                 <div class="flex-grow border-t border-gray-400"></div>
 
@@ -495,7 +414,7 @@
                                     stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <div class="p-2 text-sm">Open until {{ $shop_schedule[0]['time_close'] }} </div>
+                        <div class="p-2 text-sm">Open until {{ $closingTime }} </div>
                     </div>
                     {{-- Share --}}
                     <a href="" class="flex mb-1 hover:bg-neutral-100 rounded-lg">
@@ -537,17 +456,15 @@
 
 
         <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10">
-            @for ($i = 0; $i < 6; $i++)
-                <x-shop-card :shops="$shops" :i="$i" :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
-            @endfor
+            @foreach ($sidebarData['shops'] as $shop)
+                <x-shop-card :shop="$shop" :shopbranches="$sidebarData['shopBranches']" :shopgallery="$sidebarData['shopGallery']" :branchcategory="$sidebarData['branchCategory']"
+                    :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
+            @endforeach
         </div>
 
     </div>
-
-    <script>
-        window.shops = @json($shops);
-    </script>
     <script src="{{ asset('assets/js/explore.js') }}"></script>
     <script src="{{ asset('assets/js/view-service.js') }}"></script>
+    <script src="{{ asset('assets/js/filterService.js') }}"></script>
     @stack('scripts')
 </x-user-layout>

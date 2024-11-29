@@ -4,7 +4,7 @@
         class="md:w-2/3 lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl lg:mx-auto w-full px-4   flex flex-col">
         <div class="w-full text-7xl font-bold  ">
             <h1 class="w-full md:w-2/3 2xl:m">
-                How can we help you? Get in touch with us!
+                How can we help you. get in touch
             </h1>
         </div>
         <div class="flex mt-8 flex-col md:flex-row md:justify-between ">
@@ -28,7 +28,7 @@
                 </div>
                 <a class="hidden md:block cursor-pointer text-gray-600 hover: uppercase">About</a>
                 <a class="hidden md:block cursor-pointer text-gray-600 hover: uppercase">Services</a>
-                <a class="hidden md:block cursor-pointer text-gray-600 hover: uppercase">Why Us</a>
+                <a class="hidden md:block cursor-pointer text-gray-600 hover: uppercase">Why us</a>
                 <a class="hidden md:block cursor-pointer text-gray-600 hover: uppercase">Contact</a>
                 <div class="flex flex-row space-x-8 items-center justify-between">
                     <a>

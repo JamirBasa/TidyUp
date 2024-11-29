@@ -57,10 +57,11 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/user/logout', [AuthController::class, 'userLogout'])->name('user.logout');
     Route::get('/book/shop/{id}/{branchId}', [AppointmentController::class, 'bookNow'])->name('book-appointment');
-    Route::get('/bookAppointment2', [AppointmentController::class, 'bookNow2'])->name('book-appointment2');
+    Route::get('/book2/shop/{id}/{branchId}', [AppointmentController::class, 'bookNow2'])->name('book-appointment2');
     Route::get('/bookAppointment3', [AppointmentController::class, 'bookNow3'])->name('book-appointment3');
     Route::get('/bookAppointment4', [AppointmentController::class, 'bookNow4'])->name('book-appointment4');
     Route::post('/book/shop/{id}/{branchId}', [AppointmentController::class, 'firstProcess'])->name('first-process');
+    Route::post('/book2/shop/{id}/{branchId}', [AppointmentController::class, 'secondProcess'])->name('second-process');
 
     // Only allow non-service providers to access registration routes
     Route::middleware(IsNotServiceProvider::class)->group(function () {

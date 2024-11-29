@@ -8,7 +8,7 @@ function handleButtonClick(button) {
     });
     // Get the corresponding radio button based on button index
     const radioButtons = document.querySelectorAll(
-        'input[name="appointment_type"]'
+        'input[name="appointment_type_id"]'
     );
     const appointmentButtons = Array.from(
         document.querySelectorAll('button[onclick="handleButtonClick(this)"]')

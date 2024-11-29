@@ -17,12 +17,13 @@ return new class extends Migration
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('branch_id')->constrained('shop_branch')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('appointment_type_id')->constrained('appointment_types')->onDelete('cascade')->onUpdate('cascade');
-            $table->dateTime('appointment_date');
-            $table->string('status')->enum = ['pending', 'approved', 'rejected', 'completed'];
-            $table->decimal('total_price', 10, 2);
+            $table->dateTime('appointment_date')->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected', 'completed'])->default('pending')->nullable();
+            $table->decimal('total_price', 10, 2)->nullable();
             $table->text('note')->nullable();
             $table->integer('reschedule_count')->default(0);
-            $table->integer('reschedule_from');
+            $table->integer('reschedule_from')->nullable();
+            $table->boolean('is_successful')->default(false);
             $table->timestamps();
         });
     }

@@ -33,7 +33,7 @@
         <div class="grid grid-cols-7 gap-10">
             <div class="col-span-2 bg-white p-6 rounded-lg shadow-sm">
                 <div class="mb-4">
-                    <img class="object-cover rounded-lg" src="{{ asset('storage/' . $firstImage->path) }}"
+                    <img class="object-cover rounded-lg h-48 w-full" src="{{ asset('storage/' . $firstImage->path) }}"
                         alt="">
                 </div>
                 <div class="space-y-2 pb-2 mb-4 border-b border-neutral-200">
@@ -66,8 +66,8 @@
                     @csrf
                     {{-- Hidden Radio Buttons --}}
                     @foreach ($currentBranchAppointmentTypes as $appointmentType)
-                        <input class="sr-only" type="radio" name="appointment_type" id="radio"
-                            value="{{ $appointmentType->appointment_type }}">
+                        <input class="sr-only" type="radio" name="appointment_type_id" id="radio"
+                            value="{{ $appointmentType->id }}">
                     @endforeach
                     <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                     <input type="hidden" name="branch_id" value="{{ $currentBranch->id }}">

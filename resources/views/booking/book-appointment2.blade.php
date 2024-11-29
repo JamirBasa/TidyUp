@@ -2,7 +2,7 @@
     <section>
         <div class="flex items-center justify-between mb-6">
             <div class="w-[5rem]">
-                <a href="{{ route('book-appointment') }}"
+                <a href="{{ route('book-appointment', ['id' => $shop->id, 'branchId' => $branchId]) }}"
                     class="inline-flex gap-2 items-center border-b border-black p-1">
                     <svg class="size-4 stroke-black stroke-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +15,8 @@
                 <h1 class="font-clash font-medium text-xl">Appointment Proccessing</h1>
             </div>
             <div class="ml-[6rem]">
-                <a href="{{ route('shop.view') }}" class="inline-flex gap-2 items-center border-b border-black p-1">
+                <a href="{{ route('shop.view', ['id' => $shop->id, 'branchId' => $branchId]) }}"
+                    class="inline-flex gap-2 items-center border-b border-black p-1">
                     <p class="">Exit</p>
                     <svg class="stroke-1 stroke-black" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -29,14 +30,15 @@
         <div class="grid place-items-center mb-6">
             <x-process-flow :class1="'brand-500'" :color1="'white'" :class2="'brand-500'" :color2="'white'" />
         </div>
-        <div class="grid grid-cols-7 gap-10">
+        <div class="grid grid-cols-7 gap-4">
 
             <div class="col-span-2 bg-white p-6 rounded-lg shadow-sm">
                 <div class="mb-4">
-                    <img class="object-cover rounded-lg" src="{{ asset('assets/images/shops/3.png') }}" alt="">
+                    <img class="object-cover rounded-lg h-48 w-full" src="{{ asset('storage/' . $firstImage->path) }}"
+                        alt="">
                 </div>
                 <div class="space-y-2 pb-2 mb-4 border-b border-neutral-200">
-                    <h1 class="text-2xl">La Barberia de Jeco</h1>
+                    <h1 class="text-2xl">{{ $shopName }}</h1>
                     <div class="inline-flex gap-1 items-center">
                         <div>
                             <svg class="stroke-1 stroke-black size-4" width="24" height="24" viewBox="0 0 24 24"
@@ -50,7 +52,7 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm">Tetuan Branch</p>
+                            <p class="text-sm">{{ $currentBranch->branch_name }}</p>
                         </div>
                     </div>
                 </div>
@@ -59,13 +61,17 @@
                     <p>Php 0.00</p>
                 </div>
                 <div>
-                    <a href="{{ route('book-appointment3') }}">
+                    <a href="">
                         <button class="p-3 bg-brand-500 text-white rounded-full w-full">Continue</button>
                     </a>
                 </div>
             </div>
             <div class="col-span-5 flex gap-4">
-                <x-calendar :title="'Set Appointment Date'" />
+                <form method="POST" action="">
+                    <x-calendar :title="'Set Appointment Date'" />
+                    {{-- <input type="text" value="test" name="test"> --}}
+                    <button type="submit">Submit</button>
+                </form>
                 <div class="bg-white p-6 rounded-lg shadow-sm  flex-1 relative flex flex-col justify-between">
                     <div>
                         <div class="border-b pb-4 px-6 -mx-6 mb-4">

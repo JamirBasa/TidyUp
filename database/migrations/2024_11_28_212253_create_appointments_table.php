@@ -17,7 +17,9 @@ return new class extends Migration
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('branch_id')->constrained('shop_branch')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('appointment_type_id')->constrained('appointment_types')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('service_id')->nullable()->constrained('branch_service_categories')->onDelete('cascade')->onUpdate('cascade')->default(null);
             $table->dateTime('appointment_date')->nullable();
+            $table->time('appointment_time')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected', 'completed'])->default('pending')->nullable();
             $table->decimal('total_price', 10, 2)->nullable();
             $table->text('note')->nullable();

@@ -318,11 +318,11 @@
                     <div class=" text-brand-300 ">{{ $currentBranch->availability }}</div>
 
                     <div class="inline-flex items-center gap-2">
-                        <div class="w-auto max-w-[15rem]">
+                        <div class="w-auto max-w-[19rem]">
                             @if (count($shopBranches) > 1)
                                 <h1 class="font-medium text-3xl text-balance">{{ $currentBranch->branch_name }}
                                 @else
-                                    <h1 class="text-4xl font-medium font-clash">{{ $shopName }}</h1>
+                                    <h1 class="text-4xl font-medium text-balance font-clash">{{ $shopName }}</h1>
                             @endif
                         </div>
                         <div class="relative">

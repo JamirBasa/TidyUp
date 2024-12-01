@@ -58,10 +58,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/user/logout', [AuthController::class, 'userLogout'])->name('user.logout');
     Route::get('/book/shop/{id}/{branchId}', [AppointmentController::class, 'bookNow'])->name('book-appointment');
     Route::get('/book2/shop/{id}/{branchId}', [AppointmentController::class, 'bookNow2'])->name('book-appointment2');
-    Route::get('/bookAppointment3', [AppointmentController::class, 'bookNow3'])->name('book-appointment3');
-    Route::get('/bookAppointment4', [AppointmentController::class, 'bookNow4'])->name('book-appointment4');
+    Route::get('/book3/shop/{id}/{branchId}', [AppointmentController::class, 'bookNow3'])->name('book-appointment3');
+    Route::get('/book4/shop/{id}/{branchId}', [AppointmentController::class, 'bookNow4'])->name('book-appointment4');
     Route::post('/book/shop/{id}/{branchId}', [AppointmentController::class, 'firstProcess'])->name('first-process');
-    Route::post('/book2/shop/{id}/{branchId}', [AppointmentController::class, 'secondProcess'])->name('second-process');
+    Route::put('/book2/shop/{id}/{branchId}', [AppointmentController::class, 'secondProcess'])->name('second-process');
+    Route::put('/book3/shop/{id}/{branchId}', [AppointmentController::class, 'thirdProcess'])->name('third-process');
+    Route::put('/book4/shop/{id}/{branchId}', [AppointmentController::class, 'lastProcess'])->name('last-process');
 
     // Only allow non-service providers to access registration routes
     Route::middleware(IsNotServiceProvider::class)->group(function () {

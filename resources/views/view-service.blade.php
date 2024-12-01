@@ -466,7 +466,7 @@
         {{-- Shop Cards For Recommended For You --}}
 
 
-        <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10">
+        <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10 -mr-[12rem]">
             @foreach ($sidebarData['shops'] as $shop)
                 <x-shop-card :shop="$shop" :shopbranches="$sidebarData['shopBranches']" :shopgallery="$sidebarData['shopGallery']" :branchcategory="$sidebarData['branchCategory']"
                     :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />

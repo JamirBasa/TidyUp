@@ -92,6 +92,7 @@ class SidebarController extends Controller
             ->join('shop_gallery as sg', 'sb.id', '=', 'sg.branch_id')
             ->join('shops as s', 'sb.shop_id', '=', 's.id')
             ->where('u.id', $user->id)
+            ->where('a.is_successful', true)
             ->get(['a.id', 'at.appointment_type as type', 's.shop_name', 'sb.branch_name', 'sb.detailed_address', 'a.total_price', 'a.appointment_date as date', 'a.appointment_time as time', 'a.status', 'sg.path'])
             ->toArray();
         $appointments = collect($appointments)->unique('id')->values();

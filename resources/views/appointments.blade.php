@@ -9,7 +9,7 @@
 <x-user-layout :user="$user" :userrole="$userRole">
     <div class="content-section flex-1 w-full">
         {{-- back button --}}
-        <a href="" class="inline-flex gap-2 items-center border-b border-black p-1 mb-10">
+        <a href="{{ url()->previous() }}" class="inline-flex gap-2 items-center border-b border-black p-1 mb-10">
             <svg class="size-4 stroke-black stroke-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>

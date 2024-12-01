@@ -48,7 +48,7 @@
         {{-- Shop Cards For Recommended For You --}}
 
 
-        <div id="carousel" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10 relative">
+        <div id="carousel" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10 relative -mr-[12rem]">
             @php
                 $shops = $shops->shuffle()->take(6);
             @endphp
@@ -105,7 +105,7 @@
         @php
 
         @endphp
-        <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10">
+        <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10 -mr-[12rem]">
             @foreach ($shops as $shop)
                 <x-shop-card :shop="$shop" :shopbranches="$shopBranches" :shopgallery="$shopGallery" :branchcategory="$branchCategory"
                     :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
@@ -128,7 +128,7 @@
         </div>
 
         {{-- Shop Cards For Beauty Salon --}}
-        <div id="carousel3" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10">
+        <div id="carousel3" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10 -mr-[12rem]">
             @foreach ($shops as $shop)
                 <x-shop-card :shop="$shop" :shopbranches="$shopBranches" :shopgallery="$shopGallery" :branchcategory="$branchCategory"
                     :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
@@ -150,7 +150,7 @@
             </div>
         </div>
         {{-- Shop Cards For Nail Salon --}}
-        <div id="carousel4" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10">
+        <div id="carousel4" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10 -mr-[12rem]">
             @foreach ($shops as $shop)
                 <x-shop-card :shop="$shop" :shopbranches="$shopBranches" :shopgallery="$shopGallery" :branchcategory="$branchCategory"
                     :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
@@ -173,7 +173,7 @@
         </div>
 
         {{-- Shop Cards For Hair Salon --}}
-        <div id="carousel5" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10">
+        <div id="carousel5" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10 -mr-[12rem]">
             @foreach ($shops as $shop)
                 <x-shop-card :shop="$shop" :shopbranches="$shopBranches" :shopgallery="$shopGallery" :branchcategory="$branchCategory"
                     :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />

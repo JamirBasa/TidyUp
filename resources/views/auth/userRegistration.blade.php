@@ -137,7 +137,7 @@
 
                 {{-- Buttons Container --}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <a href="{{ route('user.login') }}"
+                    <a href="{{ route('login') }}"
                         class="bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-200 rounded-lg p-3 font-semibold w-full transition-colors duration-150 ease-in-out text-center">
                         Back
                     </a>
@@ -149,7 +149,7 @@
             </form>
 
             {{-- Back Link (Mobile Hidden) --}}
-            <a class="items-center absolute top-8 left-8 hidden md:flex" href="{{ route('user.login') }}">
+            <a class="items-center absolute top-8 left-8 hidden md:flex" href="{{ route('login') }}">
                 <svg class="size-7" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M14 16L10 12L14 8" stroke="white" stroke-width="1" stroke-linecap="round"

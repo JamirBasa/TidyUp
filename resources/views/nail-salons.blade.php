@@ -1,51 +1,3 @@
-@php
-    // THIS IS JUST TEMPORARY DONT MIND THIS PART OF THE CODE
-    $shops = [
-        [
-            'name' => 'Mosses\'s Nail Salon',
-            'tag' => 'Nail Salon',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.5',
-            'image' => '4.png',
-        ],
-        [
-            'name' => 'Remigio\'s Nail Salon',
-            'tag' => 'Nail Salon',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.9',
-            'image' => '9.png',
-        ],
-        [
-            'name' => 'Elevation Gents',
-            'tag' => 'Nail Salon',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '5.0',
-            'image' => '10.png',
-        ],
-
-        [
-            'name' => 'Remigio\'s Nail Salon',
-            'tag' => 'Nail Salon',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.9',
-            'image' => '9.png',
-        ],
-        [
-            'name' => 'Elevation Gents',
-            'tag' => 'Nail Salon',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '5.0',
-            'image' => '10.png',
-        ],
-        [
-            'name' => 'Mosses\'s Nail Salon',
-            'tag' => 'Nail Salon',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.5',
-            'image' => '4.png',
-        ],
-    ];
-@endphp
 <x-user-layout :user="$user" :userrole="$userRole">
     <div>
         <div class="flex items-center justify-between mb-10">
@@ -88,12 +40,9 @@
                     gap-6 mb-20
                     ">
             {{-- Shop Card --}}
-            @for ($i = 0; $i < 6; $i++)
-                <x-shop-card :i="$i" :shops="$shops" />
-            @endfor
-            @for ($i = 0; $i < 6; $i++)
-                <x-shop-card :i="$i" :shops="$shops" />
-            @endfor
+            @foreach ($shops as $shop)
+                <x-shop-card :shop="$shop" :shopbranches="$shopBranches" :shopgallery="$shopGallery" :branchcategory="$branchCategory" />
+            @endforeach
         </div>
         <div class="grid place-items-center">
             <x-pagination />

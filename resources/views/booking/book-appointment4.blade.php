@@ -116,10 +116,18 @@
                             <p class="text-xl font-semibold text-brand-500">Php 2,200.00</p>
                         </div>
 
-                        <button
-                            class="w-full py-4 px-6 bg-brand-500 text-white rounded-full font-medium hover:bg-brand-600 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
-                            Confirm Appointment
-                        </button>
+                        <form action="" method="POST" class="w-full">
+                            @csrf
+                            @method('put')
+                            <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                            <input type="hidden" name="branch_id" value="{{ $currentBranch->id }}">
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+                            <input type="hidden" name="is_successful" value={{ 1 }}>
+                            <button type="submit"
+                                class="w-full py-4 px-6 bg-brand-500 text-white rounded-full font-medium hover:bg-brand-600 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
+                                Confirm Appointment
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

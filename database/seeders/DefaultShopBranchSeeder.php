@@ -124,7 +124,15 @@ class DefaultShopBranchSeeder extends Seeder
             }
         }
 
-        $appointmentTypeSets = [[1, 2, 3], [1, 3], [1, 2]];
+        $appointmentTypeSets = [
+            [1],
+            [2],
+            [3],
+            [1, 2],
+            [1, 3],
+            [2, 3],
+            [1, 2, 3],
+        ];
 
         // Create appointment types for each branch
         foreach (ShopBranch::all() as $branch) {

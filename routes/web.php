@@ -18,7 +18,6 @@ use Illuminate\Http\Request;
 // Routes
 Route::view('/user/profile', 'user.userProfile')->name('user.profile');
 Route::get('/', [SidebarController::class, 'index'])->name('index');
-Route::get('/appointments', [SidebarController::class, 'appointments'])->name('appointments');
 Route::get('/popular', [SidebarController::class, 'popular'])->name('popular');
 Route::get('/explore', [SidebarController::class, 'explore'])->name('explore');
 Route::get('/barbershops', [SidebarController::class, 'barbershops'])->name('barbershops');
@@ -26,8 +25,7 @@ Route::get('/beauty-salons', [SidebarController::class, 'beautySalons'])->name('
 Route::get('/nail-salons', [SidebarController::class, 'nailSalons'])->name('nail-salons');
 Route::get('/hair-salons', [SidebarController::class, 'hairSalons'])->name('hair-salons');
 Route::get('/faqs', [SidebarController::class, 'faqs'])->name('faqs');
-Route::get('/send-feedback', [SidebarController::class, 'sendFeedback'])->name('send-feedback');
-Route::get('/report', [SidebarController::class, 'reportIssue'])->name('report-issue');
+
 Route::get('/view/shop/{id}/{branchId}', [SidebarController::class, 'view'])->name('shop.view');
 
 
@@ -38,10 +36,11 @@ Route::get('/view/shop/{id}/{branchId}', [SidebarController::class, 'view'])->na
 
 //Routes that are only accessible to guests
 Route::middleware('guest')->group(function () {
-    Route::get('/user/login', [AuthController::class, 'showUserLoginForm'])->name('user.login');
+    Route::get('/user/login', [AuthController::class, 'showUserLoginForm'])->name('login');
     Route::post('/user/login', [AuthController::class, 'userLogin']);
     Route::get('/user/registration', [AuthController::class, 'showUserRegistrationForm'])->name('user.registration');
     Route::post('/user/registration', [AuthController::class, 'userRegister']);
+
 
 
     // User Reset Password
@@ -65,12 +64,17 @@ Route::middleware('auth')->group(function () {
     Route::put('/book3/shop/{id}/{branchId}', [AppointmentController::class, 'thirdProcess'])->name('third-process');
     Route::put('/book4/shop/{id}/{branchId}', [AppointmentController::class, 'lastProcess'])->name('last-process');
 
+    Route::get('/appointments', [SidebarController::class, 'appointments'])->name('appointments');
+    Route::get('/send-feedback', [SidebarController::class, 'sendFeedback'])->name('send-feedback');
+    Route::get('/report', [SidebarController::class, 'reportIssue'])->name('report-issue');
+
     // Only allow non-service providers to access registration routes
     Route::middleware(IsNotServiceProvider::class)->group(function () {
         Route::get('/shop/registration', [AuthController::class, 'showShopRegistrationForm'])->name('shop.registration');
         Route::post('/shop/registration', [ShopSetupController::class, 'shopRegister'])->name('shop.register');
     });
 });
+
 
 //Routes for Shop Pages Only Accessible to Service Providers
 Route::middleware(IsServiceProvider::class)->group(function () {

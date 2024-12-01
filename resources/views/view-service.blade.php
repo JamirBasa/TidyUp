@@ -1,3 +1,17 @@
+@php
+    $operationFirstDay = $operationHours->where('branch_id', $currentBranch->id)->first();
+    $operationLastDay = $operationHours->where('branch_id', $currentBranch->id)->last();
+    $openingTime = $operationFirstDay ? date('h:i A', strtotime($operationFirstDay->opening_time)) : 'N/A';
+    $closingTime = $operationLastDay ? date('h:i A', strtotime($operationLastDay->closing_time)) : 'N/A';
+    $isNotAvailable = false;
+
+    if ($operationFirstDay && $operationLastDay && $openingTime && $closingTime) {
+        $isNotAvailable = !true;
+    } else {
+        $isNotAvailable = !false;
+    }
+
+@endphp
 <x-user-layout :user="$sidebarData['user']" :userrole="$sidebarData['userRole']">
     {{-- View Shop --}}
     <div class="content-section">
@@ -11,7 +25,8 @@
                 <circle cx="2.5" cy="3" r="2.5" fill="black" />
             </svg>
             {{-- Shop Availability --}}
-            <div class="p-2 font-medium text-brand-300 text-lg">{{ $currentBranch->availability }}</div>
+            <div class="p-2 font-medium  {{ $isNotAvailable === true ? 'text-red-500' : 'text-brand-300' }} text-lg">
+                {{ $isNotAvailable === true ? 'Unavailable' : $currentBranch->availability }}</div>
         </div>
 
         {{-- Shop Rating, Shop Schedule and Shop Location --}}
@@ -43,14 +58,9 @@
                 <circle cx="2.5" cy="3" r="2.5" fill="black" />
             </svg>
             {{-- Shop Schedule --}}
-            @php
-                $operationFirstDay = $operationHours->where('branch_id', $currentBranch->id)->first();
-                $operationLastDay = $operationHours->where('branch_id', $currentBranch->id)->last();
-                $openingTime = date('h:i A', strtotime($operationFirstDay->opening_time));
-                $closingTime = date('h:i A', strtotime($operationLastDay->closing_time));
-            @endphp
-            <div class="p-2 uppercase">Open {{ substr($operationFirstDay->day, 0, 3) }} -
-                {{ substr($operationLastDay->day, 0, 3) }} from
+
+            <div class="p-2 uppercase">Open {{ $operationFirstDay ? substr($operationFirstDay->day, 0, 3) : 'N/A' }} -
+                {{ $operationLastDay ? substr($operationLastDay->day, 0, 3) : 'N/A' }} from
                 {{ $openingTime }} - {{ $closingTime }} </div>
             <svg width="5" height="6" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="2.5" cy="3" r="2.5" fill="black" />
@@ -315,7 +325,8 @@
                 {{-- Shop Name, Availability and Rating --}}
                 <div class="flex flex-col items-start gap-2">
                     {{-- Shop Name, Availability --}}
-                    <div class=" text-brand-300 ">{{ $currentBranch->availability }}</div>
+                    <div class=" {{ $isNotAvailable === true ? 'text-red-500' : 'text-brand-300' }} ">
+                        {{ $isNotAvailable === true ? 'Unavailable' : $currentBranch->availability }}</div>
 
                     <div class="inline-flex items-center gap-2">
                         <div class="w-auto max-w-[19rem]">
@@ -455,7 +466,7 @@
         {{-- Shop Cards For Recommended For You --}}
 
 
-        <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10">
+        <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10 -mr-[12rem]">
             @foreach ($sidebarData['shops'] as $shop)
                 <x-shop-card :shop="$shop" :shopbranches="$sidebarData['shopBranches']" :shopgallery="$sidebarData['shopGallery']" :branchcategory="$sidebarData['branchCategory']"
                     :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />

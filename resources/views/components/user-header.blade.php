@@ -51,7 +51,7 @@
                             stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
-                <a href="{{ route('user.login') }}">
+                <a href="{{ route('login') }}">
 
                     <button
                         class="flex items-center gap-1 sm:gap-2 bg-brand-500 py-2 px-3 sm:py-2 sm:px-4 rounded-full w-full min-w-min">

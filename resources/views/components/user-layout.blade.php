@@ -14,7 +14,7 @@
 <body>
     {{-- Header --}}
 
-    {{-- <x-loading-screen /> --}}
+    <x-loading-screen />
     <div class="bg-milk min-h-screen relative scroll-smooth pb-20 z-0 pt-[3rem] lg:pt-[6rem]">
         <x-user-header :user="$user" :userrole="$userrole" />
         {{-- SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR --}}

@@ -55,6 +55,9 @@ class AppointmentController extends Controller
             ->where('bat.branch_id', $branchId)
             ->get();
         // dd($currentBranchAppointmentTypes);
+        if (!$user) {
+            return redirect()->route('user.login');
+        }
         return view('booking.book-appointment', [
             'user' => $user,
             'userRole' => $userRole,
@@ -115,6 +118,9 @@ class AppointmentController extends Controller
             ->where('bat.branch_id', $branchId)
             ->get();
         // dd($currentBranchAppointmentTypes);
+        if (!$user) {
+            return redirect()->route('user.login');
+        }
         return view('booking.book-appointment2', [
             'user' => $user,
             'userRole' => $userRole,
@@ -175,6 +181,9 @@ class AppointmentController extends Controller
             ->where('bat.branch_id', $branchId)
             ->get();
         // dd($currentBranchAppointmentTypes);
+        if (!$user) {
+            return redirect()->route('user.login');
+        }
         return view('booking.book-appointment3', [
             'user' => $user,
             'userRole' => $userRole,
@@ -240,6 +249,9 @@ class AppointmentController extends Controller
             ->first();
         // dd($appointmentDetails);
         // dd($currentBranchAppointmentTypes);
+        if (!$user) {
+            return redirect()->route('user.login');
+        }
         return view('booking.book-appointment4', [
             'user' => $user,
             'userRole' => $userRole,
@@ -338,5 +350,25 @@ class AppointmentController extends Controller
         $branchId = $request->branch_id;
 
         return redirect()->route('book-appointment4', ['id' => $id, 'branchId' => $branchId]);
+    }
+
+    public function lastProcess(Request $request, $id, $branchId)
+    {
+
+        $request->validate([
+            'is_successful' => 'required',
+        ]);
+
+        $record = Appointments::where('user_id', $request->user()->id)
+            ->where('shop_id', $id)
+            ->where('branch_id', $branchId)
+            ->first();
+
+
+        $record->update([
+            'is_successful' => $request->is_successful,
+        ]);
+
+        return redirect()->route('appointments');
     }
 }

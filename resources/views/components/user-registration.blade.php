@@ -235,7 +235,7 @@
 
     {{-- Buttons Container --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href=""
+        <a href="{{ route('login') }}"
             class="bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-200 rounded-lg p-3 font-semibold w-full transition-colors duration-150 ease-in-out text-center">
             Back
         </a>

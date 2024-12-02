@@ -1,8 +1,6 @@
 <section class="hidden lg:block" id="sidebar-container">
-    {{-- <div id="user-sidebar"
-        class="fixed lg:sticky shadow-lg w-64 lg:w-52 px-4 lg:px-0 lg:pr-2 pb-8 top-16 pt-10 lg:pt-0 lg:top-28 gap-3 flex flex-col overflow-y-auto bg-neutral-100 lg:bg-transparent lg:shadow-none z-50"> --}}
     <div id="user-sidebar"
-        class="fixed lg:sticky shadow-lg w-64 lg:w-52 px-4 lg:px-0 lg:pr-2 pb-8 top-16 pt-10 lg:pt-0  gap-3 flex flex-col overflow-y-auto bg-neutral-100 lg:bg-transparent lg:shadow-none z-50">
+        class="fixed lg:sticky shadow-lg w-64 lg:w-52 px-4 lg:px-0 lg:pr-2 pb-8 top-16 pt-10 lg:pt-0 lg:top-28 gap-3 flex flex-col overflow-y-auto bg-neutral-100 lg:bg-transparent lg:shadow-none z-50">
         {{-- Home --}}
 
         <a href="{{ route('index') }}" id="home-link" data-url="{{-- route('home.content') --}}"

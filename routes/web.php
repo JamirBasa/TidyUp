@@ -10,8 +10,10 @@ use App\Http\Controllers\ShopCatalogController;
 use App\Http\Controllers\SidebarController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ShopProfileController;
+use App\Http\Controllers\AdminController;
 use App\Http\Middleware\IsServiceProvider;
 use App\Http\Middleware\IsNotServiceProvider;
+use App\Http\Middleware\Admin;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\Request;
 
@@ -87,4 +89,22 @@ Route::middleware(IsServiceProvider::class)->group(function () {
     Route::get('/shop/catalog', [ShopCatalogController::class, 'catalog'])->name('shop.catalog');
     Route::get('/shop/branches', [ShopController::class, 'manageBranches'])->name('shop.manage-branches');
     Route::get('/shop/appointment', [ShopController::class, 'appointment'])->name('shop.appointment');
+});
+
+Route::middleware(Admin::class)->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/shops', [AdminController::class, 'shops'])->name('admin.shops');
+    Route::get('/admin/customers', [AdminController::class, 'customers'])->name('admin.customers');
+    Route::get('/admin/appointments', [AdminController::class, 'appointments'])->name('admin.appointments');
+    Route::get('/admin/manage-branches', [AdminController::class, 'manageBranches'])->name('admin.manage-branches');
+    Route::get('/admin/invoice', [AdminController::class, 'invoice'])->name('admin.invoice');
+    Route::get('/admin/analytics', [AdminController::class, 'analytics'])->name('admin.analytics');
+    Route::get('/admin/customerService', [AdminController::class, 'customerService'])->name('admin.customer-service');
+    Route::get('/admin/userFeedback', [AdminController::class, 'userFeedback'])->name('admin.user-feedback');
+    Route::get('/admin/restrictions', [AdminController::class, 'restrictions'])->name('admin.restrictions');
+    Route::get('/admin/platformStaff', [AdminController::class, 'platformStaff'])->name('admin.platform-staff');
+    Route::get('/admin/manageAccounts', [AdminController::class, 'manageAccounts'])->name('admin.manage-accounts');
+    Route::get('/admin', function () {
+        return redirect()->route('admin.dashboard');
+    });
 });

@@ -1,7 +1,7 @@
 <x-admin-layout :user="$user" :userrole="$userRole">
     <div class="py-12">
         <div class=" sm:px-6 lg:px-8 flex gap-10">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg flex-[2]">
+            <div class="bg-white overflow-hidden sm:rounded-lg flex-[2]">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="mb-4 flex items-center justify-between gap-20">
                         <h1 class="font-bold text-neutral-700">User Feedback</h1>
@@ -221,13 +221,13 @@
                 <x-pagination />
             </div>
             <div class="flex-1">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8">
+                <div class="bg-white overflow-hidden sm:rounded-lg p-8">
                     <h2 class="text-lg font-semibold text-gray-700">Summary</h2>
                     <p class="text-sm text-gray-500">Total Feedbacks: 8</p>
                     <p class="text-sm text-gray-500">Positive Feedbacks: 5</p>
                     <p class="text-sm text-gray-500">Negative Feedbacks: 3</p>
                 </div>
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 mt-6">
+                <div class="bg-white overflow-hidden sm:rounded-lg p-8 mt-6">
                     <h2 class="text-lg font-semibold text-gray-700">Recent Feedback</h2>
                     <ul class="text-sm text-gray-500">
                         <li class="mb-2">John Doe: Need help with my booking</li>
@@ -236,7 +236,7 @@
                         <li class="mb-2">Sarah Williams: Service quality feedback</li>
                     </ul>
                 </div>
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 mt-6">
+                <div class="bg-white overflow-hidden sm:rounded-lg p-8 mt-6">
                     <h2 class="text-lg font-semibold text-gray-700">Feedback Statistics</h2>
                     <div class="flex items-center justify-between mt-4">
                         <div class="text-center">

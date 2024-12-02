@@ -76,7 +76,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
 
                     <p id="sidebar-link-name"
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
-                        Customers</p>
+                        Manage Users</p>
                 </a>
             </li>
             <!-- Appointments -->

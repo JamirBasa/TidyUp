@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Shop;
+use App\Models\ShopBranch;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -32,9 +35,29 @@ class AdminController extends Controller
             $RoleId = collect([(object) ['role_id' => null]]);
         }
         $userRole = $RoleId[0]->role_id;
+
+        $shops = DB::table('shops as s')
+            ->join('shop_account as sa', 's.id', '=', 'sa.shop_id')
+            ->join('users as u', 'sa.shop_owner_id', '=', 'u.id')
+            ->join('shop_branch as sb', 's.id', '=', 'sb.shop_id')
+            ->select('s.id', 's.shop_name', 'u.username as shop_owner', 'sb.branch_name', 'sb.detailed_address', 'sb.created_at')
+            ->distinct()
+            ->get();
+        $shops = collect($shops)->unique('shop_name')->values();
+        $shopBranches = ShopBranch::all();
+        $branchCategory = DB::table('branch_category as bc')
+            ->join('branch_branch_category as bbc', 'bc.id', '=', 'bbc.branch_category_id')
+            ->join('shop_branch as sb', 'bbc.branch_id', '=', 'sb.id')
+            ->join('shops as s', 'sb.shop_id', '=', 's.id')
+            ->select('bc.name as category_name', 'bbc.branch_id', 's.id as shop_id')
+            ->get();
+
         return view('admin.shops', [
-            'userRole' => $userRole,
             'user' => $user,
+            'userRole' => $userRole,
+            'shops' => $shops,
+            'shopBranches' => $shopBranches,
+            'branchCategory' => $branchCategory
         ]);
     }
 
@@ -47,9 +70,13 @@ class AdminController extends Controller
             $RoleId = collect([(object) ['role_id' => null]]);
         }
         $userRole = $RoleId[0]->role_id;
+
+        $users = User::all();
+
         return view('admin.customers', [
-            'userRole' => $userRole,
+            'users' => $users,
             'user' => $user,
+            'userRole' => $userRole,
         ]);
     }
     public function appointments(Request $request)

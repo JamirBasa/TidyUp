@@ -16,7 +16,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->userRole && in_array(Auth::user()->userRole->role_id, [1])) {
+        if (Auth::check() && Auth::user()->userRole && in_array(Auth::user()->userRole->role_id, [4])) {
             return $next($request);
         }
         return redirect()->route('index')->with('error', 'Access denied. You are not an Admin.');

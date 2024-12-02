@@ -25,7 +25,7 @@ class AdminDefaultSeeder extends Seeder
 
         UserRole::create([
             'user_id' => 1,
-            'role_id' => 1,
+            'role_id' => 4,
         ]);
     }
 }

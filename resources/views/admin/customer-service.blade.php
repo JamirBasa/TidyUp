@@ -1,6 +1,6 @@
 <x-admin-layout :user="$user" :userrole="$userRole">
-    <div class="py-12">
-        <div class=" flex gap-10 sm:px-6 lg:px-8">
+    <div class="">
+        <div class=" flex gap-10">
             <div class="bg-white overflow-hidden sm:rounded-lg flex-[2]">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="mb-4 flex items-center justify-between gap-20">

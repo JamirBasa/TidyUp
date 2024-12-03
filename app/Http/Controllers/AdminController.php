@@ -93,7 +93,7 @@ class AdminController extends Controller
             'user' => $user,
         ]);
     }
-    public function manageBranches(Request $request)
+    public function salesReport(Request $request)
     {
         $user = $request->user();
         if ($user) {
@@ -102,7 +102,7 @@ class AdminController extends Controller
             $RoleId = collect([(object) ['role_id' => null]]);
         }
         $userRole = $RoleId[0]->role_id;
-        return view('admin.manage-branches', [
+        return view('admin.salesReport', [
             'userRole' => $userRole,
             'user' => $user,
         ]);

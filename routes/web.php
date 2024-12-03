@@ -96,7 +96,7 @@ Route::middleware(Admin::class)->group(function () {
     Route::get('/admin/shops', [AdminController::class, 'shops'])->name('admin.shops');
     Route::get('/admin/manageUsers', [AdminController::class, 'customers'])->name('admin.customers');
     Route::get('/admin/appointments', [AdminController::class, 'appointments'])->name('admin.appointments');
-    Route::get('/admin/manageBranches', [AdminController::class, 'manageBranches'])->name('admin.manage-branches');
+    Route::get('/admin/salesReport', [AdminController::class, 'salesReport'])->name('admin.sales-report');
     Route::get('/admin/invoice', [AdminController::class, 'invoice'])->name('admin.invoice');
     Route::get('/admin/analytics', [AdminController::class, 'analytics'])->name('admin.analytics');
     Route::get('/admin/customerService', [AdminController::class, 'customerService'])->name('admin.customer-service');

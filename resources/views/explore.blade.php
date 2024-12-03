@@ -1,72 +1,28 @@
-{{-- <x-user-layout :user="$user"> --}}
-@php
-    // THIS IS JUST TEMPORARY DONT MIND THIS PART OF THE CODE
-    $shops = [
-        [
-            'name' => 'Paul\'s Barbershop',
-            'tag' => 'Barbershop',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '5.0',
-            'image' => '1.png',
-        ],
-        [
-            'name' => 'Jamir\'s Beauty Lounge',
-            'tag' => 'Beauty Salon',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.0',
-            'image' => '2.png',
-        ],
-        [
-            'name' => 'Art\'s Canvas',
-            'tag' => 'Barbershop',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '5.0',
-            'image' => '3.png',
-        ],
-        [
-            'name' => 'Mosses\' Nail Salon',
-            'tag' => 'Nail Salon',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.5',
-            'image' => '4.png',
-        ],
-        [
-            'name' => 'La Barberia de Jeco',
-            'tag' => 'Barbershop',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.9',
-            'image' => '5.png',
-        ],
-        [
-            'name' => 'Elevation Gents',
-            'tag' => 'Barbershop',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '5.0',
-            'image' => '6.png',
-        ],
-    ];
-@endphp
-
+<script>
+    window.shops = @json($featuredShops);
+</script>
+<script src="{{ asset('assets/js/explore.js') }}"></script>
 <x-user-layout :user="$user" :userrole="$userRole">
+
     <div class="content-section">
         {{-- Featured Shop in Explore Page --}}
-        <a href="{{ route('shop.view') }}" class="bg-black">
+        <a href="{{ route('shop.view', ['id' => 1, 'branchId' => 1]) }}" class="bg-black">
             <div class="relative lg:rounded-xl mb-10 group bg-neutral-900 -mx-5 lg:mx-0">
                 <div class="relative mb-2 overflow-hidden">
                     <img load="lazy"
                         class="h-[13rem] sm:h-[18rem] md:h-[24rem] lg:h-[32rem] w-full object-cover lg:rounded-xl"
-                        src="{{ asset('assets/images/shops/' . $shops[0]['image']) }}" alt="">
+                        src="{{ asset('assets/images/featuredShops.png') }}" alt="">
                     <span
-                        class="absolute top-4 md:top-6 right-4 md:right-8 bg-white rounded-full py-1 px-3 md:px-4 text-xs md:text-sm shadow-md">{{ $shops[0]['tag'] }}</span>
+                        class="absolute top-4 md:top-6 right-4 md:right-8 bg-white rounded-full py-1 px-3 md:px-4 text-xs md:text-sm shadow-md"></span>
                 </div>
                 <div
                     class="absolute bottom-0 right-0 left-0 bg-gradient-to-t from-black to-transparent lg:rounded-b-xl">
                     <div class="px-4 md:px-8 pb-4 md:pb-8 pt-12 md:pt-20 w-full">
-                        <p class="text-xs md:text-sm text-white group-hover:underline">Street Name, Barangay, City</p>
+                        <p id="detailed_address" class="text-xs md:text-sm text-white group-hover:underline"></p>
                         <h6 class="text-lg md:text-2xl lg:text-3xl text-white font-semibold group-hover:underline">
-                            {{ $shops[0]['name'] }}</h6>
+                        </h6>
                         <span class="absolute inline-flex items-center gap-1 md:gap-2 bottom-0 p-4 md:p-8 right-0">
-                            <p class="-mb-1 text-white text-xl md:text-3xl lg:text-4xl">{{ $shops[0]['rating'] }}</p>
+                            <p class="-mb-1 text-white text-xl md:text-3xl lg:text-4xl">5.0</p>
                             <svg class="stroke-white stroke-1 size-4 md:size-5 fill-white" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -92,11 +48,14 @@
         {{-- Shop Cards For Recommended For You --}}
 
 
-        <div id="carousel" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10 relative">
-
-            @for ($i = 0; $i < 6; $i++)
-                <x-shop-card :i="$i" :shops="$shops" :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
-            @endfor
+        <div id="carousel" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-10 relative -mr-[12rem]">
+            @php
+                $shops = $shops->shuffle()->take(6);
+            @endphp
+            @foreach ($shops as $shop)
+                <x-shop-card :shop="$shop" :shopbranches="$shopBranches" :shopgallery="$shopGallery" :branchcategory="$branchCategory"
+                    :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
+            @endforeach
         </div>
 
         {{-- Cards for the Most Popular Section --}}
@@ -117,9 +76,12 @@
                     gap-6 mb-20
                     ">
             {{-- Shop Card --}}
-            @for ($i = 0; $i < 6; $i++)
-                <x-shop-card :i="$i" :shops="$shops" />
-            @endfor
+            @php
+                $randomShops = $shops->random(6);
+            @endphp
+            @foreach ($randomShops as $shop)
+                <x-shop-card :shop="$shop" :shopbranches="$shopBranches" :shopgallery="$shopGallery" :branchcategory="$branchCategory" />
+            @endforeach
         </div>
         <div class="flex justify-center mb-20">
             <h1 class="font-semibold text-2xl font-clash">EXPLORE BY CATEGORIES</h1>
@@ -140,10 +102,14 @@
             </div>
         </div>
         {{-- Shop Cards For Barbershops --}}
-        <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10">
-            @for ($i = 0; $i < 6; $i++)
-                <x-shop-card :i="$i" :shops="$shops" :tag="'Barbershop'" :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
-            @endfor
+        @php
+
+        @endphp
+        <div id="carousel2" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10 -mr-[12rem]">
+            @foreach ($shops as $shop)
+                <x-shop-card :shop="$shop" :shopbranches="$shopBranches" :shopgallery="$shopGallery" :branchcategory="$branchCategory"
+                    :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
+            @endforeach
         </div>
 
         {{-- Beauty Salon Explore Starting Point --}}
@@ -162,10 +128,11 @@
         </div>
 
         {{-- Shop Cards For Beauty Salon --}}
-        <div id="carousel3" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10">
-            @for ($i = 5; $i >= 0; $i--)
-                <x-shop-card :i="$i" :shops="$shops" :tag="'Beauty Salon'" :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
-            @endfor
+        <div id="carousel3" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10 -mr-[12rem]">
+            @foreach ($shops as $shop)
+                <x-shop-card :shop="$shop" :shopbranches="$shopBranches" :shopgallery="$shopGallery" :branchcategory="$branchCategory"
+                    :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
+            @endforeach
         </div>
 
         {{-- Nail Salon Explore Starting Point --}}
@@ -183,10 +150,11 @@
             </div>
         </div>
         {{-- Shop Cards For Nail Salon --}}
-        <div id="carousel4" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10">
-            @for ($i = 0; $i < 6; $i++)
-                <x-shop-card :i="$i" :shops="$shops" :tag="'Nail Salon'" :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
-            @endfor
+        <div id="carousel4" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10 -mr-[12rem]">
+            @foreach ($shops as $shop)
+                <x-shop-card :shop="$shop" :shopbranches="$shopBranches" :shopgallery="$shopGallery" :branchcategory="$branchCategory"
+                    :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
+            @endforeach
         </div>
 
         {{-- Hair Salon Explore Starting Point --}}
@@ -205,17 +173,17 @@
         </div>
 
         {{-- Shop Cards For Hair Salon --}}
-        <div id="carousel5" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10">
-            @for ($i = 5; $i >= 0; $i--)
-                <x-shop-card :i="$i" :shops="$shops" :tag="'Hair Salon'" :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
-            @endfor
+        <div id="carousel5" class="carousel overflow-x-hidden whitespace-nowrap  snap-x mb-10 -mr-[12rem]">
+            @foreach ($shops as $shop)
+                <x-shop-card :shop="$shop" :shopbranches="$shopBranches" :shopgallery="$shopGallery" :branchcategory="$branchCategory"
+                    :class="'w-[21rem] sm:w-[25.6rem] inline-block mr-6 mb-8'" />
+            @endforeach
         </div>
 
     </div>
     </div>
-    <script>
-        window.shops = @json($shops);
-    </script>
+
+
     <script src="{{ asset('assets/js/explore.js') }}"></script>
     @stack('scripts')
 

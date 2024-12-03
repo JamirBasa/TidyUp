@@ -96,8 +96,8 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
             </li>
             {{-- Manage Branches --}}
             <li
-                class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('admin.manage-branches') ? 'bg-neutral-150' : '' }}">
-                <a href="{{ route('admin.manage-branches') }}" class="flex items-center gap-5">
+                class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('admin.sales-report') ? 'bg-neutral-150' : '' }}">
+                <a href="{{ route('admin.sales-report') }}" class="flex items-center gap-5">
                     <svg class="stroke-[1.5] stroke-black size-7" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path

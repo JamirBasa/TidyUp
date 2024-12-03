@@ -1,21 +1,28 @@
-@props(['i', 'shops', 'tag', 'class'])
-<a href="{{ route('shop.view') }}" class="{{ $class ?? '' }}">
+@props(['shop', 'shopbranches', 'shopgallery', 'branchcategory', 'class'])
+@php
+    $shopBranch = $shopbranches->where('shop_id', $shop->id)->first();
+    $shopBranches = $shopbranches->where('shop_id', $shop->id)->all();
+    $shopGallery = $shopgallery->where('branch_id', $shopBranch->id)->first();
+    $imagePath = asset('storage/' . ($shopGallery ? $shopGallery->path : ''));
+    $shopBranchCategories = $branchcategory->filter(fn($item) => $item->shop_id === $shop->id)->unique('category_name');
+@endphp
+<a href="{{ route('shop.view', ['id' => $shop->id, 'branchId' => $shopBranch->id]) }}" class="{{ $class ?? '' }}">
     <div class="relative mb-2">
         {{-- shop image --}}
-        <img load="lazy" class="h-[13rem] sm:h-[15rem] w-full object-cover rounded-lg"
-            src="{{ asset('assets/images/shops/' . $shops[$i]['image']) }}" alt="">
+        {{-- asset('storage/' . $shopgallery[0]->path) --}}
+        <img load="lazy" class="h-[13rem] sm:h-[15rem] w-full object-cover rounded-lg" src="{{ $imagePath }}"
+            alt="{{ $shop->shop_name }}">
         {{-- shop tag --}}
-        <span
-            class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-xs sm:text-sm">{{ $tag ?? $shops[$i]['tag'] }}</span>
+        <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-xs sm:text-sm"></span>
     </div>
     <div class="relative">
         {{-- Shop Name --}}
-        <h6 class="font-semibold text-sm sm:text-base">{{ $shops[$i]['name'] }}</h6>
+        <h6 class="font-semibold text-sm sm:text-base">{{ $shop->shop_name }}</h6>
         {{-- Shop Location --}}
-        <p class="opacity-60 text-xs sm:text-sm">Street Name, Barangay, City</p>
+        <p class="opacity-60 text-xs sm:text-sm mb-3">{{ $shopBranch->detailed_address }}</p>
         {{-- Shop Rating --}}
         <span class="absolute inline-flex items-center gap-2 top-0 right-0">
-            <p class="-mb-1 text-sm sm:text-base">{{ $shops[$i]['rating'] }}</p>
+            <p class="-mb-1 text-sm sm:text-base">5.0</p>
             <svg class="stroke-black stroke-1 size-2 sm:size-3 fill-black" width="24" height="24"
                 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -23,5 +30,13 @@
                     stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         </span>
+        {{-- Shop Category --}}
+
+        <div class="flex gap-1 flex-wrap">
+            @foreach ($shopBranchCategories as $shopBranchCategory)
+                <span
+                    class="bg-brand-500 text-white rounded-full py-1 px-3 text-xs">{{ $shopBranchCategory->category_name }}</span>
+            @endforeach
+        </div>
     </div>
 </a>

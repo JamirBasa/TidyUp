@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ShopBranch extends Model
 {
     //
+    use HasFactory;
     protected $table = 'shop_branch';
     protected $fillable = [
         'shop_id',

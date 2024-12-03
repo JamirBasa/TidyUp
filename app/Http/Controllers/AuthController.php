@@ -80,7 +80,7 @@ class AuthController extends Controller
             'role_id' => 1, // Ensure the role_id is valid
         ]);
 
-        return redirect()->route('user.login');
+        return redirect()->route('login');
     }
 
 

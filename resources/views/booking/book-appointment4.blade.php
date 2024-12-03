@@ -1,9 +1,9 @@
-<x-user-layout :user="$user">
+<x-user-layout :user="$user" :userrole="$userRole">
     <section class="max-w-7xl mx-auto px-4 py-8">
         <!-- Header Navigation -->
         <div class="flex items-center justify-between mb-6">
             <div class="w-[5rem]">
-                <a href="{{ route('book-appointment') }}"
+                <a href="{{ route('book-appointment', ['id' => $shop->id, 'branchId' => $branchId]) }}"
                     class="inline-flex gap-2 items-center border-b border-black p-1">
                     <svg class="size-4 stroke-black stroke-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +17,8 @@
                 <h1 class="font-clash font-medium text-xl">Appointment Proccessing</h1>
             </div>
             <div class="ml-[6rem]">
-                <a href="{{ route('shop.view') }}" class="inline-flex gap-2 items-center border-b border-black p-1">
+                <a href="{{ route('shop.view', ['id' => $shop->id, 'branchId' => $branchId]) }}"
+                    class="inline-flex gap-2 items-center border-b border-black p-1">
                     <p class="">Exit</p>
                     <svg class="stroke-1 stroke-black" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -41,14 +42,17 @@
 
                 <div class="space-y-8">
                     <div>
-                        <h3 class="text-sm font-medium text-gray-500 uppercase">Service Provider</h3>
-                        <p class="mt-2 text-lg text-gray-900">La Barberia De Jeco</p>
+                        <h3 class="text-sm font-medium text-gray-500 uppercase">SHOP NAME</h3>
+                        <p class="mt-2 text-lg text-gray-900">{{ $shop->shop_name }}</p>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 uppercase">BRANCH NAME</h3>
+                        <p class="mt-2 text-lg text-gray-900">{{ $currentBranch->branch_name }}</p>
                     </div>
 
                     <div>
-                        <h3 class="text-sm font-medium text-gray-500 uppercase">Location</h3>
-                        <p class="mt-2 text-lg text-gray-900">Tetuan Branch, Estrada St. cor Don Toribio Tetuan,
-                            Zamboanga City</p>
+                        <h3 class="text-sm font-medium text-gray-500 uppercase">Branch Location</h3>
+                        <p class="mt-2 text-lg text-gray-900">{{ $currentBranch->detailed_address }}</p>
                     </div>
 
                     <div>
@@ -112,12 +116,18 @@
                             <p class="text-xl font-semibold text-brand-500">Php 2,200.00</p>
                         </div>
 
-                        <a href="{{ route('appointments') }}" class="block">
-                            <button
+                        <form action="" method="POST" class="w-full">
+                            @csrf
+                            @method('put')
+                            <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                            <input type="hidden" name="branch_id" value="{{ $currentBranch->id }}">
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+                            <input type="hidden" name="is_successful" value={{ 1 }}>
+                            <button type="submit"
                                 class="w-full py-4 px-6 bg-brand-500 text-white rounded-full font-medium hover:bg-brand-600 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
                                 Confirm Appointment
                             </button>
-                        </a>
+                        </form>
                     </div>
                 </div>
             </div>

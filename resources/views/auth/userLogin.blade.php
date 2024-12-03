@@ -29,7 +29,7 @@
                 </p>
 
                 {{-- Login Form --}}
-                <form action="{{ route('user.login') }}" method="POST" class="mb-6">
+                <form action="{{ route('login') }}" method="POST" class="mb-6">
                     @csrf
                     {{-- Email --}}
                     <div class="flex flex-col gap-2 mb-6 lg:mb-8">

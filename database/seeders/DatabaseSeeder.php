@@ -5,6 +5,11 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\AdminDefaultSeeder;
+use Database\Seeders\DefaultUserSeeder;
+use Database\Seeders\DefaultShopSeeder;
+use Database\Seeders\DefaultShopBranchSeeder;
+use Database\Seeders\ShopImageSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,7 +21,11 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([
-            DefaultUserSeeder::class
+            AdminDefaultSeeder::class,
+            DefaultUserSeeder::class,
+            DefaultShopSeeder::class,
+            DefaultShopBranchSeeder::class,
+            ShopImageSeeder::class,
         ]);
     }
 }

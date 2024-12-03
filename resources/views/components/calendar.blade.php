@@ -28,7 +28,17 @@
     </div>
 
     <!-- Calendar grid -->
-    <div id="calendarDays" class="grid grid-cols-7 gap-1">
+    <div id="" class="grid grid-cols-7 gap-1">
+        <!-- Weekday headers -->
+        <div class="text-center text-sm text-gray-500">Mo</div>
+        <div class="text-center text-sm text-gray-500">Tu</div>
+        <div class="text-center text-sm text-gray-500">We</div>
+        <div class="text-center text-sm text-gray-500">Th</div>
+        <div class="text-center text-sm text-gray-500">Fr</div>
+        <div class="text-center text-sm text-gray-500">Sa</div>
+        <div class="text-center text-sm text-gray-500">Su</div>
+    </div>
+    <div id="calendarDays" class="grid grid-cols-7 gap-1 place-items-center">
         <!-- Weekday headers -->
         <div class="text-center text-sm text-gray-500">Mo</div>
         <div class="text-center text-sm text-gray-500">Tu</div>
@@ -39,8 +49,9 @@
         <div class="text-center text-sm text-gray-500">Su</div>
     </div>
 
+
     <!-- Selected date display -->
-    <div id="selectedDateDisplay" class="mt-4  text-sm text-gray-600"></div>
+    <div id="selectedDateDisplay" class="mt-4  text-sm text-gray-600 text-center"></div>
     <input type="hidden" id="calendar-value" name="appointment_date"
         value="{{ old('appointment_date', now()->toDateString()) }}">
 </div>

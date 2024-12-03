@@ -84,7 +84,7 @@
 
                 {{-- Admin Name, Role, Profile Picture --}}
                 <div class="flex gap-8 w-full px-7">
-                    <img class="object-cover size-24 rounded-full" src="{{ asset($staffs[0]['dp_path']) }}">
+                    <img class="object-cover size-24 rounded-full object-top" src="{{ asset($staffs[0]['dp_path']) }}">
                     <div class="flex flex-col justify-center">
                         <h2 class="text-2xl font-bold">{{ $staffs[0]['name'] }}</h2>
                         <h6>{{ $staffs[0]['role'] }}</h6>
@@ -109,7 +109,8 @@
                 @foreach ($staffs as $staff)
                     <div class="flex gap-4 px-4 py-4 rounded-lg hover:bg-neutral-100 cursor-pointer">
                         <div>
-                            <img class="object-cover size-24 rounded-full" src="{{ asset($staff['dp_path']) }}">
+                            <img class="object-cover size-24 rounded-full object-top"
+                                src="{{ asset($staff['dp_path']) }}">
                         </div>
                         <div class="flex flex-col justify-center">
                             <h2 class="text-lg font-bold">{{ $staff['name'] }}</h2>

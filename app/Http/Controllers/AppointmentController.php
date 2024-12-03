@@ -168,7 +168,7 @@ class AppointmentController extends Controller
             ->join('service_categories as sc', 'bsc.service_category_id', '=', 'sc.id')
             ->join('shop_branch as sb', 'bsc.branch_id', '=', 'sb.id')
             ->join('shops as s', 'sb.shop_id', '=', 's.id')
-            ->select('sc.id', 'sc.category_name', 'bsc.service_name', 'bsc.duration', 'bsc.cost', 'bsc.branch_id',  's.id as shop_id')
+            ->select('sc.id', 'bsc.id as service_id', 'sc.category_name', 'bsc.service_name', 'bsc.duration', 'bsc.cost', 'bsc.branch_id',  's.id as shop_id')
             ->get();
         $currentBranch = $shopBranches->where('id', $branchId)->first();
         $shopBranchesCount = $shopBranches->count();
@@ -244,14 +244,16 @@ class AppointmentController extends Controller
             ->where('bat.branch_id', $branchId)
             ->get();
         $appointmentDetails = Appointments::where('user_id', $user->id)
-            ->where('shop_id', $ShopId)
-            ->where('branch_id', $branchId)
+            ->join('users as u', 'appointments.user_id', '=', 'u.id')
+            ->join('branch_service_categories as bsc', 'appointments.service_id', '=', 'bsc.id')
+            ->join('service_categories as sc', 'bsc.service_category_id', '=', 'sc.id')
+            ->where('appointments.shop_id', $ShopId)
+            ->where('appointments.branch_id', $branchId)
             ->first();
         // dd($appointmentDetails);
-        // dd($currentBranchAppointmentTypes);
         if (!$user) {
             return redirect()->route('user.login');
-        }
+        };
         return view('booking.book-appointment4', [
             'user' => $user,
             'userRole' => $userRole,
@@ -267,7 +269,8 @@ class AppointmentController extends Controller
             'shopBranchesCount' => $shopBranchesCount,
             'branchId' => $branchId,
             'firstImage' => $firstImage,
-            'currentBranchAppointmentTypes' => $currentBranchAppointmentTypes
+            'currentBranchAppointmentTypes' => $currentBranchAppointmentTypes,
+            'appointmentDetails' => $appointmentDetails
         ]);
     }
 
@@ -305,6 +308,7 @@ class AppointmentController extends Controller
 
     public function secondProcess(Request $request, $id, $branchId)
     {
+        // dd($request->all());
         $request->validate([
             'user_id' => 'required',
             'branch_id' => 'required',
@@ -356,6 +360,7 @@ class AppointmentController extends Controller
     {
 
         $request->validate([
+            'note' => 'nullable|string|max:200',
             'is_successful' => 'required',
         ]);
 
@@ -366,6 +371,7 @@ class AppointmentController extends Controller
 
 
         $record->update([
+            'note' => $request->note,
             'is_successful' => $request->is_successful,
         ]);
 

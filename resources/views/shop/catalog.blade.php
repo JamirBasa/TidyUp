@@ -272,6 +272,7 @@
             @php
                 $services = DB::table('branch_service_categories')
                     ->where('service_category_id', $serviceCategories[0]->id)
+                    ->where('branch_id', $shopBranches[0]->id)
                     ->get(['service_name', 'duration', 'cost']);
             @endphp
 

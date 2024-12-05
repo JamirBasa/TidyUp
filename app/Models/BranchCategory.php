@@ -6,17 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class BranchCategory extends Model
 {
-    //
-
-
-    protected $table = 'branch_branch_category';
+    protected $table = 'branch_category';
     protected $fillable = [
-        'branch_id',
-        'branch_category_id'
+        'category_name'
     ];
 
-    public function branch()
+    public function branches()
     {
-        return $this->belongsTo(ShopBranch::class);
+        return $this->belongsToMany(ShopBranch::class, 'branch_branch_category', 'branch_category_id', 'branch_id');
     }
 }

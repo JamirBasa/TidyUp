@@ -228,13 +228,18 @@ class SidebarController extends Controller
         }
         $userRole = $RoleId[0]->role_id;
 
-        $shops = Shop::inRandomOrder()->limit(6)->get();
+        // Get shops that have branches with the category 'Barbershop'
+        $shops = Shop::whereHas('branches.branchCategories', function ($query) {
+            $query->where('name', 'Barbershop');
+        })->inRandomOrder()->limit(6)->get(['id', 'shop_name']);
+
         $shopGallery = ShopGallery::all();
         $shopBranches = ShopBranch::all();
         $branchCategory = DB::table('branch_category as bc')
             ->join('branch_branch_category as bbc', 'bc.id', '=', 'bbc.branch_category_id')
             ->join('shop_branch as sb', 'bbc.branch_id', '=', 'sb.id')
             ->join('shops as s', 'sb.shop_id', '=', 's.id')
+            ->whereIn('bc.name', ['Barbershop']) // Filter by category name 'Barbershop'
             ->select('bc.name as category_name', 'bbc.branch_id', 's.id as shop_id')
             ->get();
 
@@ -247,6 +252,8 @@ class SidebarController extends Controller
             'branchCategory' => $branchCategory
         ]);
     }
+    
+
     public function beautySalons(Request $request)
     {
         $user = $request->user();
@@ -257,16 +264,20 @@ class SidebarController extends Controller
         }
         $userRole = $RoleId[0]->role_id;
 
-        $shops = Shop::inRandomOrder()->limit(6)->get();
+        // Get shops that have branches with the category 'Beauty Salon'
+        $shops = Shop::whereHas('branches.branchCategories', function ($query) {
+            $query->where('name', 'Beauty Salon');
+        })->inRandomOrder()->limit(6)->get(['id', 'shop_name']);
+
         $shopGallery = ShopGallery::all();
         $shopBranches = ShopBranch::all();
         $branchCategory = DB::table('branch_category as bc')
             ->join('branch_branch_category as bbc', 'bc.id', '=', 'bbc.branch_category_id')
             ->join('shop_branch as sb', 'bbc.branch_id', '=', 'sb.id')
             ->join('shops as s', 'sb.shop_id', '=', 's.id')
+            ->whereIn('bc.name', ['Beauty Salon']) // Filter by category name 'Beauty Salon'
             ->select('bc.name as category_name', 'bbc.branch_id', 's.id as shop_id')
             ->get();
-
 
         return view('beauty-salons', [
             'user' => $user,
@@ -287,16 +298,20 @@ class SidebarController extends Controller
         }
         $userRole = $RoleId[0]->role_id;
 
-        $shops = Shop::inRandomOrder()->limit(6)->get();
+        // Get shops that have branches with the category 'Nail Salon'
+        $shops = Shop::whereHas('branches.branchCategories', function ($query) {
+            $query->where('name', 'Nail Salon');
+        })->inRandomOrder()->limit(6)->get(['id', 'shop_name']);
+
         $shopGallery = ShopGallery::all();
         $shopBranches = ShopBranch::all();
         $branchCategory = DB::table('branch_category as bc')
             ->join('branch_branch_category as bbc', 'bc.id', '=', 'bbc.branch_category_id')
             ->join('shop_branch as sb', 'bbc.branch_id', '=', 'sb.id')
             ->join('shops as s', 'sb.shop_id', '=', 's.id')
+            ->whereIn('bc.name', ['Nail Salon']) // Filter by category name 'Nail Salon'
             ->select('bc.name as category_name', 'bbc.branch_id', 's.id as shop_id')
             ->get();
-
 
         return view('nail-salons', [
             'user' => $user,
@@ -317,16 +332,20 @@ class SidebarController extends Controller
         }
         $userRole = $RoleId[0]->role_id;
 
-        $shops = Shop::inRandomOrder()->limit(6)->get();
+        // Get shops that have branches with the category 'Hair Salon'
+        $shops = Shop::whereHas('branches.branchCategories', function ($query) {
+            $query->where('name', 'Hair Salon');
+        })->inRandomOrder()->limit(6)->get(['id', 'shop_name']);
+
         $shopGallery = ShopGallery::all();
         $shopBranches = ShopBranch::all();
         $branchCategory = DB::table('branch_category as bc')
             ->join('branch_branch_category as bbc', 'bc.id', '=', 'bbc.branch_category_id')
             ->join('shop_branch as sb', 'bbc.branch_id', '=', 'sb.id')
             ->join('shops as s', 'sb.shop_id', '=', 's.id')
+            ->whereIn('bc.name', ['Hair Salon']) // Filter by category name 'Hair Salon'
             ->select('bc.name as category_name', 'bbc.branch_id', 's.id as shop_id')
             ->get();
-
 
         return view('hair-salons', [
             'user' => $user,

@@ -94,8 +94,8 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                         Appoinments</p>
                 </a>
             </li>
-            {{-- Manage Branches --}}
-            <li
+
+            {{-- <li
                 class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('admin.sales-report') ? 'bg-neutral-150' : '' }}">
                 <a href="{{ route('admin.sales-report') }}" class="flex items-center gap-5">
                     <svg class="stroke-[1.5] stroke-black size-7" width="24" height="24" viewBox="0 0 24 24"
@@ -113,7 +113,6 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                         Shop Sales</p>
                 </a>
             </li>
-            {{-- Invoice --}}
             <li
                 class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('admin.invoice') ? 'bg-neutral-150' : '' }}">
                 <a href="{{ route('admin.invoice') }}" class="flex items-center gap-5">
@@ -129,7 +128,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Invoice</p>
                 </a>
-            </li>
+            </li> --}}
             {{-- Analytics --}}
             <li
                 class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('admin.analytics') ? 'bg-neutral-150' : '' }}">

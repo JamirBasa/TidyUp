@@ -1,51 +1,3 @@
-{{-- @php
-    // THIS IS JUST TEMPORARY DONT MIND THIS PART OF THE CODE
-    $shops = [
-        [
-            'name' => 'Paul\'s Barbershop',
-            'tag' => 'Barbershop',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '5.0',
-            'image' => '1.png',
-        ],
-        [
-            'name' => 'Jamir\'s Beauty Lounge',
-            'tag' => 'Beauty Salon',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.0',
-            'image' => '2.png',
-        ],
-        [
-            'name' => 'Art\'s Canvas',
-            'tag' => 'Barbershop',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '5.0',
-            'image' => '3.png',
-        ],
-        [
-            'name' => 'Mosses\'s Nail Salon',
-            'tag' => 'Nail Salon',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.5',
-            'image' => '4.png',
-        ],
-        [
-            'name' => 'La Barberia de Jeco',
-            'tag' => 'Barbershop',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '4.9',
-            'image' => '5.png',
-        ],
-        [
-            'name' => 'Elevation Gents',
-            'tag' => 'Barbershop',
-            'location' => 'Street Name, Barangay, City',
-            'rating' => '5.0',
-            'image' => '6.png',
-        ],
-    ];
-@endphp --}}
-
 <x-user-layout :user="$user" :userrole="$userRole">
     <div class="">
         {{-- Hero Section --}}
@@ -95,7 +47,8 @@
         <div class="flex items-center justify-between mb-8">
             <h1 class="p-1 sm:p-2 font-clash font-medium text-sm sm:text-2xl border-b-2 border-black">Customer's Choice
             </h1>
-            <a href="" class="inline-flex items-center gap-1 sm:gap-2 p-1 sm:p-2 border-b-2 border-neutral-400">
+            <a href="{{ route('explore') }}"
+                class="inline-flex items-center gap-1 sm:gap-2 p-1 sm:p-2 border-b-2 border-neutral-400">
                 <svg class="stroke-neutral-500 stroke-1 size-4 sm:size-6" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 17L17 7M17 7H9M17 7V15" stroke-linecap="round" stroke-linejoin="round" />

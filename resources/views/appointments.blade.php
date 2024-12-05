@@ -72,16 +72,7 @@
                 </li>
             </ul>
             <div class="slide-indicator absolute bottom-0 h-[1px] bg-black"></div>
-            <div>
-                <button class="inline-flex items-center p-1 border-b border-black gap-2">
-                    <svg class="stroke-black stroke-1" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11 16L8 19M8 19L5 16M8 19V5M13 8L16 5M16 5L19 8M16 5V19" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                    <span>Sort By</span>
-                </button>
-            </div>
+
         </div>
 
         <div id="appointments-content">
@@ -105,7 +96,8 @@
                             </div>
                         </div>
                         <div class="text-right flex flex-col gap-3">
-                            <p class="text-lg font-semibold leading-none">{{ $appointment->total_price }}</p>
+                            <p class="text-lg font-semibold leading-none">
+                                {{ number_format($appointment->total_price, 2) }}</p>
                             <p class="text-sm leading-none">
                                 {{ \Carbon\Carbon::parse($appointment->date)->format('D, M. d, Y') }}</p>
                             <p class="text-sm leading-none">
@@ -161,7 +153,8 @@
                                 </div>
                             </div>
                             <div class="text-right flex flex-col gap-3">
-                                <p class="text-lg font-semibold leading-none">${appointment.total_price}</p>
+                                <p class="text-lg font-semibold leading-none">Php ${appointment.total_price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                                
                                 <p class="text-sm leading-none">${new Date(appointment.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</p>
                                 <p class="text-sm leading-none">${new Date('1970-01-01T' + appointment.time + 'Z').toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</p>
                             </div>

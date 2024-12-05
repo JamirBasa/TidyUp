@@ -64,111 +64,139 @@
                 <div class="space-y-2  pb-6 mb-4 border-b border-neutral-200">
                     <div class="flex items-center justify-between mb-4">
                         <div class="inline-flex gap-2 items-center">
-                            <button>
-                                <svg class="stroke-1 stroke-black" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6 12H18" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                            <h1 class="text-lg">Person 1</h1>
+                            <h1 class="text-lg">Service Detail</h1>
                         </div>
-                        <button>
-                            <svg class="stroke-1 stroke-neutral-400" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12 8.00012L4 16.0001V20.0001L8 20.0001L16 12.0001M12 8.00012L14.8686 5.13146L14.8704 5.12976C15.2652 4.73488 15.463 4.53709 15.691 4.46301C15.8919 4.39775 16.1082 4.39775 16.3091 4.46301C16.5369 4.53704 16.7345 4.7346 17.1288 5.12892L18.8686 6.86872C19.2646 7.26474 19.4627 7.46284 19.5369 7.69117C19.6022 7.89201 19.6021 8.10835 19.5369 8.3092C19.4628 8.53736 19.265 8.73516 18.8695 9.13061L18.8686 9.13146L16 12.0001M12 8.00012L16 12.0001"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
                     </div>
                     <div class="flex items-center justify-between mb-4">
-                        @foreach ($services as $service)
-                            <div>
-                                <h6 class="text-sm">{{ $service->service_name }}</h6>
-                                <p class="text-xs opacity-80">{{ $service->duration }}</p>
-                            </div>
-                            <p>Php {{ $service->cost }}</p>
-                        @break
-                    @endforeach
-                </div>
-            </div>
-
-            <div class="flex items-center justify-between mb-4">
-                <h6 class="text-lg">Total</h6>
-                <p>Php 150.00</p>
-            </div>
-            <form action="" method="POST">
-                @csrf
-                @method('put')
-                <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-                <input type="hidden" name="branch_id" value="{{ $currentBranch->id }}">
-                <input type="hidden" name="user_id" value="{{ $user->id }}">
-                @foreach ($services as $service)
-                    <input type="hidden" name="service_id" value="{{ $service->id }}">
-                @endforeach
-                <input type="hidden" name="total_price" value="150">
-                {{-- submit button --}}
-                <button class="p-3 bg-brand-500 text-white rounded-full w-full">Continue</button>
-            </form>
-        </div>
-        <div class="col-span-5">
-            {{-- <div>
-                    <div class="mb-6">
-                        <h1 class="text-xl">Choose services for</h1>
-                    </div>
-                    <div class="mb-6 flex gap-4 items-center">
-                        <button class="py-3 px-8 rounded-full bg-neutral-150">Person 1</button>
-                        <button class="py-3 px-8 rounded-full bg-neutral-150">Person 2</button>
-                        <button class="py-3 px-8 rounded-full bg-brand-500 text-white">Person 3</button>
-                        <button class="size-10 grid place-content-center rounded-full bg-neutral-150">
-                            <svg class="stroke-2 stroke-black" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                    </div>
-                </div> --}}
-            <div class="mb-10">
-                <div class="mb-6 flex items-center justify-between">
-                    <h1 class="text-xl">Offered Services</h1>
-                    <div>
-                        <x-carousel-arrow />
-                    </div>
-                </div>
-
-
-                <div id="carousel" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-4">
-                    @foreach ($serviceCategories as $serviceCategory)
-                        @php
-                            $index = $loop->index;
-                        @endphp
-                        <button id="category-card"
-                            class="inline-block rounded-full p-3 px-8 button text-black hover:bg-neutral-200 {{ $index === 0 ? ' text-white bg-black' : 'bg-neutral-150 text-black hover:bg-neutral-200' }}"
-                            data-category-id="{{ $serviceCategory->id }}"
-                            data-branch-id="{{ $serviceCategory->branch_id }}">
-                            {{ $serviceCategory->category_name }}
-                        </button>
-                    @endforeach
-                </div>
-
-                <div id="services-list relative top-0 left-0 right-0">
-                    @foreach ($services as $service)
-                        <div class=" flex items-center justify-between py-3 px-4 space-y-2 border-b border-black service-item"
-                            data-category-id="{{ $service->id }}">
-                            <div>
-                                <h1>{{ $service->service_name }}</h1>
-                                <p class="text-xs">{{ $service->duration }} minutes</p>
-                            </div>
-                            <h1>Php {{ $service->cost }}</h1>
+                        <div>
+                            <h6 id="service_name_dsp" class="text-sm">Service Name</h6>
+                            <p id="service_time_dsp" class="text-xs opacity-80">Service Estimated Time</p>
                         </div>
-                    @endforeach
+                        <p id="service_price_dsp">Php 0.00</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mb-4">
+                    <h6 class="text-lg">Total</h6>
+                    <p id="total-price">Php 0.00</p>
+                </div>
+
+                <form action="" method="POST">
+                    @csrf
+                    @method('put')
+                    <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                    <input type="hidden" name="branch_id" value="{{ $currentBranch->id }}">
+                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    <div>
+                        <div>
+                            @foreach ($services as $service)
+                                <input type="radio" class="sr-only" id="{{ $service->service_id }}"
+                                    data-service-id="{{ $service->service_id }}" value="{{ $service->service_id }}"
+                                    name="service_id">
+                            @endforeach
+                        </div>
+                        <div>
+                            @foreach ($services as $service)
+                                <input type="radio" class="sr-only" id="radio2-{{ $service->service_id }}"
+                                    data-service-id="{{ $service->service_id }}" value="{{ $service->cost }}"
+                                    name="total_price">
+                            @endforeach
+                        </div>
+                    </div>
+
+                    {{-- submit button --}}
+                    <button class="p-3 bg-brand-500 text-white rounded-full w-full">Continue</button>
+                </form>
+            </div>
+            <div class="col-span-5">
+                {{-- Doont Delete This --}}
+                {{-- <div>
+                <div class="mb-6">
+                    <h1 class="text-xl">Choose services for</h1>
+                </div>
+                <div class="mb-6 flex gap-4 items-center">
+                    <button class="py-3 px-8 rounded-full bg-neutral-150">Person 1</button>
+                    <button class="py-3 px-8 rounded-full bg-neutral-150">Person 2</button>
+                    <button class="py-3 px-8 rounded-full bg-brand-500 text-white">Person 3</button>
+                    <button class="size-10 grid place-content-center rounded-full bg-neutral-150">
+                        <svg class="stroke-2 stroke-black" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div> --}}
+                <div class="mb-10">
+                    <div class="mb-6 flex items-center justify-between">
+                        <h1 class="text-xl">Offered Services</h1>
+                        <div>
+                            <x-carousel-arrow />
+                        </div>
+                    </div>
+
+
+                    <div id="carousel" class="carousel overflow-x-hidden whitespace-nowrap snap-x mb-4">
+                        @foreach ($serviceCategories as $serviceCategory)
+                            @php
+                                $index = $loop->index;
+                            @endphp
+                            <button id="category-card"
+                                class="inline-block rounded-full p-3 px-8 button text-black hover:bg-neutral-200 {{ $index === 0 ? ' text-white bg-black' : 'bg-neutral-150 text-black hover:bg-neutral-200' }}"
+                                data-category-id="{{ $serviceCategory->id }}"
+                                data-branch-id="{{ $serviceCategory->branch_id }}">
+                                {{ $serviceCategory->category_name }}
+                            </button>
+                        @endforeach
+                    </div>
+
+                    <div id="services-list relative top-0 left-0 right-0">
+                        @php
+                            $index = 0;
+                        @endphp
+                        @foreach ($services as $service)
+                            @php
+                                $index = $loop->index;
+                            @endphp
+                            <div class=" flex items-center justify-between py-3 px-4 space-y-2 border-b border-black service-item"
+                                data-category-id="{{ $service->id }}" data-service-id="{{ $service->service_id }}">
+                                <div>
+                                    <h1 id="service_name">{{ $service->service_name }}</h1>
+                                    <p class="text-xs" id="duration">{{ $service->duration }} minutes</p>
+                                </div>
+                                <div class="inline-flex items-center gap-2">
+                                    <h1 id="cost">Php {{ number_format($service->cost, 2) }}</h1>
+                                    <div class="relative" class="grid items-center">
+                                        <button id="service-{{ $index }}-plus-btn"
+                                            data-service-id="{{ $service->service_id }}"
+                                            onclick="toggleService({{ $index }})">
+                                            <svg class="stroke-2 stroke-black" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </button>
+                                        <svg id="service-{{ $index }}-check-btn"
+                                            class="stroke-2 stroke-black hidden" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 12.0005L10.2426 16.2431L18.727 7.75781" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-</section>
-<script src="{{ asset('assets/js/filterService.js') }}"></script>
-<script src="{{ asset('assets/js/view-service.js') }}"></script>
-<script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
-<script src="{{ asset('assets/js/booking3.js') }}"></script>
-@stack('scripts')
+        </div>
+    </section>
+
+    <script src="{{ asset('assets/js/filterService.js') }}"></script>
+    <script src="{{ asset('assets/js/view-service.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/booking3.js') }}"></script>
+    <script src="{{ asset('assets/js/filterService.js') }}"></script>
+    @stack('scripts')
 </x-user-layout>

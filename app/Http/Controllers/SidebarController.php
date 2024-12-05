@@ -63,7 +63,7 @@ class SidebarController extends Controller
             ->join('shops as s', 'sb.shop_id', '=', 's.id')
             ->select('bc.name as category_name', 'bbc.branch_id', 's.id as shop_id')
             ->get();
-
+        // dd($branchCategory);
 
         return view('index', [
             'user' => $user,
@@ -237,7 +237,6 @@ class SidebarController extends Controller
             ->join('shops as s', 'sb.shop_id', '=', 's.id')
             ->select('bc.name as category_name', 'bbc.branch_id', 's.id as shop_id')
             ->get();
-
 
         return view('barbershops', [
             'user' => $user,

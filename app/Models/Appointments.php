@@ -21,6 +21,7 @@ class Appointments extends Model
         'appointment_date',
         'appointment_time',
         'total_price',
+        'note',
         'reschedule_count',
         'reschedule_from',
         'is_successful',

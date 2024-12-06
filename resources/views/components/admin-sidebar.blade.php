@@ -130,7 +130,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                 </a>
             </li> --}}
             {{-- Analytics --}}
-            <li
+            {{-- <li
                 class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('admin.analytics') ? 'bg-neutral-150' : '' }}">
                 <a href="{{ route('admin.analytics') }}" class="flex items-center gap-5">
                     <svg class="stroke-[1.5] stroke-black size-7" width="24" height="24" viewBox="0 0 24 24"
@@ -145,7 +145,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Analytics</p>
                 </a>
-            </li>
+            </li> --}}
             {{-- Customer Service --}}
             <li
                 class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('admin.customer-service') ? 'bg-neutral-150' : '' }}">
@@ -213,7 +213,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                 </a>
             </li>
             {{-- Manage Account --}}
-            <li
+            {{-- <li
                 class="group flex px-4 py-2 w-full relative rounded-lg overflow-hidden {{ request()->routeIs('admin.manage-accounts') ? 'bg-neutral-150' : '' }}">
                 <a href="{{ route('admin.manage-accounts') }}" class="flex items-center gap-5">
                     <svg class="stroke-black stroke-[1.5] size-7" width="24" height="24" viewBox="0 0 24 24"
@@ -227,7 +227,7 @@ NOTE: MAKE SURE TO REMEMBER TO ADD A TOOLTIP FOR THE SIDEBAR NAV SO THAT THE USE
                         class="font-poppins font-normal text-nowrap opacity-0 transition-opacity duration-300 ease-in-out hidden">
                         Manage Account</p>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </nav>
 </section>

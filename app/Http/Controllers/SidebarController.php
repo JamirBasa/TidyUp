@@ -52,8 +52,7 @@ class SidebarController extends Controller
         } else {
             $RoleId = collect([(object) ['role_id' => null]]);
         }
-        $userRole = $RoleId[0]->role_id;
-
+        $userRole = $RoleId[0]->role_id;        
         $shops = Shop::inRandomOrder()->limit(6)->get();
         $shopGallery = ShopGallery::all();
         $shopBranches = ShopBranch::all();

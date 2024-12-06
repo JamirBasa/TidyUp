@@ -300,7 +300,7 @@
                         Create new appointment
                     </button>
                 </div>
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg border">
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg border ">
                     @if ($shopAppointments->count() == 0)
                         <div class="flex flex-col items-center justify-center">
                             <svg class="stroke-2 stroke-gray-300 size-40" width="24" height="24"

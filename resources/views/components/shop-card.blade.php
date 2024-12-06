@@ -10,7 +10,7 @@
     <div class="relative mb-2">
         {{-- shop image --}}
         {{-- asset('storage/' . $shopgallery[0]->path) --}}
-        <img load="lazy" class="h-[13rem] sm:h-[15rem] w-full object-cover rounded-lg" src="{{ $imagePath }}"
+        <img load="lazy" class="h-[13rem] sm:h-[15rem] w-full object-cover rounded-tl-lg rounded-br-lg" src="{{ $imagePath }}"
             alt="{{ $shop->shop_name }}">
         {{-- shop tag --}}
         <span class="absolute top-3 right-3 bg-white rounded-full py-1 px-4 text-xs sm:text-sm"></span>

@@ -400,15 +400,26 @@
                 @endif
 
                 {{-- Book Now Button --}}
-                <div class="w-full">
-                    <a href="{{ route('book-appointment', ['id' => $shop->id, 'branchId' => $currentBranch->id]) }}">
-                        {{-- Remove the anchor tags once the backend is --}}
+                @if ($isNotAvailable === true)
+                    <div class="w-full">
                         <div
-                            class="bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-full p-3 font-medium w-full grid place-items-center">
-                            Book Now
+                            class="bg-gray-300  rounded-full p-3 font-medium w-full grid place-items-center">
+                            Not Available
                         </div>
-                    </a>
-                </div>
+                    </div>
+                @else
+                    <div class="w-full">
+                        <a
+                            href="{{ route('book-appointment', ['id' => $shop->id, 'branchId' => $currentBranch->id]) }}">
+                            {{-- Remove the anchor tags once the backend is --}}
+                            <div
+                                class="bg-brand-500 hover:bg-brand-600 active:bg-brand-400 text-white rounded-full p-3 font-medium w-full grid place-items-center">
+                                Book Now
+                            </div>
+                        </a>
+                    </div>
+                @endif
+
                 {{-- </form> --}}
 
                 <div class="flex-grow border-t border-gray-400"></div>

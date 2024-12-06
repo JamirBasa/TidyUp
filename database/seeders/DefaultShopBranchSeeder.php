@@ -48,8 +48,47 @@ class DefaultShopBranchSeeder extends Seeder
                 'cost' => 1000.00,
                 'duration' => '1 hour',
                 'service_category_id' => 3
+            ],
+            // Hair color services (category_id: 2)
+            [
+                'service_name' => 'Basic Hair Color',
+                'cost' => 1500.00,
+                'duration' => '2 hours',
+                'service_category_id' => 2
+            ],
+            [
+                'service_name' => 'Highlights',
+                'cost' => 2000.00,
+                'duration' => '2.5 hours',
+                'service_category_id' => 2
+            ],
+            // More nail services
+            [
+                'service_name' => 'Gel Polish',
+                'cost' => 500.00,
+                'duration' => '1 hour',
+                'service_category_id' => 3
+            ],
+            // Facial services (category_id: 4)
+            [
+                'service_name' => 'Basic Facial',
+                'cost' => 800.00,
+                'duration' => '1 hour',
+                'service_category_id' => 4
+            ],
+            [
+                'service_name' => 'Deep Cleansing Facial',
+                'cost' => 1200.00,
+                'duration' => '1.5 hours',
+                'service_category_id' => 4
             ]
         ];
+
+        $randomCount = rand(3, 7);
+        $randomServices = array_rand($services, $randomCount);
+        $selectedServices = array_map(function ($key) use ($services) {
+            return $services[$key];
+        }, $randomServices);
 
         return array_map(function ($service) use ($branch) {
             return array_merge($service, [
@@ -57,7 +96,7 @@ class DefaultShopBranchSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
-        }, $services);
+        }, $selectedServices);
     }
 
     public function run(): void
@@ -127,10 +166,7 @@ class DefaultShopBranchSeeder extends Seeder
         $appointmentTypeSets = [
             [1],
             [2],
-            [3],
             [1, 2],
-            [1, 3],
-            [2, 3],
         ];
 
         // Create appointment types for each branch

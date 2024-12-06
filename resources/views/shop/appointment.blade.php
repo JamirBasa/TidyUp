@@ -1,109 +1,3 @@
-@php
-    $appointments = [
-        [
-            'name' => 'Ian Cawili',
-            'type' => 'Single Appointment',
-            'date' => 'Mon, Nov 27, 2024',
-            'time' => '7:00 AM - 7:45 AM',
-            'status' => 'NO-SHOW',
-            'status_class' => 'text-noshows-main bg-noshows-light',
-        ],
-        [
-            'name' => 'John Doe',
-            'type' => 'Single Appointment',
-            'date' => 'Tue, Nov 28, 2024',
-            'time' => '8:00 AM - 8:45 AM',
-            'status' => 'COMPLETED',
-            'status_class' => 'text-completed-main bg-completed-light',
-        ],
-        [
-            'name' => 'Jane Smith',
-            'type' => 'Single Appointment',
-            'date' => 'Wed, Nov 29, 2024',
-            'time' => '9:00 AM - 9:45 AM',
-            'status' => 'COMPLETED',
-            'status_class' => 'text-completed-main bg-completed-light',
-        ],
-        [
-            'name' => 'Alice Johnson',
-            'type' => 'Single Appointment',
-            'date' => 'Thu, Nov 30, 2024',
-            'time' => '10:00 AM - 10:45 AM',
-            'status' => 'ONGOING',
-            'status_class' => 'text-ongoing-main bg-ongoing-light',
-        ],
-        [
-            'name' => 'Bob Brown',
-            'type' => 'Single Appointment',
-            'date' => 'Fri, Dec 1, 2024',
-            'time' => '11:00 AM - 11:45 AM',
-            'status' => 'CANCELLED',
-            'status_class' => 'text-cancelled-main bg-cancelled-light',
-        ],
-        [
-            'name' => 'Charlie Davis',
-            'type' => 'Single Appointment',
-            'date' => 'Sat, Dec 2, 2024',
-            'time' => '12:00 PM - 12:45 PM',
-            'status' => 'ONGOING',
-            'status_class' => 'text-ongoing-main bg-ongoing-light',
-        ],
-        [
-            'name' => 'Diana Evans',
-            'type' => 'Single Appointment',
-            'date' => 'Sun, Dec 3, 2024',
-            'time' => '1:00 PM - 1:45 PM',
-            'status' => 'UPCOMING',
-            'status_class' => 'text-upcoming-main bg-upcoming-light',
-        ],
-        [
-            'name' => 'Eve Foster',
-            'type' => 'Single Appointment',
-            'date' => 'Mon, Dec 4, 2024',
-            'time' => '2:00 PM - 2:45 PM',
-            'status' => 'UPCOMING',
-            'status_class' => 'text-upcoming-main bg-upcoming-light',
-        ],
-        [
-            'name' => 'Frank Green',
-            'type' => 'Single Appointment',
-            'date' => 'Tue, Dec 5, 2024',
-            'time' => '3:00 PM - 3:45 PM',
-            'status' => 'UPCOMING',
-            'status_class' => 'text-upcoming-main bg-upcoming-light',
-        ],
-        [
-            'name' => 'Grace Harris',
-            'type' => 'Single Appointment',
-            'date' => 'Wed, Dec 6, 2024',
-            'time' => '4:00 PM - 4:45 PM',
-            'status' => 'UPCOMING',
-            'status_class' => 'text-upcoming-main bg-upcoming-light',
-        ],
-    ];
-    $users = [
-        [
-            'name' => 'Anthony Billedo',
-            'username' => '@billintony',
-            'dp_path' => 'huesca.png',
-        ],
-        [
-            'name' => 'Reight Huesca',
-            'username' => '@weskadean',
-            'dp_path' => 'Dean.png',
-        ],
-        [
-            'name' => 'Herwayne Alama',
-            'username' => '@herwenwen',
-            'dp_path' => 'herwayne.png',
-        ],
-        [
-            'name' => 'Ian Jimenez',
-            'username' => '@renaldino',
-            'dp_path' => 'ian.png',
-        ],
-    ];
-@endphp
 <x-shop-layout :user="$user" :userrole="$userRole">
     <section class="space-y-4">
         <div class="flex gap-4">
@@ -134,7 +28,7 @@
                         </div>
                         <div class="grid gap-2">
                             @if ($shopOwner[0]->first_name && $shopOwner[0]->last_name)
-                                <p class="font-bold">{{ $shopOwner[0]->first_name + ' ' + $shopOwner[0]->last_name }}
+                                <p class="font-bold">{{ $shopOwner[0]->first_name . ' ' . $shopOwner[0]->last_name }}
                                 </p>
                             @else
                                 <p class="font-bold">{{ $shopOwner[0]->username }}</p>
@@ -216,62 +110,160 @@
                         <path d="M16 10L12 14L8 10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
-                <div class="h-[15rem]  space-y-6 ">
-                    {{-- Profile Card --}}
-                    <div class="flex items-center justify-between ">
-                        <div class="flex items-center gap-8">
-                            <img class="lazyload size-14 object-cover rounded-full"
-                                src="{{ asset('assets/images/huesca.png') }}" alt="">
-                            <div>
-                                <p class="text-xs ">Single Appointment</p>
-                                <p class="font-semibold">Anthony Billedo</p>
-                                <p class="text-xs opacity-60 ">Click to check appointment information</p>
-                            </div>
+                <div class="h-[19rem]  space-y-6  overflow-y-scroll">
+                    @php
+                        $index = 0;
+                    @endphp
+                    @if ($shopPendingAppointments->count() == 0)
+                        <div class="flex flex-col items-center justify-center">
+                            <svg class="stroke-2 stroke-gray-300 size-40" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.8291 17.0806C13.9002 21.3232 19.557 15.6663 18.8499 5.0598C8.24352 4.35269 2.58692 10.0097 6.8291 17.0806ZM6.8291 17.0806C6.82902 17.0805 6.82918 17.0807 6.8291 17.0806ZM6.8291 17.0806L5 18.909M6.8291 17.0806L10.6569 13.2522"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <p class="text-gray-300 text-4xl">No pending appointments</p>
                         </div>
-                        <div>
-                            <p class="opacity-60 text-sm text-right">Divisoria Branch</p>
-                            <p class="opacity-60 text-sm text-right">Mon, Nov 27, 2024</p>
-                            <p class="opacity-60 text-sm text-right">11:00 AM</p>
-                        </div>
-                    </div>
-                    {{-- Profile Card End --}}
-                    {{-- Profile Card --}}
-                    <div class="flex items-center justify-between ">
-                        <div class="flex items-center gap-8">
-                            <img class="lazyload size-14 object-cover rounded-full"
-                                src="{{ asset('assets/images/Dean.png') }}" alt="">
-                            <div>
-                                <p class="text-xs">Single Appointment</p>
-                                <p class="font-semibold">Reight Huesca</p>
-                                <p class="text-xs opacity-60">Click to check appointment information</p>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="opacity-60 text-sm text-right">Upper Calarian Branch</p>
-                            <p class="opacity-60 text-sm text-right">Wed, Nov 29, 2024</p>
-                            <p class="opacity-60 text-sm text-right">4:00PM</p>
-                        </div>
-                    </div>
-                    {{-- Profile Card End --}}
-                    {{-- Profile Card --}}
-                    <div class="flex items-center justify-between ">
-                        <div class="flex items-center gap-8">
-                            <img class="lazyload size-14 object-cover rounded-full"
-                                src="{{ asset('assets/images/huesca.png') }}" alt="">
-                            <div>
-                                <p class="text-xs ">Single Appointment</p>
-                                <p class="font-semibold">Anthony Billedo</p>
-                                <p class="text-xs opacity-60 ">Click to check appointment information</p>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="opacity-60 text-sm text-right">Divisoria Branch</p>
-                            <p class="opacity-60 text-sm text-right">Mon, Nov 27, 2024</p>
-                            <p class="opacity-60 text-sm text-right">11:00 AM</p>
-                        </div>
-                    </div>
-                    {{-- Profile Card End --}}
+                    @else
+                        @foreach ($shopPendingAppointments as $appointment)
+                            @php
+                                $index = $loop->index;
+                            @endphp
+                            @if ($appointment->status == 'pending')
+                                <button onclick="openModal({{ $index }})"
+                                    class="flex items-center justify-between w-full">
+                                    <div class="flex items-center gap-8">
+                                        <div class="size-14">
+                                            <x-user-profile-pic />
+                                        </div>
+                                        <div class="space-y-2">
+                                            <p class="text-xs text-left">{{ $appointment->appointment_type }}</p>
+                                            @if ($appointment->first_name && $appointment->last_name)
+                                                <p class="font-semibold text-left">
+                                                    {{ $appointment->first_name . ' ' . $appointment->last_name }}</p>
+                                            @else
+                                                <p class="font-semibold text-left">{{ $appointment->username }}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="opacity-60 text-sm text-right">{{ $appointment->branch_name }}</p>
+                                        <p class="opacity-60 text-sm text-right">
+                                            {{ date('l, F j, Y', strtotime($appointment->date)) }}</p>
+                                        <p class="opacity-60 text-sm text-right">
+                                            {{ date('h:i A', strtotime($appointment->time)) }}</p>
+                                    </div>
+                                </button>
+                                {{-- MODAL --}}
+                                <div id="approval-modal-{{ $index }}"
+                                    class="fixed -top-10 right-0 bottom-0 left-0 place-items-center backdrop-brightness-50 z-20 hidden">
+                                    <div id="approval-modal-contents"
+                                        class="bg-white rounded-lg p-10 shadow-lg w-[45rem]">
+                                        <div class="mb-6 flex items-center justify-between">
+                                            <h1 class="text-4xl font-bold">Pending Appointments</h1>
+                                            <button class="approval-modal-close-btn"
+                                                onclick="closeModal({{ $index }})">
+                                                <svg class="stroke-2 stroke-black" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M18 18L12 12M12 12L6 6M12 12L18 6M12 12L6 18"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="flex items-center justify-between w-full mb-6">
+                                            <div class="flex items-center gap-8 mb-6">
+                                                <div class="size-14">
+                                                    <x-user-profile-pic />
+                                                </div>
+                                                <div class="space-y-2">
+                                                    <p class="text-xs text-left">{{ $appointment->appointment_type }}
+                                                    </p>
+                                                    @if ($appointment->first_name && $appointment->last_name)
+                                                        <p class="font-semibold text-left">
+                                                            {{ $appointment->first_name . ' ' . $appointment->last_name }}
+                                                        </p>
+                                                    @else
+                                                        <p class="font-semibold text-left">
+                                                            {{ $appointment->username }}</p>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div>
 
+                                            </div>
+                                            <div>
+                                                <p class="opacity-60 text-sm text-right">
+                                                    {{ $appointment->branch_name }}</p>
+                                                <p class="opacity-60 text-sm text-right">
+                                                    {{ date('l, F j, Y', strtotime($appointment->date)) }}</p>
+                                                <p class="opacity-60 text-sm text-right">
+                                                    {{ date('h:i A', strtotime($appointment->time)) }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="w-full mb-6">
+                                            <div class="border p-4 rounded-lg">
+                                                <h1 class="font-bold">Service Details</h1>
+                                                <div
+                                                    class="flex items
+                                                -center justify-between border-b pb-4">
+                                                    <div>
+                                                        <p>{{ $appointment->service_name }}</p>
+                                                        <p class="text-sm">{{ $appointment->duration }}</p>
+                                                    </div>
+                                                    <p class="font-bold text-lg">
+                                                        P{{ number_format($appointment->cost) }}</p>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <h1 class="font-bold">Appointment Notes</h1>
+                                                    <p>{{ $appointment->note }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <form
+                                                action="{{ route('shop.approve-appointment', ['id' => $appointment->appointment_id]) }}"
+                                                method="POST" class="w-full">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="appointment_id"
+                                                    value="{{ $appointment->appointment_id }}">
+                                                <input type="hidden" name="status" value="declined">
+                                                <button type="submit"
+                                                    class=" bg-neutral-200 py-2 px-8 rounded-lg w-full">Decline
+                                                    Booking</button>
+                                            </form>
+                                            <form
+                                                action="{{ route('shop.approve-appointment', ['id' => $appointment->appointment_id]) }}"
+                                                method="POST" class="w-full">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="appointment_id"
+                                                    value="{{ $appointment->appointment_id }}">
+                                                <input type="hidden" name="status" value="upcoming">
+                                                <button type="submit"
+                                                    class=" bg-brand-500 text-white py-2 px-8 rounded-lg w-full">Approve
+                                                    Booking</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+
+                    @endif
+                    <script>
+                        function openModal(id) {
+                            document.getElementById(`approval-modal-${id}`).classList.remove('hidden');
+                            document.getElementById(`approval-modal-${id}`).classList.add('grid');
+                        }
+
+                        function closeModal(id) {
+                            document.getElementById(`approval-modal-${id}`).classList.add('hidden');
+                            document.getElementById(`approval-modal-${id}`).classList.remove('grid');
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -309,64 +301,267 @@
                     </button>
                 </div>
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg border">
-                    <table class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead
-                            class="text-xs text-gray-900 uppercase bg-white border-b dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">
-                                    Client Name
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Type
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Date
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Time
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Status
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Action
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-
-                            @foreach ($appointments as $appointment)
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $appointment['name'] }}
+                    @if ($shopAppointments->count() == 0)
+                        <div class="flex flex-col items-center justify-center">
+                            <svg class="stroke-2 stroke-gray-300 size-40" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.8291 17.0806C13.9002 21.3232 19.557 15.6663 18.8499 5.0598C8.24352 4.35269 2.58692 10.0097 6.8291 17.0806ZM6.8291 17.0806C6.82902 17.0805 6.82918 17.0807 6.8291 17.0806ZM6.8291 17.0806L5 18.909M6.8291 17.0806L10.6569 13.2522"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <p class="text-gray-300 text-4xl">No appointments</p>
+                        </div>
+                    @else
+                        <table class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                            <thead
+                                class="text-xs text-gray-900 uppercase bg-white border-b dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Client Name
                                     </th>
-                                    <td class="px-6 py-4">
-                                        {{ $appointment['type'] }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $appointment['date'] }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $appointment['time'] }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span
-                                            class="{{ $appointment['status_class'] }} font-bold px-2 rounded-full">{{ $appointment['status'] }}</span>
-                                    </td>
-                                    <td class="px-6 py-4 space-x-4">
-                                        <button href="#"
-                                            class="font-medium text-brand-400 dark:text-brand-400 hover:underline">Edit</button>
-                                        <button href="#"
-                                            class="font-medium text-brand-400 dark:text-brand-400 hover:underline">View
-                                            Details</button>
-                                    </td>
+                                    <th scope="col" class="px-6 py-3">
+                                        Type
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Date
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Time
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Status
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Action
+                                    </th>
                                 </tr>
-                            @endforeach
+                            </thead>
+                            <tbody>
+                                @php
+                                    $index = 0;
+                                @endphp
+                                @foreach ($shopAppointments as $appointment)
+                                    @php
+                                        $index = $loop->index;
+                                    @endphp
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        @if ($appointment->first_name && $appointment->last_name)
+                                            <th scope="row"
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {{ $appointment->first_name . ' ' . $appointment->last_name }}
+                                            </th>
+                                        @else
+                                            <th scope="row"
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {{ $appointment->username }}
+                                            </th>
+                                        @endif
+                                        <td class="px-6 py-4">
+                                            {{ $appointment->appointment_type }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ date('l, F j, Y', strtotime($appointment->date)) }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ date('h:i A', strtotime($appointment->time)) }}
+                                        </td>
+                                        <td class="px-6 py-4 uppercase">
+                                            @switch($appointment->status)
+                                                @case('no-show')
+                                                    <span
+                                                        class="text-noshows-main bg-noshows-light font-bold px-2 rounded-full uppercase">{{ $appointment->status }}</span>
+                                                @break
 
-                        </tbody>
-                    </table>
+                                                @case('completed')
+                                                    <span
+                                                        class="text-completed-main bg-completed-light font-bold px-2 rounded-full uppercase">{{ $appointment->status }}</span>
+                                                @break
+
+                                                @case('ongoing')
+                                                    <span
+                                                        class="text-ongoing-main bg-ongoing-light font-bold px-2 rounded-full uppercase">{{ $appointment->status }}</span>
+                                                @break
+
+                                                @case('cancelled')
+                                                    <span
+                                                        class="text-cancelled-main bg-cancelled-light font-bold px-2 rounded-full uppercase">{{ $appointment->status }}</span>
+                                                @break
+
+                                                @case('upcoming')
+                                                    <span
+                                                        class="text-upcoming-main bg-upcoming-light font-bold px-2 rounded-full uppercase">{{ $appointment->status }}</span>
+                                                @break
+
+                                                @case('started')
+                                                    <span
+                                                        class="text-orange-500 bg-orange-100 font-bold px-2 rounded-full uppercase">{{ $appointment->status }}</span>
+                                                @break
+
+                                                @case('declined')
+                                                    <span
+                                                        class="text-gray-500 bg-gray-100 font-bold px-2 rounded-full uppercase">{{ $appointment->status }}</span>
+                                                @break
+                                            @endswitch
+                                            {{-- {{ $appointment->status }} --}}
+                                        </td>
+                                        <td class="px-6 py-4 space-x-4">
+                                            <button
+                                                class="font-medium text-brand-400 dark:text-brand-400 hover:underline"
+                                                onclick="openEditModal({{ $index }})">Edit</button>
+                                            {{-- <button
+                                            class="font-medium text-brand-400 dark:text-brand-400 hover:underline">View
+                                            Details</button> --}}
+                                        </td>
+                                    </tr>
+                                    <div id="edit-appointment-modal-{{ $index }}"
+                                        class="fixed -top-10 right-0 bottom-0 left-0 place-items-center backdrop-brightness-50 z-20 hidden ">
+                                        <div class="grid grid-cols-3 w-[70rem]">
+                                            {{-- Column1 --}}
+                                            <div id="edit-appointment-modal-contents"
+                                                class="bg-white rounded-lg p-6  col-span-2">
+                                                <div class="mb-6 flex items-start justify-between">
+                                                    <h1 class="text-4xl font-bold">Pending Appointments</h1>
+                                                    <button class="edit-appointment-modal-close-btn"
+                                                        onclick="closeEditModal({{ $index }})">
+                                                        <svg class="stroke-2 stroke-black" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M18 18L12 12M12 12L6 6M12 12L18 6M12 12L6 18"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                {{-- Customer Details or Appointment Summary --}}
+                                                <div class="flex items-center justify-between w-full mb-6">
+                                                    <div class="flex items-center gap-8">
+                                                        <div class="size-14">
+                                                            <x-user-profile-pic />
+                                                        </div>
+                                                        <div class="space-y-2">
+                                                            <p class="text-xs text-left">
+                                                                {{ $appointment->appointment_type }}</p>
+                                                            @if ($appointment->first_name && $appointment->last_name)
+                                                                <p class="font-semibold text-left">
+                                                                    {{ $appointment->first_name . ' ' . $appointment->last_name }}
+                                                                </p>
+                                                            @else
+                                                                <p class="font-semibold text-left">
+                                                                    {{ $appointment->username }}</p>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <p class="opacity-60 text-sm text-right">
+                                                            {{ $appointment->branch_name }}</p>
+                                                        <p class="opacity-60 text-sm text-right">
+                                                            {{ date('l, F j, Y', strtotime($appointment->date)) }}</p>
+                                                        <p class="opacity-60 text-sm text-right">
+                                                            {{ date('h:i A', strtotime($appointment->time)) }}</p>
+                                                    </div>
+                                                </div>
+                                                {{-- Service Detail --}}
+                                                <div class="w-full mb-6">
+                                                    <div class="border p-4 rounded-lg">
+                                                        <h1 class="font-bold">Service Details</h1>
+                                                        <div
+                                                            class="flex items
+                                                    -center justify-between border-b pb-4">
+                                                            <div>
+                                                                <p>{{ $appointment->service_name }}</p>
+                                                                <p class="text-sm">{{ $appointment->duration }}</p>
+                                                            </div>
+                                                            <p class="font-bold text-lg">
+                                                                P{{ number_format($appointment->cost) }}</p>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <h1 class="font-bold">Appointment Notes</h1>
+                                                            <p>{{ $appointment->note }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            {{-- Column2 --}}
+                                            <div class="bg-white rounded-lg p-6 border col-span-1 ">
+                                                <form
+                                                    action="{{ route('shop.approve-appointment', ['id' => $appointment->appointment_id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div
+                                                        class="flex flex-col justify-between items-center h-full w-full">
+                                                        <div class="w-full">
+                                                            <div class="inline-flex gap-4 items-center mb-6">
+                                                                <div class="size-12">
+                                                                    <x-user-profile-pic />
+                                                                </div>
+                                                                <div>
+                                                                    <p class="font-bold">
+                                                                        {{ $appointment->first_name . ' ' . $appointment->last_name }}
+                                                                    </p>
+                                                                    <p class="text-sm">
+                                                                        {{ '@' . $appointment->username }}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-4">
+                                                                <div class="mb-2">
+                                                                    <h1 class="font-bold">Appointment Status</h1>
+                                                                </div>
+                                                                <div class="flex items-center relative">
+                                                                    <select name="status" id="selectstatus"
+                                                                        class="w-full p-2 rounded-lg border">
+                                                                        <option value="started">Started</option>
+                                                                        <option value="completed">Completed</option>
+                                                                        <option value="cancelled">Cancelled</option>
+                                                                        <option value="no-show">No Show</option>
+                                                                    </select>
+                                                                    <svg class="stroke-1 stroke-black absolute top-2 right-2"
+                                                                        width="24" height="24"
+                                                                        viewBox="0 0 24 24" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M16 10L12 14L8 10"
+                                                                            stroke-linecap="round"
+                                                                            stroke-linejoin="round" />
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="">
+                                                                    <div class="my-2 border-b py-2">
+                                                                        <h1 class="font-bold">Appointment Status</h1>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p class="text-sm">No Allergies</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-4 grid grid-cols-2 gap-4 w-full">
+                                                            <button
+                                                                class="bg-neutral-200 w-full p-2 rounded-lg">Reschedule</button>
+                                                            <button type="submit"
+                                                                class="bg-brand-500 w-full p-2 text-white rounded-lg">Save
+                                                                Changes</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
+
+                    <script>
+                        function openEditModal(id) {
+                            document.getElementById(`edit-appointment-modal-${id}`).classList.remove('hidden');
+                            document.getElementById(`edit-appointment-modal-${id}`).classList.add('grid');
+                        }
+
+                        function closeEditModal(id) {
+                            document.getElementById(`edit-appointment-modal-${id}`).classList.add('hidden');
+                            document.getElementById(`edit-appointment-modal-${id}`).classList.remove('grid');
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -409,78 +604,46 @@
                 </svg>
             </div>
             <div class="h-[15rem] overflow-y-scroll border shadow-md p-3 space-y-6 rounded-lg">
-                {{-- Profile Card --}}
-                <div class="flex items-center justify-between ">
-                    <div class="flex items-center gap-8">
-                        <img class="lazyload size-14 object-cover rounded-full"
-                            src="{{ asset('assets/images/huesca.png') }}" alt="">
-                        <div>
-                            <p class="text-xs ">Single Appointment</p>
-                            <p class="font-semibold">Anthony Billedo</p>
-                            <p class="text-xs opacity-60 ">Click to check appointment information</p>
-                        </div>
+                @if ($shopPendingAppointments->count() == 0)
+                    <div class="flex flex-col items-center justify-center">
+                        <svg class="stroke-2 stroke-gray-300 size-40" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.8291 17.0806C13.9002 21.3232 19.557 15.6663 18.8499 5.0598C8.24352 4.35269 2.58692 10.0097 6.8291 17.0806ZM6.8291 17.0806C6.82902 17.0805 6.82918 17.0807 6.8291 17.0806ZM6.8291 17.0806L5 18.909M6.8291 17.0806L10.6569 13.2522"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <p class="text-gray-300 text-4xl">No upcoming appointments</p>
                     </div>
-                    <div>
-                        <p class="opacity-60 text-sm text-right">Divisoria Branch</p>
-                        <p class="opacity-60 text-sm text-right">Mon, Nov 27, 2024</p>
-                        <p class="opacity-60 text-sm text-right">11:00 AM</p>
-                    </div>
-                </div>
-                {{-- Profile Card End --}}
-                {{-- Profile Card --}}
-                <div class="flex items-center justify-between ">
-                    <div class="flex items-center gap-8">
-                        <img class="lazyload size-14 object-cover rounded-full"
-                            src="{{ asset('assets/images/Dean.png') }}" alt="">
-                        <div>
-                            <p class="text-xs">Single Appointment</p>
-                            <p class="font-semibold">Reight Huesca</p>
-                            <p class="text-xs opacity-60">Click to check appointment information</p>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="opacity-60 text-sm text-right">Upper Calarian Branch</p>
-                        <p class="opacity-60 text-sm text-right">Wed, Nov 29, 2024</p>
-                        <p class="opacity-60 text-sm text-right">4:00PM</p>
-                    </div>
-                </div>
-                {{-- Profile Card End --}}
-                {{-- Profile Card --}}
-                <div class="flex items-center justify-between ">
-                    <div class="flex items-center gap-8">
-                        <img class="lazyload size-14 object-cover rounded-full"
-                            src="{{ asset('assets/images/huesca.png') }}" alt="">
-                        <div>
-                            <p class="text-xs ">Single Appointment</p>
-                            <p class="font-semibold">Anthony Billedo</p>
-                            <p class="text-xs opacity-60 ">Click to check appointment information</p>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="opacity-60 text-sm text-right">Divisoria Branch</p>
-                        <p class="opacity-60 text-sm text-right">Mon, Nov 27, 2024</p>
-                        <p class="opacity-60 text-sm text-right">11:00 AM</p>
-                    </div>
-                </div>
-                {{-- Profile Card End --}}
-                {{-- Profile Card --}}
-                <div class="flex items-center justify-between ">
-                    <div class="flex items-center gap-8">
-                        <img class="lazyload size-14 object-cover rounded-full"
-                            src="{{ asset('assets/images/Dean.png') }}" alt="">
-                        <div>
-                            <p class="text-xs">Single Appointment</p>
-                            <p class="font-semibold">Reight Huesca</p>
-                            <p class="text-xs opacity-60">Click to check appointment information</p>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="opacity-60 text-sm text-right">Upper Calarian Branch</p>
-                        <p class="opacity-60 text-sm text-right">Wed, Nov 29, 2024</p>
-                        <p class="opacity-60 text-sm text-right">4:00PM</p>
-                    </div>
-                </div>
-                {{-- Profile Card End --}}
+                @else
+                    @foreach ($shopPendingAppointments as $appointment)
+                        @if ($appointment->status == 'pending')
+                            <div class="flex items-center justify-between ">
+                                <div class="flex items-center gap-8">
+                                    <div class="size-14">
+                                        <x-user-profile-pic />
+                                    </div>
+                                    <div>
+                                        <p class="text-xs ">{{ $appointment->appointment_type }}</p>
+                                        @if ($appointment->first_name && $appointment->last_name)
+                                            <p class="font-semibold">
+                                                {{ $appointment->first_name . ' ' . $appointment->last_name }}</p>
+                                        @else
+                                            <p class="font-semibold">{{ $appointment->username }}</p>
+                                        @endif
+                                        <p class="text-xs opacity-60 ">Click to check appointment information</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="opacity-60 text-sm text-right">{{ $appointment->branch_name }}</p>
+                                    <p class="opacity-60 text-sm text-right">
+                                        {{ date('l, F j, Y', strtotime($appointment->date)) }}</p>
+                                    <p class="opacity-60 text-sm text-right">
+                                        {{ date('h:i A', strtotime($appointment->time)) }}</p>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
@@ -565,16 +728,17 @@
                 </form>
             </div>
             @php $index = 0; @endphp
-            <div class="divide-y">
+            <div class="divide-y h-[30rem] overflow-y-scroll">
                 @foreach ($users as $user)
                     @php $index = $loop->index; @endphp
                     <div id="account{{ $index }}" class="flex items-center gap-8 p-4 cursor-pointer"
                         onclick="selectAccount({{ $index }})">
-                        <img class="lazyload size-14 object-cover rounded-full"
-                            src="{{ asset('assets/images/images/' . $user['dp_path']) }}" alt="">
+                        <div class="size-14">
+                            <x-user-profile-pic />
+                        </div>
                         <div>
-                            <p class="font-semibold">{{ $user['name'] }}</p>
-                            <p class="text-xs opacity-60">{{ $user['username'] }}</p>
+                            <p class="font-semibold">{{ $user->first_name . ' ' . $user->last_name }}</p>
+                            <p class="text-xs opacity-60">{{ $user->username }}</p>
                         </div>
                     </div>
                 @endforeach
@@ -607,12 +771,14 @@
             </div>
         </div>
     </div>
+
     <script src="{{ asset('assets/js/regionObj.js') }}"></script>
     <script src="{{ asset('assets/js/provinceObj.js') }}"></script>
     <script src="{{ asset('assets/js/cityObj.js') }}"></script>
     <script src="{{ asset('assets/js/barangayObj.js') }}"></script>
     <script src="{{ asset('assets/js/shopRegistration.js') }}"></script>
     <script src="{{ asset('assets/js/address.js') }}"></script>
+    <script src="{{ asset('assets/js/showModal.js') }}"></script>
     <script src="{{ asset('assets/js/shop/appointment.js') }}"></script>
     @stack('scripts')
 </x-shop-layout>

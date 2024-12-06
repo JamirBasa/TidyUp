@@ -89,6 +89,7 @@ Route::middleware(IsServiceProvider::class)->group(function () {
     Route::get('/shop/catalog', [ShopCatalogController::class, 'catalog'])->name('shop.catalog');
     Route::get('/shop/branches', [ShopController::class, 'manageBranches'])->name('shop.manage-branches');
     Route::get('/shop/appointment', [ShopController::class, 'appointment'])->name('shop.appointment');
+    Route::put('/shop/appointment/approve/{id}', [ShopController::class, 'approveAppointment'])->name('shop.approve-appointment');
 });
 
 Route::middleware(Admin::class)->group(function () {

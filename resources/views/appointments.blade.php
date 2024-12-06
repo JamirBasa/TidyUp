@@ -85,6 +85,9 @@
                 @foreach ($appointments as $appointment)
                     <div class="border-y border-neutral-400 flex items-center justify-between py-4 px-2 mb-4">
                         <div class="flex items-center gap-8 ">
+                            <div class="grid place-items-center">
+                                <input type="checkbox" name="select" id="">
+                            </div>
                             <img class="h-28 w-52 rounded-lg object-cover flex-shrink-0"
                                 src="{{ asset('storage/' . $appointment->path) }}" loading="lazy" alt="">
                             <div class="flex flex-col gap-3">
@@ -106,7 +109,15 @@
                     </div>
                 @endforeach
             @endif
-
+            
+        </div>
+        <div class="flex my-6 justify-end w-full">
+            <button class="flex items-center gap-2" id="cancel-appointments-button">
+                <svg class="stroke-1 stroke-black" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.99902 16H4.99902V21M13.999 8H18.999V3M4.58203 9.0034C5.14272 7.61566 6.08146 6.41304 7.29157 5.53223C8.50169 4.65141 9.93588 4.12752 11.4288 4.02051C12.9217 3.9135 14.4138 4.2274 15.7371 4.92661C17.0605 5.62582 18.1603 6.68254 18.9131 7.97612M19.4166 14.9971C18.8559 16.3848 17.9171 17.5874 16.707 18.4682C15.4969 19.3491 14.0642 19.8723 12.5713 19.9793C11.0784 20.0863 9.58509 19.7725 8.26172 19.0732C6.93835 18.374 5.83785 17.3175 5.08496 16.0239"  stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                <span>Cancel Appointment Request</span>
+            </button>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -142,6 +153,11 @@
                             $appointmentsContent.append(`
                         <div class="border-y border-neutral-400 flex items-center justify-between py-4 px-2 mb-4">
                             <div class="flex items-center gap-8 ">
+                                ${appointment.status === 'pending' ? `
+                                <div class="grid place-items-center" id="">
+                                    <input type="checkbox" name="select" id="appointments-checkbox">
+                                </div>
+                                ` : ''}
                                 <img class="h-28 w-52 rounded-lg object-cover flex-shrink-0"
                                     src="{{ asset('storage/') }}/${appointment.path}" loading="lazy"
                                     alt="">
@@ -153,7 +169,7 @@
                                 </div>
                             </div>
                             <div class="text-right flex flex-col gap-3">
-                                <p class="text-lg font-semibold leading-none">Php ${appointment.total_price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                                <p class="text-lg font-semibold leading-none">Php ${numberWithCommas(appointment.total_price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</p>
                                 
                                 <p class="text-sm leading-none">${new Date(appointment.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</p>
                                 <p class="text-sm leading-none">${new Date('1970-01-01T' + appointment.time + 'Z').toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</p>
@@ -164,6 +180,22 @@
                     }
 
                 }
+                const $cancelAppointmentsButton = $('#cancel-appointments-button');
+                const $appointmentsCheckboxes = $('input[name="select"]');
+
+                function updateCancelButtonVisibility() {
+                    const anyChecked = $appointmentsCheckboxes.is(':checked');
+                    if (anyChecked) {
+                        $cancelAppointmentsButton.show();
+                    } else {
+                        $cancelAppointmentsButton.hide();
+                    }
+                }
+
+                $appointmentsCheckboxes.on('change', updateCancelButtonVisibility);
+
+                // Initial check
+                updateCancelButtonVisibility();
 
                 // Initialize indicator position and filter appointments
                 const $activeTab = $('li.active');
@@ -198,6 +230,9 @@
         </script>
     </div>
     <script>
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
         // this is for the menu tabs in the appointments page to make the transition of the line indicator smooth
         $(document).ready(function() {
             const $tabs = $('li');

@@ -2,9 +2,7 @@
     <div class="bg-white p-10 rounded-lg shadow-sm mb-4 flex items-center justify-between">
         <div>
             <h6>Your Shop</h6>
-            @foreach ($shops as $shop)
-                <h1 class="text-4xl font-bold">{{ $shop->shop_name }}</h1>
-            @endforeach
+            <h1 class="text-4xl font-bold">{{ $shops[0]->shop_name }}</h1>
             {{-- <p>{{ $shopBranches[0]->city }}</p> --}}
         </div>
         <div class="flex items-center gap-4">
@@ -27,7 +25,7 @@
             <img class="lazyload absolute top-10 right-10" src="{{ asset('assets/Icons/Arrow/Arrow_Up_Right_MD.svg') }}"
                 alt="icon">
             <h6 class="font-semibold mb-2">Recent Income</h6>
-            <h1 class="text-4xl font-bold mb-3">&#8369;0</h1>
+            <h1 class="text-4xl font-bold mb-3">P0</h1>
             <div class="relative flex items-center">
                 <img class="lazyload absolute" src="{{ asset('assets/Icons/Arrow/Caret_Down_MD.svg') }}" alt="">
                 <select name="" id="" class="focus:outline-none px-8 ">
@@ -90,41 +88,47 @@
             {{-- Upcoming Appointments --}}
 
             {{-- Profile Card --}}
-            <div class="flex items-center justify-between py-4">
-                <div class="flex items-center gap-8">
-                    <img class="lazyload size-14 object-cover rounded-full"
-                        src="{{ asset('assets/images/huesca.png') }}" alt="">
-                    <div>
-                        <p class="text-xs mb-2">Single Appointment</p>
-                        <p class="font-semibold">Anthony Billedo</p>
-                    </div>
+            @if ($shopPendingAppointments->count() == 0)
+                <div class="flex flex-col items-center justify-center h-[22rem]">
+                    <svg class="stroke-2 stroke-gray-300 size-40" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6.8291 17.0806C13.9002 21.3232 19.557 15.6663 18.8499 5.0598C8.24352 4.35269 2.58692 10.0097 6.8291 17.0806ZM6.8291 17.0806C6.82902 17.0805 6.82918 17.0807 6.8291 17.0806ZM6.8291 17.0806L5 18.909M6.8291 17.0806L10.6569 13.2522"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <p class="text-gray-300 text-4xl">No Pending appointments</p>
                 </div>
-                <div>
-                    <p class="opacity-60 text-sm text-right">Divisoria Branch</p>
-                    <p class="opacity-60 text-sm text-right">Mon, Nov 27, 2024</p>
-                    <p class="opacity-60 text-sm text-right">11:00 AM</p>
-                </div>
-            </div>
+            @else
+                @foreach ($shopPendingAppointments as $appointment)
+                    @if ($appointment->status == 'pending' )
+                        <div class="flex items-center justify-between py-4">
+                            <div class="flex items-center gap-8">
+                                <div class="size-14">
+                                    <x-user-profile-pic />
+                                </div>
+                                <div>
+                                    <p class="text-xs mb-2">{{ $appointment->appointment_type }}</p>
+                                    @if ($appointment->first_name && $appointment->last_name)
+                                        <p class="font-semibold">{{ $appointment->first_name . ' ' . $appointment->last_name }}</p>
+                                    @else
+                                        <p class="font-semibold">{{ $appointment->username }}</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <div>
+                                <p class="opacity-60 text-sm text-right">{{ $appointment->branch_name }}</p>
+                                <p class="opacity-60 text-sm text-right">
+                                    {{ date('l, F j, Y', strtotime($appointment->date)) }}</p>
+                                <p class="opacity-60 text-sm text-right">
+                                    {{ date('h:i A', strtotime($appointment->time)) }}</p>
+                            </div>
+                        </div>
+                    @else
+                    
+                    @endif
+                @endforeach
+            @endif
             {{-- Profile Card End --}}
-            {{-- Profile Card --}}
-            <div class="flex items-center justify-between py-4">
-                <div class="flex items-center gap-8">
-                    <img class="lazyload size-14 object-cover rounded-full"
-                        src="{{ asset('assets/images/Dean.png') }}" alt="">
-                    <div>
-                        <p class="text-xs mb-2">Single Appointment</p>
-                        <p class="font-semibold">Reight Huesca</p>
-                    </div>
-                </div>
-                <div>
-                    <p class="opacity-60 text-sm text-right">Oppere Calarian Branch</p>
-                    <p class="opacity-60 text-sm text-right">Wed, Nov 29, 2024</p>
-                    <p class="opacity-60 text-sm text-right">4:00PM</p>
-                </div>
-            </div>
-            {{-- Profile Card End --}}
-
-
         </div>
     </div>
     <div class="bg-white p-10 rounded-lg shadow-sm relative mb-4">
@@ -135,40 +139,40 @@
 
         {{-- Upcoming Appointments --}}
 
-        {{-- Profile Card --}}
-        <div class="flex items-center justify-between py-4">
-            <div class="flex items-center gap-8">
-                <img class="lazyload size-14 object-cover rounded-full" src="{{ asset('assets/images/huesca.png') }}"
-                    alt="">
-                <div>
-                    <p class="text-xs mb-2">Single Appointment</p>
-                    <p class="font-semibold">Anthony Billedo</p>
-                </div>
+        @if ($shopAppointments->count() == 0)
+            <div class="flex flex-col items-center justify-center">
+                <svg class="stroke-2 stroke-gray-300 size-40" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M6.8291 17.0806C13.9002 21.3232 19.557 15.6663 18.8499 5.0598C8.24352 4.35269 2.58692 10.0097 6.8291 17.0806ZM6.8291 17.0806C6.82902 17.0805 6.82918 17.0807 6.8291 17.0806ZM6.8291 17.0806L5 18.909M6.8291 17.0806L10.6569 13.2522"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <p class="text-gray-300 text-4xl">No upcoming appointments</p>
             </div>
-            <div>
-                <p class="opacity-60 text-sm text-right">Divisoria Branch</p>
-                <p class="opacity-60 text-sm text-right">Mon, Nov 27, 2024</p>
-                <p class="opacity-60 text-sm text-right">11:00 AM</p>
-            </div>
-        </div>
-        {{-- Profile Card End --}}
-        {{-- Profile Card --}}
-        <div class="flex items-center justify-between py-4">
-            <div class="flex items-center gap-8">
-                <img class="lazyload size-14 object-cover rounded-full" src="{{ asset('assets/images/Dean.png') }}"
-                    alt="">
-                <div>
-                    <p class="text-xs mb-2">Single Appointment</p>
-                    <p class="font-semibold">Reight Huesca</p>
-                </div>
-            </div>
-            <div>
-                <p class="opacity-60 text-sm text-right">Oppere Calarian Branch</p>
-                <p class="opacity-60 text-sm text-right">Wed, Nov 29, 2024</p>
-                <p class="opacity-60 text-sm text-right">4:00PM</p>
-            </div>
-        </div>
-        {{-- Profile Card End --}}
+        @else
+            @foreach ($shopAppointments as $appointment)
+                @if ($appointment->status == 'upcoming')
+                    <div class="flex items-center justify-between py-4">
+                        <div class="flex items-center gap-8">
+                            <div class="size-14">
+                                <x-user-profile-pic />
+                            </div>
+                            <div>
+                                <p class="text-xs mb-2">{{ $appointment->appointment_type }}</p>
+                                <p class="font-semibold">{{ $appointment->username }}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="opacity-60 text-sm text-right">{{ $appointment->branch_name }}</p>
+                            <p class="opacity-60 text-sm text-right">
+                                {{ date('l, F j, Y', strtotime($appointment->date)) }}</p>
+                            <p class="opacity-60 text-sm text-right">
+                                {{ date('h:i A', strtotime($appointment->time)) }}</p>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        @endif
     </div>
     <!-- grid with 2 columns -->
     <div class="grid grid-cols-2 gap-4 mb-4">
@@ -195,7 +199,7 @@
             </div>
             <div class="flex items-center justify-between border-b-2 p-3">
                 <div class="font-semibold">Username</div>
-                <div class="font-semibold">Date Created</div>
+                <div class="font-semibold">Appointment Date</div>
             </div>
             <div class="flex items-center justify-between p-3">
                 <div class="opacity-70">Anthony Labang</div>

@@ -16,31 +16,43 @@ class DefaultUserSeeder extends Seeder
         $users = [
             [
                 'username' => 'Tidy_Up_Official',
+                'first_name' => 'Tidy',
+                'last_name' => 'Up',
                 'email' => 'test@gmail.com',
                 'password' => Hash::make('123'),
             ],
             [
                 'username' => 'Art_Michael_Cadiz',
+                'first_name' => 'Art Michael',
+                'last_name' => 'Cadiz',
                 'email' => 'test2@gmail.com',
                 'password' => Hash::make('123'),
             ],
             [
                 'username' => 'Dave_Jamir_Basa',
+                'first_name' => 'Dave Jamir',
+                'last_name' => 'Basa',
                 'email' => 'test3@gmail.com',
                 'password' => Hash::make('123'),
             ],
             [
                 'username' => 'Gioiel_Guevarra',
+                'first_name' => 'Gioiel',
+                'last_name' => 'Guevarra',
                 'email' => 'test4@gmail.com',
                 'password' => Hash::make('123'),
             ],
             [
                 'username' => 'Paul_Daniel_Ojales',
+                'first_name' => 'Paul Daniel',
+                'last_name' => 'Ojales',
                 'email' => 'test5@gmail.com',
                 'password' => Hash::make('123'),
             ],
             [
                 'username' => 'Carl_Mosses_Ramos',
+                'first_name' => 'Carl Mosses',
+                'last_name' => 'Ramos',
                 'email' => 'test6@gmail.com',
                 'password' => Hash::make('123'),
             ],

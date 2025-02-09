@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('service_id')->nullable()->constrained('branch_service_categories')->onDelete('cascade')->onUpdate('cascade')->default(null);
             $table->dateTime('appointment_date')->nullable();
             $table->time('appointment_time')->nullable();
-            $table->enum('status', ['pending', 'upcoming', 'completed', 'cancelled', 'no-show', 'declined'])->default('pending')->nullable();
+            $table->enum('status', ['pending', 'upcoming', 'completed', 'cancelled', 'no-show', 'declined', 'started'])->default('pending')->nullable();
             $table->decimal('total_price', 10, 2)->nullable();
             $table->text('note')->nullable();
             $table->integer('reschedule_count')->default(0);

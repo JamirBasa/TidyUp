@@ -8,8 +8,15 @@
                         <h1 class="font-bold">Branch Information</h1>
                     </div>
                     <p class="mb-4">Current Branch: {{ $shopBranches[0]->branch_name }}</p>
-                    <p class="mb-4">Branch Manager: Dean Wong</p>
-                    <p class="mb-4">Appointments: 12</p>
+                    <p class="mb-4">
+                        Branch Manager: 
+                        @if ($shopOwner[0]->first_name && $shopOwner[0]->last_name)
+                            {{ $shopOwner[0]->first_name . ' ' . $shopOwner[0]->last_name }}
+                        @else
+                            {{ $shopOwner[0]->username }}
+                        @endif
+                    </p>
+                    <p class="mb-4">Appointments: {{ $shopAppointments->count() }}</p>
                     <p class="">Location: {{ $shopBranches[0]->detailed_address }}</p>
 
                 </div>
@@ -514,6 +521,7 @@
                                                                         <option value="completed">Completed</option>
                                                                         <option value="cancelled">Cancelled</option>
                                                                         <option value="no-show">No Show</option>
+                                                                        <option value="upcoming">Upcoming</option>
                                                                     </select>
                                                                     <svg class="stroke-1 stroke-black absolute top-2 right-2"
                                                                         width="24" height="24"

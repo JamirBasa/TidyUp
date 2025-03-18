@@ -98,6 +98,7 @@ class ShopController extends Controller
             ->where('shop_appointments.shop_id', $shopId)
             ->where('is_successful', true)
             ->where('appointments.status', '!=', 'pending')
+            ->orderBy('appointments.status', 'asc')
             ->orderBy('appointments.appointment_date')
             ->orderBy('appointments.appointment_time')
             ->get();
